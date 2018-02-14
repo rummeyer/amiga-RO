@@ -1,0 +1,12 @@
+FROM LIB:c.o "PrefsApplication.o"+"PrefsConfig.o"+"Key.o"+"PrefsHooks.o"+"PrefsMain.o"+"PrefsRequest.o"+"PrefsStartup.o"
+TO "PrefsMain"
+LIB LIB:sc.lib LIB:amiga.lib
+BATCH
+VERBOSE
+NOICONS
+DEFINE @__chkabort=@__dummy
+DEFINE __CXM33=__UCXM33
+DEFINE __CXD33=__UCXD33
+DEFINE __CXM22=__UCXM22
+DEFINE __CXD22=__UCXD22
+

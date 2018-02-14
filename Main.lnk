@@ -1,0 +1,12 @@
+FROM LIB:c.o "Application.o"+"Buttons.o"+"Clock.o"+"Config.o"+"Dir.o"+"DoFunction.o"+"File.o"+"Functions.o"+"Hooks.o"+"WBPath.o"+"Key.o"+"Main.o"+"Misc.o"+"Path.o"+"Process.o"+"Startup.o"+"Request.o"
+TO "Main"
+LIB LIB:xpk.lib LIB:sc.lib LIB:amiga.lib
+BATCH
+VERBOSE
+NOICONS
+DEFINE @__chkabort=@__dummy
+DEFINE __CXM33=__UCXM33
+DEFINE __CXD33=__UCXD33
+DEFINE __CXM22=__UCXM22
+DEFINE __CXD22=__UCXD22
+

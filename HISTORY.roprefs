@@ -1,0 +1,77 @@
+History
+~~~~~~~
+
+RumorOpus Prefs 0.0 (6.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Erste Version.
+o Oberflaeche funktioniert.
+o Lesen und Speichern fehlt noch.
+
+RumorOpus Prefs 0.1 (8.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bis auf speichern funktioniert alles...
+
+RumorOpus Prefs 0.80 beta 1 (8.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o erste voll funktionsfaehige Version.
+o ein paar kleine Aenderungen an der Oberflaeche.
+  Alles jetzt per Tastatur erreichbar.
+o Kein Open-Button mehr, sondern Menu.
+o SaveAs im Menu
+o Save funktioniert jetzt
+o StringGadgets verknuepft: <CR> -> next
+o AboutRequester ohne Key, Save disabled,etc.
+
+RumorOpus Prefs 0.80 beta 2 (10.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neues Menu Edit
+o Use Button, ENV: ENVARC: wird jetzt benutzt.
+o Fehler beim aendern der InputEvents behoben,
+  es wurden die StrGads geloescht.
+o Einige PopupGadgets an StrGads genknuepft
+
+RumorOpus Prefs 0.80 beta 3 (11.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o kleiner Fehler behobe, FormatPopups muessen
+  beim Start Disabled sein.
+o kleiner Fehler... Please select drawer, bei
+  einem Requester zum File auswaehlen.
+o File auswaehler komplett entfernt, da gabs
+  Moerderstress wenn schon was im StrGad war.
+o Input Events etwas geaendert, noch ein paar Popups
+o Bei Filetypes jetzt auch die neuen Popups, jetzt
+  braucht man fast keine Anleitung mehr um RO
+  zu konfigurieren.
+o Neuer Menupunkt Iconify.
+o Bug bei den Filetypes, es konnten zwar neue
+  Filetypen erstellt werden, jedoch wurden immer nur
+  soviele abgespeichert wie eingelesen wurden.
+
+RumorOpus Prefs 0.80 beta 4 (14.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o ENV:RO.PREFS -> ENV:RO/RO.prefs
+o ShowTime und ShowSeconds sind jetzt verknuepft.
+o Fehler beim ersten einlesen der Config, einige
+  Buttons wurden nicht richtig disabled.
+o Selber Fehler bei Default Config
+o Fehler beim Disablen des 2nd Command gadgets.
+
+RumorOpus Prefs 0.80 beta 5 (14.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Stacksize hoch gesetzt, sonst Guru.
+o Kosmetische Aenderung Del->Remove
+
+RumorOpus Prefs 0.81 beta 1 (30.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bugfix beim einlesen von *"
+o Bugfix beim disablen eines Gadgets
+o Wenn man ROPrefs mit Cancel verlaesst RC=5
+
+RumorOpus Prefs 0.81 beta 2 (26.11.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bugfix bei Keyfile einlesen.
+
+RumorOpus Prefs 0.82 beta 1 (5.12.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o NetBSD installiert, Plattencrash, Backup unbrauchbar,
+  PrefsStartup.c neu geschrieben.

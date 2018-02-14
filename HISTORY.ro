@@ -1,0 +1,1491 @@
+History
+~~~~~~~
+
+RumorOpus 0.0-0.3
+~~~~~~~~~~~~~~~~~
+o beyond history
+
+RumorOpus 0.3 (03.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Wenn man Volumes anwaehlt und dann eine Diskette einlegt bzw.  rausnimmt
+  steht der Rechner fast...  liegt an MUI.
+o Es wird hin und wieder der letzte Buchstabe eins Dir-Eintrags
+  verschluckt...  liegt auch an MUI 1.4
+o Wenn man einen Pfad im Stringgadget eingibt...  Return drueckt und dann
+  wieder  das  Stringgadget  anwaehlt  erscheint  ein  '/'...  Das muss ich
+  leider  im  Moment  noch machen weil MUI Schwierigkeiten mit Directorys hat
+  die  nur  einen  Buchstaben  haben.  Wenn ich einen '/' anhaenge habe ich
+  immer mindestens zwei Zeichen...
+
+RumorOpus 0.4 (12.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o !!! benoetigt MUI 2.0 !!!
+o Volumelist-Disk-Rein-Raus ist jetzt schneller dank MUI2.0
+o MultiSelect Always jetzt aktiviert.
+o Abstand der Buttons (GroupSpacing) nicht mehr geforced auf (1) sondern
+  frei waehlbar.  Leider muss ich jetzt eigentlich schon ein MUI.key
+  vorraussetzen sonst passt das Teil nich auf nen 640x400 Screen :(
+o Es gab Probleme mit dem Parent Button, wenn noch gar kein Dir
+  geladen war.
+o Added 'ArcAdd'-Button
+
+RumorOpus 0.5 (15.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Added Buttons:  'Music', 'Relabel', 'DiskCopy', 'Parent', 'DMSWrite',
+  'Previous' Funktionen duerften klar sein...  Previous holt das zu letzt
+  reingeladene Directory zurueck.
+o Beim StringReq muss man nun nur noch einmal return druecken damit der
+  Requester geschlossen wird.
+o c:MakeDir, c:Rename werden nicht mehr benoetigt.
+o Delete Routine wurde beschleunigt...  leider braucht sie immer noch
+  c:Delete, c:Copy wird leider auch noch benoetigt
+o Output Window fuer UnArc
+o Bytes Free Anzeige implementiert
+o Get Gadget jetzt mit Image
+o Volumelist ist jetzt beim oeffnen aktiv
+o Erkennt  jetzt  DVI, ICON, GIF, JPEG, GDM, IFF, ARC, ZIP, ZOO, LHA, DMS,
+  ARJ, EXE, XPK, PP, PCX, BMP, PS, AG, OBJ, ASCII, BIN - reagiert aber noch
+  nicht auf alles.
+o Version nicht mehr in Fenstern sondern nur noch als $VER String...  Dann
+  muss ich das nicht immer alles aendern.
+
+RumorOpus 0.5b (16.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Major Bug in 0.5!!! die BytesFree Routine macht irgendwas dubioses... ich
+  komm aber schon noch dahinter. Im Moment ist die BytesFree removed.
+o Code komplett umgekrempelt. Programm ist deshalb (?) jetzt schon 30KB lang
+  aber besser strukturiert.
+o Previous wieder wech gemacht... der Listview Pseudo Cache a la DOpus ist
+  nicht mehr weit, und ist deutlich einfacher (!) zu realisieren.
+o DirLoad und Handling Funktionen komplett umgeschrieben... hoffentlich keine
+  Hits mehr. Es wird nichts mehr mit Strings gemacht sondern geht alles ueber
+  Locks und Dos.lib Funktionen.
+o Leere Stringeingabe -> CurrentDir und (WICHTIG!) es werden jetzt Assigns
+  auf Pfad expanded! d.h. Ich clicke Inbound: und kann von da aus dann mit
+  Parent in das uebergeordnete physikalische Directory gelangen.
+o Wenn man Parent clickt und es gibt kein parent mehr (z.B.: DH1:) dann
+  wird das Root Device reingeladen, das ist ein Feature und kein Bug!
+o Listview Gadget Aktivierung wurde verbessert... MUI hatte hin und wieder
+  Probleme (z.B. Volumes aktiv...dann Dir aktiv... schwups kein Listview
+  mehr aktiv und nicht mehr aktivierbar)
+o nicht funktionierende Buttons werden jetzt gedisabelt... sieht viel
+  professioneller aus wie wenn man sie einklammert.
+o Fileerkennung erkennt jetzt: DVI, ICON, GIF, JPEG, GDM, IFF, ARC, ZIP,
+  ZOO, LHA, DMS, ARJ, EXE, XPK, PP, PCX, BMP, PS, AG, OBJ, WRP, LHWRP, ZOM,
+  ASCII, BIN. ...mit hilfe einer 4 Buchstaben Kennung laesst sich jedes (!)
+  IFF File und jeder XPK Packer erkennen (z.B. ILBM, 8SVX bzw. NUKE, SQSH)
+  Eine spezielle IFF24 Erkennung ist in Arbeit!
+o Ich habe angefangen darueber nachzudenken weshalb in der Statuszeile
+  nichts steht...
+
+RumorOpus 0.6 (17.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Bug in der BytesFree Routine endlich gefunden... lock geholt und einfach mit
+  newlock ueberschrieben ohne lock freizugeben. Puhh, jetzt kann ich wieder
+  ruig schlafen.
+o Fileerkennung erkennt jetzt zusaetzlich: PC_EXE (Da muss ich mir noch was
+  fieses ueberlegen wenn man die anklicked :->, IFF_24BIT, JPEG Erkennung
+  verbessert, DMS Routine verbessert, ZIP Erkennung verbessert, ASCII
+  Erkennung verbessert.
+o Okay Okay, ich gebs ja zu, die Sache mit dem Parent war doch ein Bug ;)
+  Dos.lib ParentDir() macht das halt so, ich hatte nur keine Lust das
+  abzufangen... jetzt gehts auf jeden Fall.
+o Vielleicht sollte ich wirklich was in die Statuszeile schreiben evtl. mal
+  ne Speicheranzeige? Nene, da kommt rein wieviel Files/Dirs Selected usw.
+
+RumorOpus 0.7 (22.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Dir-Format,-SortBy & -First kann jetzt geaendert werden indem man in die
+  Statuszeile klickt (Hidden Gadget)
+o Die Einstellungen der Cyclegadgets, Listviewgadgets und Stringgadgets
+  wird jetzt gespeichert. Damit ist es nun moeglich das Directory das
+  beim start reingeladen wird etc. einzustellen.
+o Bug in Relabel gefixt
+o Bug in ArcAdd gefixt (Grml... irgendwann lern ichs auch noch mit den Locks!)
+o DiskCopy Button entfernt (Wer braucht schon nen DiskCopy im Opus?) dafuer
+  ist ein CopyDev Button hinzugekommen mit dem man Files z.B. nach PRT:
+  kopieren kann
+
+RumorOpus 0.8 (23.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o MoveAs hat ueberhaupt nicht funktioniert... da sieht man mal wieder wie oft
+  ich die Funktion brauch. Ist jetzt gefixt
+o Change Button ist hinzugekommen, fuer Leute die die Hidden Gadgets nicht
+  finden koennten und das Programm dann ohne die Anleitung zu lesen wieder
+  loeschen ;)
+o Man kann jetzt Icons auf die Listviews 'fallen lassen', dann wird das
+  zugehoerige Directory reingeladen.
+o Ich lass jetzt die Finger vom Cursor... Er wird also nicht mehr von Hand
+  deaktiviert und bleibt deshalb immer 'stehen'. Ich hoffe das in einer
+  der naechsten Versionen von MUI ein MUIV_CursorType_None unterstuetzt wird.
+o Cancel Gadget bei diversen StringRequestern funktioniert jetzt richtig
+  und Cursor Position wird auf das Ende des Stringgadgets gesetzt.
+
+RumorOpus 0.9 (26.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Die Ascii Erkennung hatte nicht funktioniert aufgrund eines Fehlenden IDs,
+  funktioniert jetzt einwandfrei.
+o Menuepunkt LoadSettings funktioniert jetzt, ich hatte vergessen das Fenster
+  zu refreshen.
+o DmsWrite fragt jetzt ab ob man wirklich eine Disk eingelegt hat und ob
+  das angewaehlte File auch wirklich ein Dms File ist.
+o Config hat sich geaendert, es ist jetzt moeglich fuer jeden Filetyp ein
+  anderes Kommando anzugeben.
+o Schon wieder wurde der Code umstrukturiert, was die Einbindung einer
+  eigenen 'Copy' Funktion einfacher machen sollte. Es wird jetzt weitgehend
+  auf Globale Variablen verzichtet!
+o ListArc und UnArc entpacken jetzt mit dem fuer das ausgewaehlte File
+  entsprechenden Entpack-Kommando und nicht nur mit 'lha'
+o Es koennen jetzt auch auf das IconifyIcon Workbench Icons fallen gelassen
+  werden, dann wird das entsprechende Directory abwechselnd ins linke oder
+  rechte Listview geladen.
+o Interne Layout Aenderung, weniger SubGroups -> Speed?
+o Ich habe mich nun doch entschlossen mehr Infos in den Listviews
+  darzustellen, ein normaler Mensch hat ja auch nen Screen der breit genug
+  ist um das darzustellen. Es wird aber auf jeden Fall in den Prefs
+  conf'bar sein.
+o Das StatuszeilenGadget wird jetzt fuer die DirHistory verwendet, und eine
+  Aenderung des SortTyps geht jetzt mit dem Change Button, das macht die
+  Bedienung etwas unflexibler aber einfacher und flotter.
+o 'Cache' Funktion die sich eine (User-)definiert Anzahl (Momentan 50) der
+  zuletzt reingeladenenvon Directorys merkt die man dann aus einem Listview
+  auswaehlen kann. btw, ist eigentlich mehr ne History als ne Cache Funktion.
+o 'Select by Name' fuer die Listviews, ist dazu gekommen.
+o Im String Request wurden die Gadgets umbenannt. Sie heissen jetzt
+  Okay, Skip & Cancel was die Sache irgendwie besser trifft.
+o Reverse Button, selektierte Eintraege werden deselektiert und umgekehrt.
+o Selektiertes Listview wird jetzt mit N1SHINE hinterlegt, kommt besser.
+
+RumorOpus 0.10 (28.2.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Mal wieder ein geniales Feature! Es wird jetzt unterschieden ob man ein
+  Directory/Device Icon oder ein File Icon auf das AppIcon/Window fallen
+  laesst. Directory -> reinladen; File -> FileAction. Man hat also praktisch
+  ein Multifunktions AppIcon auf der Workbench, das fuer jeden FileTyp ne
+  Aktion ausfuehrt!
+o DmsWrite ueberprueft jetzt nicht mehr ob eine Disk eingelegt ist, weil die
+  Disk sonst formatiert sein musste. (Not a Dos disk... und tschuess)
+o Neuer Button 'Note', mit dem man Filecomments aendern kann.
+o Beim Change Button kommt jetzt eine veraenderte Version des alten ListFormat
+  Requesters... macht doch ein bischen mehr her als nur durchcyceln.
+o Da es keine Moeglichkeit gibt ein Listview ohne Eintraege zu aktivieren,
+  kann man jetzt mit TAB das aktive Listview toggeln
+o Bug gefixt: Wenn man in einem Volumelist war und dann das selbe Directory
+  reingeladen hat das schon in dem entsprechenden Listview war wurde das
+  Directory zweimal refresht.
+o Bug gefixt: Wenn man z.B. den DH0-Button angeklickt hatte und DH0: war schon
+  in dem entsprechenden Listview wurde das Listview nur refresht aber nicht
+  wirklich nochmal reingeladen.
+o DirHistory geaendert: Wenn man jetzt ein paar mal hintereinander ein und das
+  selbe Directory reinlaedt wird es nicht nochmal in die History eingefuegt.
+  Wenn man jedoch zwischendurch in ein anderes Directory geht dann schon, d.h.
+  es kann in der Tat zu doppelten eintraegen in der History kommen.
+  (Ist bei der normalen Shell History auch so. Standard?)
+
+RumorOpus 0.11 (8.3.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o 'Assign' Button ist dazugekommen.
+o Es sind intern folgende Funktionen dazugekommen: 'Top', 'Resort', 'MdLeft',
+  'MdRight', 'LSwap', 'LCopy', 'Root', 'QuickChange' (Kann man spaeter mit
+  Prefs auf die Buttons legen)
+o Kein Image mehr verwendet wegen des skalierungs Problems... Und ausserdem
+  sagt das Wort 'Get' doch mehr als tausend Bilder. (Hoere ich Widerspruch?)
+o Ich konnte einen C-Source zum Thema Copy auftreiben, jetzt muss ich ihn nur
+  noch einbinden.
+o Die letzten global definierten Variablen wurden eliminiert, bis auf Gadgets
+o Die Grundlagen fuer ein Prefs Programm sind mehr oder weniger fertig.
+
+RumorOpus 0.12 (18.3.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o 'Get' Button entfernt, es gibt jetzt einen Refresh Button der aber recht
+  selten benoetigt wird. (Wenn das mit dem Notify drinne is eigentlich
+  gar nicht mehr)
+o Es gibt jetzt links und rechts jeweils fuenf Seiten in die man Dirs
+  reinladen kann. Volumes sind jetzt unten in der Statuszeile, DirHistory
+  braucht man wohl jetzt nicht mehr so oft...
+
+RumorOpus 0.13 (24.3.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Layout jetzt nochmal komplett ueberarbeitet, ich habe verschiedene
+  Variationen ausprobiert und mich jetzt endgueltig entschieden.
+  Ich bin der Meinung dass es so am besten und am uebersichtlichsten ist.
+  (Und es stellen sich nicht so viele MuiBugs in den Weg)
+o Dank des neuen Layouts passt das Program jetzt auch bei topaz8 640x200
+  auf den Screen... arbeiten moecht ich so aber nicht damit.
+o History ist jetzt eine Seite in der PageGroup geworden.
+
+RumorOpus 0.14 (26.3.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Alle Functionen wurden auf das neue Layout umgeschrieben.
+o Major Code Cleanup, jede Funktion die doppelt verwendet wurde
+  zu einer eigenen Funktion (ca.10KB gespart)
+o History heisst jetzt Buffers und enthaelt keine doppelten Eintraege mehr.
+
+RumorOpus 0.15 (27.3.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Ein paar Funktionen wurden vereinfacht.
+o Program wird jetzt mit startup=cback gelinkt damit es sich vom CLI detached
+o Fileerkennung etwas geaendert: Das File wird jetzt zuerst durch 'Recog' und
+  dann (falls vorhanden) durch 'MultiView' gejagt. Wenn er dann immer noch
+  nichts erkannt hat wird das File mit 'binary' angeschaut.
+
+RumorOpus 0.16 (30.3.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Program ist jetzt beschraenkt konfigurierbar ueber eine Ascii Config
+  Die Config muss RumorOpus.config heissen und in S: oder PROGDIR: sein,
+  wobei S: vorrang gegenueber PROGDIR: hat.
+  Syntax: <KEYWORD> <VAR> <VALUE> wobei hier fuer entsprechende keywords
+  bestimmte vars erlaubt sind (siehe beispiel config; die Buttons sind im
+  Moment leider noch nicht configurierbar).
+  btw, VALUE ist auf 80 Zeichen begrenzt, bei DRIVE auf jeweils 30 Zeichen.
+  Die Zeilenlaenge der Config ist auf 255 Zeichen begrenzt.
+o Bug in Recog behoben, hatte Probleme mit den neuen (PasTeX1.4-Beta) DVIs
+
+RumorOpus 0.17 (16.4.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Bug fixed: Wenn man Files mit 30 Zeichen langem Filenamen kopiert hat
+  wurde ein Directory erstellt!? Es wurden auch ausversehen ueberall die
+  Filenamen auf 29 Zeichen begrenzt.
+o Kleines Problem mit der LoadDir Funktion gefixt.
+o DupChecking in den Buffers verbessert.
+o LhA Add geaendert. Arbeitet jetzt wie der Copybefehl, d.h. Das Archive
+  wird in dem reingeladenen Destination Directory erstellt.
+o RumorOpus benoetigt jetzt ein Keyfile (S:RumorOpus.key)
+o Button Bank Layout minimal geaendert.
+
+RumorOpus 0.18 (23.4.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Config Aenderung: PATHLEFT/PATHRIGHT heisst jetzt LOADLEFT/LOADRIGHT
+o Config Ergaenzung: Es ist jetzt moeglich mit hilfe des Keywords BUFFER bis
+  zu 50 Buffers angeben die in das Buffers Listview eingefuegt werden.
+o Config Ergaenzung: Man kann jetzt mit der Variable PAGELEFT/PAGERIGHT
+  und den Vars 'Directory','Buffers','Volumes' angeben welche Seite beim
+  start vorne sein soll.
+o Config Ergaenzung: Variable DRIVEBUTTONS Value ACTIVE/NORMAL, hiermit
+  ist es moeglich 16 Drive Buttons zu benutzen. Wenn man ACTIVE benutzt
+  wird das Dir in die gerade aktive Seite reingeladen, mit NORMAL in
+  die Seite auf der sich der Button befindet.
+  btw, wenn man weniger als 16 Buttons angibt wird der Rest mit DriveButtons
+  der linken Seite gefuellt. Bei NORMAL kann man sich also die Angabe von
+  DRIVE 8-15 sparen.
+o RO ist jetzt >40KB :(
+
+RumorOpus 0.19 (28.4.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Enforcer Hit in der LoadDir Prozedur... fixed.
+o RO funktionierte auch ohne Keyfile... fixed.
+o RO sucht das Keyfile jetzt auch in L: und PROGDIR:
+o Man kann sich jetzt fuer jede Seite jeweils fuenf HotDirs definieren
+  die man ueber F1-F5 bzw. F6-F10 reinladen kann.
+  Das ganze funktioniert mit hilfe des Keywords HOTKEY Vars 1-10 und
+  dem Directorynamen als Value. (siehe auch Config)
+o Die Statuszeile wurde weg rationalisiert, Status Infos werden in
+  der Textzeile ueber den Dirlists angezeigt werden. Das Bankswitching
+  wird jetzt ueber einen normalen Button geregelt (rechts unten)
+
+RumorOpus 0.20 (13.5.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Ich hab es endlich eingebaut... Delete jetzt mit Examine/ExNext,
+  Copy jetzt mit Examine/ExNext. Der 'Copy' und 'Delete' Befehl wird
+  jetzt also nicht mehr benoetigt -> loschen :)
+o RO sucht die Config/das Keyfile jetzt zuerst in PROGDIR:, damit ist es
+  nun moeglich lokale Configs/Keyfiles zu benutzen. Fuer ein Multiuser
+  System recht praktisch.
+o LoadDir Funktion mal wieder verbessert, wenn ich z.B. Ram_Disk: reingeladen
+  habe und dann wieder Ram_Disk: reinlade wird das Directory gerefresht.
+o Endlich... eine erste Statusinformation: 'Reading...' erscheint ueber dem
+  Directory wenn man ein neues Dir reinlaedt.
+o Statuszeile unten wurde wieder eingebaut... eine permanente Statuszeile
+  wird fuer die noch nicht vorhandene Uhr/Speicheranzeige benoetigt.
+  Bankswitching wieder ueber die Statuszeile. Eine Zeile Buttons wurde
+  entfernt, dafuer gibt es jetzt 3 Buttonbaenke.
+o In der Statuszeile wird jetzt waerend eines Kopiervorgangs immer das gerade
+  kopierte File angezeigt.
+o Config Ergaenzung: Keyword STATUS Vars ON/OFF, hiermit kann man das
+  anzeigen der Files in der StatusZeile beim Kopieren an- und ausschalten.
+o Dup ist temporaer disabled. Noch nicht auf Examine/ExNext umgeschrieben.
+o ButtonBankswitching auch mit 'space'
+
+RumorOpus 0.21 (15.5.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o ButtonBankswitching mit 'space' wieder entfernt, wegen Problemen bei
+  Tastaturbedienung.
+o Programm Option 'ICONIFY', bewirkt dass RO iconifiziert gestartet wird.
+o Copy Funktion funktioniert jetzt einwandfrei wenn auf das selbe Device
+  ge'CopyAs't wird.
+o Bei Move aufs selbe Directory wird jetzt nicht mehr kopiert und dann
+  geloescht. Dies hatte zur folge dass das File verloren war.
+  Bei MoveAs geht es noch bewirkt aber praktisch nur einen Rename.
+o Dup funktioniert jetzt wieder
+o HotDirs funktionieren jetzt wie DriveButtons, es gibt jetzt eine
+  Config Ergaenzung: Variable HOTDIRS Value ACTIVE/NORMAL
+o Code cleanup (Dirscan Funktion komplett umgeschrieben)
+o Multiview haengt jetzt nicht mehr wenn man RO von der Workbench startet,
+  RO ohne Script von der WB zu benutzen ist aber noch NICHT empfehlenswert!
+o Recog erkennt jetzt auch FinalWriter Documente.
+o Man konnte kein ':' oder '/' als Note angeben... fixed.
+
+RumorOpus 0.22 (18.5.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Probleme bei der DriveButton Initialisierung... fixed.
+o Recog erkennt jetzt auch TIFF Files.
+o Copy Funktion beschleunigt ich habe einen groesseren Buffer angegeben.
+  Er Berechnet sich so: min((availmem-100KB),filesize,1MB)
+  Routine ist jetzt echt schnell, Test mit 2MB File RO: ca.6sek, Sid: ca.12sek
+o Wenn bei Copy ein Fehler auftritt wird der Kopiervorgang abgebrochen.
+o Optionaler Requester bei Delete, Config: Variable DELVERIFY Value ON/OFF
+  Ist das so Okay oder soll ich noch zwischen Dirs und Files unterscheiden?
+o Alex hat meinen Key geknackt... Jetzt darf er mir zur Strafe neue KeyFile
+  Routinen schreiben :-)
+o Reload Routine verbessert: Wenn links und rechts das selbe Directory
+  geladen ist bewirkt Reload(left) ein Reload(left&right).
+
+RumorOpus 0.23 (19.5.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Wenn bei einem Kopiervorgang ein Fehler auftritt bleibt die selektion
+  der Files erhalten.
+o Juergen hat ein Preview mit nach Ulm genommen.
+
+RumorOpus 0.24 (28.5.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Es gab Probleme wenn man einen Pfad eingegeben hatte den es gar nicht gab,
+  es wurden willkuerlich Dirs gerefresht und und und... fixed.
+o Alle 'RumorOpus' Strings wurden in RO umgewandelt... also jetzt S:RO.prefs
+  und S:RO.key... MUI Configs muessen umbenannt werden... Sorry...
+o Move auf selbem Device macht jetzt nur einen Rename.
+o Config Ergaenzung: Keyword VARIABLE Var COPYBUF Value <longint>, hiermit
+  kann man den maximalen CopyBuffer angeben.
+o Config Ergaenzungen: Keyword VARIABLE, Value jeweils ON oder OFF, Vars:
+  COPYDATE, COPYFLAGS, COPYNOTE, DELSTAT, DELFORCE (Delete protected files)
+o Config Ergaenzung: Wenn man bei den DriveButtons als Pfad VOL oder BUF
+  angibt hat man einen Button der die Volumes oder Buffers Seite nach vorne
+  holt. z.B.: DRIVE 7 VOL,Volumes oder DRIVE 1 BUF,Buffers
+o Config Aenderung: STATUS wurde jetzt in COPYSTAT und DELSTAT aufgeteilt.
+o Config Ergaenzung: Keyword VARIABLE Var SORTDIRS Value First,Last,Mix
+  hier kann man die Position der Directorys angeben.
+o Config Ergaenzung: Keyword VARIABLE Var LEFTSORT/RIGHTSORT Value Name, Size,
+  Date hier mit kann die Art der Sortierung des linken und rechten Listviews
+  angeben.
+o RO laeuft jetzt auch ohne Keyfile... mehr oder weniger :>
+
+RumorOpus 0.25 (29.5.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Bug in der DevicePart() Routine... Bei Move wurde immer ein Rename
+  ausgefuehrt, das hatte zur Folge dass Move ueberhaupt nicht mehr
+  funtioniert hat... fixed.
+o Status-Ausgabe-Funktion beschleunigt und verbessert.
+o Uhr eingebunden... jetzt muss ich sie nur noch als extra Task laufen lassen
+  damit sie tickt. Im Moment wird sie bei jedem Window de-/activate refresht.
+o Ich hab jetzt ein einigermassen vernuenftiges Icon zusammengeschnitten,
+  das auch bei 256 Farben gut aussieht. Wer besonders mutig ist kann ja mal
+  testen ob RO jetzt auch ohne Script von der WB funktioniert.
+
+RumorOpus 0.26 (1.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Clock jetzt als eigener Task (RO Clock, Pri=-10)... Wenn man RO verlaesst
+  kann es ca.1 Sekunde dauern bis das Fenster verschwindet, das liegt daran
+  dass ich vor jedem Clock refresh ueberpruefen muss ob 'RO Main' ein Quit
+  Signal an 'RO Clock' geschickt hat. Bei hoher Prozessor Belastung kann
+  es evtl. noch laenger dauern, da Pri=-10.
+o Config Ergaenzungen: Keyword VARIABLE, Var: CLOCK Value ON/OFF
+o String Requester jetzt mit MUII_RequesterBack gefuellt.
+o DeleteDir() funkioniert nicht mit Kick2.0!!!!... solange ich nicht weiss
+  warum benutze ich wieder c:Delete (nur fuer Dirs)
+o RO funktioniert jetzt wirklich richtig von der WB (hoffentlich),
+  zumindest das Ein/Ausgabe Problem bei ListArc/ExecCommand (Fenster liess
+  sich nicht mehr schliessen) ist jetzt weg.
+o RO benutzt jetzt PROGDIR:RO.info als AppIcon
+o RO hat einen neuen Menuepunkt: Iconify
+
+RumorOpus 0.27 (3.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Config Ergaenzung: Keyword VARIABLE Var CLOCKPRI <127 bis -128>,
+  CLOCKREFRESH <ticks between refresh> (1 Sekunde hat 50 Ticks)
+o Beim verlassen wird dem Clock Task eine hoehere Pri gegeben, damit man bei
+  100% Cpu Belastung RO immer noch verlassen kann.
+o Optionaler 'Do you really want to quit?' Requester (Quit/Iconify/Cancel)
+o Config Ergaenzung: Keyword VARIABLE Var QUITVERIFY ON/OFF
+o Im richtigen Moment Quit, und RO war in einer Endlosschleiffe gefangen,
+  das passiert jetzt nicht mehr
+o Wenn man eine 'Not a DOS disk' auf die Listviews gedroppet hat, kam es
+  zu Schwierigkeiten. Fixed.
+o AppIcon Drop hatte Schwierigkeiten mit meiner Uhr... die Statuszeile
+  wurde hin und wieder mit verschiedenen Farben eingefaerbt.
+o Neue Buttons: Bytes und Fit. Bytes ermittelt die groesse der Dirs/Files,
+  Fit ermittelt den Platz den die Dirs/Files auf der Platte belegen (Relativ
+  komplizierter Algo, es wird z.B. auch beruecksichtigt, dass ein 900Byte
+  langes File bei einer Blockgroesse von 512Bytes genau 1024Bytes+1Block
+  zur Organisation belegt...) und ueberprueft ob sie aufs Dest Device passen.
+o RO muss leider mit CODE=far gelinkt werden, weil es sonst Probleme gibt
+  mit Funktionsaufrufen die ueber mehr als 32K gehen, dadurch wird das
+  Executable leider um ca.6K groesser... und schwupps hat RO die 50K
+  ueberschritten und geht stramm auf die 60 zu. :(
+o Buttons etwas umstrukturiert, die wichtigsten sind jetzt auf der ersten
+  Seite. Auf der zweiten Seite habe ich versucht sie zu einigermassen
+  logischen dreier Packs zusammen zu fassen. (Bald selber konf'bar)
+o Echtes Input/Output Handling fuer ExecCommand(), es ist jetzt z.B. moeglich
+  Fragen wie 'already exists, overwrite? (Y/N/A/S/Q):' zu beantworten.
+o Neue Buttons: Command, Execute, Rexx. Command fuehrt ein Executable aus,
+  Execute ein Batchfile und Rexx ein ARexx Script
+
+RumorOpus 0.28 (4.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Clock removed... ihr wisst warum. Natuerlich wurden auch die entsprechenden
+  Config Eintraege wieder entfernt. Monotasking sucks!
+o RO hat jetzt eine Memoryanzeige im Status Textfeld, sie wird bei jedem
+  Event refresht (z.B. Button Click, Fensteraktivierung, etc.), hoffentlich
+  gibt es jetzt keine Schwierigkeiten mehr.
+o Button Baenke werden jetzt intern anders verwaltet, es gibt nur noch 24
+  Buttons deren Funktionen sich je nach ButtonBank aendern.
+o Bug in HotDirs() gefixt, bei Normal wurde f10 ins linke geladen.
+o Config ist jetzt flexibler geworden, Kommandos mit Spaces muessen (ohne
+  Spaces koennen) jetzt in Anfuehrungszeichen gesetzt werden. (Kann da
+  mal jemand nen DAU-Test machen... Danke) ("Quotes in *"Quotes*" werden
+  noch nicht unterstuetzt)
+o ACHTUNG: Config hat sich geaendert... DriveButtons gehen jetzt von 1-16 und
+  nicht von 0-15! Es wurde auch der Text mit dem Pfad vertauscht!
+  Am besten die neue Config nehmen und alles nochmal Konfigurieren.
+  Sorry, musste sein sonst ist die Button Konfiguration schlecht machbar.
+o Ups, jetzt ist sie schon fertig... die Button Konfiguration :)
+  Im Moment ist man noch auf 48 Buttons beschraenkt, das wird sich aber auch
+  noch aendern. Wie es funktioniert sollte klar sein... schaut die Config an.
+  ACHTUNG: Es sind ein paar Configeintraege weggefallen:
+  VIEW, EDITOR, FILETYPE MODULE (wird nicht erkannt)
+  Folgende 'Internal Commands' werden Momentan unterstuetzt:
+  ACTION, ABOUT, ADDARC, ALL, ASSIGN, BYNAME, BYTES, CHANGE, COMMAND,
+  COPY, COPYAS, COPYDEV, CREATE, DELETE, DUP, EXECUTE, FIT, LCOPY, LISTARC,
+  LSWAP, LTOGGLE, MAKEDIR, MOVE, MOVEAS, NONE, NOTE, PARENT, QUIT, RELABEL,
+  RELOAD, RENAME, REXX, ROOT, SWITCH, TOGGLE, UNARC
+o Config Ergaenzung VARIABLE CHECKFIT ON/OFF
+
+RumorOpus 0.29 (10.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Config Ergaenzung VARIABLE BUFFERS <longint>, Anzahl der Buffers die sich
+  RO merkt, Default: 50
+o RO Berechnet jetzt die Anzahl der benoetigten Buttonbaenke aus der Nummer
+  des groessten Buttons, jedoch maximal 5 (120 Buttons reichen oder?).
+  Uebrigens ist bei der konfiguration folgendes zu beachten: Arcer sind
+  auf 40 Zeichen begrenzt, alle Directory Angaben (Buffers,HotDirs,Left/
+  RightLoad) auf 40 Zeichen, Kommandos (Filetype, Buttons) auf 80 Zeichen,
+  und der Rest auch auf 80 Zeichen. Die Maximale Zeilenlaenge in der
+  Config ist auf 255 Zeichen begenzt.
+o OUTPUT wurde von gewissen Funktionen nicht beachtet...fixed
+o Ich hatte vergessen ein paar Variablen zu VIEW, EDITOR, MODULE zu entfernen.
+o ARCHIVE DEFAULT ist weggefallen, dafuer gibt es jetzt mehrere verschiedene
+  ADDARC Kommandos: ADDLHA, ADDARC, ADDZOO, ADDZIP, ADDARJ, ADDSHR
+  ACHTUNG: 'Arc' Button sollte umkonfiguriert werden auf ADDLHA o.Ae.
+o Noch ein paar neue Filetypen in RO eingebaut (siehe Config)
+o DMS wird jetzt nicht mehr als Archiv behandlet, da es ja eigentlich
+  auch kein richtiges ist. DMS Handling sollte aber ueber einen Command
+  Button kein Problem sein.
+o Neue Buttons: Touch, setzt das Datum und die Zeit eines Eintrags aufs
+  aktuelle Datum/Zeit; Disk, zeigt einige Informationen ueber die aktive
+  Disk an.
+o Internes Kommando umbenannt: LTOGGLE->TOGGLEACTIVE und neue interne
+  Kommandos: BANKSWITCH,LPARENT,LPARENTACT,RPARENT,RPARENTACT, DISK, TOUCH
+o Es ist jetzt moeglich die Drei Special Buttons (Status,LeftButton,
+  RightButton) zu konfigurieren... geht wie normale Buttons (siehe Config)
+  Man kann jetzt zum Beispiel dir Buttons so konfigurieren dass die
+  jeweilige Seite aktiviert wird die man anwaehlt und dass das Parent
+  Dir reingeladen wird (Extra fuer Dich Juergen!) mit dem Kommando LPARENTACT
+
+RumorOpus 0.30 (19.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Bei Execute,Command und Rexx bleibt die Shell nach dem ausfuehren des
+  Kommandos offen und wartet darauf zugeklickt zu werden.
+o DMS, jetzt als normaler FileType eingebunden, PP als Filetype eingebunden
+  und XPK als Filetype eingebunden.
+o Change geaendert, es kommt jetzt wieder ein Requester.
+o Config Aenderung: LEFTSORT->SORTLEFT, RIGHTSORT->SORTRIGHT
+p Config Aenderung: BUFFERS->HISTORY
+o Config Ergaenzung: Anstatt nur SORTDIRS, wird jetzt zwischen FIRSTLEFT,
+  FIRSTRIGHT unterschieden. Als Wert kann man hier jetzt Dirs,Files,Mixed
+  angeben (war:First,Last,Mix)
+o LPARENTACT, RPARENTACT wieder removed... War irgendwie zuuuu ueberfluessig.
+o Config Ergaenzung: Wenn man bei den DriveButtons als Pfad PAR angibt hat
+  man einen ParentDir Button. Wenn man bei den DriveButtons als Pfad REF
+  angibt hat man einen Refresh Button.
+o RO benoetigt jetzt ein neues (hoffentlich sicheres) Keyfile.
+o Anleitung partiell fertig... Danke Frank!
+o RO erkennt jetzt auch HTML Files.
+o Neue Funktion 'Icon', mit ihr kann man wenn z.B. Diavolo selektiert
+  habe Diavolo.info mitselektieren.
+o DiskInfo Requester verbessert.
+o Neue Funktion 'Info' mit ihr kann man Informationen ueber das gerade
+  selektierte File bekommen. (Im Moment geht Flags nicht.)
+o Neue Funktion 'SetDate' mit der man das Datum und die Zeit eines Eintrags
+  setzen kann.
+
+RumorOpus 0.31 (26.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Beim Disk bzw. Info Requester wurde das Textfeld ausversehen als Gadget
+  definiert.
+o Interne Code umstrukturierung.
+o Man kann jetzt bei der unregistrierten Version alles machen bis auf Button
+  Konfiguration, der NervRequester kommt natuerlich immer noch.
+o Nachdem man mit SetDate ein paar FileDates gesetzt hatte wurde das Directory
+  nicht refresht.
+o CopyDev hat ueberhaupt nicht funktioniert... braucht das niemand von Euch?
+o Requester haben jetzt vernuenftige Titel bekommen.
+o Recog erkennt jetzt Module... im Moment: Noise/Pro/Startrekker, MED,
+  OktaMED, Octalyzer. Filetype Eintrag aber nur Global FILETYPE MODULE "Play"
+o RO entpackt jetzt XPK Files und jagt dann nochmal die File-Erkennung drueber.
+  Dazu wird allerdings ein Temporaeres Directory benoetigt (s.u.)
+o Copy, Delete, Bytes, Fit zeigen jetzt nur noch TopLevel Filenamen
+  in der Statuszeile an.
+o Neue Config Variable TEMPDIR, Default: T: wird benutzt um XPKs etc.
+  zu entpacken oder zum Archiv anzeigen.
+o RO >70KB :(
+
+RumorOpus 0.32 (29.6.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Da ist sie wieder, dank 'Special Hint' von Stuntzi: Clock jetzt als
+  eigener Task (RO Clock, Pri=-10)... Wenn man RO verlaesst kann es je
+  nachdem was man bei refresh angegeben hat ca.1 Sekunde dauern bis das
+  Fenster verschwindet, das liegt daran dass ich vor jedem Clock refresh
+  ueberpruefen muss ob 'RO' ein Quit Signal an 'RO Clock' geschickt hat.
+  BITTE UNBEDINGT GUT TESTEN! Bei mir gehts, die alte Clock ging bei mir
+  aber auch... probiert auch Icons ins Fenster fallen zu lassen!
+o Config Ergaenzung: Keyword VARIABLE Var CLOCKPRI <127 bis -128>,
+  CLOCKREFRESH <seconds between refresh> (Default: 1 Sekunde) und
+  SHOWDAY ON/OFF, SHOWDATE ON/OFF, SHOWTIME ON/OFF, SHOWMEMORY ON/OFF
+  um einzustellen was man in der Uhr alles sehen moechte. btw, wenn man
+  nur Memory anzeigt kann man CLOCKREFRESH ruig auf Werte >250 stellen.
+o Recog erweitert:  Erkennt jetzt noch SPOF (Sparc Object File), SPEF
+  (Sparc Executable File), SURA (SunRaster), IMPL (Imploded File), ATE
+  (Atari Executable).  FTM (Face the Music Module), FC3 (Future Composer
+  1.3 Module), FC4 (Future Composer 1.4 Module), TFMX (TFMX Modul), SCT
+  (ScreamTracker Module), SMN (SoundMon Module). PCX Erkennung ging nicht.
+  FLI (FLI Animationen), TGA (TGA Picture).
+  btw, alle Module Typen wurden als FILETYPE MODULE zusammengefasst.
+o Bei 'Info' wird jetzt der FileType als Klartext angezeigt.
+o Bei den Buttons stehen jetzt in der Statuszeile Infos, was gerade gemacht
+  wird... durch die vielen Strings waechst RO unaufhaltsam... :(
+
+RumorOpus 0.33 (9.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Skip Gadget bei CopyDev ueberfluessig... removed.
+o Recog:  Icon, Screamtracker, Zip wurden nicht alle richtig erkannt
+  (zumindest  auf  der  Ultimod  nicht),  vielleicht kommt ne TAR Erkennung
+  dazu,  aber  zuerst darf recog noch die restlichen CDs alle durchchecken.
+  Bei nem IFF File (egal welches) wird jetzt auch IFF File zurueckgegeben.
+o RO.doc -> RO.guide, Online Hilfe ueber die Help Taste, noch keine ein-
+  sprung Nodes. RO.guide muss in PROGDIR: sein.
+o Info zeigt jetzt auch die Protection Bits an.
+o Recog erkennt jetzt ZIPs richtig.
+o Es gab Probleme mit PC Disks ohne namen...fixed.
+o PAR,REF,VOL,BUF geht jetzt auch bei den HotDirs...
+o RO entpackt jetzt PP auch Files und jagt dann nochmal die File-Erkennung
+  drueber.
+o Recog erkennt jetzt auch GZip, Compress und Freeze gepackte Files und
+  JamCracker Module.
+o RO wurde an MUI2.1 angepasst... tststs das sowas noetig ist :(
+
+RumorOpus 0.34 (12.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o RO laesst sich jetzt auch beenden wenn irgendwelche Requester offen sind.
+o In gewissen Situationen wurde BusyPointer nicht mehr freigegeben... fixed.
+o Die Shrink Erkennung wurde in eine XPKArchive Erkennung umgewandelt,
+  dazu wird jetzt die neue xpkarchive.library und (ein funktionierender)
+  xArc benoetigt. (Im Prinzip wurde in der Config nur SHR nach XARC umbenannt)
+o Lock Handling wurde bei FileAction geaendert, es gab bei bestimmten
+  kommandos 'object in use' Probleme.
+o Neue interne Funktion fuer die Buttons... HELP (irgendwie bekomm ich die
+  schon Buttons schon noch voll ;))
+o Sorry... hab das Konfigformat etwas geaendert, war aber diesmal wohl das
+  letzte mal. Es ist halt wirklich noch ne Betaversion, und da kann sich sowas
+  schon hin und wieder was aendern.
+o Man kann jetzt 20 HotDirs angeben, die dann ueber die entsprechenden FTasten
+  in Verbindung mit 'shift' ansprechbar sind.
+o Hab jetzt ne Kindersicherung eingebaut fuer Leute die ohne Uhr CLOCKREFRESH
+  auf zu niedrige Werte setzten... Wenn man nur Memory anzeigt wird die Zeit
+  halt einfach auf 5sek hochgesetzt (falls CLOCKREFRESH<250, sonst nicht)
+o Die Ohne-Keyfile-Nerv-Requester-Popup-Frequenz wurde etwas runtergesetzt.
+o Neue Config Variable HELPFILE...
+o Ich habe jetzt bei jeder Funktion ein Error Handling eingebaut... im Moment
+  flasht nur der Bildschirm wenn was schief geht... Messages kommen noch.
+o Ein bisschen Emergency Code eingebaut, fuer denn Fall das mal etwas wenig
+  Speicher fuer die Application da ist. (Waere nett wenn das jemand auf Herz
+  und Nieren testen koennte... mit NoFastMem usw...)
+
+RumorOpus 0.35 (18.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Error Handling bei SetDate und Assign vergessen...
+o Neue Config Variable DELDELAY, das ist die Zeit die gewartet wird bevor ein
+  TempFile geloescht wird... hilfreich wenn man einen Textviewer benutzt um
+  ein Archive anzuzeigen der sich detached, oder bei der XPK Entpackung.
+o Iconify im Quit Requester ging nicht.
+o AppIcon funktioniert nicht mehr, dank MUI 2.1 :(
+o Ich hab an die StringGadgets die Dirlist angehaengt, so das man auch hoch
+  und runterscrollen kann wenn man im StringGadget ist.
+o Ich habe die aktivierungs Routine umgeschrieben, das StringGadget ist
+  jetzt mit einbezogen. Die Tastatursteuerung ist dadurch praktischer geworden.
+  btw, man hat jetzt auch nicht das Problem dass man einen Eintrag selektieren
+  muss um eine Seite zu aktivieren, man kann auch ins Stringgadget klicken.
+o Fehler in der LoadDirectory Funktion, bei direkter Eingabe eines Pfads
+  der eigentlich ein File war.
+o Man kann jetzt 32 Drive Buttons angeben, es wird dann einfach noch ne Zeile
+  Buttons rangeploeppt...
+o kleiner Fehler bei LowMem Situation (Verdammt hat das noch NIEMAND getestet?)
+  in der CopyFile Funktion behoben...
+
+RumorOpus 0.36 (23.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Assign funktion verbessert, kein Assign Path mehr sondern echter Assign
+o Progress Indicator fuer die meisten Funktionen eingebaut. Jetzt muss ich
+  meine Introduction in den Docs wohl wirklich bald aendern :( (RO>80KB)
+  btw, man kann waerend man den Progress Indicator sieht auf sein Iconify
+  Gadget klicken und RO wird iconifiziert. Wenn man also grosse Kopieraktionen
+  in den Hintergrund legen moechte, kann man RO iconifizieren und
+  nen neuen starten.
+o Touch und Create jetzt in einer Funktion, wenn Files selektiert sind wird
+  das Datum hochgesetzt, wenn nicht dann oeffnet sich ein Requester in dem
+  man das File angeben kann was erstellt werden soll.
+  Es faellt also die Interne Funktion CREATE weg.
+o Bug bei Comment >79 Zeichen... fixed.
+o Bug beim kopieren von 'Leeren' Files... fixed.
+o Neue interne Funktionen: MDLOAD, MDLOADLEFT, MDLOADRIGHT (Directory
+  erstellen mit reinladen auf der entsprechenden Seite)
+o Fehler der Statuszeilen Initialisation wenn kein RO Clock Task gestartet
+  wurde ist behoben.
+o ErrorMsg kommen jetzt nicht mehr nur als DisplayBeep sondern als Klartext.
+o CopyDev,Execute, Command, Rexx und Pattern merken sich jetzt die zuletzt
+  eingegebenen Strings.
+o Schande ueber mich... Konfigaenderung... einfach 'IFF_' durch '' ersetzen,
+  die sache mit dem IFF_ war zu suggestiv, das sah so aus als ob man selber
+  Filetypen definieren kann... geht ja leider noch nicht.
+o RO ueberprueft jetzt ob ein File schon existiert (z.B. bei Copy oder Move)
+  und fragt dann ob das alte File ueberschrieben werden soll, ueberschreibt es
+  einfach oder nicht... jenachdem was an in der Config bei VARIABLE OVERWRITE
+  "YES|NO|ASK" eingestellt hat.
+o RO flasht/deiconifiziert jetzt wenn ein iconifizierte Aktion beendet wurde,
+  natuerlich nur bei Funktionen wo das Sinnvoll ist, die also keine Interaktion
+  des Users erwarten und sich anbieten in den Hintergrund gelegt zu werden.
+  (z.B. Copy, AddArc, ...) Mit VARIABLE COMPLETED "NOTHING|FLASH|POPUP" kann
+  man einstellen was passieren soll.
+o RO benutzt jetzt wieder den Copy und Delete Befehl zum loeschen/kopieren von
+  Directorys, meine Copy und Delete Funktionen funktionieren im Moment noch
+  recht unstabil bei Kick2.0. btw, kommt nicht auf die Idee ein Directory
+  mit dem Namen #? oder * zu loeschen -> FATAL!
+o der Default Suchpfad fuer das Helpfile wurde von PROGDIR: nach HELP:
+  geaendert.
+o Man kann jetzt soviel Buffers angeben wie man will, wenn man mehr angibt
+  als man bei HISTORY angegeben hat wird HISTORY uebergangen.
+  Angenommen HISTORY ist auf 10 beschraenkt, und man gibt 50 BUFFERS an,
+  dann merkt sich RO automatisch die letzten 50 Directories.
+o Man kann jetzt ein UserMenu erstellen, in dem man eigene Tools einbauen
+  kann wie z.B. SuperDuper, DiskSalv, etc...
+  Gemacht wird das so: MENU "SuperDuper" "Run >NIL: SuperDuper", im
+  Moment ist das Menu auf 20 Eintraege beschraenkt duerfte aber reichen.
+o Bug fix: RO benutzt jetzt die fuer Fit bei der Berechnung ob die Files
+  passen die Blockgroesse des Destination Devices.
+o Bug fix: Wenn man QUITVERIFY benutzt hat und RO im iconifiziertem Zustand
+  beenden wollte tat sich gar nichts.
+
+RumorOpus 0.37 (25.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler in der Menu Config Fehlerueberpruefung behoben... leere Menus wurden
+  trotzdem erstellt.
+o Fehler beim Aufruf von Tools im Menu... wurden immer mit 'PROGNAME ""'
+  aufgerufen und einige Tools haben dann wrong number of arguments ausgegeben.
+  RO startet die Programme jetzt mit 'Run >NIL: PROGNAME'
+o Neue interne Funktion REBOOT... ¤µ®¹NO CARRIER ;)
+o Neue interne Funktion EXPAND, erweitert einen Pfadnamen auf seinen
+  ArcHandler Namen. (z.B. 'Work:Downloads/' -> 'Archives:Work/Downloads/')
+o Neue interne Funktion SHRINK, verkleinert einen ArcHandler Pfadnamen auf
+  seinen Pfadnamen. (z.B. 'Archives:Work/Downloads/' -> 'Work:Downloads/')
+o Neuer Config Eintrag VARIABLE ARCHANDLER "ON|OFF"... wenn man ON benutzt wird
+  bei einem Doppelklick das entsprechende ArcHandler Directory reingeladen.
+o Uhr Update wurde etwas verbessert, bei langer Refreshzeit konnte es passieren
+  dass in der Statuszeile mehrere Sekunden noch ein 'Performing FileAction...'
+  stand obwohl das Kommando schon lange zurueckgekehrt war.
+o Option 'ICONIFY' entfernt, das kann man ja ueber die Prefs einstellen.
+o Ich hab den 'main-target-save-diskspace-and-memory' Teil in der Anleitung
+  entfernt... RO geht auf die 90K zu.
+o Endlich hab ich eine funktionierende Delete Funktion geschrieben, die
+  auch bei Kick2.0 einwandfrei (hoffentlich) funktioniert.
+o Copy Funktion funktioniert jetzt auch einwandfrei, es gab maechtig Probleme
+  bei 'Copy RAM:T to RAM:T/Test' Endlosschleife -> Stringueberlauf -> Guru.
+o Ich hab jetzt das ganze Package so zusammengestellt wie ich es wohl
+  ausliefern werde. Die Anleitung ist noch nicht fertig ich muss noch die
+  ganze Programmbedienung beschreiben, aber das Geruest ist fertig.
+o Ein paar Defaultwerte bzgl. Clock habe sich geaendert, um nicht irgendwelche
+  User durch das flashen abzuschrecken.
+
+RumorOpus 0.38 (26.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Dup ging nicht, hab vergessen es an die neue CopyDir Funktion anzupassen.
+o Fehler in CheckInfiniteLoop() behoben, gab bei Dup immer TRUE zurueck.
+o Ich hab das Stringgadget wieder von der DirListe losgeloest, mach ich
+  erst dann wieder rein wenn Stefan die Fehler diesbezueglich behoben hat.
+o Eigene Filenamecompletion eingebaut... Wann man SYS: eingibt, dann
+  Exp<Return>, dann wird das Directory Expansion geladen. (Es muss aber
+  zuvor SYS: geladen sein, damit er eine Liste hat die er nach Matches durch-
+  suchen kann. btw, so scherze wie SYS:*shca* -> SYS:Thrashcan/ gehen auch :)
+o Die Links/Rechts aktivierungsfunktionen haben sich etwas geaendert,
+  es wird nun immer wieder das StringGadget der aktiven Seite aktiviert, was
+  die Bedienung doch recht flott machen sollte.
+o Bug Fix: Wenn man das Stringgad aktiviert hat und es wieder deaktiviert hat
+  (ohne return) wurde bei Eingabe eines falschen Pfades nicht der letzte
+  korrekte Pfad wieder hergestellt.
+o RO verhaelt sich jetzt anders wenn man Icons in die Dirlists fallen laesst,
+  und zwar werden die Files die man fallen laesst in das entsprechende
+  Directory kopiert. (Verhaelt sich jetzt also praktisch wie in WB Fenster)
+  Wenn man aber ein File auf das AppIcon fallen laesst wird ein FileAction()
+  darauf angewendet. (Was ja leider wegen MUI 2.1 nicht geht.)
+o Kleine Aenderungen an der Anleitung.
+o Die can't lock Message wenn man mal ausversehen auf Parent geklickt hat wo
+  kein Parent war hat genervt, das passiert schon mal... Jetzt wird das Dir
+  Reloaded wenn das der fall ist.
+o eine art Commandparser eingebaut: %s ist jetzt allgemein die Stelle wo
+  was eingesetzt wird, hat aber den Nachteil, dass z.B. bei ARC das erste %s
+  immer der Archivname, das Zweite immer das File ist das addiert wird.
+  Schaut euch am besten mal die Config, sollte dann klar sein wies laeuft.
+  btw, jetzt kann man mit '*"%s*"' den Filenamen in Anfuehrungszeichen setzten,
+  oder eben auch nicht... da gabs dochmal Probleme mit ARexx Scripts?!
+o Bug in der CopyFlags=OFF (u.a.) Funktion, es wurde immer 'spa-w-d' gesetzt
+  anstatt '---rwed' zu setzen, irgendwie bin ich mit dem SetProtection nicht
+  sehr vertraut gewesen.
+o Man kann jetzt nur einmal Expand druecken, und nur dann Shrink wenn man
+  schon Expanded hat oder per Doppelklick in ein Archiv gelangt ist.
+  btw, stellt doch bei ARCHandler NOEXTCHECK ein, da der sonst nur *.lha
+  als Archiv erkennt und dann gibts evtl. Schwierigkeiten wenn ich versuch
+  den Pfad zu Expanden.
+o Dank des neuen CommandLineParsers kann man jetzt auch im Menu mit %s den
+  Filenamen einfuegen lassen.
+o Wegen des neuen CommandLineParsers werden COMMAND Buttons jetzt auch
+  ausgefuehrt wenn man kein File ausgewaehlt hat, da es ja durchaus
+  sein kann das man ein Programm ohne Filename aufrufen moechte.
+
+RumorOpus 0.39 (29.7.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler im Configparser behoben, Probleme bei 'unmatched quotes'
+o Commandos werden jetzt nur genau dann ohne selektierte Files ausgefuehrt
+  wenn kein %s im Commandstring vorkommt.
+o Bug Fix: Expand und Shrink waren nicht ganz korrekt... links Expand, rechts
+  Shrink, links Expand, rechts Shrink, usw... Ich hab jetzt eine komplett neue
+  Abfrage geschrieben, mit einem einfache Flag ist es leider nicht getan.
+o Output Handling bei ArcAdd verbessert... da hat der doch tatsaechlich so
+  oft wieviel Files da waren NIL: geoeffnet...
+o Neue Config VARIABLE APPWINDOW "COPY|LOAD" hier kann man jetzt einstellen
+  ob die gedropten Files/Dirs reingeladen oder reinkopiert werden sollen.
+o Bug Fix: bei Move auf selbem Device und das DestFile schon existiert hat,
+  und bei Rename an sich... ich hatte das Delete vorher vergessen...
+o Fehlermeldungen kommen jetzt Standard-AmigaDOS-maessig rueber...
+  'Last command failed because: object in use' und soweiter... Die Meldungen
+  sind jetzt auch spezifischer, sie sagen nicht 'loeschen fehlgeschlagen'
+  sondern 'loeschen fehlgeschlagen weil:...'
+o Bei 'Move RAM:Test/Test RAM:Test' wurde unschoenerweise der Source
+  geloescht... fixed.
+o Fehler in der Rename/Dup Funktion wenn man einfach Return gedrueckt hat,
+  also den alten namen Behalten wollte.
+o StringGadget Aktivierung ist jetzt weniger aufdringlich. Die Gadgets nur
+  dann aktiviert wenn die letzte aktion wirklich ueber Tasten ausgefuehrt
+  wurde.
+o Options Menu eingebaut, ist aber noch nicht funktionstuechtig und wird
+  auch noch nicht auf die in den Prefs eingestellten Werte gestellt.
+o Copy Clone hat mi Directorys nicht funktioniert... fixed.
+o CheckFit ist jetzt per Default eingeschaltet, und es wird bei Copy jetzt
+  nur eine Meldung ausgegeben wenns nicht geklappt hat.
+o Problem mit der Aktivate() Funktion, wenn nicht die Directory Seite vorne
+  war... fixed.
+
+RumorOpus 0.40 (not released)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Problem beim Doppelklick auf Exe-Files behoben, ich hatte das %s vergessen.
+o Copy/Delete Funktion komplett umgeschrieben, hatte Probleme mit zu
+  langen Pfad Strings...
+o Fehler in der Rename Funktion bei umbennenung von 'test' -> 'TEST'
+
+RumorOpus 0.60 (7.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Ich machs wie Motorola von 040 zu 060 :)
+o RO wurde stark Optimiert und ist jetzt <70KB. Ich hab alles in kleine
+  Objectfiles gepackt, das macht die Sache sehr viel uebersichtlicher,
+  aber ein komplettes durchcompilieren dauert jetzt 7 Minuten :(
+  btw, gelinkt wird mit c.o also benutzt 'Run' um RO zu detachen.
+o VOL-BUF-Support gibts nicht mehr. War zu problematisch... es wurden
+  hin und wieder irgendwelche Seiten nach vorne geholt. Eigentlich
+  ist das ja auch unnoetig, da man ja auf die Cycles druecken kann.
+o Man kann jetzt mehrmals 'Expanden', da das offensichtlich legal ist
+  um an ein Archiv im Archiv zu kommen. Wenn mans allerdings zu oft
+  macht ist das nicht sehr Gesund.
+  btw, wer benutzt den ArcHandler eigentlich? Bei mir stuertzt der sehr
+  oft ab und produziert Enforcer Hits ohne Ende.
+o Filenamecompleter funktioniert jetzt vorwaerts und rueckwaerts.
+o Bessere Dumm-User-Routinen bei der Eingabe von Directorys, und ueberhaupt
+  ist das Directory Browsing wunderbar geworden... zum Beispiel:
+  DH0:Devs/Dos<return> -> System:Devs/DOSDrivers/
+  System:Devs/DOSDrivers///L/File<return> -> System:L/FileSystem_Trans/
+  Ja, es gibt leider einen kleinen Hacken, wenn man ein Directory nicht
+  eindeutig genug angibt, wird das erste genommen was im FileInfoBlock
+  gefunden wird und nicht etwa das was nach dem ABC kommen muesste.
+o Options Menu ist jetzt voll funktionsfaehig und wird am Anfang auf die
+  Werte gesetzt die in der Config eingestellt wurden.
+o HotDirs wurden auf 10 Begrenzt... wer kann sich schon 20 Directorys merken.
+o Man kann die Hidden Buttons nicht mehr Configurieren, da die einzig
+  sinvollen funktionen eben Parent und Bankswitch sind und man den User
+  ja auch nicht mit Optionen ueberschuetten sollte.
+o Bei Relabel wird jetzt nachdem man das Device umbenannt wird der Neue Pfad
+  reingeladen.
+o Config Ergaenzung: VARIABLE SHOWSECONDS ON|OFF fuer ein Uhr ohne Sekunden
+  Anzeige, damit kann man das Flashen mildern...
+o Config Aenderung: Ich habe die Kindersicherung wieder ausgebaut, fuer den
+  Fall das jemand wirklich oefter als alle 5 Sekunden die Memoryanzeige
+  refreshen will.
+o Die Default Werte der Uhr haben sich etwas geaendert.
+o CheckFit erkennt jetzt bei einem Move auf selbem Device dass es den
+  Platz fuer die Files nicht zweimal braucht, da ja nur Renamet wird.
+o DelStat & CopyStat schalten jetzt nur die rekursive Statistik aus,
+  TopLevel werden die geloeschten Eintraege immer angezeigt.
+o ErrorHandling hat sich stark veraendert, deshalb kommt im Moment bei
+  einem Fehler nur 'Error!' wird sich aber noch aendern.
+
+RumorOpus 0.61 (9.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Kleines Problem bei CopyAs auf selbem Device... fixed.
+o 'Kleines' Problem bei den DriveButtons ich hatte ein Feld auf 16 anstatt
+  32 eintraege gesetzt... was ich aber bis heute nicht verstehen kann ist
+  warum mich der Compiler nicht mit 'out of range' gewarnt hat.
+o RO hat auch bei Copy auf selbem Device kein CheckFit gemacht.
+o RO erkennt jetzt auch IFF_FTXT.
+o Anleitung fertig.
+
+RumorOpus 0.62 (10.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Error Handling ist jetzt fertig, es kommt wieder wie gehabt AmigaDOS
+  maessig rueber und noch einiges mehr.
+o Fehler in der CheckCopyLoop() Funktion, Copy( RAM:T, RAM:T )
+  wurde als infinite Loop erkannt, und alles andere nicht.
+o NervRequester limit etwas gesenkt.
+o Die WakeupClock() Funktion weckt die Uhr nach Fehlern jetzt frueher
+  auf und nicht erst beim naechsten Commando. Und auch sonst wurde
+  das Updaten der Uhr optimiert.
+o Enforcer Hit in der Parent Funktion gefixt, wenn es kein Parent gab.
+o LowMem handling sehr stark verbessert, es sollte jetzt keine Probleme
+  mehr geben. Wenn weniger als 50K am Stueck zu bekommen sind kann man
+  keine Funktionen mehr aufrufen bis wieder genug Speicher da ist.
+
+RumorOpus 0.63 (11.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Protect Funktion fertig... wie ich dieses Bitgeschiebe hasse!
+o Einsprung Nodes fuer die Helpfunktion eingebaut.
+o das Ueberschreiben von protected Files ging trotz DELFORCE ON nicht.
+o Fehler bei Bytes/Fit wenn kein Eintrag aktiv war gefixt.
+o Fehler im Clock-Task, der manchmal zu abstuertzen fuehren konnte gefixt.
+o Problem bei eingabe von Leerstrings im Stringrequester gefixt.
+
+RumorOpus 0.64 (13.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o benoetigt MUI2.2, AppIcon drop geht wieder.
+o Fehler in der Fail() Function, es kam zu einem Enforcer Hit wenn RO
+  ausserplannmaessig verlassen wurde.
+o Die Reihenfolge eines Menueintrags hat sich geaendert.
+o Doppelpunkt im ParentButton Feld oben entfernt.
+o Overwrite YES NO ASK wurde nicht beachtet sondern immer auf ASK gesetzt.
+o Ich habe verschiedene SCOpts probiert und das hier schien mir am stabilsten,
+  ich hoffe es funktioniert jetzt. Sehr kritisch ist das droppen von Icons
+  aufs Listview... bitte unbedingt mit SegTracker und Enforcer testen.
+o Bei einem Reload springt RO wieder in den Listviewbereich wo er vorher war,
+  leider nicht hundertprozentig an die selbe stelle sondern so, dass der
+  letzte sichtbare Eintrag der ist auf dem vorher der Cursor war. Das ganze
+  setzt natuerlich vorraus das ueberhaupt ein Cursor im Listview war vor dem
+  Refresh, d.h. dass Eintraege selektiert waren.
+o Bei VARIABLE OVERWRITE heisst es jetzt nicht mehr YES,NO und ASK sondern
+  ALWAYS, NEVER und VERIFY... kosmetische Aenderung halt.
+o Bei Touch wurde beim erstellen eines Files das Directory nicht refresht.
+o Config Ergaenzung: VARIABLE OVERWRITE "OLDER"
+o Es konnte passieren dass RAM: 101% full war... fixed.
+
+RumorOpus 0.65 (14.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Es werden jetzt automatisch quotes um die %s gemacht, dann braucht man das
+  in der Config nicht angeben.
+o Probleme bei UnArc und AddArc wenn es keine Destination gab gefixt.
+o RO erkennt jetzt GPFax Files (IFF_FAXX) und CanDo Variable (IFF_CDVR).
+o AppWindow Copy hat mit Directories nicht funktioniert... fixed.
+o Nach einem Refresh wird jetzt zentriert ueber dem zuletzt aktiven
+  Eintrag positioniert.
+o Bei Move auf selbem Device wird jetzt das DestDir nicht geloescht,
+  wenn es schon existiert sondern die Files werde reinge'move't.
+o Neue Konfigvariable FOLLOWSCROLL, mit der man das mitscrollen
+  beim ausfuehren einer Function an oder aus schalten kann.
+
+RumorOpus 0.66 (16.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Das Source Dir wurde unnoetig refresht wenn kein Eintrag aktiv war
+  und man eine Funktion ausgefuehrt hat.
+o Bug in der Protect Funktion... fixed.
+o RO fragt jetzt beim ueberschreiben von Protected Files ob
+  sie unprotected werden sollen.
+o Enforcer Hit in der Stringrequester Funktion wenn man Cancel
+  gedrueckt hat.
+o Endlich das Problem mit "Ram Disk:" geloest.
+
+RumorOpus 0.67 (17.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Bug wenn DestDir nicht geladen war gefixt.
+o Bug wenn man beim Command Button "Dir c:" eingegeben hat kam
+  ein "Please insert 'Dir c:' in any drive" requester... fixed.
+o Bug in der CopyDev Funktion, ging gar nicht... fixed.
+o Bug in Comment Funktion, der alte Kommentar (falls vorhanden)
+  wurde nicht ins Stringgadget eingefuegt...fixed.
+o Bug beim AppWindow/Copy, wenn die Uhr updaten wollte...fixed.
+o RO erkennt jetzt auch S3M Modules, faellt aber unter MOD also
+  keine Config Aenderung.
+
+RumorOpus 0.68 (20.8.94)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Jede Menge Errorabfragen vergessen... wenn ein CopyFile() fehlgeschlagen
+  hat wurde die Operation nicht abgebrochen sondern weiter gemacht etc.
+o Wenn man eine Operation abgebrochen hat und dann weiter gemacht hat wurde
+  der Cursor nicht richtig positioniert und es wurde falsch mitgescrollt.
+o Problem wenn man eine Disketten Directory geladen hat und danach die Disk
+  removed hat. Wenn man dann das Stringgadget aktiviert hat wurde ein Please
+  insert Req geoeffnet...fixed.
+o Das Mitscrollen funktioniert jetzt besser, es gab verschiedene Probleme
+  dass die Seite zu frueh gescrollt wurde etc.
+o Das 'Reading...' Problem vom Juergen evtl. gefixt... Bitte Testen, da es
+  bei mir einwandfrei funktioniert hat.
+
+RumorOpus 0.80 (26.8.94 - Initial Release)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler in der Scrolling Funktion, es wurde genau um eine Zeile
+  falsch umgeblaettert.
+o Fehler in der Scroll Funktion bei scatter selektion.
+o Action funktioniert jetzt nur noch auf Files und nicht auf Dirs.
+o Version wird jetzt auch im Window Titel angezeigt.
+o Bei Ausfuehrung eines Menueintrags wird jetzt SleepWindow() aufgerufen.
+o Enforcer Hit gefixt bei Shrink und Expand, wenn noch kein Dir geladen war.
+o Guru beim CopyDrop von bereits existierenden Files gefixt.
+o FileAction Lockt das File jetzt und macht keinen Murks mehr.
+o Bug bei Move auf selbem Device wenn File schon existiert hat gefixt.
+
+RumorOpus 0.81 beta 1 (1.9.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Einige Bugs im Pathname Completer gefixt.
+o Bug bei Touch/MakeDir wenn ein Icon erstellt werden soll, aber Name + '.info'
+  groesser als 30 Zeichen ist... fixed.
+o Bug wenn man Refresh gedrueckt hat und vorher noch kein Dir geladen war.
+o Kleine Layout Aenderung, es wird jetzt ein ansprechender Rahmen um die
+  RegisterGroups gepinselt wenn man CycleGadget-Register benutzt.
+o Layout Problem bei topaz 8 und 640x400 behoben, der Font wurde verkleinert
+  weil MUI versucht hat das Fenster an den evtl. zu langen ClockString
+  anzupassen.
+o kleiner Bug in der ListArc Funktion gefixt.
+
+RumorOpus 0.81 (7.9.94 - Public Release)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neuer Configswitch 'PATHEXPAND', damit ist hoffentlich das ParNet/SerNet/
+  MessyDOS/AndereBuggyFileSystemeDieDaNichtMitmachen behoben.
+o JPeg Fileerkennung ging nicht richtig.
+o Fit bei Move auf selbem Device ist ueberfluessig, und wird jetzt nicht mehr
+  gemacht (Das hatte ich doch schonmal gefixt?!)
+
+RumorOpus 0.82 beta 1 (18.9.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Kleiner Bug in der CopyFile() Funktion gefixt, bei starker
+  Speicherfragmentierung konnte es vorkommen das ein Kopieraktion mit
+  'no mem' abgebrochen wurde anstatt zu versuchen weniger zu reservieren.
+o Etwas mit MUI_Request rumgespielt, in der Hoffnung die misterioesen #80000004
+  zu mindern... btw, es ist mit 99%iger Sicherheit ein MUI-Problem, und zwar
+  das absolut schlimmste was ich bisher hatte.
+o RO erkennt jetzt auch PlaySID Module wenn es sich um 'One File' Mods handelt.
+o Wenn bei einem Refresh links und rechts das selbe Directory ist wird das
+  jeweils andere mit gerefresht (Das hatten wird doch schonmal oder?)
+o Kleiner Fehler beim Clockrefresh wenn man per Menu ein Kommando ausgefuehrt
+  hat blieb in der Statuszeile noch eine Weile 'Executing...' stehen.
+o Commandline Argument 'ICONIFY' wieder hinzugefuegt.
+o Problem mit DOSen Disks ohne Namen endlich richtig gefixt... Einfach CED
+  durch einen funktionierenden Editor ersetzen.
+o Leicht veraendertes MWB Icon... hat jetzt genau die groesse eines Standard MWB
+  HD-Icons.
+
+RumorOpus 0.82 beta 2 (25.9.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o kleine Fehlerabfrage vergessen und andere kleine Aenderungen.
+o Die aktivierungs Funktion fuer die Statusbars ueber den Directories wurde
+  etwas veraendert, damit es nicht zum nach vorne springen der DirPage kommt.
+o Es kommt jetzt bei jedem Delete ein Requester wenn das File Protected ist
+  und DelForce ausgeschaltet ist... kein 'protected from deletion' Abbruch.
+o Config Variable 'HELPFILE' rausgenommen... AmigaGuide durchsucht
+  selbstaendig die ueblichen Pfade (S:,PROGDIR:) und man kann ja ueber die
+  Standard EnvVariable ENV:AMIGAGUIDE/PATH den Pfad setzen.
+o Ein paar Aenderungen bei den Path Extend Funktionen...
+o Alle Requester temporaer in AslRequester umgewandelt... Ist kaum zumutbar,
+  aber dann laeuft RO stabil (Juergen?). Evtl. ist es besser wenn man RTPatch
+  installiert und mit den ReqToolsPrefs die Requesterposition einstellt. 
+o Relabel Funktion etwas geaendert, mann kann jetzt auch kein '' mehr eingeben.
+
+RumorOpus 0.82 beta 3 (10.10.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o kleiner Fehler in der Copy Funktion, es wurde beim kopieren von Work:
+  nach XYZWork: ein infinite loop fehler gebracht.
+o About Req und ist jetzt wieder MUI-Like, der wird ja nicht so oft
+  verwendet und sieht schoener aus mit MUI.
+o Ein paar dead assignments entfernt und auch sonst ein bisschen an allen
+  Funktionen rumgefeilt... bzgl. der Haenger tappe ich noch im dunkeln :(
+  (Evtl. mal auf Kick 3.1 Updaten Juergen)
+o RO benutzt jetzt auch den Standard Suchpfad beim start von der WB.
+o Neue Config Variable 'FLUSHMEMORY', mit der man MUI nach dem verlassen von
+  RO aus dem Speicher werfen kann.
+o Man kann ICONIFY jetzt auch als Tooltype im Icon angeben.
+
+RumorOpus 0.82 beta 4 (11.10.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bei Comment wurde das Directory nicht refresht.
+o Bei FileAction hats geflasht wenn man ein Binary erwischt hat.
+o Ein paar Vorbereitungen getroffen um RO zu lokalisieren.
+o RO benutzt jetzt falls vorhanden die Locale Library... Ich habe ein deutsches
+  Catalog File erstellt, wenn jemand Fehler findet bitte sagen. Ich habe nicht
+  alles uebersetzt sondern nur das was sinnvoll ist (Was heisst Volumes auf
+  Deutsch? Datentraeger? Geraete? Pfade?) Die FileTypen habe ich auch nicht
+  lokalisiert...
+o Installer Script an die neuen Umstaende angepasst.
+o Ein paar kosmetische Aenderungen bei der Installation. Die Icons werden jetzt
+  schoener Positioniert und es gibt eigene Drawer Icons.
+o Alle Reqs jetzt wieder MUI... das muss ich mir noch was anderes ueberlegen...
+
+RumorOpus 0.82 beta 5 (12.10.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Ein paar Strings wurden in dem Deutschen Catalog geändert.
+o Ich hab jetzt alles lokalisiert (nicht die Filetypen), wer Deutsch will soll
+  Deutsch haben! Ich habe bei der Uebersetzung jetzt autentisches Dr.PK
+  Material verwendet (Die Amiga-Handbuecher :))
+o Gesamtes Programmpacket ist jetzt in deutsch&englisch (Die Anleitung muss ich
+  leider noch übersetzen...)
+o Fix fuer NFS bei Verwendung eines AutoMounters auf Unix Seite.
+o Config Parser etwas umgeschrieben um KeyButtons zu ermoeglichen.
+o Kommand Buttons koennen jetzt auch uber Tastatur bedient werden, indem
+  man in der Konfig als Button Text sowas wie '_Copy' oder 'R_ename' angibt.
+o Man kann jetzt auch durch die Listviews Cyclen mit '`' (über Tab-Taste).
+o Mir reichts, ich hab jetzt wieder auf SystemReqs umgestellt :(
+
+RumorOpus 0.82 beta 6 (15.10.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Beim Icon Drop hatte ich ausversehen ein WakeupWindow auskommentiert.
+o Statuszeile erweitert, es werden jetzt zusaetzliche Infos angezeigt
+  wie selektierte Files, Bytes, etc.
+o Catalog entsprechend erweitert.
+o Deutsche Anleitung zu 25% Uebersetzt... scheiss Job!
+o Bei Touch wurde das Directory nicht refresht.
+o Stack vrdoppelt auf 16384 Bytes.
+
+RumorOpus 0.82 (16.10.94 - Public Release)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Stack nochmal verdoppelt auf 32KBytes, das duerfte reichen... evtl.
+  sollte ich aus der recht geschickten rekursiven DirScan Funktion
+  doch lieber ne iterative Funktion machen?!
+o Stack beim Kommandoaufruf auf 8K gesetzt, damit es keine Probleme
+  mit CED gibt (braucht minimum stack 8000)
+o Ein paar kleinere Aenderungen im Catalog String bereich.
+o Bei der FlushMem Funktion wird jetzt sicherheitshalber 2GB Mem
+  geholt und nicht 'nur' 256MB.
+
+RumorOpus 0.83 beta 1 (5.11.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o CopyDir hinsichtlich Stack etwas aufgeraeumt, ca. 1KB weniger
+  pro Rekursionsaufruf.
+o Copy & Delete sind jetzt wirklich nach jedem File sofort abbrechbar.
+o Einige IFF Typen hinzugefuegt.
+o Den Reload/Refresh Algorithmus etwas besser gemacht, damit er bei
+  best. Fehlern immer noch reloaded, z.B. Beim Move von einer Schreib-
+  geschuetzer Disk etc.
+o Besserer Overwrite/UnProtect Requester... jetzt O/A/S/C
+o Italienisches Catalog File, wers braucht...
+o Neue Funktion Update, die links die Files anwaehlt die rechts schon
+  existieren.
+o Neue Funktion Current die das aktuelle Directory reinlaed (als
+  lueckenfueller halt)
+
+RumorOpus 0.83 beta 2 (6.11.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Wenn man beim Kopieren Iconifizieren wollte wurde die Funktion abgebrochen.
+o Bei Move auf selbem Device wurde Source nicht refresht.
+o Nachdem ich jetzt weiss das es am Stack lag und das es zu Probs mit
+  StackExtend kam... Gute CompilerOptions gefunden -> RO ca. 85KB
+  (Bitte einen stabilitaetstest machen)
+o Neuer FileType 'Clarissa Anim', Keyword 'SSA'.
+
+RumorOpus 0.83 beta 3 (13.11.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Tausenderpunkt jetzt bei allen Zahlenausgaben. (-> Catalog geaendert)
+o Die WB-Like Anzeige im Parent Gadget schaltet jetzt ab 9999K auf MB um.
+
+RumorOpus 0.83 beta 4 (25.11.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o EnvVar KEYPATH wird jetzt beruecksichtigt.
+o Kleiner Bug in der Tausenderpunkt-Funktion behoben.
+
+RumorOpus 0.83 (5.12.94 - Public Release)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Stack und WBPath werden jetzt auch fuer die Archiver beruecksichtigt.
+o Das entpacken laeuft jetzt anders ab und zwar wird jetzt nur ein %s
+  benoetigt und es wird immer das Destination Dir zum aktuellen Dir
+  gemacht und dann da rein entpackt. Ich hab es nur mit Zoo, LhA und
+  Shrink (xArc) getestet weil ich fuer die anderen keine Packer gefunden
+  habe.
+
+RumorOpus 0.84 beta 1 (10.12.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehlerabfrage wenn CD ins DestDir fehl schlägt beim entpacken.
+o Fehlerabfrage bei ArcAdd wenn Device nicht mehr gemounted ist,
+  von dem Files archiviert werden sollen.
+o Wenn man beim Move ein File geskippt hat wurde es trotzdem
+  geloescht.
+
+RumorOpus 0.84 beta 2 (17.12.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Wenn man beim 'Rename'n oder 'Dup'en ein File geskippt hat wenn es schon
+  existierte wurde das Sourcefile auch geloescht.
+o Man kann jetzt mit FORMATLEFT & FORMATRIGHT das Format der Listviews
+  einstellen kann z.B. VARIABLE FORMATLEFT "NSFDTC" wobei hier gilt:
+  N=Name, S=Size, F=Flags, D=Date, T=Time, C=Comment
+o Neuer FileType "MPeg animation file", Keyword 'MPEG'.
+o Neuer Config Eintrag: HOTKEY, damit kann man auf eine Tastenkombination
+  ein beliebiges Kommando legen. Bsp: HOTKEY "shift c" FUNCTION "COPYAS" oder
+  HOTKEY "lalt c" COMMAND "Run >NIL: Calculator"
+
+RumorOpus 0.84 beta 3 (22.12.94)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Copy jetzt mit Verify -> Catalog hat sich geaendert, neuer Menueintrag
+  Copy/Verify Files und neue ConfigVar COPYVERIFY ON|OFF.
+o Bug bei UnArc, wenn noch kein DestDir geladen war.
+
+RumorOpus 0.84 beta 4 (2.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Dank der neuen MUI Version kann man jetzt durch die Listviews browsen,
+  wenn man sich in den StringGads befindet. Es gab sonst immer Probs
+  bei Eingabe von <space> und <return>.
+o Es ist jetzt moeglich durch einfaches anklicken des Listviews die
+  aktive Seite zu aendern, man muss keinen Eintrag mehr anwaehlen!
+o Ein paar Workarounds raus geschmissen, nachdem endlich mal wieder
+  was weiter ging mit MUI.
+
+RumorOpus 0.84 beta 5 (3.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Grosses Problem bei der neuen LV-Aktivierung behoben, nach einem
+  Iconify ging gar nichts mehr, der WindowTitle verschwand etc.
+o Kleiner Fehler bei Move behoben, der in selten Faellen zu einer
+  falschen Fehlermeldung fuehren konnte.
+o Neue Config Variable SYMMETRICAL mit dem man ein symmetrisches
+  aussehen der Listviews erzwingen kann.
+  VARIABLE SYMMETRICAL ON|OFF, Default OFF
+o Es gab hin und wieder Probleme, dass ein Teil der Uhr verschwunden
+  war, ich hoffe dass das jetzt nicht mehr passiert... hab ein bisschen
+  was veraendert.
+
+RumorOpus 0.84 beta 6 (4.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Buttons jetzt ge'hook't, also keine megamaessige Case-Abfrage mit
+  ReturnIDs mehr.
+o Aktivierungsfunktion noch etwas ausgefeilter, es passiert jetzt
+  nur was wenn die DirectoryPage vorne ist.
+o Kleiner Fehler bei den Hotkeys gefixt, man konnte eigentlich nur
+  10 Stueck definieren.
+o Wenn man Executables doppelklickt wird jetzt in deren Verzeichnis
+  gewechselt fuer den Fall, dass sie dieses als Referenz benoetigen.
+o Ein paar Workarounds wieder eingebaut, Protect ging nicht mehr.
+o Der 'Run' Button hat nicht funktioniert wenn man mit der built-in
+  Config gearbeitet hat.
+o Das mit der Clock hat nix geholfen, es muss wohl ein ZeitProb sein.
+o Stringgadget wieder von der Liste abgekoppelt, es macht die
+  Bedienung doch etwas logischer.
+o Config Format hat sich veraendert, die Command Strings haben jetzt
+  kein %s mehr sondern %f fuer den FileNamen. Es gibt noch folgende
+  neue Steuerzeichen: %f="Path+File", %n=File, %p=SourcePath,
+  %t=TargetPath, %s=SourceDevice, %d=DestDevice, %r=Requester, %%=Percent.
+  Ich weise explizit darauf hin, dass ausser %f nichts in Quotes steht.
+  Das ist sehr sinnvoll, da sonst Sachen wie %d%n in "Device""Filename"
+  umgewandelt werden und das waere Schwachfug.
+o Die Funktionen EXECUTE,COMMAND & REXX wurden rausgeworfen, da sie leicht
+  mit dem neuen CommandLineInterpreter zu realisieren sind (->Config).
+o Catalog hat sich geaendert.
+
+RumorOpus 0.90 beta 1 (5.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Es wird jetzt zwischen %r und %R unterschieden. %r fragt fuer jedes
+  File, %R fragt nur einmal und benutzt den String fuer alle Files.
+o Es wird jetzt zwischen %f und %F unterschieden. %f ist der Dateiname
+  mit Pfad in Quotes, %F ist ohne Quotes, ist wichtig fuer Rexx Kommandos,
+  da die Probs mir " haben. Es kommen dann Meldungen wie 'Insert Volume
+  "Work in any drive'.
+  Achtung: %F und %p%n sind nicht gleich! Wenn man z.B. ein XPK File
+  doppelt klickt ist %F der TempFileName des ausgepackten Files und
+  %p%n ist immer noch der alte Name.
+o Ein paar Arexx Commandos eingebaut, wem noch was fehlt solls bitte
+  sagen, dann mach ich das. Ich halte es aber nicht fuer sehr sinn-
+  voll z.B. den Protect befehl oder solche sachen per ARexx anzusteuern,
+  deshalb hab ich sowas weg gelassen. Wenn jemand Lust hat kann er ja
+  mal ein paar ExampleRexxScripts schreiben.
+o Wenn man ein ARexx Script startet wird dieses ASyncron getan, es wird ein
+  'Run' vor den CommandoString geschrieben, weil es sonst einen Deadlock
+  gibt (Das ARexxscript wartet dann darauf, dass es fertig gelaufen ist).
+  "Rx >NIL: rexx:PlayMod.RO %F" -> "Run >NIL: Rx >NIL: rexx:PlayMod.RO %F"
+o Versions Nummer erhöht, halte ich fuer angemessen. :-)
+
+RumorOpus 0.90 beta 2 (6.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o ARexx Kommando 'getentry' etwas erweitert. Man kann jetzt mit
+  'GetEntry Active Files' das erste selektierte File bekommen und analog
+  mit 'GetEntry Active Dirs' das erste Dir. Wenn man anstatt Files oder
+  Dirs 'All' angibt funktioniert GetEntry wie bisher.
+o Ein paar Sicherheitsabfragen eingebaut, und die ARexx ReturnValues
+  einheitlich gestaltet wenn etwas faehlschlägt wird immer Result=RESULT
+  zurueckgegeben.
+o NumEntries gibt jetzt nicht mehr alle Einträge zurück sondern nur
+  die selektierten, auch hier kann man jetzt den Typ wie bei GetEntry
+  angeben.
+o ARexx Examples verbessert und berichtigt.
+
+RumorOpus 0.90 (9.1.95 - Public Release)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neues ARexx Kommando 'function', das eine interne Funktion aufruft.
+  'Function "COPYAS"' mach das selbe wie der CopyAs Button... war so
+  einfach zu realisieren, da hab ichs halt doch gemacht.
+o Die Schlaffunktion hat jetzt einen Zaehler, der verhindert daß
+  die Uhr erneuert wird wenn RO nach einem Wakeup immer noch
+  schlaeft. (z.B. 'Sleep' 'Sleep' 'Message "Test"' 'Wakeup' und die
+  Message steht immer noch da)
+o Listview Aktivierung intern etwas überarbeitet und 'legaler' gemacht.
+o Der Execute String hat sich nochmals drastisch geaendert! mit '&'
+  kann man jetzt noch Optionen angeben, unterstuetzt wird jetzt
+  einiges mehr auf % maessig. Am besten die *ANLEITUNG* lesen.
+o Beim ARexx Befehl 'Command' ist das WAIT/A weggefallen.
+o ACHTUNG: Durch die Aenderung am CommandString hat sich das Arc
+  Handling stark geaendert, also unbedingt Config anschauen!!!!
+o Catalog musste geaendert werden.
+
+RumorOpus 0.91 beta 1 (14.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o kleine Aenderung bei der NumberToString Funktion.
+o ArcAdd Default hat sich geaendert *"%T%R*" -> %R, macht die Default
+  Config fuer Durschnitts-User leichter verständlich und sieht besser
+  aus.
+o Es wird jetzt nur dann ein geladenes ZielVerz. verlangt, wenn dieses
+  zum fuellen der % Parameter benoetigt wird.
+o Neue & Parameter: &r Reload Source, &R Reload Target
+o Requester bei Copy & Delete etwas geaendert.
+o ein paar kleine Fehler im ARexx Port behoben.
+o ein paar neue ARexx Scripts sind dazu gekommen und die alten
+  wurden etwas verbessert.
+o Catalog hat sich geändert.
+
+RumorOpus 0.91 beta 2 (15.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o UnArc Config musste leider nochmal etwas geaendert werden.
+o Fehler in der ListArc Funktion behoben, es wurde immer LhA
+  ausgeführt.
+o AddArc Skript musste nochmal geaendert werden, da es scheinbar
+  Probleme gibt bei CLI Kommandos deren laenge >255 ist.
+o Return Codes bei den ARexx Kommandos verbessert.
+o Fehler bei Touch wenn ein File erstellt werden sollte, daß schon
+  da war kam keine Warnung.
+
+RumorOpus 0.91 beta 3 (19.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler bei der Verwendung des deutschen Catalogs behoben.
+o MoveAs bei selbem Device und File schon vorhanden: Skip
+  hat nicht funktioniert.
+o Installer Skript etwas verändert.
+
+RumorOpus 0.91 (23.1.95)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Version wird angezeigt beim Information Fenster, wenn $VER String
+  gefunden wurde.
+o Copy Funktion etwas umgeschrieben.
+o UnProtect Requester etwas geaendert.
+o Enforcer Hit gefixt.
+o Uhr leicht verbessert.
+o Icons werfen = Copy ging gar nicht!
+
+RumorOpus 0.92 beta 1 (14.2.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o UserMenu hat nur %f angezeigt.
+o Fileerkennung kann jetzt vom User erstellt werden.
+o ArcHandler Variable gibts nicht mehr, schwer moeglich
+  mit Userconf.-Filetypes.
+o ACHTUNG: Es gibt nur noch ASCII,BINARY und DEFAULT
+  als FILETYPE Vars.
+
+RumorOpus 1.00 beta 1 (16.2.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bei Doppelklick auf XPK File wird jetzt immer zuerst
+  entpackt bevor eine Fileerkennung gestartet wird.
+o Ein paar Bugs behoben.
+o Deutsches Catalog File geaendert. War: _Alle|_Abbruch
+o FAR Data muss beim Config-Modul verwendet werden. =>
+  Muss mit SmallData gelinkt werden => RO Groesser.
+o Versions Nummer erhoeht... es geht dem Ende zu.
+o Wenn das erste Zeichen eines HexErkennungsstrings ein '$'
+  wird der rest als HEX Zahlen betrachtet, also z.B.
+  CUSTOMTYPE "#?" "$00000A00" "Targa Picture" "MultiView >NIL: %f"
+  Wer einen ASCII '$' braucht, der kann ja $0A verwenden, was auch
+  ein '$' ist.
+
+RumorOpus 1.00 beta 2 (17.2.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bessere Compiler Option gefunden.
+o Sicherheitsabfrage bei "$TEST" vergessen.
+o Kleiner Fehler beim "$"-HexString behoben.
+o Problem mit $4C5A004E75 umgangen. 00 wuerde hier sonst das
+  Stringende markieren und 4E75 wuerde nicht mehr beachtet werden.
+o Hoffentlich ist jetzt der ClockBug gefixt.
+
+RumorOpus 1.00 beta 3 (27.2.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Das Vorgehen bei der Fileerkennung ein bisschen veraendert.
+o Die Fileerkennung hatte noch einen Bug bei den "$" Strings
+o Das Erkennen von mod.#? funktioniert jetzt auch, sonst
+  ging immer nur #?.mod
+o Kleiner fehler bei der XPK/PP entpack Funktion.
+o Uhr etwas umgeschrieben.
+o Fehler in der ErrorString Funktion, strcat an einen
+  uninitialisierten String... tstst.
+
+RumorOpus 1.00 (20.3.95)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Number2String Funktion geaendert.
+o Fehler in der FileName-Typeerkennung behoben.
+o Re-compiled mit SAS-C 6.55
+o Optimizer ausgeschaltet, fuer 5KB gehe ich kein Risiko ein
+o Fehler in der CopyFile Funktion gefixt.
+
+RumorOpus 1.01 (22.3.95)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler in der Configfunktion gefixt.
+o Hex String Parser verbessert bezgl. \0 Geschichte.
+
+RumorOpus 1.02 beta 1 (25.3.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Ein paar Fehler in der Anleitung etc. gefixt
+o Etwas an der Uhr rumgemacht, es ist schon wiederpassiert.
+o Ein Fehler in der ARexx Behandlung gefunden und natuerlich gefixt.
+o Schon wieder an der Number2String Funktion rumgemacht... die
+  beruehmte Nadel im Heuhaufen halt.
+o Neuer Menuepunkt 'Last Message', der die letzte Nachricht anzeigt.
+o Neues Preview Bild in der Distribution
+
+RumorOpus 1.02 (3.4.95)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Neuer Menuepunkt 'Update All', der alles refresht.
+
+RumorOpus 1.03 beta 1 (19.5.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Die Sache mit Multiview der ein File nicht erkennt etwas geaendert.
+o Es wird jetzt bei der Installation der deutschen Anleitung auch wirklich
+  die deutsche und nicht die englische sowie umgekehrt installiert.
+o Fehler in der Verify funktion behoben.
+o CUSTOMTYPE und ARCHIVETYPE jetzt unabhaenging voneinander.
+o Neuer % Parameter: %a fuer den ARexx Port
+o Neue Variable: CHECKDUPES, mit der man doppelte eintraege in der History
+  haben kann.
+
+RumorOpus 1.03 (4.6.95)
+~~~~~~~~~~~~~~~~~~~~~~~
+o ein paar kleine Aenderungen
+o Meeting Version zusammengestellt
+
+RumorOpus 1.04 beta 1 (20.6.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Keyfile Funktion leicht geaendert.
+o StringGadget Handling leicht umgestellt.
+o About Requester geaendert.
+
+RumorOpus 1.04 beta 2 (2.7.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Liste kann jetzt mit mittlerer Maustaste geaendert werden.
+o Button Bank kann mit mittlerer Maustaste geswitched werden.
+o Neuer Menuepunkt 'Spawn New'
+
+RumorOpus 1.04 (9.7.95)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Bloeder Fehler gefixt... wenn ein neuer RO gestartet wurde,
+  ist der alte gefreezt worden.
+o Fehler gefixt bei der ermittlung des Programmnamens
+o Fehler gefixt bei der Info Funktion, Archive wurden nicht erkannt
+
+RumorOpus 1.05 beta 1 (11.7.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Funktionen Bytes/Fit jetzt besser abbrechbar.
+o Prozentzahl bei Grossen Files, die anzeigt wieweit er ist.
+o Catalog hat sich geaendert
+o Code bisl aufgeraeumt... Uhh, not really - I used the optimizer.
+
+RumorOpus 1.05 beta 2 (19.9.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Refresh verhalten der Dirs bei Command/UnArc/ListArc geaendert
+o Version Scan auch bei TextFiles
+o DriveStrings und ButtonStrings verlaengert, damit man auch Images
+  die nicht eingebaut sind darstellen kann.
+o Filenote wird jetzt auch beim obersten Directory mitkopiert.
+o CopyFile() etwas geaendert... Speedmaessig tut sich nichts,
+  ich hab alle Variationen ausprobiert. Der Seek() dauert ewig!
+
+RumorOpus 1.05 beta 3 (3.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o CopyFile() etwas geaendert
+o Neue Optionen VARIABLE FRAMES ON|OFF,
+  VARIABLE MIDDLEMOUSE NONE|BANK|LIST|BOTH
+o '^' als Esc-Char in der Config e.g. ^1 = Weisser Text ^b = Fettdruck
+o Wenn man im Root-Verzeichnis ist und den Parentknopf betaetigt kommen
+  die Volumes nach vorne.
+
+RumorOpus 1.10 beta 1 (9.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler behoben, der bei LoadLeft/LoadRight ohne Keyfile einen Lockup
+  verursachen konnte.
+o ENV:RO.prefs und ENVARC:RO.prefs wird jetzt benutzt. Nicht mehr
+  PROGDIR: oder S:. War noetig, sonst funktioniert der Save/Use/Restore/Last
+  etc. Mechanismus nicht.
+
+RumorOpus 1.10 beta 2 (11.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Es wird jetzt zusaetzlich in S: und PROGDIR: nach RO.prefs gesucht.
+
+RumorOpus 1.10 beta 3 (12.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o ENV:RO.prefs -> ENV:RO/RO.prefs
+o Fehler behoben, wenn nur eine ButtonBank definiert wurde war die
+  zweite trotzdem da, aber leer.
+o Fehler bei PageLeft/PageRight in Verbindung mit LoadLeft/LoadRight
+o Ein paar sinnvolle MenuShortcuts eingebaut.
+
+RumorOpus 1.10 beta 4 (14.10.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Bei nichtgeladenem Dir und Parent kommt jetzt auch VolPage
+
+RumorOpus 1.11 beta 1 (24.11.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o kleiner Bug gefixt, bei move auf selbem Device wurde manchmal
+  nicht Rename sondern Copy verwendet.
+o kleiner Bug gefixt, bei %R
+o kleiner Bug gefixt, bei Verwendung von Deutsch.
+o kleiner Bug gefixt, wenn man beim FitCopy den Requester geschlossen hat.
+o grosser Bug gefixt, mit MUI 3.1 hat die LV Aktivierung nicht mehr geklappt.
+o Man kann jetzt die LVs Dynamisch vergroessern/verkleinern wie bei DOpus
+o Es gibt jetzt ein Settings Menu. Es wird die Config eingelesen,
+  wenn man RO Prefs startet und mit Use oder Save beendet.
+o Noch ein bug mit MUI 3.1 'gefixt', die StrGad Aktivierung reagiert
+  nicht mehr und macht nur noch Muell... habs aendern muessen.
+o Drag&Drop Sortierung moeglich innerhalb der Buffer Seite.
+
+RumorOpus 1.20 beta 1 (26.11.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Alle Keyfiles ausser meinem wurden nicht mehr erkannt... fixed.
+o ClockRefresh wurde nicht uebernommen bei Prefs/Save|Use
+o Drag&Drop jetzt in den Dirlists. Wenn man Dateien
+  in die andere Seite wirft, werden sie kopiert.
+o Wenn man eine Datei in die andere Seite wirft
+  und sie als Archiv erkannt wird, wirds ausgepackt.
+
+RumorOpus 1.20 beta 2 (1.12.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Kleiner Fehler in der LV-Aktivierung behoben.
+o Kleiner Fehler beim Iconifizieren, der durch MUI3 verursacht
+  wird umgangen.
+
+RumorOpus 1.21 beta 1 (5.12.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o NetBSD installiert, Plattencrash, Backup unbrauchbar,
+  Startup.c neu geschrieben, Request.c neu geschrieben.

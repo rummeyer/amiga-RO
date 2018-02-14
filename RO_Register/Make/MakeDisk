@@ -1,0 +1,39 @@
+.key username,userstreet,usercity
+
+Format Drive df1: Name "ROpus" FFS NOICONS
+MakeDir >NIL: df1:Backup
+
+LhA x SC:project/RO_Register/Files/RO_V???.LHA df1:
+Copy SC:project/RO_Register/ReadMe df1:
+Copy SC:project/RO_Register/ReadMe.info df1:
+Copy SC:project/RO_Register/Disk.info df1:
+Copy SC:project/RO_Register/RO.info df1:RO.info
+
+SC:project/RO_Register/Make/MakeKey "<username>" "<userstreet>" "<usercity>" "0$serial" RAM:RO.key
+if exists RAM:RO.key
+  SC:project/RO_Register/Make/CheckKey >NIL: RAM:RO.key
+  if not warn
+    MakeDir >NIL: df1:KeyFile
+    Copy RAM:RO.key df1:KeyFile/RO.key
+    Copy RAM:RO.key df1:Backup/RO.key,bak0
+    Copy RAM:RO.key df1:Backup/RO.key,bak1
+    Copy RAM:RO.key df1:Backup/RO.key,bak2
+    Copy RAM:RO.key df1:Backup/RO.key,bak3
+    Copy RAM:RO.key df1:Backup/RO.key,bak4
+    Copy RAM:RO.key df1:Backup/RO.key,bak5
+    Copy RAM:RO.key df1:Backup/RO.key,bak6
+    Copy RAM:RO.key df1:Backup/RO.key,bak7
+    Copy RAM:RO.key df1:Backup/RO.key,bak8
+    Copy RAM:RO.key df1:Backup/RO.key,bak9
+    Delete >NIL: RAM:RO.key
+    echo >ENVARC:SERIAL "`eval $serial + 1`"
+    copy >NIL: ENVARC:SERIAL ENV:SERIAL
+    copy df1:Keyfile/RO.key S:
+  else
+    DisplayBeep
+    echo "Incorrect KeyFile generated...*n"
+  endif
+else
+  DisplayBeep
+  echo "KeyFile not generated...*n"
+endif

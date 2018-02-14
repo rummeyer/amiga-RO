@@ -1,0 +1,115 @@
+Short:    MUI-Based FileManager
+Author:   Oliver Rummeyer <oliver.rummeyer@student.uni-ulm.de>
+Uploader: Oliver Rummeyer <oliver.rummeyer@student.uni-ulm.de>
+Version:  1.20
+Type:     util/dir
+
+RO is a new Intuition-controlled, fully user-configurable file manager
+for OS 2.04 and newer.  You can use RO to copy, move, rename or delete
+files,  and  you can perform a filetype sensitive action command (e.g.
+show  pictures  or  texts,  play  sounds,  etc with one single command
+button) on files via GUI.
+
+RO's  mighty features will assist and help you on your daily work with
+your  Amiga.   With  RO  there is no need to learn those cryptic shell
+commands,  because  you  have  the complete power of your Amiga in one
+hand.
+
+Some features are:
+
+  o uses MUI
+  o small executable
+  o highly configurable
+  o user configurable filetypes
+  o supports datatypes
+  o supports XPK, PP and ARCHandler
+  o path name completer
+  o more than 50 internal commands
+  o user menu support
+  o hotkey & hotdir support
+  o powerful arexx port
+  o very fast directory and file operations
+  o appicon launches progs for defined filetypes
+  o english, french and german documentation & catalog
+  o supports middle mouse button
+  o nice preference program
+  o dynamic listviews
+  o drag & drop
+
+I decided to release RO as crippled shareware.  RO is fully functional
+but  in the unregistered version the about requester appears  regulary
+to  remind you  to  pay  the shareware fee.  If you like this  product
+and you want me to continue its development you should support me with
+the shareware fee. Thank You.
+
+Changes:
+
+
+- Version 1.00 (20.3.95)
+
+  o Fixed some bugs.
+  o Catalog files changed.
+  o Minor code cleanup.
+  o Added user configurable filetypes.
+  o Changed filetype configuration.
+  o Changed archive configuration.
+  o Removed config variable ARCHANDLER.
+  o Added new and improved old arexx scripts.
+
+- Version 1.01 (22.3.95)
+
+  o Fixed some major bugs.
+
+- Version 1.02 (3.4.95)
+
+  o Fixed some bugs.
+  o Catalog files changed.
+  o Improved german documentation.
+  o New menu entry Last Message.
+  o New menu entry Update All.
+
+- Version 1.03 (4.6.95)
+
+  o Fixed some bugs.
+  o Improved installation script.
+  o Improved default handling for unknown filetypes.
+  o Added config variable CHECKDUPES.
+  o Added '%a' parameter to get arexx port name.
+
+- Version 1.04 (9.7.95)
+
+  o Fixed some minor bugs.
+  o Catalog files changed.
+  o French documentation included.
+  o Included french catalog file.
+  o Other minor changes.
+  o Added list cycle with middle mouse button.
+  o Added button bank switching with middle mouse button.
+  o New menu entry Spawn New.
+
+- Version 1.10 (16.10.95)
+
+  o Included preference program.
+  o Config now stored in 'ENV:RO/'
+  o Fixed some minor bugs.
+  o Catalog files changed.
+  o Minor code cleanup.
+  o Added config variable FRAMES.
+  o Added config variable MIDDLEMOUSE.
+  o Config supports '^' as esc character.
+  o Other minor changes.
+
+- Version 1.20 (3.12.95)
+
+  o requires MUI 3.1 or better.
+  o Made some changes for MUI3+ compatibily.
+  o Fixed some minor bugs.
+  o Catalog files changed.
+  o Removed some useless menu entries.
+  o New menu entry MUI...
+  o New menu entry RO...
+  o Improved RO prefs handling.
+  o Implemented resizeable listviews.
+  o Implemented drag&drop mechanism.
+
+RO requires Magic User Interface (MUI) version 3.1 or later.

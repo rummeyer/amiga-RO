@@ -1,0 +1,12 @@
+Failat 21
+ChangeTaskPri -1
+stack 250000
+
+smake
+copy sc:project/main sc:project/RO_Release/Binary/RO,binary
+copy sc:project/prefsmain "sc:project/RO_Release/Binary/ROPrefs,binary"
+copy sc:project/prefsmain "System:Prefs/RO"
+
+stack 8192
+ChangeTaskPri 0
+Failat 10
