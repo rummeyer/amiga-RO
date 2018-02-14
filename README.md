@@ -32,3 +32,5 @@ Some features are:
 * nice preference program
 * dynamic listviews
 * drag & drop
+
+Requires SAS/C Compiler to build!
