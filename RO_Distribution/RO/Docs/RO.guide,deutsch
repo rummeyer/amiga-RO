@@ -1,0 +1,3349 @@
+@database "RO Documentation"
+@author "Oliver Rummeyer"
+@(c) "Copyright © 1994-1998 Oliver Rummeyer"
+@$VER: RO Documentation 1.27 (5-Dec-98)
+
+@node main "RO Bedienungsanleitung"
+@toc contents
+@next introduction
+
+           RO --- Ein auf MUI basierender FileManager, Shareware
+
+                               Version 1.27
+
+                            Bedienungsanleitung
+
+                  Copyright © 1994-1998 by Oliver Rummeyer
+
+                                   ----
+
+ @{b}1.  Einführung@{ub}
+
+  1.1  @{" Kurze Beschreibung     " link introduction}..............Was ist 'RO'?
+  1.2  @{" Systemanforderungen    " link requirements}..............Was man für RO benötigt
+  1.3  @{" Unregistrierte Version " link unregistered}..............Ist RO eingeschränkt?
+
+ @{b}2.  Installation@{ub}
+
+  2.1  @{" Installation von RO    " link installation}..............Wie wird RO installiert?
+
+ @{b}3.  Wie benutzt man RO@{ub}
+
+  3.1  @{" Hauptfenster           " link mainwindow}..............Wie wird RO bedient?
+  3.2  @{" Menüs                  " link menus}..............RO's Menüleiste
+  3.3  @{" Konfiguration          " link configuration}..............Einstellungen
+  3.4  @{" ARexx Schnittstelle    " link arexxinterface}..............Wie steuert man RO über ARexx
+  3.5  @{" Diskussion             " link discussion}..............Fragen und Antworten. (F&A)
+
+ @{b}4.  Registration@{ub}
+
+  4.1  @{" Wie registriert man RO " link registration}..............Wie man sich registriert
+  4.2  @{" Registrationsformular  " link registrationform}..............Ich brauche Namen, Adresse...
+
+ @{b}5.  Sonstiges@{ub}
+
+  5.1  @{" Updates                " link updates}..............Wo es neue Versionen gibt
+  5.2  @{" Support                " link support}..............Wie man den Autor erreicht
+  5.3  @{" Danksagungen           " link acknowledgments}..............Der Autor bedankt sich...
+  5.4  @{" Geschichte             " link history}..............RO's Entwicklung
+  5.5  @{" Zukunft                " link future}..............Wenn sie sich registrieren...
+
+ @{b}6.  Rechtliches@{ub}
+
+  6.1  @{" Garantie               " link disclaimer}..............Garantie? Welche Garantie?!
+  6.2  @{" Nutzungsbedingungen    " link license}..............Nutzungsbedingungen
+  6.3  @{" Installer              " link installer}..............Über den Installer
+  6.4  @{" Magic User Interface   " link magicuserinterface}..............Über Magic User Interface
+
+@endnode
+
+@node introduction "Kurze Beschreibung"
+@prev main
+@next requirements
+
+ @{b}@{u}Kurze Beschreibung@{ub}@{uu}
+
+ RO   ist   ein   neuer   Intuition   gesteuerter,   völlig   vom  Benutzer
+ konfigurierbarer  Dateimanager  für  OS  2.04  oder  höher.  RO's mächtige
+ Eigenschaften  werden Ihnen zur Seite stehen und Ihnen bei Ihrer täglichen
+ Arbeit  am  Amiga helfen.  Mit RO ist es nun nicht mehr nötig irgendwelche
+ unverständlichen  Shell  Kommandos  zu  lernen, weil man die gesamte Power
+ seines Amigas in einer Hand hat.
+
+ Da  MUI  benutzt  wird  sind  Sie  in der Lage Look & Feel dieses Tools so
+ einzustellen  wie es Ihnen gefällt. MUI ist das @{" Magic User Interface " link magicuserinterface} das
+ von  Stefan  Stuntz  entwickelt  wurde  und  eigentlich  auf  jedem  Amiga
+ installiert  sein sollte.  Es handelt sich dabei um ein Objektorientiertes
+ System  zur Erstellung von graphischen  Benutzeroberflächen.  Benutzer von
+ Applikationen die MUI  verwenden haben die  Möglichkeit nahezu jeden Pixel
+ einer   Programmoberfläche   Ihrem  persönlichen   Geschmack  entsprechend
+ einzustellen.
+
+ Das RO Archiv sollte die folgenden Dateien enthalten:
+
+   RO/ARexx/Action.RO             RO/Icons/8col/Drawer.info
+   RO/ARexx/AddArc.RO             RO/Icons/8col/RegForm.info
+   RO/ARexx/ArcHandler.RO         RO/Icons/8col/RO.guide.info
+   RO/ARexx/Deiconify.RO          RO/Icons/8col/RO.info
+   RO/ARexx/Iconify.RO            RO/Icons/8col/ROPrefs.info
+   RO/ARexx/LoadDir.RO            RO/Install.info
+   RO/ARexx/LoadOther.RO          RO/Install/Installer
+   RO/ARexx/PlayModule.RO         RO/Install/RO-Install
+   RO/ARexx/ShowHtml.RO           RO/Install/RO-Install.info
+   RO/Binary/RO,binary            RO/LiesMichZuerst
+   RO/Binary/ROPrefs,binary       RO/LiesMichZuerst.info
+   RO/Config/RO.prefs,default     RO/LisezMoiDabord
+   RO/Config/RO.prefs,example1    RO/LisezMoiDabord.info
+   RO/Config/RO.prefs,example2    RO/Locale/Catalogs/Deutsch/ro.catalog
+   RO/Config/RO.prefs,example3    RO/Locale/Catalogs/Français/ro.catalog
+   RO/Config/RO.prefs,example4    RO/Locale/Catalogs/Svenska/ro.catalog
+   RO/Docs/RegForm,deutsch        RO/Locale/RO.cd
+   RO/Docs/RegForm,english        RO/Locale/RO.ct
+   RO/Docs/RegForm,francais       RO/Previews.info
+   RO/Docs/RegForm,svenska        RO/Previews/Preview1
+   RO/Docs/RO.guide,deutsch       RO/Previews/Preview1.info
+   RO/Docs/RO.guide,english       RO/Previews/Preview2
+   RO/Docs/RO.guide,francais      RO/Previews/Preview2.info
+   RO/Docs/RO.guide,svenska       RO/Previews/Preview3
+   RO/Icons/4col/Drawer.info      RO/Previews/Preview3.info
+   RO/Icons/4col/RegForm.info     RO/ReadMeFirst
+   RO/Icons/4col/RO.guide.info    RO/ReadMeFirst.info
+   RO/Icons/4col/RO.info          RO/RO_v125.Announce
+   RO/Icons/4col/ROPrefs.info     RO/RO_v125.ReadMe
+   RO.info
+
+ MUI  wird  nicht  mitgeliefert,  aber Sie sollten es in jeder Mailbox oder
+ bei Ihrem lokalen AmiNet Mirror bekommen.
+
+@endnode
+
+@node requirements "System Anforderungen"
+@next unregistered
+@prev introduction
+
+ @{b}@{u}System Anforderungen@{ub}@{uu}
+
+ RO  benötigt  Version 2.04 des Amiga Betriebssystems oder eine Neuere.  RO
+ braucht auch die Version 3.6 (oder eine neuere) des "Magic User Interface"
+ von  Stefan  Stuntz.  Kickstart 1.3 wird nicht mehr unterstützt; Weder von
+ "Magic  User  Interface"  noch von RO; dieses Betriebssystem ist veraltet.
+ Steigen  Sie  auf  2.04  um, oder am besten gleich auf die Version 3.1 des
+ Amiga  OS.  RO braucht keinen schnelleren Prozessor, aber natürlich machen
+ schnellere  CPUs  das Leben einfacher.  Sehr viele Berechnungen müssen für
+ das  Management  und  Layout der einzelnen Objekte gemacht werden, deshalb
+ könnte ein einfacher auf 68000 basierender Rechner langsam sein.
+
+ Wenn  Sie  möchten,  daß  RO  ganz  automatisch XPK & PowerPacker gepackte
+ Dateien  entpackt,  müssen  Sie die xpkmaster.library, powerpacker.library
+ und  mindestens  eine  XPK  Pack Library installieren.  Wenn Sie ausserdem
+ noch  möchten,  daß RO Archive wie normale Verzeichnisse behandelt, werfen
+ Sie einmal einen Blick auf ARCHandler.
+
+ XPK is Copyright © Urban Mueller, Bryan Ford & Christian Schneider.
+ PowerPacker is Copyright © Nico François.
+ ARCHandler is Copyright © Rafael D'Halleweyn.
+
+
+@endnode
+
+@node unregistered "Unregistrierte Version"
+@next installation
+@prev requirements
+
+ @{b}@{u}Unregistrierte Version@{ub}@{uu}
+
+ Ich   habe   mich   entschlossen   RO   als  eingeschränkte  Shareware  zu
+ veröffentlichen.    RO   funktioniert   zwar   vollständig,  aber  in  der
+ unregistrierten Version öffnet sich ab und zu ein Requester, der Sie daran
+ erinnern  soll  die  Shareware Gebühr zu bezahlen.  In der unregistrierten
+ Version  können  Sie  mit  RO Prefs keine Änderungen speichern, Sie müssen
+ einen  Texteditor  benutzen.  RO war und ist eine zeitaufwendige Sache für
+ mich.   Wenn  Ihnen  dieses  Produkt  gefällt  und Sie möchten, daß ich es
+ weiter  entwickle,  sollten Sie mich mit der Sharewaregebühr unterstützen.
+ Vielen Dank.
+
+ @{" Wie registriert man RO " Link registration}
+
+@endnode
+
+@node installation "Installation"
+@next mainwindow
+@prev unregistered
+
+ @{b}@{u}Installation@{ub}@{uu}
+
+ Zusammen  mit  RO  wird  ein Installationsskript geliefert das Ihnen hilft
+ alle benötigten Dateien zu installieren.  Wenn Sie aber ein 'Experte' sind
+ könnte  es  sein,  daß  Sie  die  Installation  lieber  von Hand vornehmen
+ möchten.
+
+ Kopieren Sie die Files 'RO,binary' und 'ROPrefs,binary' in ein Verzeichnis  
+ ihrer Wahl und nennen Sie sie dort  'RO'  und 'ROPrefs'. Wenn Sie möchten,  
+ können sie das Prefs Programm auch als 'SYS:Prefs/RO'  speichern. Kopieren
+ Sie sich jetzt ein Piktogramm in das entsprechende Verzeichnis. Vielleicht
+ möchten  Sie  auch  die Datei  'RO.prefs'  nach 'ENVARC:RO/' und 'ENV:RO/'
+ kopieren. Wenn Sie ein Keyfile  haben, dann  kopieren  Sie  es  nach 'S:',
+ 'L:'  oder  in das  selbe  Verzeichnis  wie  die  ausführbaren  Programme.
+ Sie können das auch durch setzen der  Umgebungsvariable 'KEYPATH', auf ein
+ Verzeichnis, in dem sich  Ihr Keyfile befindet, ändern. Wenn Sie Workbench
+ 2.1 oder höher verwenden  dann  können Sie die Datei 'ro.catalog' in Ihr
+ 'LOCALE:Catalogs/<Sprache>'  Verzeichnis kopieren.
+
+@endnode
+
+@node mainwindow "Hauptfenster"
+@prev installation
+@next registergroup
+
+ @{b}@{u}Hauptfenster@{ub}@{uu}
+
+ Nachdem  der  Installationsvorgang  beendet ist dürfen Sie RO starten, und
+ das  Hauptfenster  sollte  sich öffnen. Es enthält die folgenden Kontroll-
+ elemente...
+
+ @{" Register              " link registergroup}       Ändert die Art des Listviews
+ @{" Informations Textfeld " link dirinformation}       Zeigt Informationen über Verzeichnis an
+ @{" Listview              " link listview}       Zeigt das Verzeichnis an
+ @{" Pfad Gadget           " link pathgadget}       Zur manuellen Verzeichnisdurchsicht
+ @{" Laufwerksknöpfe       " link drivebutton}       Schneller Zugriff auf wichtige Geräte
+ @{" Kommandoknöpfe        " link commandbutton}       Aktionen auf angewählte Dateien ausführen
+ @{" Status Zeile          " link statusbar}       Zeigt allgemeine Informationen an
+
+@endnode
+
+@node registergroup "Register"
+@prev mainwindow
+@next dirinformation
+
+ @{b}@{u}Register@{ub}@{uu}
+
+ Mit  dem  Register  ganz  oben  im Fenster läßt sich die Art des Listviews
+ darunter   ändern.    Man  kann  hier  zwischen  Verzeichnis,  Puffer  und
+ Datenträger  wählen.   Je  nach Ihren MUI Einstellungen sieht das Register
+ wie  ein  Karteiregister, oder wie ein normaler Cycle Knopf aus.  Die drei
+ verschiedenen Listview Typen sind in dem Abschnitt @{" Listview " link listview} beschrieben.
+ Wenn  sie  eine  Maus  mit  drei  Tasten  besitzen  können Sie die Art des
+ Listviews  auch  wechseln  indem  Sie  die  mittlere  Maustaste über einen
+ Listview klicken.
+
+@endnode
+
+@node dirinformation "Informations Textfeld"
+@prev registergroup
+@next listview
+
+ @{b}@{u}Informations Textfeld@{ub}@{uu}
+
+ Es   gibt   ein  Textfeld  über  jedem  Verzeichnis  in  dem  verschiedene
+ Informationen  dargestellt werden:  Der freie Speicherplatz in Prozent und
+ KByte an  der belegte Speicherplatz in KByte.  Es sieht so ähnlich aus wie
+ die  Informationen  die  in  der  Titelzeile  von einem Standard Workbench
+ Fenster  angezeigt  werden,  Sie sollten deshalb eingentlich damit zurecht
+ kommen.   Wenn  gerade  kein  Verzeichnis  geladen  ist  sehen  Sie  'Kein
+ Verzeichnis'.  Der Informationstext ändert sich wenn Sie ein paar Einträge
+ anwählen.   Sie  können  dann  ablesen wieviele Dateien, Verzeichnisse und
+ Byte  gerade  ausgewählt  sind.   Wenn man alle Einträge deselektiert wird
+ wieder die Speicherplatzanzeige aktiviert.
+
+ Das  Textfeld wird auch benötigt, um anzuzeigen  welches  Listview  gerade
+ aktiviert  ist.   Es  ist  sehr  wichtig zu wissen welches Listview gerade
+ aktiv  ist,  weil  es  als  Quell-Listview  angesehen wird welches von den
+ Operationen die man über die  Kommandoknöpfe oder das Benutzermenü startet
+ betroffen  ist.   Wenn  man eine Datei in einem Listview selektiert ändert
+ sich  die  aktive  Seite, aber man kann die aktive Seite auch ändern indem
+ man  '`' (Die  Taste  über 'tab')  drückt. Mit 'tab'  selbst  kann man die
+ Stringgadgets  wechseln. Das Textfeld über  dem aktiven Listview  wird mit
+ einem  'Fillback'  Muster  gefüllt,  welches  man auf der 'Pens' Seite der
+ MUI-Prefs einstellen kann indem man die entsprechenden Stifte ändert.
+
+ Zu   guter   Letzt   wird   das   Textfeld   auch   noch  als  versteckter
+ 'Mutterverzeichnis'  Knopf  benutzt.   Wenn  Sie  auf Ihn klicken wird das
+ übergeordnete  Verzeichnis des gerade geladenen Verzeichnisses eingelesen.
+ Wenn es  kein übergeordnetes Verzeichnis gibt liest RO das gerade geladene
+ Verzeichnis nochmal ein.
+
+@endnode
+
+
+@node listview "Listview"
+@prev dirinformation
+@next pathgadget
+
+ @{b}@{u}Listview@{ub}@{uu}
+
+ Die Größe der Listviews läßt sich mit dem Balken in der Mitte des Fensters
+ verändern.  Klicken  Sie einfach auf ihn,  und ziehen Sie ihn  nach  links
+ oder rechts. RO hat auch einen Drag & Drop Mechanismus eingebaut. Man kann
+ damit Dateien kopieren, indem man sie einfach aus einem Listview zieht und
+ sie  in  das andere fallen lässt.
+
+ RO ist mit drei verschiedene Listview Typen ausgestattet...
+
+ Das  'Verzeichnis'  Listview  ist  RO's  wichtigstes  Listview.   Es  wird
+ benötigt  um  das  Verzeichnis  anzuzeigen.   Sie können darin Dateien und
+ Verzeichnisse  anwählen  und auf Ihnen Doppel-klicken.  Wenn Sie auf einem
+ Verzeichnis  Doppel-klicken,  wird  es  unverzüglich eingelesen.  Wenn Sie
+ aber  auf einer Datei Doppel-klicken versucht RO die Datei zu erkennen und
+ startet  ein passendes Kommando. Es werden ungefähr 60 Dateiarten erkannt,
+ und zusätzlich, wenn man  AmigaOS 3.0 oder  höher verwendet unterstützt RO
+ 'Datatypes'.   Für  eine  genauere Beschreibung wie man die Datei Aktionen
+ einstellen  kann, lesen  Sie am besten im Kapitel @{" Konfiguration " link configuration} nach.
+
+ Das  'Puffer'  Listview  ist  eine  Art  Geschichte  in  der  RO sich eine
+ bestimmte  Anzahl von Pfaden merkt.  Es können dort auch schon welche beim
+ Start eingefügt werden, was in dem Kapitel @{" Konfiguration " link configuration} erklärt wird.
+ Das ist eine Art des schnellen Verzeichniszugriffs der von  RO unterstützt
+ wird.
+
+ Das  'Datenträger'  Listview  zeigt  eine Liste aller verfügbaren AmigaDOS
+ Geräte  an.   Sie können den Inhalt eines Datenträgers einlesen, indem Sie
+ auf ihm Doppel-klicken.
+
+@endnode
+
+@node pathgadget "Pfad Gadget"
+@prev listview
+@next drivebutton
+
+ @{b}@{u}Pfad Gadget@{ub}@{uu}
+
+ Das  Pfad  Gadget befindet sich unterhalb der beiden Verzeichnis Listviews
+ und enthält  die Pfad  Strings des  gerade  geladenen Verzeichnisses.  Sie
+ können hier jeden Pfad eingeben und das zugehörige Verzeichnis wird sofort
+ eingelesen.   RO erweitert alle  Pfad Namen z.B.  wenn man 'Libs:' eingibt
+ bekommt  man  so  etwas  wie  'System:Libs/'.   Die Pfad Gadgets sind eine
+ andere  Art des schnellen  Verzeichniszugriffs, vor allen Dingen wegen der
+ eingebauten   Pfadvervollständigung.    Wenn   man  'SYS:Devs/DOS<RETURN>'
+ eingibt  bekommt man einen   erweiterten   Pfad   Namen   der   etwa   wie
+ 'System:Devs/DOSDrivers'   aussehen  sollte.   Man  kann  auch  sehr  viel
+ komplexere Dinge eingeben wie 'System:Devs/DataTypes///L/File<RETURN>' und
+ was  man  bekommt  sieht  dann  wie 'System:L/FileSystem_Trans/' aus.  Die
+ automatische  Pfadvervollständigung  funktioniert aber nur auf den letzten
+ Teil  des  Pfadstrings.
+
+@endnode
+
+@node drivebutton "Laufwerksknöpfe"
+@prev pathgadget
+@next commandbutton
+
+ @{b}@{u}Laufwerksknöpfe@{ub}@{uu}
+
+ Unter  den  Pfad  Gadgets  hat  RO  normalerweise 16 Laufwerksknöpfe deren
+ Anzahl  bei  Bedarf automatisch auf 32 erhöht wird.  Im allgemeinen klickt
+ man  auf  einen  Laufwerksknopf  und  der angegebene Pfad Name wird in ein
+ Listview eingelesen.  In welches er eingelesen wird, das hängt davon ab in
+ welchem  Modus die Laufwerksknöpfe betrieben werden.  Es werden zwei Arten
+ unterstützt:   Der  sogenannte  'Active' Modus und der 'Normal' Modus.  Im
+ 'Normal'  Modus  wird  der Laufwerksknopf nur auf das Listview angewendet,
+ welches sich direkt über ihm befindet.  Im 'Active' Modus wird der Pfad in
+ das aktive Listview geladen.
+
+@endnode
+
+@node commandbutton "Kommandoknöpfe"
+@prev drivebutton
+@next statusbar
+
+ @{b}@{u}Kommandoknöpfe@{ub}@{uu}
+
+ Unter  den  Laufwerksknöpfen  befinden  sich  3 x 8 Kommandoknöpfe.  Diese
+ Gadgets  werden  dazu  benutzt um Aktionen für die angewählten Dateien und
+ Verzeichnisse das  aktive  Listview auszulösen.  24 Knöpfe sind aber nicht
+ genug für über  50 eingebaute  Funktionen , deshalb wurde  ein Knopf Bank-
+ umschalt  Mechanismus  eingebaut.   Man kann zwischen den einzelnen Bänken
+ umschalten  indem  man  die  Statusleiste  anklickt ,  die  sich unter den
+ Kommandoknöpfen  befindet.   Wenn  man  im besitz einer 3-Tasten Maus ist,
+ reicht  auch  ein klick auf die mittlere Maustaste, wenn man sich über den
+ Kommandoknöpfen  befindet.
+
+ Es  werden  zur  Zeit  5  Bänke  unterstützt,  was eine Gesamtzahl von 120
+ Knöpfen  ergibt,  aber  das kann sich in Zukunft noch ändern.  Die meisten
+ Funktionen öffnen ein Fenster, welches anzeigt wie weit die Funktion schon
+ fortgeschritten   ist.    Wenn   man   dieses  schließt  wird  die  Aktion
+ abgebrochen, wenn man jedoch das Iconifizierungsgadget betätigt verrichtet
+ RO seine Arbeit im Hintergrund weiter.
+
+ Zur Zeit werden folgende interne Funktionen unterstützt...
+
+
+    @{" About     " link About}        Zeigt die Programminformation.
+    @{" Action    " link Action}        Führt eine Dateiaktion aus.
+    @{" All       " link All}        Selektieren aller Einträge eines Listviews.
+    @{" Assign    " link Assign}        Erstellt einen 'assign' für Verzeichnis.
+    @{" Buffers   " link Buffers}        Die Buffers Seite in den Vordergrund schalten.
+    @{" ByName    " link ByName}        Selektiert Einträge über ihren Namen.
+    @{" Bytes     " link Bytes}        Zählt die Anzahl der selektierten Byte.
+    @{" Change    " link Change}        Ändert die Sortierung des aktiven Listviews.
+    @{" Copy      " link Copy}        Kopiert Dateien und Verzeichnisse.
+    @{" CopyAs    " link Copy}        Kopiert Dateien und Verzeichnisse und ändert Namen.
+    @{" CopyDev   " link CopyDev}        Kopiert Dateien auf ein Gerät.
+    @{" Current   " link Current}        Lädt das aktuelle Verzeichnis.
+    @{" Delete    " link Delete}        Löscht Dateien und Verzeichnisse.
+    @{" Directory " link Buffers}        Die Directory Seite in den Vordergrund schalten.
+    @{" Disk      " link Disk}        Zeigt Informationen über den aktiven Datenträger.
+    @{" Dup       " link Dup}        Verdoppelt Einträge.
+    @{" Expand    " link Expand}        Erweitert einen Pfad auf seinen ARCHandler Pfad.
+    @{" Fit       " link Fit}        Überprüft ob Einträge auf das Ziel passen.
+    @{" Help      " link Help}        Zeigt die Hilfe an.
+    @{" Icon      " link Icon}        Wählt die entsprechenden .info Dateien aus.
+    @{" Info      " link Info}        Zeigt Informationen für die angewählten Einträge.
+    @{" LActive   " link Active}        Aktiviert das linke Listview.
+    @{" LCopy     " link LCopy}        Kopiert das aktive Listview.
+    @{" LFold     " link LFold}        Versteckt das rechte Listview.
+    @{" LSwap     " link LSwap}        Vertauscht das aktive und inaktive Listview.
+    @{" ListArc   " link ListArc}        Zeigt den Inhalt eines Archivs an.
+    @{" LParent   " link Parent}        Lädt das übergeordnete Verzeichnis.
+    @{" LReload   " link Reload}        Erneuert das linke Verzeichnis.
+    @{" LRoot     " link Root}        Lädt das Wurzelverzeichnis der linken Seite.
+    @{" MakeDir   " link MakeDir}        Erstellt Verzeichnisse.
+    @{" MDLoad    " link MakeDir}        Erstellt Verzeichnisse und lädt sie.
+    @{" Move      " link Move}        Verschiebt Dateien und Verzeichnisse.
+    @{" MoveAs    " link MoveAs}        Verschieben von Einträgen mit Ändern des Namens.
+    @{" None      " link None}        Alle Einträge deselektieren.
+    @{" Note      " link Note}        Dateikommentare ändern.
+    @{" Parent    " link Parent}        Übergeordnetes Verzeichnis laden.
+    @{" Protect   " link Protect}        Attribute ändern.
+    @{" Quit      " link Quit}        'RO' beenden.
+    @{" RActive   " link Active}        Das rechte Listview aktivieren.
+    @{" Reboot    " link Reboot}        Einen System Warmstart ausführen.
+    @{" Relabel   " link Relabel}        Datenträger umbenennen.
+    @{" Reload    " link Reload}        Das aktive Verzeichnis erneuern.
+    @{" Rename    " link Rename}        Einträge umbenennen.
+    @{" Root      " link Root}        Das Wurzelverzeichnis laden.
+    @{" RParent   " link Parent}        Übergeordnetes Verzeichnis laden.
+    @{" RReload   " link Reload}        Das rechte Verzeichnis erneuern.
+    @{" RRoot     " link Root}        Lädt das Wurzelverzeichnis der rechten Seite.
+    @{" SetDate   " link SetDate}        Datum eines Eintrags ändern.
+    @{" Shrink    " link Shrink}        Einen ARCHandler Pfad verkleinern.
+    @{" Toggle    " link Toggle}        Alle Einträge anders selektieren.
+    @{" Touch     " link Touch}        Datum setzen oder Datei erstellen.
+    @{" UnArc     " link UnArc}        Dateien aus Archiv entpacken.
+    @{" Update    " link Update}        Dateien zum updaten selektieren.
+    @{" Volumes   " link Buffers}        Die Volumes Seite in den Vordergrund schalten.
+
+
+ ...und Sie können natürlich jedes AmigaDOS Kommando aufrufen, aber lesen
+    Sie dazu in dem Kapitel @{" Konfiguration " link configuration} nach.
+
+@endnode
+
+@node statusbar "Status Leiste"
+@prev commandbutton
+@next menus
+
+ @{b}@{u}Status Leiste@{ub}@{uu}
+
+ RO's  Status Leiste ist das Textfeld am unteren Rand des Fensters, es wird
+ dazu  verwendet  allgemeine Informationen darüber was gerade passiert oder
+ warum  eine bestimmte Aktion fehlgeschlagen ist anzuzeigen .  Wie schon in
+ dem  Abschnitt  Kommandoknöpfe  beschrieben  wurde , wird die Statusleiste
+ auch  dazu benötigt zwischen den einzelnen  Knopfbänken umzuschalten.  Man
+ kann  sich auch eine Uhr und/oder eine Speicheranzeige zeigen lassen, aber
+ das  läßt  sich vom Benutzer alles einstellen. Ich rate Ihnen dringend das
+ Kapitel @{" Konfiguration " link configuration} durchzulesen.
+
+@endnode
+
+@node menus "Menüs"
+@prev statusbar
+@next configuration
+
+ @{b}@{u}Menüs@{ub}@{uu}
+
+ RO hat die folgenden Menüs:
+
+ o Projekt
+
+   - alles aktualisieren
+
+     Es werden beide Verzeichnisse neu eingelesen.
+
+   - letzte Meldung anzeigen
+
+     Zeigt  die  zuletzt  dargestellte  Nachricht  in  der Statuszeile noch
+     einmal an.
+
+   - Über...
+
+     Öffnet die 'Über' Meldung.  Dies ist dieselbe Meldung wie die, die Sie
+     daran  erinnert  sich  registrieren  zu lassen, wenn Sie es noch nicht
+     getan haben.
+
+   - Über...
+
+     Öffnet die 'Über MUI' Meldung.
+
+   - Verbergen
+
+     Iconifiziert  RO  und  fügt ein 'AppIcon' zu der Workbench hinzu.  Sie
+     können  es  als  Multifunktionsicon verwenden, denn für jede Datei die
+     Sie  darauf  fallen  lassen wird, je nach Datei Art, eine Datei Aktion
+     gestartet.   Wenn  Sie  RO starten können Sie ein iconifizierten Start
+     erzwingen indem Sie das Argument oder Tooltype 'ICONIFY' angeben.
+
+   - Beenden
+
+     Beendet das Programm und entfernt RO aus dem Speicher.
+
+ o Optionen
+
+   - Kopieren
+
+     o Attribute
+
+       Damit  kann  man einstellen ob man die Attribute beim Kopieren einer
+       Datei oder eines Verzeichnisses übernehmen  möchte.  Es hat dieselbe
+       Wirkung wie die Option @{" COPYFLAGS " link variable} in der Konfigurationsdatei.
+
+     o Datum
+
+       Mit diesem Menüeintrag wird das Übernehmen des Erstellungsdatums und
+       der Erstellungszeit beim Kopieren eingeschaltet  oder nicht.  Es hat
+       dieselbe Wirkung wie die Option @{" COPYDATE " link variable} in der Konfigurationsdatei.
+
+     o Kommentar
+
+       Ändert  die  Einstellung ob man den Kommentar einer Datei oder eines
+       Verzeichnisses  beim  Kopieren  übernehmen möchte.  Es hat  dieselbe
+       Wirkung wie die Option @{" COPYNOTE "  link  variable} in der Konfigurationsdatei.
+
+     o Dateien überprüfen
+
+       Mit  dieser Option können Sie RO veranlassen, bei jeder Kopieraktion
+       zu  testen  ob die Datei richtig auf dem Ziel-Datenträger angekommen
+       ist.   Sie  können  diese Option auch in der Konfigurationsdatei mit
+       dem Schlüsselwort @{" COPYVERIFY " link variable} einstellen.
+
+     o Diskettenplatz überprüfen
+
+       Schalten  Sie  diese  Option  ein wenn Sie  möchten, daß automatisch
+       überprüft  wird ob die angewählten Einträge auf den Ziel-Datenträger
+       passen  bevor  Sie kopiert werden.  Da 'RAM:' immer 100% gefüllt ist
+       wird  dieser  Datenträger  von  der Überprüfung ausgeschlossen.  Sie
+       können   diese  Option  auch  in  der  Konfigurationsdatei  mit  dem
+       Schlüsselwort @{" CHECKFIT " link variable} einstellen.
+
+   - Löschen
+
+     o Erzwingen
+
+       Wenn  Sie  diese Option einschalten löscht RO auch Dateien die gegen
+       Löschen   geschützt  sind.   Dies  hat  die  selbe  Wirkung wie  das
+       @{" DELFORCE " link variable} Schlüsselwort in der Konfigurationsdatei.
+
+     o Fragen
+
+       Verändert  die Einstellung  der @{" DELVERIFY " link variable} Option.  Dies  bedeutet,
+       daß   wenn  Sie diese Option einschalten Sie vor  jedem Löschvorgang
+       gewarnt werden.
+
+   - Überschreiben
+
+     Hier  können  Sie  zwischen  den vier Einstellungen 'Always', 'Never',
+     'Older'  und  'Verify'  wählen.  Sie haben die selbe Bedeutung wie die
+     'ALWAYS',  'NEVER',  'OLDER'  und 'VERIFY'  Werte bei dem @{" OVERWRITE " link variable}
+     Schlüsselwort.   Wie Sie vielleicht schon erraten haben schließen sich
+     die Einstellungen gegenseitig aus.
+
+ o Einstellungen
+
+   - globale Einstellungen...
+
+     Mit diesem Menüeintrag wird das RO-Prefs Programm gestartet. Sie können
+     hiermit RO vollständig  Konfigurieren.  Beim betätigen  von 'Save' oder
+     'Use' werden die Einstellungen in RO übernommen.      
+
+   - MUI Einstellungen...
+
+     Mit  diesem  Menüeintrag wird  das MUI-Prefs  Programm  gestartet. Sie
+     können hiermit alle MUI spezifischen Einstellungen von RO vor nehmen.
+
+@endnode
+
+
+
+
+@node configuration "Konfiguration"
+@prev menus
+@next filetype
+
+ @{b}@{u}Konfiguration@{ub}@{uu}
+
+ RO wird über eine Textdatei konfiguriert, welche man nach 'ENVARC:RO/' und
+ 'ENV:RO/'   kopieren   und   'RO.prefs'   heissen   muß.    Wenn  Sie  das
+ Installationsskript  benutzen  sind alle Dateien richtig installiert.  Sie
+ können   Standard   Texteditor  benutzen  um  die  Konfigurationsdatei  zu
+ verändern,  es  werden  aber ein paar Beispiel Einstellungen mitgeliefert.
+ Wenn  sie  möchten  können  sie aber auch das mitgelieferte Prefs Programm
+ verwenden,  indem Sie es über  den  Menüpunkt 'RO...'  aufrufen, um  alles
+ einzustellen.  Wenn Sie Lust haben können Sie einmal einen  Blick  in  das
+ 'Config' Verzeichnis werfen.  RO  wird  über die folgenden Schlüsselwörter
+ Konfiguriert...
+
+ @{" FILETYPE    " link filetype}
+ @{" CUSTOMTYPE  " link customtype}
+ @{" ARCHIVETYPE " link archive}
+ @{" VARIABLE    " link variable}
+ @{" MENU        " link menu}
+ @{" BUFFER      " link buffer}
+ @{" HOTKEY      " link hotkey}
+ @{" HOTDIR      " link hotdir}
+ @{" DRIVE       " link drive}
+ @{" BUTTON      " link button}
+
+ Notiz: Fenstergröße  und  andere  Sachen  die  mit  dem  Layout  oder  der
+        Tastatursteuerung  zu  tun  haben werden mit dem MUI-Prefs Programm
+        eingestellt.  Es ist also sehr ratsam sich einmal die Anleitung von
+        MUI durchzulesen.  Danke.
+
+@endnode
+
+@node filetype "Filetype Configuration"
+@prev configuration
+@next customtype
+
+ @{b}@{u}FILETYPE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    FILETYPE "ArtID" "Kommando"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Mit   diesem   Schlüßelwort   können   Sie   Kommandos   für  die  drei
+    Basis-Dateiarten  einstellen.   'ArtID'  muß dabei einer der drei unten
+    aufgelisteten  Kennungen  sein und 'Kommando' ist ein CLI Kommando, daß
+    ein  %f  enthalten  muß,  an  der Stelle an der der Dateiname eingefügt
+    werden  soll.   (  Der Dateiname ist schon in Anführungszeichen gesetzt
+    also geben Sie nicht nochmal welche an! )
+
+    ASCII        ASCII Standard Text Datei
+    DEFAULT      Datei die von keinem CUSTOMTYPE erkannt wurde
+    BINARY       Ein Binär-Datei die überhaupt nicht erkannt wurde
+
+ @{u}ARGUMENTE@{uu}
+
+    "ArtID"      Dateiarten Kennung.
+    "Kommando"   CLI Kommando das ausgeführt werden soll
+
+    Man kann bei Kommando diese '%' und '&' Parameter angeben:
+
+    %a           ARexx Portname
+    %f           Quell Dateiname mit Pfad in Anführungszeichen
+    %F           Quell Dateiname mit Pfad ohne Anführungszeichen
+    %n           Nur der Dateiname in Anführungszeichen
+    %N           Nur der Dateiname ohne Anführungszeichen
+    %p           Quell-Verzeichnis in Anführungszeichen
+    %P           Quell-Verzeichnis ohne Anführungszeichen
+    %t           Ziel-Verzeichnis in Anführungszeichen
+    %T           Ziel-Verzeichnis ohne Anführungszeichen
+    %s           Quell-Gerät in Anführungszeichen
+    %S           Quell-Gerät ohne Anführungszeichen
+    %d           Ziel-Gerät in Anführungszeichen
+    %D           Ziel-Gerät ohne Anführungszeichen
+    %r           Für jede Datei eine Zeichenkette vom Benutzer erfragen
+    %R           Nur einmal eine Zeichenkette vom Benutzer erfragen
+
+    &b           Returncodes werden ignoriert
+    &c           Macht das Quell-Verzeichnis zum aktuellen Verzeichnis
+    &C           Macht das Ziel-Verzeichnis zum aktuellen Verzeichnis
+    &d           Einträge werden nicht deselektiert.
+    &r           Das Quell-Verzeichnis wird neu eingelesen
+    &R           Das Ziel-Verzeichnis wird neu eingelesen
+    &w           Das Ausgabefenster muß manuell geschlossen werden
+
+    %%           Für das Prozent-Zeichen
+    &&           Für das Und-Zeichen
+
+ @{u}DEFAULT@{uu}
+
+    "MultiView >NIL: %f" für alle Dateiarten.
+
+ @{u}BEISPIEL@{uu}
+
+    FILETYPE BINARY "FileX >NIL: %f"
+
+@endnode
+
+@node customtype "Custom Filetype Configuration"
+@prev filetype
+@next archive
+
+ @{b}@{u}CUSTOMTYPE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    CUSTOMTYPE "Pattern" "Hex" "Desc" "Command"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Mit  diesem Schlüsselwort  können Sie die Kommandos einstellen, die für
+    eine  bestimmte  Dateiart  ausgeführt  werden sollen.  Seit der Version
+    1.00  von RO ist es möglich eigene Dateiarten hinzuzufügen.  Sollte die
+    Erkennung   fehlschlagen,   so  wird  zuerst  das  @{" DEFAULT " link filetype}  Kommando
+    ausgeführt,  und  wenn  auch dieses Kommando fehlschlägt wird die Datei
+    mit dem @{" BINARY " link filetype}  Kommando angezeigt. XPK & PP gepackte Dateien werden
+    zuvor  noch automatisch entpackt.  'Kommando' ist ein CLI Kommando, daß
+    ein  %f  enthalten  muß,  an  der Stelle an der der Dateiname eingefügt
+    werden  soll.   (  Der Dateiname ist schon in Anführungszeichen gesetzt
+    also  geben  Sie nicht nochmal welche an!  ) 'Pattern' ist ein normales
+    AmigaDOS  Dateimuster  das  benutzt  wird  um  eine Datei zu  erkennen.
+    'Hex'  ist  eine  Zeichenkette,  die  auch  zur  Erkennung der Dateiart
+    benutzt  wird.   Sie  können  hier  eine normale Zeichenkette aus ASCII
+    Zeichen   angeben  wie  "??-lh?-"  oder  einen  echten  Hex-String  wie
+    "$????2D6C68??2D".   Wenn also das erste Zeichen ein '$' ist werden die
+    nachfolgenden  Zeichen  als Hex-Code betrachtet, was besonders dann von
+    Nutzen ist wenn eine Datei anhand von  Nicht-druckbaren Zeichen erkannt
+    werden  soll.   Wie  Sie  sicher  schon  erraten  haben  wird  '?'  als
+    Joker-Zeichen  verwendet,  aber nicht vergessen bei einem Hex-Code '??'
+    anzugeben sonst klappt das nicht.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Pattern"    AmigaDOS Dateimuster zur Erkennung
+    "Hex"        Hex Zeichenkette zur Erkennung
+    "Desc"       Zeichenkette, die die Dateiart beschreibt
+    "Command"    CLI Kommando daß ausgeführt werden soll
+
+    Man kann bei Kommando diese '%' und '&' Parameter angeben:
+
+    %a           ARexx Portname
+    %f           Quell Dateiname mit Pfad in Anführungszeichen
+    %F           Quell Dateiname mit Pfad ohne Anführungszeichen
+    %n           Nur der Dateiname in Anführungszeichen
+    %N           Nur der Dateiname ohne Anführungszeichen
+    %p           Quell-Verzeichnis in Anführungszeichen
+    %P           Quell-Verzeichnis ohne Anführungszeichen
+    %t           Ziel-Verzeichnis in Anführungszeichen
+    %T           Ziel-Verzeichnis ohne Anführungszeichen
+    %s           Quell-Gerät in Anführungszeichen
+    %S           Quell-Gerät ohne Anführungszeichen
+    %d           Ziel-Gerät in Anführungszeichen
+    %D           Ziel-Gerät ohne Anführungszeichen
+    %r           Für jede Datei eine Zeichenkette vom Benutzer erfragen
+    %R           Nur einmal eine Zeichenkette vom Benutzer erfragen
+
+    &b           Returncodes werden ignoriert
+    &c           Macht das Quell-Verzeichnis zum aktuellen Verzeichnis
+    &C           Macht das Ziel-Verzeichnis zum aktuellen Verzeichnis
+    &d           Einträge werden nicht deselektiert.
+    &r           Das Quell-Verzeichnis wird neu eingelesen
+    &R           Das Ziel-Verzeichnis wird neu eingelesen
+    &w           Das Ausgabefenster muß manuell geschlossen werden
+
+    %%           Für das Prozent-Zeichen
+    &&           Für das Und-Zeichen
+
+ @{u}DEFAULT@{uu}
+
+    CUSTOMTYPE "#?" "FORM????8SVX" "Iff 8SVX File"     "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "FORM????ANIM" "Iff ANIM File"     "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "FORM????ILBM" "Iff ILBM File"     "MultiView >NIL: %f"
+
+    CUSTOMTYPE "#?" "GIF8?a"       "GIF Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "DMS!"         "DMS Archive"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "??????JFIF"   "JPeg Picture"      "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$0A050108"    "PCX Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$424D"        "BMP Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$59A66A95"    "SunRaster Picture" "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$000002"      "Tga Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$00000A"      "Targa Picture"     "MultiView >NIL: %f"
+
+    CUSTOMTYPE "#?" "II*?"         "Intel Tiff"        "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "MM?*"         "Motorola Tiff"     "MultiView >NIL: %f"
+
+    CUSTOMTYPE "#?.dvi"   ""       "DVI File"          "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.info"  ""       "Icon"              "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.mpg"   ""       "MPeg Movie"        "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.fli"   ""       "FLI Anim"          "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.guide" ""       "AmigaGuide File"   "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.html"  ""       "HTML File"         "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.ps"    ""       "PostScript File"   "MultiView >NIL: %f"
+
+ @{u}BEISPIEL@{uu}
+
+    CUSTOMTYPE "#?" "@database" "AmigaGuide File" "MultiView >NIL: %f"
+
+@endnode
+
+@node archive "Archive Configuration"
+@prev customtype
+@next variable
+
+ @{b}@{u}ARCHIVETYPE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    ARCHIVETYPE "Pattern" "Hex" "Desc" "ListArc" "UnArc"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Mit  diesem Schlüsselwort  können Sie die Kommandos einstellen, die für
+    eine  bestimmte  Archivart  ausgeführt werden sollen.  Es gibt für jede
+    Archivart  zwei Kommandos, eins für das Listen des Archivs und eins zum
+    Auspacken.   'Pattern'  ist  ein  normales  AmigaDOS  Dateimuster,  daß
+    benutzt  wird  um eine Datei zu erkennen.  'Hex' ist eine Zeichenkette,
+    die auch zur Erkennung der Dateiart benutzt wird.  Sie können hier eine
+    normale Zeichenkette aus ASCII Zeichen angeben wie "??-lh?-" oder einen
+    echten  Hex-String  wie "$????2D6C68??2D".  Wenn also das erste Zeichen
+    ein  '$'  ist werden die nachfolgenden Zeichen als Hex-Code betrachtet,
+    was   besonders  dann  von  Nutzen  ist   wenn  eine  Datei  anhand von
+    Nicht-druckbaren  Zeichen  erkannt  werden  soll.  Wie Sie sicher schon
+    erraten   haben  wird  '?'  als  Joker-Zeichen  verwendet,  aber  nicht
+    vergessen  bei  einem  Hex-Code  '??' anzugeben sonst klappt das nicht.
+    'ListArc'  und  'UnArc'  sollten ein '%f' enthalten für den Dateinamen.
+    Seit  der  Version 1.00 von RO wird das hinzufügen von Dateien zu einem
+    Archiv  über  einen  normalen  Kommandoknopf  gehandhabt z.B.  mit "LhA
+    >NIL: -x -r a %R %n &c" als Kommando.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Pattern"    AmigaDOS Dateimuster zur Erkennung
+    "Hex"        Hex Zeichenkette zur Erkennung
+    "Desc"       Zeichenkette, die die Dateiart beschreibt
+    "ListArc"    Kommando zum listen von Archiven
+    "UnArc"      Kommando zum entpacken von Archiven
+
+    Man kann bei ListArc & UnArc diese '%' und '&' Parameter angeben:
+
+    %a           ARexx Portname
+    %f           Quell Dateiname mit Pfad in Anführungszeichen
+    %F           Quell Dateiname mit Pfad ohne Anführungszeichen
+    %n           Nur der Dateiname in Anführungszeichen
+    %N           Nur der Dateiname ohne Anführungszeichen
+    %p           Quell-Verzeichnis in Anführungszeichen
+    %P           Quell-Verzeichnis ohne Anführungszeichen
+    %t           Ziel-Verzeichnis in Anführungszeichen
+    %T           Ziel-Verzeichnis ohne Anführungszeichen
+    %s           Quell-Gerät in Anführungszeichen
+    %S           Quell-Gerät ohne Anführungszeichen
+    %d           Ziel-Gerät in Anführungszeichen
+    %D           Ziel-Gerät ohne Anführungszeichen
+    %r           Für jede Datei eine Zeichenkette vom Benutzer erfragen
+    %R           Nur einmal eine Zeichenkette vom Benutzer erfragen
+
+    &b           Returncodes werden ignoriert
+    &c           Macht das Quell-Verzeichnis zum aktuellen Verzeichnis
+    &C           Macht das Ziel-Verzeichnis zum aktuellen Verzeichnis
+    &d           Einträge werden nicht deselektiert.
+    &r           Das Quell-Verzeichnis wird neu eingelesen
+    &R           Das Ziel-Verzeichnis wird neu eingelesen
+    &w           Das Ausgabefenster muß manuell geschlossen werden
+
+    %%           Für das Prozent-Zeichen
+    &&           Für das Und-Zeichen
+
+ @{u}DEFAULT@{uu}
+
+    ARCHIVETYPE "#?.lha" "" "LHA/LZH Archive" "LhA v %f" "LhA x %f &C &R"
+    ARCHIVETYPE "#?.lzx" "" "LZX Archive"     "LzX v %f" "LzX x %f &C &R"
+    ARCHIVETYPE "#?.arc" "" "ARC Archive"     "Arc v %f" "Arc x %f &C &R"
+    ARCHIVETYPE "#?.arj" "" "ARJ Archive"     "Arj v %f" "Arj x %f &C &R"
+    ARCHIVETYPE "#?.zip" "" "ZIP Archive"     "Zip v %f" "Zip x %f &C &R"
+    ARCHIVETYPE "#?.zoo" "" "ZOO Archive"     "Zoo v %f" "Zoo x %f &C &R"
+
+ @{u}BEISPIEL@{uu}
+
+    ARCHIVETYPE "#?" "$4C5A5800" "LZX Archive" "LzX v %f" "LzX x %f &C &R"
+
+@endnode
+
+@node variable "Allgemeine Konfiguration"
+@prev archive
+@next menu
+
+ @{b}@{u}VARIABLE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    VARIABLE "VarID" "Wert"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Mit   diesem   Schlüsselwort   kann  man  ein  paar  wichtige  Optionen
+    einstellen.  'VarID'  ist einer der Variablennamen die unten aufgelistet
+    sind  und  'Wert'  ist der Parameter String für die Variable.  Es werden
+    die folgenden 'VerID's unterstützt:
+
+
+    Global:
+
+    - APPWINDOW
+      Hiermit   kann  man  einstellen  was  passieren  soll  wenn  man  ein
+      Piktogramm  auf  ein Listview fallen läßt.  Wenn man die Variable auf
+      'LOAD'  setzt  wird  das  zu  dem  Piktogramm  gehörende  Verzeichnis
+      eingelesen.   Wenn  man  Sie  auf  'COPY'  stellt  wird  das  zu  dem
+      Piktogramm  gehörende  Verzeichnis  oder  Datei  in  das  im Listview
+      angezeigte Verzeichnis kopiert.
+
+      Beispiel: VARIABLE APPWINDOW "LOAD"
+
+
+    - COMPLETED
+      Hier  kann  man  angeben  was  passieren  soll wenn RO eine Operation
+      beendet während es Iconifiziert ist.  Man kann hier zwischen 'QUIET',
+      'FLASH'    oder    'POPUP'   wählen   was  'nichts', 'blitzen'   oder
+      'deiconifizieren' entspricht.
+
+      Beispiel: VARIABLE COMPLETED "QUIET"
+
+
+    - CHECKFIT
+      Hiermir  kann  man,  durch angeben von ON oder OFF, einstellen ob man
+      möchte, daß vor dem Kopieren der angewählten Einträge überprüft wird,
+      ob  diese auf das Zielgerät passen.  RO zählt die Bytes und überprüft
+      wieviele  Blöcke  für  die  Organisation auf dem Datenträger benötigt
+      werden.
+
+      Beispiel: VARIABLE CHECKFIT "ON"
+
+
+    - CREATEICONS
+      Wenn Sie möchten, daß RO ein Verzeichnis-Piktogramm erstellt wenn ein
+      Verzeichnis  erstellt  wird  oder  ein Datei-Piktogramm erstellt wenn
+      eine  Datei  erstellt  wird,  dann  schalten Sie diese Option auf ON.
+      Wenn nicht dann setzen Sie sie auf OFF.
+
+      Beispiel: VARIABLE CREATEICONS "OFF"
+
+
+    - DRIVEBUTTONS
+      Es  gibt  zwei Arten der Laufwerksknopfbehandlung.  Zum einen gibt es
+      einen  sogennanten  'Normal'  Modus, zum anderen gibt es den 'Active'
+      Modus.   Im  'Normal'  Modus  hat  man  acht Laufwerksknöpfe für jede
+      Seite,  wenn man also auf einen Knopf unter der linken Seite 'klickt'
+      wird  das  Verzeichnis  ins  linke  Verzeichnis geladen.  Im 'Active'
+      Modus  kann  man  16  Laufwerksknöpfe  benutzen, wobei  diese auf die
+      jeweils aktive Seite angewandt werden.
+
+      Beispiel: VARIABLE DRIVEBUTTONS "Active"
+
+
+    - FLUSHMEMORY
+      Wenn Sie möchten daß RO den Speicher beim Verlassen aufräumt schalten
+      Sie  diese  Option  mit  'ON' ein.  Es wird dann versucht MUI aus dem
+      Speicher  zu  entfernen,  was aber nur funktioniert wenn kein anderes
+      Programm MUI verwendet.
+
+      Beispiel: VARIABLE FLUSHMEMORY "ON"
+
+
+    - FOLLOWSCROLL
+      Mit  diesem  Schlüsselwort kann man einstellen ob bei jeder Operation
+      mitgescrollt  werden  soll  um  immer den Eintrag zu sehen der gerade
+      bearbeitet wird.
+
+      Beispiel: VARIABLE FOLLOWSCROLL "OFF"
+
+
+    - HISTORY
+      Hier kann man die Anzahl der Puffer einstellen die behalten werden.
+
+      Beispiel: VARIABLE HISTORY "42"
+
+
+    - HOTDIRS
+      Diese Option funktioniert genau so wie DRIVEBUTTONS aber entsprechend
+      fuer  die  HotDirs.  Die  Funktionstasten 1 bis 5 werden dann auf das
+      linke  Listview  angewandt, die Tasten 6 - 10 auf das rechte, oder es
+      werden alle auf das gerade aktive Listview angewendet.
+
+      Beispiel: VARIABLE HOTDIRS "Active"
+
+
+    - MIDDLEMOUSE
+      Hiermit können Sie einstellen in welcher Weise der mittlere Mausknopf
+      Ihrer   3-Tasten-Maus   benutzt  werden  soll.   Es  gibt  hier  vier
+      Einstellmöglichkeiten:   'LIST',  'BANK', 'BOTH' und 'NONE'.  Bei der
+      Verwendung  von LIST wird bei einem Klick auf den mittleren Knopf die
+      Listviewseite  gewechselt,  wenn sich die Maus darüber befindet.  Bei
+      BANK  reagiert  die  Kommandoknopfbank mit dem Wechseln der Bank wenn
+      die   mittlere   Taste   betätigt  wird.   Wenn  sie  BOTH  verwenden
+      funktioniert der Mechanismus für Beides.  NONE schaltet die Benutzung
+      der mittleren Maustaste aus.
+
+      Beispiel: VARIABLE MIDDLEMOUSE "NONE"
+
+
+    - OUTPUT
+      Gibt  an welches Gerät oder welche Datei benutzt wird um die Ausgaben
+      der einzelnen Kommandos auszugeben.
+
+      Beispiel: VARIABLE OUTPUT "CON:0/0/640/400/Output/CLOSE/AUTO"
+
+
+    - OVERWRITE
+      Sie  können  hier  angeben  was  passieren  soll  wenn auf eine Datei
+      geschrieben  wird  die  schon  existiert,  wenn man zum Beispiel eine
+      Datei  über  eine  andere  kopiert.  Man kann hier zwischen 'ALWAYS',
+      'NEVER',  'OLDER' und 'VERIFY' wählen.  ALWAYS wird bewirken, daß die
+      Datei ohne eine Warnung überschrieben wird, NEVER wird die  Operation
+      abbrechen,  OLDER wird nur  ältere Dateien  überschreiben  und VERIFY
+      wird eine 'Wollen Sie wirklich...?' Meldung ausgeben.
+
+      Beispiel: VARIABLE OVERWRITE "ALWAYS"
+
+
+    - PATHEXPAND
+      Dieser  Schalter kontrolliert die Pfad-Erweiterung.  Wenn man ihn auf
+      'ON' setzt werden alle Pfade die man anwählt erweitert.  Zum Beispiel
+      wird   er  bei  Eingabe  von  LIBS:   auf  etwas  wie  "System:Libs/"
+      erweitert.   Ein  paar  ältere  FileSysteme  wie  ParNet, SerNet oder
+      MessyDOS können hier zu Schwierigkeiten führen.  Wenn Sie eines davon
+      benutzen dann sollten Sie den Schalter auf OFF setzen.
+
+      Beispiel: VARIABLE PATHEXPAND "OFF"
+
+
+    - QUITVERIFY
+      Schaltet die 'Wollen Sie RO wirklich verlassen?' Meldung an oder aus,
+      wenn  man  die Option auf ON oder OFF setzt.  In der Meldung kann man
+      zwischen 'Beenden', 'Verbergen' und 'Abbrechen' wählen wobei hier das
+      schließen der Abfrage dem 'Abbrechen' Button entspricht.
+
+      Beispiel: VARIABLE QUITVERIFY "ON"
+
+
+    - TEMPDIR
+      Hier  kann  man ein Temporäres Verzeichnis angeben welches für einige
+      spezielle  Aktionen,  wie zum Beispiel das Entpacken von Dateien oder
+      das Anzeigen von Archiven, benötigt wird.
+
+      Beispiel: VARIABLE TEMPDIR "TEMP:"
+
+
+    Kopieren:
+
+    - COPYBUF
+      Hiermit   wird   bestimmt   wieviel  Speicher  (in  Byte)  bei  einer
+      Kopieraktion maximal angefordert wird.
+
+      Beispiel: VARIABLE COPYBUF "50000"
+
+
+    - COPYDATE
+      Hier  kann  man  einstellen  ob man beim Kopieren das Datum der Datei
+      beibehalten  möchte  (ON)  oder  ob es auf das aktuelle Datum gesetzt
+      werden soll.
+
+      Beispiel: VARIABLE COPYDATE "OFF"
+
+
+    - COPYFLAGS
+      Wenn  man diesen Parameter auf ON setzt werden bei einer Kopieraktion
+      die  Schutzbits  der  Datei  übernommen, falls man ihn jedoch auf OFF
+      setzt  bewirkt  das,  daß die Schutzbits auf die Standard Einstellung
+      (RWED) gesetzt werden.
+
+      Beispiel: VARIABLE COPYFLAGS "OFF"
+
+
+    - COPYNOTE
+      Mit  diesem  Schlüsselwort  kann man durch ON den Dateikommentar beim
+      Kopieren   übernehmen   oder   durch  OFF  den  Dateikommentar  nicht
+      übernehmen bzw.  löschen.
+
+      Beispiel: VARIABLE COPYNOTE "OFF"
+
+
+    - COPYSTAT
+      Hier  kann  man  mit  ON  und  OFF  einstellen ob bei jeder Datei die
+      kopiert wird eine entsprechende Meldung in der Statuszeile ausgegeben
+      werden  soll.   Wenn  man  viele  kleine Dateien kopiert ist es evtl.
+      nützlich  wenn  man  hier OFF benutzt um eine starke CPU-Belastung zu
+      vermeiden.
+
+      Beispiel: VARIABLE COPYSTAT "OFF"
+
+
+    - COPYVERIFY
+      Hier  können  Sie  einstellen  ob  RO  überprüfen soll ob die Dateien
+      einwandfrei  kopiert  wurden.   Der  Kopiervorgang  dauert dann etwas
+      länger,  aber man ist sich dafür sicher, daß die Dateien keine Fehler
+      haben.
+
+      Beispiel: VARIABLE COPYVERIFY "OFF"
+
+
+    Löschen:
+
+    - DELDELAY
+      Hiermit  kann  man eine Verzögerung einstellen die RO wartet bevor es
+      eine  temporäre  Datei  löscht  (z.B.  beim Listen eines Archivs oder
+      beim  Entpacken  einer  XPK Datei).  Dies kann nützlich sein wenn man
+      einen  Textanzeiger hat, der sich vom CLI abkoppelt und nicht schnell
+      genug  ist  die  temporäre  Datei  zu laden bevor sie wieder gelöscht
+      wird.    Achtung:    Es  kann  hier  zu  Problemen  kommen  wenn  Ihr
+      Textanzeiger  die  Datei  lockt.   Es  ist also auf jeden Fall besser
+      einen Textanzeiger zu benutzen der sich nicht abkoppelt.
+
+      Beispiel: VARIABLE DELDELAY "50" 
+
+
+    - DELFORCE
+      Mit  dieser  Option  stellt man  ein was mit gegen Löschen geschützen
+      Dateien  passieren  soll.   Bei  ON wird ein vorhandener Schutz gegen
+      Löschen   zuvor   entfernt,  bei  OFF  hingegen  nicht.   Von  dieser
+      Einstellung  wird  auch  das  Überschreiben  von  geschützten Dateien
+      beeinflußt,  wenn  man  ON benutzt werden die Dateien stillschweigend
+      überschrieben.
+
+      Beispiel: VARIABLE DELFORCE "ON"
+
+
+    - DELSTAT
+      Hier  kann  man  mit  ON  und  OFF  einstellen ob bei jeder Datei die
+      gelöscht   wird   eine   entsprechende  Meldung  in  der  Statuszeile
+      ausgegeben  werden  soll.   Dies  ist  aus den selben Gründen wie bei
+      CopyStat nicht unbedingt nützlich.
+
+      Beispiel: VARIABLE DELSTAT "OFF"
+
+
+    - DELVERIFY
+      Schaltet  die  'Sind  Sie  sicher,  daß  Sie die angewählten Einträge
+      löschen möchten?' Meldung an (ON) oder aus (OFF).
+
+      Beispiel: VARIABLE DELVERIFY "OFF"
+
+
+
+    Listview:
+
+    - FORMATLEFT/FORMATRIGHT
+      Hier  kann  man  einstellen welche Information die einzelnen Einträge
+      des  Listviews  darstellen  sollen.   Man  kann  hier  ein  Folge der
+      Buchstaben  N  (Name),  S  (Dateigröße), F (Schutzbits), D (Datum), T
+      (Zeit) und C (Kommentar) angeben.
+
+      Beispiel: VARIABLE FORMATLEFT "NTSC"
+
+
+    - LOADLEFT/LOADRIGHT
+      Hier  kann  man  einen  Pfad  angeben  der automatisch ins linke oder
+      rechte Listview geladen werden soll.
+
+      Beispiel: VARIABLE LOADRIGHT "RAM:"
+
+
+    - PAGELEFT/PAGERIGHT
+      Diese  Variable setzt die Seite die sich im Vordergrund befinden soll
+      wenn  RO  gestartet  wird.   Es gibt drei Seiten die man hier angeben
+      kann:  'Directory', 'Buffers' und 'Volumes'.
+
+      Beispiel: VARIABLE PAGERIGHT "Volumes"
+
+
+    - FIRSTLEFT/FIRSTRIGHT
+      Gibt  die  Sortierung an in dem die verschiedenen Verzeichniseinträge
+      dargestellt  werden  sollen.   Mögliche  Einstellungen sind:  "Dirs",
+      "Files" und "Mixed".
+
+      Beispiel: VARIABLE FIRSTLEFT  "Mixed"
+
+
+    - SORTLEFT/SORTRIGHT
+      Gibt  an welches  Feld als Sortierkriterium benutzt werden soll.  Man
+      kann hier zwischen "Name", "Date" und "Size" wählen.
+
+      Beispiel: VARIABLE SORTRIGHT "Size"
+
+
+    - ORDERLEFT/ORDERRIGHT
+      Hier  kann  man  angeben,  ob  die  Einträge  aufsteigend (High) oder
+      absteigend  (Low)  sortiert  werden  sollen.   Mögliche Einstellungen
+      sind:  "High" und "Low".
+
+      Beispiel: VARIABLE ORDERRIGHT "High"
+
+
+
+    - CHECKDUPES
+      Hiermit  kann  man  einstellen  ob  auf  der  "Puffer" Seite doppelte
+      Einträge vorkommen dürfen oder nicht.
+
+      Beispiel: VARIABLE CHECKDUPES "OFF"
+
+
+    - PAGES
+      Hier kann man mit  ON und OFF einstellen ob die Listviews in Register
+      Gruppen  dargestellt  werden sollen, oder nicht. Man  kann  dann  nur
+      noch mit der  mittleren Maustaste  oder über die  internen Funktionen
+      @{" Buffers " link Buffers}, @{" Directory " link Directory} und @{" Volumes " link Volumes} zwischen  den einzelnen Seiten
+      wechseln.  Der Vorteil  der  Verwendung von  OFF zu  verwenden  liegt
+      darin, daß RO eine 'Style Guide' konformere Oberfläche bekommt.
+
+      Example: VARIABLE PAGES "OFF"
+
+
+
+    Uhr:
+
+    - CLOCKPRI
+      Sie  können  die  Priorität  des  'RO Clock' Tasks hier angeben.  Ich
+      empfehle  den  Standardwert  zu benutzen.  Der Wert muß zwischen -128
+      und 127 liegen.
+
+      Beispiel: VARIABLE CLOCKPRI "0"
+
+
+    - CLOCKREFRESH
+      Hier  kann man angeben wieviele Ticks (50 Ticks = 1 Sekunde) zwischen
+      zwei Uhrerneuerungen liegen.  Dieser Wert sollte gut überlegt gewählt
+      werden, falls man nämlich einen zu kleinen Wert nimmt beginnt die Uhr
+      auf langsamen Rechnern zu blitzen beginnt.
+
+      Beispiel: VARIABLE CLOCKREFRESH "50"
+
+
+    - SHOWDATE
+      Hiermit  kann  man  einstellen ob man ein Datum in der Uhr sehen will
+      oder nicht.
+
+      Beispiel: VARIABLE SHOWDATE "OFF"
+
+
+    - SHOWDAY
+      Hiermit  kann  man  einstellen ob man einen Tag in der Uhr sehen will
+      oder nicht.
+
+      Beispiel: VARIABLE SHOWDAY "ON"
+
+
+    - SHOWTIME
+      Schalten Sie diese Option auf 'ON' wenn Sie möchten, daß RO's Uhr die
+      Zeit anzeigen soll, sonst OFF.
+
+      Beispiel: VARIABLE SHOWTIME "OFF"
+
+
+    - SHOWSECONDS
+      Legt  fest  ob  RO's  Uhr die Sekunden anzeigen soll.  Diese Variable
+      tritt natürlich nur in Kraft, wenn man SHOWTIME auf 'ON' gesetzt hat.
+      Ich  empfehle  aber  sie  auf  'OFF' zu lassen weil es sonst zu einer
+      starken CPU-Belastung kommen kann.
+
+      Beispiel: VARIABLE SHOWSECONDS "ON"
+
+
+    - SHOWMEMORY
+      Hiermit kann man die Speicheranzeige in Workbench-Manier an oder aus-
+      schalten indem man die Option auf 'ON' oder 'OFF' setzt.
+
+      Beispiel: VARIABLE SHOWMEMORY "ON"
+
+
+ @{u}DEFAULT@{uu}
+
+    VARIABLE  APPWINDOW     "Load"
+    VARIABLE  FLUSHMEMORY   "OFF"
+    VARIABLE  CREATEICONS   "ON"
+    VARIABLE  FOLLOWSCROLL  "ON"
+    VARIABLE  PATHEXPAND    "ON"
+    VARIABLE  QUITVERIFY    "ON"
+
+    VARIABLE  COMPLETED     "Flash"
+    VARIABLE  DRIVEBUTTONS  "Normal"
+    VARIABLE  HOTDIRS       "Normal"
+    VARIABLE  MIDDLEMOUSE   "Both"
+
+    VARIABLE  TEMPDIR       "T:"
+    VARIABLE  HISTORY       "50"
+    VARIABLE  OUTPUT        "CON:0/0/640/200/Output/CLOSE/AUTO"
+
+    VARIABLE  COPYBUF       "524288"
+    VARIABLE  COPYDATE      "ON"
+    VARIABLE  COPYFLAGS     "ON"
+    VARIABLE  COPYNOTE      "ON"
+    VARIABLE  COPYSTAT      "ON"
+    VARIABLE  COPYVERIFY    "OFF"
+
+    VARIABLE  CHECKFIT      "ON"
+    VARIABLE  OVERWRITE     "VERIFY"
+
+    VARIABLE  DELDELAY      "0"
+    VARIABLE  DELFORCE      "OFF"
+    VARIABLE  DELVERIFY     "ON"
+    VARIABLE  DELSTAT       "ON"
+
+    VARIABLE  FORMATLEFT    "NSFDTC"
+    VARIABLE  FORMATRIGHT   "NSFDTC"
+    VARIABLE  LOADLEFT      ""
+    VARIABLE  LOADRIGHT     ""
+    VARIABLE  PAGELEFT      "Directory"
+    VARIABLE  PAGERIGHT     "Directory"
+    VARIABLE  FIRSTLEFT     "Dirs"
+    VARIABLE  FIRSTRIGHT    "Dirs"
+    VARIABLE  SORTLEFT      "Name"
+    VARIABLE  SORTRIGHT     "Name"
+    VARIABLE  CHECKDUPES    "ON"
+    VARIABLE  PAGES         "ON"
+
+    VARIABLE  CLOCKREFRESH  "500"
+    VARIABLE  CLOCKPRI      "-10"
+    VARIABLE  SHOWDAY       "ON"
+    VARIABLE  SHOWDATE      "ON"
+    VARIABLE  SHOWTIME      "ON"
+    VARIABLE  SHOWSECONDS   "OFF"
+    VARIABLE  SHOWMEMORY    "ON"
+
+@endnode
+
+@node menu "Menü Konfiguration"
+@prev variable
+@next buffer
+
+ @{b}@{u}MENU@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    MENU "Menutext" "Kommando"
+
+ @{u}BESCHREIBUNG@{uu}
+
+     Mit  diesem  Schlüsselwort können Sie sich ein Benutzermenü mit bis zu
+     20   Einträgen   erstellen.   Kommando  sollte  wie  gehabt  ein  '%f'
+     enthalten,  aber  nur wenn Sie möchten, daß ein Kommando nur gestartet
+     wird  wenn  Einträge  angewählt  sind.   Wenn  Sie  nur  ein  Standard
+     Hilfsprogramm    wie   ein   Disketten   Kopierprogramm   oder   einen
+     Taschenrechner  starten  wollen  geben Sie am besten kein '%f' an dann
+     wird kein angewählter Eintrag benötigt.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Menutext"   40 Zeichen als Menütext
+    "Kommando"   CLI Kommando das ausgeführt werden soll
+
+    Man kann bei Kommando diese '%' und '&' Parameter angeben:
+
+    %a           ARexx Portname
+    %f           Quell Dateiname mit Pfad in Anführungszeichen
+    %F           Quell Dateiname mit Pfad ohne Anführungszeichen
+    %n           Nur der Dateiname in Anführungszeichen
+    %N           Nur der Dateiname ohne Anführungszeichen
+    %p           Quell-Verzeichnis in Anführungszeichen
+    %P           Quell-Verzeichnis ohne Anführungszeichen
+    %t           Ziel-Verzeichnis in Anführungszeichen
+    %T           Ziel-Verzeichnis ohne Anführungszeichen
+    %s           Quell-Gerät in Anführungszeichen
+    %S           Quell-Gerät ohne Anführungszeichen
+    %d           Ziel-Gerät in Anführungszeichen
+    %D           Ziel-Gerät ohne Anführungszeichen
+    %r           Für jede Datei eine Zeichenkette vom Benutzer erfragen
+    %R           Nur einmal eine Zeichenkette vom Benutzer erfragen
+
+    &b           Returncodes werden ignoriert
+    &c           Macht das Quell-Verzeichnis zum aktuellen Verzeichnis
+    &C           Macht das Ziel-Verzeichnis zum aktuellen Verzeichnis
+    &d           Einträge werden nicht deselektiert.
+    &r           Das Quell-Verzeichnis wird neu eingelesen
+    &R           Das Ziel-Verzeichnis wird neu eingelesen
+    &w           Das Ausgabefenster muß manuell geschlossen werden
+
+    %%           Für das Prozent-Zeichen
+    &&           Für das Und-Zeichen
+
+ @{u}DEFAULT@{uu}
+
+    MENU "" ""
+
+ @{u}BEISPIEL@{uu}
+
+    MENU "Calculator" "SYS:Tools/Calculator"
+
+@endnode
+
+@node buffer "Puffer Konfiguration"
+@prev menu
+@next hotkey
+
+ @{b}@{u}BUFFER@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    BUFFER "Pfadname"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Mit  diesem  Schlüsselwort  ist  es  möglich  die  'Puffer'  Seite  mit
+    Verzeichnissen  zu füllen die Sie oft benötigen.  Die Anzahl der Puffer
+    ist nur durch die Größe des freien Speicherplatzes begrenzt.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Pfadname"   Verzeichnis das eingefügt werden soll
+
+ @{u}DEFAULT@{uu}
+
+    BUFFER ""
+
+ @{u}BEISPIEL@{uu}
+
+    BUFFER "DH1:Comm/Term/Uploads"
+
+@endnode
+
+@node hotkey "HotKey Konfiguration"
+@prev buffer
+@next hotdir
+
+ @{b}@{u}HOTKEY@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    HOTKEY "Tastenkombination" "Kommandoart" "Kommando"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Hier  können  Sie bis zu 50 HotKeys angeben.  Diese HotKeys können jede
+    Art  von  Funktion  die  RO zur Verfügung stellt auslösen.  Sie sollten
+    darauf achten, daß Sie keine Tastenkombinationen benutzen die schon von
+    anderen  Commodities  in  Verwendung  sind.  Die Hotkeys lösen nur dann
+    eine  Funktion  aus  wenn  das Fenster von RO aktiv ist.  Die einzelnen
+    internen  Funktionen werden ausführlich bei der @{" BUTTON " link button}  Konfiguration
+    beschrieben.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Tastenkombination"  Eine Standard AmigaDOS Tastenkombination
+    "ButtonType"         COMMAND oder FUNCTION fuer ein CLI Kommando
+                         oder eine interne Funktion
+    "Kommando"           CLI Kommando das ausgeführt werden soll
+
+    Man kann bei Kommando diese '%' und '&' Parameter angeben:
+
+    %a           ARexx Portname
+    %f           Quell Dateiname mit Pfad in Anführungszeichen
+    %F           Quell Dateiname mit Pfad ohne Anführungszeichen
+    %n           Nur der Dateiname in Anführungszeichen
+    %N           Nur der Dateiname ohne Anführungszeichen
+    %p           Quell-Verzeichnis in Anführungszeichen
+    %P           Quell-Verzeichnis ohne Anführungszeichen
+    %t           Ziel-Verzeichnis in Anführungszeichen
+    %T           Ziel-Verzeichnis ohne Anführungszeichen
+    %s           Quell-Gerät in Anführungszeichen
+    %S           Quell-Gerät ohne Anführungszeichen
+    %d           Ziel-Gerät in Anführungszeichen
+    %D           Ziel-Gerät ohne Anführungszeichen
+    %r           Für jede Datei eine Zeichenkette vom Benutzer erfragen
+    %R           Nur einmal eine Zeichenkette vom Benutzer erfragen
+
+    &b           Returncodes werden ignoriert
+    &c           Macht das Quell-Verzeichnis zum aktuellen Verzeichnis
+    &C           Macht das Ziel-Verzeichnis zum aktuellen Verzeichnis
+    &d           Einträge werden nicht deselektiert.
+    &r           Das Quell-Verzeichnis wird neu eingelesen
+    &R           Das Ziel-Verzeichnis wird neu eingelesen
+    &w           Das Ausgabefenster muß manuell geschlossen werden
+
+    %%           Für das Prozent-Zeichen
+    &&           Für das Und-Zeichen
+
+ @{u}DEFAULT@{uu}
+
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+
+ @{u}BEISPIEL@{uu}
+
+    HOTKEY "ctrl alt del" FUNCTION "REBOOT"
+    HOTKEY "shift c"      FUNCTION "COPYAS"
+    HOTKEY "left"         FUNCTION "PARENT"
+
+@endnode
+
+@node hotdir "HotDir Konfiguration"
+@prev hotkey
+@next drive
+
+ @{b}@{u}HOTDIR@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    HOTDIR "Nummer" "Pfadname"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Hier können Sie bis zu zehn HotDirs angeben.  Diese HotDirs können dann
+    über  die Funktionstasten F1-F10 erreicht werden.  Nummer muss zwischen
+    1 und 10 liegen.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Nummer"     Funktionstastennummer zwischen 1 und 10
+    "Pfadname"   Verzeichnis das geladen werden soll
+
+ @{u}DEFAULT@{uu}
+
+    HOTDIR  1 ""
+    HOTDIR  2 ""
+    HOTDIR  3 ""
+    HOTDIR  4 ""
+    HOTDIR  5 ""
+    HOTDIR  6 ""
+    HOTDIR  7 ""
+    HOTDIR  8 ""
+    HOTDIR  9 ""
+    HOTDIR 10 ""
+
+ @{u}BEISPIEL@{uu}
+
+    HOTDIR  5 "DH1:Comm/Term/Uploads"
+
+@endnode
+
+@node drive "Laufwerks Konfiguration"
+@prev hotdir
+@next button
+
+ @{b}@{u}DRIVE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    DRIVE "Nummer" "GadgetText" "Pfadname"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Hier  kann  man  bis  zu 32 Laufwerksknöpfe angeben, wenn man 16 angibt
+    bekommt   man  nur  eine  Reihe  Knöpfe,  wenn  man  mehr  angibt  wird
+    automatisch  eine zweite Reihe hinzugefügt.  Der Gadget Text ist auf 20
+    Zeichen begrenzt, was eigentlich genügen sollte sonst wird nämlich eine
+    wirklich  hohe  Bildschirmauflösung benötigt.   Es  kann auch passieren
+    das  RO schon bei fünf Zeichen nicht mehr auf den Bildschirm passt.  Es
+    ist  am  besten wenn man ein bisschen mit den Werten rumspielt aber ich
+    empfehle drei Zeichen zu benutzen.
+
+ @{u}ARGUMENTE@{uu}
+
+    "Nummer"     Nummer des Laufwerkknopfes zwischen 1 und 32
+    "GadgetText" 20 Zeichen als Gadget Text
+    "Pfadname"   Verzeichnis das geladen werden soll
+
+ @{u}DEFAULT@{uu}
+
+    DRIVE  1 "DF0" "DF0:"
+    DRIVE  2 "DF1" "DF1:"
+    DRIVE  3 "DH0" "DH0:"
+    DRIVE  4 "DH1" "DH1:"
+    DRIVE  5 "DH2" "DH2:"
+    DRIVE  6 "DH3" "DH3:"
+    DRIVE  7 "CD0" "CD0:"
+    DRIVE  8 "RAM" "RAM:"
+    DRIVE  9 "DF0" "DF0:"
+    DRIVE 10 "DF1" "DF1:"
+    DRIVE 11 "DH0" "DH0:"
+    DRIVE 12 "DH1" "DH1:"
+    DRIVE 13 "DH2" "DH2:"
+    DRIVE 14 "DH3" "DH3:"
+    DRIVE 15 "CD0" "CD0:"
+    DRIVE 16 "RAM" "RAM:"
+
+ @{u}BEISPIEL@{uu}
+
+    DRIVE 2 "INBOUND" "Work:News/Inbound/"
+
+@endnode
+
+@node button "Knopf Konfiguration"
+@prev drive
+@next arexxinterface
+
+ @{b}@{u}BUTTON@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    BUTTON "Nummer" "ButtonTyp" "GadgetText" "Kommando"
+
+ @{u}BESCHREIBUNG@{uu}
+
+    Dies ist das wichtigste Schlüsselwort in der ganzen Konfiguration, hier
+    kann  man  angeben  welcher  Text auf welchem Knopf erscheinen soll und
+    welches  Kommando ausgeführt werden soll wenn man einen Knopf betätigt.
+    Nach  dem  Schlüsselwort  muss  man  eine  Nummer  angeben um den Knopf
+    festzulegen.  Die Nummer muß zwischen 1 und 120 liegen.  RO unterstützt
+    zwei Arten von Knöpfen:  Einen Kommando Knopf und einen Funktionsknopf.
+    Ein  Kommandoknopf  ist ein Knopf mit dem man ein Normales CLI Kommando
+    ansprechen  kann.   Alles  was  man  tun  muß ist einen Kommando String
+    angeben  mit  einem  '%f' an der Stelle, an der der Dateiname eingefügt
+    werden  soll.   RO  unterstützt  noch  einige  andere % Anweisungen die
+    weiter unten beschrieben sind.  Natürlich beachtet RO auch den Standard
+    Pfad,  man  muß  also bei einem Kommando keinen kompletten Pfad angeben
+    wenn   es   sich   im   Standard   AmigaDOS   Suchpfad  befindet.   Der
+    Funktionsknopf  ist ein Knopf mit dem man interne Funktionen ansprechen
+    kann.   Mann muß natürlich auch noch einen String, der nicht länger als
+    10  Zeichen  sein darf, angeben der als Gadget Text verwendet wird.  Im
+    Moment werden die folgenden internen Funktionen unterstützt:
+
+    @{" About     " link About}        Zeigt die Programminformation.
+    @{" Action    " link Action}        Führt eine Dateiaktion aus.
+    @{" All       " link All}        Selektieren aller Einträge eines Listviews.
+    @{" Assign    " link Assign}        Erstellt einen 'assign' für Verzeichnis.
+    @{" Buffers   " link Buffers}        Die Buffers Seite in den Vordergrund schalten.
+    @{" ByName    " link ByName}        Selektiert Einträge über ihren Namen.
+    @{" Bytes     " link Bytes}        Zählt die Anzahl der selektierten Byte.
+    @{" Change    " link Change}        Ändert die Sortierung des aktiven Listviews.
+    @{" Copy      " link Copy}        Kopiert Dateien und Verzeichnisse.
+    @{" CopyAs    " link Copy}        Kopiert Dateien und Verzeichnisse und ändert Namen.
+    @{" CopyDev   " link CopyDev}        Kopiert Dateien auf ein Gerät.
+    @{" Current   " link Current}        Lädt das aktuelle Verzeichnis.
+    @{" Delete    " link Delete}        Löscht Dateien und Verzeichnisse.
+    @{" Directory " link Buffers}        Die Directory Seite in den Vordergrund schalten.
+    @{" Disk      " link Disk}        Zeigt Informationen über den aktiven Datenträger.
+    @{" Dup       " link Dup}        Verdoppelt Einträge.
+    @{" Expand    " link Expand}        Erweitert einen Pfad auf seinen ARCHandler Pfad.
+    @{" Fit       " link Fit}        Überprüft ob Einträge auf das Ziel passen.
+    @{" Help      " link Help}        Zeigt die Hilfe an.
+    @{" Icon      " link Icon}        Wählt die entsprechenden .info Dateien aus.
+    @{" Info      " link Info}        Zeigt Informationen für die angewählten Einträge.
+    @{" LActive   " link Active}        Aktiviert das linke Listview.
+    @{" LCopy     " link LCopy}        Kopiert das aktive Listview.
+    @{" LFold     " link LFold}        Versteckt das rechte Listview.
+    @{" LSwap     " link LSwap}        Vertauscht das aktive und inaktive Listview.
+    @{" ListArc   " link ListArc}        Zeigt den Inhalt eines Archivs an.
+    @{" LParent   " link Parent}        Lädt das übergeordnete Verzeichnis.
+    @{" LReload   " link Reload}        Erneuert das linke Verzeichnis.
+    @{" LRoot     " link Root}        Lädt das Wurzelverzeichnis der linken Seite.
+    @{" MakeDir   " link MakeDir}        Erstellt Verzeichnisse.
+    @{" MDLoad    " link MakeDir}        Erstellt Verzeichnisse und lädt sie.
+    @{" Move      " link Move}        Verschiebt Dateien und Verzeichnisse.
+    @{" MoveAs    " link MoveAs}        Verschieben von Einträgen mit Ändern des Namens.
+    @{" None      " link None}        Alle Einträge deselektieren.
+    @{" Note      " link Note}        Dateikommentare ändern.
+    @{" Parent    " link Parent}        Übergeordnetes Verzeichnis laden.
+    @{" Protect   " link Protect}        Attribute ändern.
+    @{" Quit      " link Quit}        'RO' beenden.
+    @{" RActive   " link Active}        Das rechte Listview aktivieren.
+    @{" Reboot    " link Reboot}        Einen System Warmstart ausführen.
+    @{" Relabel   " link Relabel}        Datenträger umbenennen.
+    @{" Reload    " link Reload}        Das aktive Verzeichnis erneuern.
+    @{" Rename    " link Rename}        Einträge umbenennen.
+    @{" Root      " link Root}        Das Wurzelverzeichnis laden.
+    @{" RParent   " link Parent}        Übergeordnetes Verzeichnis laden.
+    @{" RReload   " link Reload}        Das rechte Verzeichnis erneuern.
+    @{" RRoot     " link Root}        Lädt das Wurzelverzeichnis der rechten Seite.
+    @{" SetDate   " link SetDate}        Datum eines Eintrags ändern.
+    @{" Shrink    " link Shrink}        Einen ARCHandler Pfad verkleinern.
+    @{" Toggle    " link Toggle}        Alle Einträge anders selektieren.
+    @{" Touch     " link Touch}        Datum setzen oder Datei erstellen.
+    @{" UnArc     " link UnArc}        Dateien aus Archiv entpacken.
+    @{" Update    " link Update}        Dateien zum updaten selektieren.
+    @{" Volumes   " link Buffers}        Die Volumes Seite in den Vordergrund schalten.
+
+
+ @{u}ARGUMENTE@{uu}
+
+    "Nummer"     Nummer eines Kommandoknopfes zwischen 1 und 120
+    "ButtonType" COMMAND (Kommando) oder FUNCTION (Funktion) Knopf
+    "GadgetText" Bis zu 20 Zeichen als Gadget Text
+    "Command"    CLI Kommando das ausgeführt werden soll
+
+    Man kann bei Kommando diese '%' und '&' Parameter angeben:
+
+    %a           ARexx Portname
+    %f           Quell Dateiname mit Pfad in Anführungszeichen
+    %F           Quell Dateiname mit Pfad ohne Anführungszeichen
+    %n           Nur der Dateiname in Anführungszeichen
+    %N           Nur der Dateiname ohne Anführungszeichen
+    %p           Quell-Verzeichnis in Anführungszeichen
+    %P           Quell-Verzeichnis ohne Anführungszeichen
+    %t           Ziel-Verzeichnis in Anführungszeichen
+    %T           Ziel-Verzeichnis ohne Anführungszeichen
+    %s           Quell-Gerät in Anführungszeichen
+    %S           Quell-Gerät ohne Anführungszeichen
+    %d           Ziel-Gerät in Anführungszeichen
+    %D           Ziel-Gerät ohne Anführungszeichen
+    %r           Für jede Datei eine Zeichenkette vom Benutzer erfragen
+    %R           Nur einmal eine Zeichenkette vom Benutzer erfragen
+
+    &b           Returncodes werden ignoriert
+    &c           Macht das Quell-Verzeichnis zum aktuellen Verzeichnis
+    &C           Macht das Ziel-Verzeichnis zum aktuellen Verzeichnis
+    &d           Einträge werden nicht deselektiert.
+    &r           Das Quell-Verzeichnis wird neu eingelesen
+    &R           Das Ziel-Verzeichnis wird neu eingelesen
+    &w           Das Ausgabefenster muß manuell geschlossen werden
+
+    %%           Für das Prozent-Zeichen
+    &&           Für das Und-Zeichen
+
+ @{u}DEFAULT@{uu}
+
+    BUTTON     1     COMMAND   "Read"        "Most >NIL: %f"
+    BUTTON     2     COMMAND   "Run"         "Run >NIL: %f"
+    BUTTON     3     FUNCTION  "_Delete"     DELETE
+    BUTTON     4     FUNCTION  "_Move"       MOVE
+    BUTTON     5     FUNCTION  "_Copy"       COPY
+    BUTTON     6     FUNCTION  "_Bytes"      BYTES
+    BUTTON     7     FUNCTION  "All"         ALL
+    BUTTON     8     FUNCTION  "Arc"         ADDLHA
+
+    BUTTON     9     COMMAND   "View"        "MultiView >NIL: %f"
+    BUTTON    10     COMMAND   "_Edit"       "Ed >NIL: %f"
+    BUTTON    11     FUNCTION  "Touch"       TOUCH
+    BUTTON    12     FUNCTION  "Move As"     MOVEAS
+    BUTTON    13     FUNCTION  "Copy As"     COPYAS
+    BUTTON    14     FUNCTION  "Fit"         FIT
+    BUTTON    15     FUNCTION  "None"        NONE
+    BUTTON    16     FUNCTION  "ListArc"     LISTARC
+
+    BUTTON    17     FUNCTION  "_Action"     ACTION
+    BUTTON    18     COMMAND   "XEdit"       "FileX >NIL: %f"
+    BUTTON    19     FUNCTION  "MakeDir"     MAKEDIR
+    BUTTON    20     FUNCTION  "_Rename"     RENAME
+    BUTTON    21     FUNCTION  "Dup"         DUP
+    BUTTON    22     FUNCTION  "Refresh"     RELOAD
+    BUTTON    23     FUNCTION  "_Pattern"    BYNAME
+    BUTTON    24     FUNCTION  "UnArc"       UNARC
+
+    BUTTON    25     COMMAND   "Music"       "DeliTracker >NIL: MODULE %f"
+    BUTTON    26     FUNCTION  "Assign"      ASSIGN
+    BUTTON    27     COMMAND   "Command"     "%r"
+    BUTTON    28     FUNCTION  "_Comment"    NOTE
+    BUTTON    29     FUNCTION  "Change"      CHANGE
+    BUTTON    30     FUNCTION  "Parent"      PARENT
+    BUTTON    31     FUNCTION  "Reverse"     TOGGLE
+    BUTTON    32     FUNCTION  "_Disk"       DISK
+
+    BUTTON    33     FUNCTION  "LSwap"       LSWAP
+    BUTTON    34     FUNCTION  "_Relabel"    RELABEL
+    BUTTON    35     COMMAND   "Execute"     "Execute %r"
+    BUTTON    36     FUNCTION  "_Protect"    PROTECT
+    BUTTON    37     FUNCTION  "_Expand"     EXPAND
+    BUTTON    38     FUNCTION  "Root"        ROOT
+    BUTTON    39     FUNCTION  "_Update"     UPDATE
+    BUTTON    40     FUNCTION  "_Info"       INFO
+
+    BUTTON    41     FUNCTION  "LCopy"       LCOPY
+    BUTTON    42     FUNCTION  "CopyDev"     COPYDEV
+    BUTTON    43     COMMAND   "Rx"          "Rx %r"
+    BUTTON    44     FUNCTION  "SetDate"     SETDATE
+    BUTTON    45     FUNCTION  "_Shrink"     SHRINK
+    BUTTON    46     FUNCTION  "Current"     CURRENT
+    BUTTON    47     FUNCTION  "Icon"        ICON
+    BUTTON    48     FUNCTION  "Help"        HELP
+
+ @{u}BEISPIEL@{uu}
+
+    BUTTON 98 COMMAND "DirTree" "DirTree %f"
+
+@endnode
+
+@node About
+@prev Volumes
+@next Action
+
+ @{b}@{u}About@{ub}@{uu}
+
+ Diese   Funktion  öffnet  die  Meldung  mit  meiner  Adresse  und  anderen
+ Informationen wie man sich registrieren lassen kann.
+
+@endnode
+
+@node Action
+@prev About
+@next All
+
+ @{b}@{u}Action@{ub}@{uu}
+
+ Diese  Funktion führt ein Kommando für jede angewählte Datei aus, und zwar
+ entsprechend  ihrer  Dateiart.  Sie sollten für jede Dateiart ein Kommando
+ angeben  um diese Funktion voll nutzen zu können, ansonsten wird MultiView
+ für jede  Dateiart  gestartet.   Sie  sollten  sich  dazu  aber  noch  den
+ @{" FILETYPE " link filetype} Abschnitt im Konfigurationskapitel durchlesen.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node All
+@prev Action
+@next Assign
+
+ @{b}@{u}All@{ub}@{uu}
+
+ Diese Funktion wählt alle Einträge des aktiven Verzeichnisses an.
+
+@endnode
+
+@node Assign
+@prev All
+@next Buffers
+
+ @{b}@{u}Assign@{ub}@{uu}
+
+ Diese  Funktion  erstellt  einen  Assign  für  den  Pfad der gerade in dem
+ aktiven Listview geladen ist.  Eine Abfrage wird geöffnet und es wird nach
+ einem  Namen  für  das logische Gerät gefragt.  Sie sollten hier etwas wie
+ 'foobar:' eingeben, wobei man den Doppelpunkt nicht mit eingeben muß.
+
+@endnode
+
+@node Buffers
+@prev Assign
+@next ByName
+
+ @{b}@{u}Buffers@{ub}@{uu}
+
+ Diese Funktion holt die Buffers Seite in den Vordergrund.
+
+@endnode
+
+@node ByName
+@prev Buffers
+@next Bytes
+
+ @{b}@{u}ByName@{ub}@{uu}
+
+ Diese  Funktion  wählt alle Einträge des aktiven Listviews an, die auf ein
+ bestimmtes  Muster  passen.   Es wird eine Abfrage geöffnet und nach einem
+ Muster   gefragt.   Man  kann  hier  alle  Standard  AmigaDOS  Platzhalter
+ verwenden, wie z.B.  '#?' oder '*'.
+
+@endnode
+
+@node Bytes
+@prev ByName
+@next Change
+
+ @{b}@{u}Bytes@{ub}@{uu}
+
+ Diese  Funktion  zählt  die Byte der gerade angewählten Einträge und ihrer
+ Unterverzeichnisse des aktiven Listviews.  Danach wird eine Information in
+ der  Statuszeile ausgegeben welche wie folgt aussehen sollte: '64.728 Byte
+ in 109 Dateien und 15 Verzeichnissen'.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node Change
+@prev Bytes
+@next Copy
+
+ @{b}@{u}Change@{ub}@{uu}
+
+ Mit  dieser Funktion kann man die Sortierung des aktiven Listviews ändern.
+ Dies  funktioniert  analog  zu  den  @{" SORTLEFT " link variable}, @{" SORTRIGHT " link variable}, @{" FIRSTLEFT " link variable},
+ @{" FIRSTRIGHT " link variable},    @{" ORDERLEFT " link variable}   und   @{" ORDERRIGHT " link variable}   Schlüsselwörtern   der
+ Konfigurations  Datei.   Eine  Auswahlmeldung  öffnet sich, in der Sie die
+ einzelnen Kriterien einstellen können.
+
+@endnode
+
+@node Copy
+@prev Change
+@next CopyDev
+
+ @{b}@{u}Copy@{ub}@{uu}
+
+ Diese Funktion kopiert alle angewählten Dateien und/oder Verzeichnisse des
+ Quell-Laufwerks  ins  Ziel-Laufwerk.  Wenn Sie CopyAs benutzen öffnet sich
+ eine  Abfrage  und  Sie  können  den  Namen  ändern  unter  dem  Sie es im
+ Ziel-Laufwerk  speichern  möchten.  Sie können die Operation beenden indem
+ Sie  den  'Abbrechen' Knopf drücken oder Sie überspringen eine Datei indem
+ Sie 'Überspringen' benutzen.
+
+ Wenn  man die entsprechenden Optionen in der Konfigurationsdatei einstellt
+ oder man sie aus dem Menü auswählt, werden die Schutzbits, Kommentare oder
+ Daten der kopierten Dateien übernommen.  Schauen Sie aber am Besten in dem
+ @{" VARIABLE " link variable}  Abschnitt des Konfigurations Kapitels nach.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node CopyDev
+@prev Copy
+@next Current
+
+ @{b}@{u}CopyDev@{ub}@{uu}
+
+ Diese  Funktion kopiert alle angewählten Dateien des aktiven Listviews auf
+ ein  Gerät,  daß  angegeben werden kann.  Eine Abfrage öffnet sich und man
+ kann  einen  Gerätenamen  eingeben.   Dies ist nützlich, wenn man ein paar
+ Text-Dateien hat, die man ausdrucken möchte. Alles was man tun muß ist die
+ Dateien mit 'CopyDev' nach 'PRT:' kopieren.
+
+@endnode
+
+@node Current
+@prev CopyDev
+@next Delete
+
+ @{b}@{u}Current@{ub}@{uu}
+
+ Diese Funktion lädt das aktuelle Verzeichnis von RO ins aktive Listview.
+
+@endnode
+
+@node Delete
+@prev Current
+@next Directory
+
+ @{b}@{u}Delete@{ub}@{uu}
+
+ Diese  Funktion  löscht  alle  angewählten Einträge des gerade aktivierten
+ Listviews.   Eine Sicherheitsabfrage wird geöffnet welche Sie fragt ob Sie
+ sich  ganz  sicher  sind,  das  hängt  aber  auch davon ab was Sie bei der
+ @{" DELVERIFY " link variable}  Option  in  der Konfigurationsdatei oder im Menü eingestellt
+ haben.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node Directory
+@prev Delete
+@next Disk
+
+ @{b}@{u}Directory@{ub}@{uu}
+
+ Diese Funktion holt die Directory Seite in den Vordergrund.
+
+@endnode
+
+@node Disk
+@prev Directory
+@next Dup
+
+ @{b}@{u}Disk@{ub}@{uu}
+
+ Diese  Funktion  öffnet  eine  Meldung  welche alle Informationen über das
+ gerade  im  aktiven  Listview dargestellte Gerät an.  Man kann hier Sachen
+ erfahren  wie  die Anzahl der freien Byte oder die Blockgröße des Gerätes.
+ Um  die  Meldung zu schliessen klicken Sie einfach über Okay oder benutzen
+ Sie das Schließgadget.
+
+@endnode
+
+@node Dup
+@prev Disk
+@next Expand
+
+ @{b}@{u}Dup@{ub}@{uu}
+
+ Diese Funktion dupliziert alle angewählten Einträge des aktiven Listviews.
+ Man  wird  hier bei jedem Eintrag gefragt wie die Kopie heissen soll.  Sie
+ können  diese Funktion abbrechen indem Sie den 'Abbrechen' Knopf verwenden
+ oder  Sie  können  eine  Datei  überspringen in dem Sie den 'Überspringen'
+ Knopf verwenden.
+
+@endnode
+
+@node Expand
+@prev Dup
+@next Fit
+
+ @{b}@{u}Expand@{ub}@{uu}
+
+ Wenn  Sie  ARCHandler  verwenden,  kann  diese  Funktion  nützlich für Sie
+ werden.   Diese  Funktion  erweitert  den  Pfadnamen  des  gerade  aktiven
+ Listviews   auf  seinen  ARCHandler-Namen.   z.B.   wird  System:Devs/  zu
+ Archives:System/Devs/
+
+@endnode
+
+@node Fit
+@prev Expand
+@next Help
+
+ @{b}@{u}Fit@{ub}@{uu}
+
+ Diese  Funktion überprüft die Anzahl der Byte der angewählten Einträge und
+ ermittelt  ob sie auf dem Zielgerät genug Platz finden.  RO berücksichtigt
+ hier   auch  den  Platz  der  benötigt  wird  um  den  Verzeichnisbaum  zu
+ organisieren.   Danach  wird eine Information in der Statuszeile angezeigt
+ ob es klappt oder nicht.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node Help
+@prev Fit
+@next Icon
+
+ @{b}@{u}Help@{ub}@{uu}
+
+ Diese  Funktion  öffnet  die  Hauptseite der 'Online' Hilfe.  Man kann sie
+ auch jederzeit aufrufen indem man die HELP Taste betätigt, allerdings wird
+ hier  eine  dem  Seite  geöffnet  die  der  Programmumgebung  entsprechend
+ sinnvoll  ist,  d.h.   wenn  man  sich  mit  der  Maus auf dem Verzeichnis
+ Listview  befinden  wird  eine entsprechende Hilfe hierzu ausgegeben.  Die
+ Anleitung  muß  sich  im  Amigaguide  Suchpfad  befinden,  achten Sie also
+ darauf,   daß  Sie  die  Umgebungsvariable  'ENV:AmigaGuide/Path'  richtig
+ gesetzt  haben.   Sie können die Anleitung aber auch im selben Verzeichnis
+ wie das Hauptprogramm speichern, dann sollte es keine Probleme geben.
+
+@endnode
+
+@node Icon
+@prev Help
+@next Info
+
+ @{b}@{u}Icon@{ub}@{uu}
+
+ Diese  Funktion  wählt  die  '.info'  Dateien  zu  den  gerade angewählten
+ Einträgen im aktiven Listview an.
+
+@endnode
+
+@node Info
+@prev Icon
+@next Active
+
+ @{b}@{u}Info@{ub}@{uu}
+
+ Diese  Funktion  öffnet  eine  Meldung  die  einige Informationen über die
+ angewählten  Einträge  des  aktivierten  Listviews anzeigt.  Man kann hier
+ Dinge  wie die Dateiart oder den Dateikommentar erfahren.  Um zur nächsten
+ Datei  zu  gelangen  klicken  Sie einfach über 'Okay'.  Abgebrochen werden
+ kann die Aktion indem man den 'Abbrechen' Knopf benutzt.
+
+@endnode
+
+@node Active
+@prev Info
+@next LCopy
+
+ @{b}@{u}Active@{ub}@{uu}
+
+ Diese  Funktion  läßt ein bestimmtes Listview aktiv werden.  'LACTIVE' das
+ linke und 'RACTIVE' das rechte.
+
+@endnode
+
+@node LCopy
+@prev Active
+@next LFold
+
+ @{b}@{u}LCopy@{ub}@{uu}
+
+ Diese Funktion kopiert das aktiven Listviewpfad auf das andere.
+
+@endnode
+
+@node LFold
+@prev LCopy
+@next LSwap
+
+ @{b}@{u}LFold@{ub}@{uu}
+
+ Mit dieser Funktion kann man das rechte Listview verstecken und bei Bedarf
+ wieder anzeigen lassen.
+
+@endnode
+
+@node LSwap
+@prev LFold
+@next ListArc
+
+ @{b}@{u}LSwap@{ub}@{uu}
+
+ Diese Funktion vertauscht den Inhalt der beiden Listviews.
+
+@endnode
+
+@node ListArc
+@prev LSwap
+@next Parent
+
+ @{b}@{u}ListArc@{ub}@{uu}
+
+ Diese  Funktion  zeigt den Inhalt der angewählten Archive an, indem es den
+ passenden  Archivierer  und  das  Kommando  zum Anzeigen von ASCII Dateien
+ benutzt.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node Parent
+@prev ListArc
+@next Reload
+
+ @{b}@{u}Parent@{ub}@{uu}
+
+ Diese Funktion lädt das Mutterverzeichnis des Verzeichnisses das gerade im
+ aktiven  Listview dargestellt wird.  Wenn man 'LPARENT' benutzt wird immer
+ das  Linke  genommen,  bei  'RPARENT'  immer  das  Rechte.   Wenn  RO kein
+ übergeordnetes  Verzeichnis  finden  kann wird einfach nur das Verzeichnis
+ neu eingelesen.
+
+@endnode
+
+@node Reload
+@prev Parent
+@next Root
+
+ @{b}@{u}Reload@{ub}@{uu}
+
+ Die  Funktion  'RELOAD',  'LRELOAD'  und 'RRELOAD' lesen das Aktive, linke
+ oder rechte Verzeichnis neu ein.
+
+@endnode
+
+@node Root
+@prev Reload
+@next MakeDir
+
+ @{b}@{u}Root@{ub}@{uu}
+
+ Diese Funktion lädt das Wurzelverzeichnis des aktiven Listviews.  Wenn man
+ 'LROOT'  oder 'RROOT' werwendet wirkt die Aktion auf das linke oder rechte
+ Listview.
+
+@endnode
+
+@node MakeDir
+@prev Root
+@next Move
+
+ @{b}@{u}MakeDir@{ub}@{uu}
+
+ Wenn  man  diese  Funktion  verwendet  wird  eine Eingabeabfrage geöffnet,
+ welche  nach  einem  Namen für das zu erstellende Verzeichnis fragt.  Wenn
+ man  die  Funktion  'MAKEDIR'  verwendet  wird  im  aktiven  Listview  ein
+ Verzeichnis  erstellt.   Wenn  man  jedoch 'MDLOAD' verwendet wird es auch
+ noch eingelesen.
+
+@endnode
+
+@node Move
+@prev MakeDir
+@next None
+
+ @{b}@{u}Move@{ub}@{uu}
+
+ Diese   Funktion   verschiebt   alle   angewählten  Einträge  des  aktiven
+ Verzeichnisses  in das Ziel-Verzeichnis.  Wenn man 'MOVEAS' verwendet wird
+ eine  Abfrage  geöffnet,  die  nach  einem  neuen  Namen für den gerade zu
+ verschiebenden  Eintrag  fragt.  Man kann die ganze Aktion abbrechen indem
+ man den 'Abbrechen' Knopf verwendet oder eine Datei überspringen indem man
+ 'Überspringen' benutzt.  RO bemerkt natürlich wenn Sie Dateien auf ein und
+ dem  selben  Gerät  verschieben  und  bennent die Dateien dann nur um, was
+ natürlich schneller geht.
+
+ Wenn  man die entsprechenden Optionen in der Konfigurationsdatei einstellt
+ oder man sie aus dem Menü auswählt, werden die Schutzbits, Kommentare oder
+ Daten der kopierten Dateien übernommen.  Schauen Sie aber am Besten in dem
+ @{" VARIABLE " link variable}  Abschnitt des Konfigurations Kapitels nach.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node None
+@prev Move
+@next Note
+
+ @{b}@{u}None@{ub}@{uu}
+
+ Diese Funktion deselektiert alle Einräge des aktiven Listviews.
+
+@endnode
+
+@node Note
+@prev None
+@next Protect
+
+ @{b}@{u}Note@{ub}@{uu}
+
+ Diese  Funktion  ermöglicht  Ihnen  den  Dateikommentar  aller angewählten
+ Einträge  des  aktiven  Listviews zu ändern.  Eine Abfrage öffnet sich die
+ den  alten  Kommentar  enthält  den Sie dort ändern können.  Die Operation
+ kann  über den 'Abbrechen' Knopf beendet werden oder Sie können eine Datei
+ überspringen  indem  Sie  den  'Überspringen' Knopf betätigen.  Um fort zu
+ fahren benutzt man 'Okay' oder drückt RETURN.
+
+@endnode
+
+@node Protect
+@prev Note
+@next Quit
+
+ @{b}@{u}Protect@{ub}@{uu}
+
+ Diese  Funktion  öffnet  eine  Abfrage  in  der  man  die  Schutzbits  der
+ angewählten  Einträge  verändern  kann.   Für  jedes Bit kann man zwischen
+ 'Ignorieren', 'Setzen' und 'Löschen' wählen.  Wobei 'Ignorieren' bedeutet,
+ daß  nichts  geändert  wird,  'Setzen'  bedeutet daß das entsprechende Bit
+ gesetzt   wird  und  'Löschen',  daß  es  gelöscht  wird.   Man  kann  die
+ Einstellungen  für  jede  Datei  vornehmen indem man immer 'Okay' betätigt
+ oder  man  kann alle angewählten Einträge auf einen Schlag verändern indem
+ man den 'Alle' Knopf benutzt.  Abbrechen der Aktion und Überspringen einer
+ Datei funktioniert wie gehabt.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node Quit
+@prev Protect
+@next Reboot
+
+ @{b}@{u}Quit@{ub}@{uu}
+
+ Beendet RO und entfernt es aus dem Speicher.
+
+@endnode
+
+@node Reboot
+@prev Quit
+@next Relabel
+
+ @{b}@{u}Reboot@{ub}@{uu}
+
+ Führt ohne jede Warnung einen Warmstart des Rechners durch. :)
+
+@endnode
+
+@node Relabel
+@prev Reboot
+@next Rename
+
+ @{b}@{u}Relabel@{ub}@{uu}
+
+ Mit  dieser Funktion kann man den Namen des Gerätes ändern, welches gerade
+ im  aktiven Listview geladen ist.  Eine Abfrage öffnet sich in der man den
+ aktuellen  Namen ändern kann.  Um die Funktion abzubrechen benutzt man den
+ 'Abbrechen' Knopf.
+
+@endnode
+
+@node Rename
+@prev Relabel
+@next SetDate
+
+ @{b}@{u}Rename@{ub}@{uu}
+
+ Diese  Funktion wird zum Umbennenen von Einträgen verwendet.  Eine Abfrage
+ öffnet  sich  für  jeden  Eintrag und man kann den aktuellen Namen ändern.
+ Wenn  Sie  die Aktion abbrechen wollen benutzen Sie den 'Abbrechen' Knopf,
+ wenn Sie aber nur einen Eintrag überspringen wollen dann verwenden Sie den
+ 'Überspringen'  Knopf.   Zum  fort  fahren nehmen Sie entwender den 'Okay'
+ Knopf oder drücken RETURN.
+
+@endnode
+
+@node SetDate
+@prev Rename
+@next Shrink
+
+ @{b}@{u}SetDate@{ub}@{uu}
+
+ Diese  Funktion  ermöglicht es Ihnen das Datum und die Zeit eines Eintrags
+ zu  ändern.   Eine  Abfrage  öffnet sich in der Sie das alte Datum und die
+ alte  Zeit  sehen  und  ändern können.  Die Eingabe muß im AmigaDOS Format
+ erfolgen.    Wenn  Sie  die  Aktion  abbrechen  wollen  benutzen  Sie  den
+ 'Abbrechen'  Knopf,  wenn  Sie  aber nur einen Eintrag überspringen wollen
+ dann  verwenden  Sie den 'Überspringen' Knopf.  Zum fort fahren nehmen Sie
+ entwender den 'Okay' Knopf oder drücken RETURN.
+
+@endnode
+
+@node Shrink
+@prev SetDate
+@next Toggle
+
+ @{b}@{u}Shrink@{ub}@{uu}
+
+ Wenn  Sie  ARCHandler  verwenden,  kann  diese  Funktion  nützlich für Sie
+ werden.   Diese  Funktion  verkleinert  den  ARCHandler-Namen  des  gerade
+ aktiven    Listviews    auf    seinen    normalen   Namen.    z.B.    wird
+ Archives:System/Devs/ zu System:Devs/
+
+@endnode
+
+@node Toggle
+@prev Shrink
+@next Touch
+
+ @{b}@{u}Toggle@{ub}@{uu}
+
+ Diese Funktion selektiert alle nicht angewählten Einträge und deselektiert
+ alle angewählten.
+
+@endnode
+
+@node Touch
+@prev Toggle
+@next UnArc
+
+ @{b}@{u}Touch@{ub}@{uu}
+
+ Wenn Sie einen oder mehrere Einträge angewählt haben, dann wird mit dieser
+ Funktion  ihr  Datum  und  ihre Zeit aktualisiert.  Wenn Sie keine Dateien
+ angewählt  aben  öffnet  sich  eine  Abfrage  in  der Sie einen Dateinamen
+ eingeben  können.   Dies  Datei  wird  dann im gerade aktivierten Listview
+ erstellt.   Beim  aktualisieren  der Daten können Sie diese Funktion durch
+ schliessen des 'Beschäftigt' Fensters beenden.  Ansonsten benutzen Sie den
+ 'Abbrechen' Knopf.
+
+
+@endnode
+
+@node UnArc
+@prev Touch
+@next Update
+
+ @{b}@{u}UnArc@{ub}@{uu}
+
+ Diese Funktion entpackt die angewählten Archive in das Ziel-Verzeichnis in
+ dem es den der Dateiart entsprechenden Archivierer benutzt.
+
+ Diese  Funktion läßt  sich  durch  schliessen  des  'Beschäftigt' Fensters
+ beenden.
+
+@endnode
+
+@node Update
+@prev UnArc
+@next Volumes
+
+ @{b}@{u}Update@{ub}@{uu}
+
+ Diese Funktion wählt Einträge des aktiven Listviews aus, die sich schon im
+ Ziel-Listview befinden.  Das ist sehr nützlich wenn man ein Software Paket
+ auf den neusten Stand bringen möchte.  Wenn Sie Einträge auswählen möchten
+ die  sich  noch  nicht  im  Ziel-Listview  befinden, benutzten Sie einfach
+ zuerst den 'Update' Knopf und dann den 'Reverse' Knopf.
+
+@endnode
+
+@node Volumes
+@prev Update
+@next About
+
+ @{b}@{u}Volumes@{ub}@{uu}
+
+ Diese Funktion holt die Volumes Seite in den Vordergrund.
+
+@endnode
+
+@node arexxinterface "Arexx Schnittstelle"
+@prev button
+@next discussion
+
+ @{b}@{u}ARexx Schnittstelle@{ub}@{uu}
+
+ RO  hat  eine  eingebaute  ARexx  Schnittstelle, die die folgenden Befehle
+ unterstützt:
+
+
+   - QUIT
+
+     Beendet die Applikation.
+
+
+   - HIDE
+
+     Versteckt (verbirgt) die Applikation
+
+
+   - SHOW
+
+     Zeigt eine verborgene Applikation.
+
+
+   - INFO ITEM/A
+
+     Entsprechend  dem  angegebenen  Parameter wird der Ergebnis String mit
+     einer der folgenden Zeichenketten gefüllt:
+
+        - "title"       Titel der Applikation
+
+        - "author"      Autor der Applikation
+
+        - "copyright"   Copyright Nachricht
+
+        - "description" Kurze Beschreibung
+
+        - "version"     Versions String
+
+        - "base"        Name der ARexx Schnittstelle
+
+        - "screen"      Name des Public Screens
+
+     Beispiel: 'Info "title"'
+
+
+   - HELP FILE/A
+
+     Eine Liste aller ARexx Kommandos die für die Applikation zur Verfügung
+     stehen werden in die angegebene Datei geschrieben.
+
+     Beispiel: 'Help "RAM:RexxCommands"'
+
+
+   - ACTIVE SIDE/A
+
+     Diese  Funktion  läßt  ein  bestimmtes Listview aktiv werden.  'Active
+     Left'  das  linke  und 'Active Right' das rechte.  Mit 'Active Active'
+     wird das aktive aktiviert, was durchaus nützlich ist da 'Active' immer
+     das  zuletzt aktive zurück gibt.  Mit 'Active Inactive' aktivieren Sie
+     das gerade nicht aktive Listview.
+
+     Beispiel: 'Active Inactive'
+
+
+   - CHOICEREQ STRING/A
+
+     'ChoiceReq  String'  öffnet  einen Auswahlmeldungen die Sie mit 'Okay'
+     oder   'Abbruch'   beantworten  können.   Wenn  Sie  sich  für  'Okay'
+     entscheiden wird '1' zurückgegeben, sonst '0'.
+
+     Beispiel: 'ChoiceReq "Are you sure?"'
+
+
+   - CHANGE SIDE/A,SWITCH/A
+
+     Mit  dieser  Funktion kann man die Sortierungsvariablen der Listviews,
+     auf  die  selbe  Art  wie man es mit dem Change Requester machen kann,
+     ändern.   SIDE/A  darf 'Left', 'Right', 'Active' oder 'Inactive' sein.
+     SWITCH/A darf 'Dirs', 'Files', 'Mixed', 'Name', 'Date', 'Size', 'High'
+     und 'Low' sein.
+
+     Beispiel: 'Change Active Mixed'
+
+
+   - COMMAND STRING/A,FILE/A
+
+     Diese  Funktion  startet  ein Kommando.  Hierzu wird für STRING/A eine
+     Parse  Zeichenkette benötigt in der Sie alle unterstützten % Parameter
+     benutzen  können.   FILE/A  ist  der Name einer Datei, die dann bei %f
+     bzw.   %F  eingefügt wird.  Wenn bei der Kommandoausführung ein Fehler
+     aufgetreten ist hat RC einen Wert der von Null verschieden ist.
+
+     Beispiel: 'Command "Delete %f" "S:User-Startup"'
+
+
+   - FILEACTION FILE/A
+
+     Hiermit  ist  es möglich die Datei Erkennung von RO zu aktivieren.  Es
+     passiert  das  selbe  wie wenn Sie auf die bei FILE/A angegebene Datei
+     doppelt klicken.
+
+     Beispiel: 'FileAction "S:Startup-Sequence"'
+
+
+   - FUNCTION NAME/A
+
+     Mit   diesem   Kommando  können  Sie  jede  interne  Funktion  die  RO
+     unterstützt aufrufen.
+
+     Beispiel: 'Function "COPYAS"'
+
+
+   - GETENTRY SIDE/A,TYPE/A
+
+     'GetEntry'  liefert  den  ersten  selektierten Eintrag der angegebenen
+     Seite,   wobei   Sie  hier  zwischen  'Left',  'Right',  'Active'  und
+     'Inactive'  wählen können, und deselektiert ihn.  Wenn Sie wollen, daß
+     nur  selektierte  Dateien beachtet werden dann benutzen Sie für TYPE/A
+     'Files',  für  nur  Verzeichnisse  'Dirs'  und  wenn Sie alle Einträge
+     möchten  'Any'.  Wenn keine selektierten Einträge mehr vorhanden sind,
+     wird 'Result=RESULT' gesetzt.
+
+     Beispiel: 'GetEntry Active Files'
+
+
+   - LOAD SIDE/A,DIR/A
+
+     Lädt  ein Verzeichnis  auf der angegebenen Seite ein.  SIDE/A kann wie
+     gehabt  'Left',  'Right',  'Active' und 'Inactive' sein, und DIR/A ist
+     der Name des Verzeichnisses.
+
+     Beispiel: 'Load Active "RAM:"'
+
+
+   - MESSAGE STRING/A
+
+     'Message  "Das  ist  ein Test"' gibt die Meldung 'Das ist ein Test' in
+     der  Statuszeile  aus.   Um  zu verhindern, daß diese bei der nächsten
+     Erneuerung  der  Uhr  überschrieben wird sollten Sie zuvor die 'Sleep'
+     Funktion  benutzen.   Vergessen  Sie aber nicht RO mit 'Wakeup' wieder
+     aufzuwecken.
+
+     Beispiel: 'Message "Das ist ein Test"'
+
+
+   - NUMENTRIES SIDE/A,TYPE/A
+
+     Gibt  die  Anzahl  der  selektierten  Einträge  der  angegebenen Seite
+     zurück.   SIDE/A  kann  'Left', 'Right', 'Active' und 'Inactive' sein.
+     Wenn  Sie  wollen,  daß  nur  selektierte Dateien beachtet werden dann
+     benutzen Sie für TYPE/A 'Files', für nur Verzeichnisse 'Dirs' und wenn
+     Sie alle Einträge möchten 'Any'.
+
+     Beispiel: 'NumEntries Active Dirs'
+
+
+   - PATH SIDE/A
+
+     Gibt  den  Pfad  der  angegebenen  Seite  zurück.  SIDE/A kann 'Left',
+     'Right',  'Active'  und  'Inactive'  sein.  Ist noch  kein Verzeichnis
+     geladen wird 'Result=RESULT' gesetzt.
+
+     Beispiel: 'Path Right'
+
+
+   - REFRESH SIDE/A
+
+     Lädt  die  angegebene  Seite  neu  ein.   SIDE/A kann 'Left', 'Right',
+     'Active' und 'Inactive' sein.  Wenn noch  kein Verzeichnis geladen war
+     wird auch hier 'Result=RESULT' gesetzt.
+
+     Beispiel: 'Refresh Inactive'
+
+
+   - SLEEP
+
+     RO  wird eingeschläfert, es werden also keine Eingaben mehr angenommen
+     und  die  Uhr läuft nicht mehr.  Diese Funktion sollte zu beginn jedes
+     ARexx  Programms  verwendet  werden  um  zu verhindern, daß evtl.  mit
+     'Message' ausgegebene Meldungen von der Uhr überschrieben werden.
+
+
+   - STRINGREQ STRING/A
+
+     Mit 'StringReq "PRT:"' öffnen Sie eine Eingabeaufforderung, in der Sie
+     die  Zeichenkette  'PRT:' ändern können.  Wenn Sie 'Abbruch' betätigen
+     wird 'Result=RESULT' gesetzt.
+
+     Beispiel: 'StringReq "T:__TEMPFILE__"'
+
+
+   - WAKEUP
+
+     Hiermit  wird  RO  wieder  aufgeweckt.   Beachten  Sie  bitte, daß bei
+     Verwendung von 'Sleep' auch 'Wakeup' verwendet werden muß sonst können
+     Sie RO nicht mehr verwenden bis Sie 'Wakeup' aufrufen.
+
+
+ Wenn  Sie  innerhalb  von  RO ein ARexx Programm benutzen wollen, wenn Sie
+ also  z.B.   einen  Button definiert haben der ein ARexx Programm startet,
+ daß  auf  ARexx  Funktionen von RO zurückgreift muß bei dem Kommandostring
+ ein 'Rx ' vorkommen.  RO erkennt daran, daß Sie ein ARexx Programm starten
+ wollen und verhindert dann einen sogenannten Deadlock.
+
+ Falls  Sie  für  ein  ARexx Programm den Dateinamen der selektierten Datei
+ benötigen  verwenden Sie nicht %f sondern %F, da es sonst zu Problemen mit
+ den Anführungszeichen kommen kann.
+
+@endnode
+
+@node discussion "Diskussion"
+@prev arexxinterface
+@next registration
+
+F: Manchmal erkennt RO nicht das ein Eintrag angewählt ist. Warum?
+A: Nein,  das  Problem  ist  ein  anderes,  und  zwar ist es manchmal recht
+   schwierig  zu  erkennen  ob  ein  Eintrag angewählt ist oder nicht.  Der
+   Cursor,  der  normalerweise  für  die Tastatursteuerung benutzt wird hat
+   fast  die  selbe Farbe wie ein selektiertes File mit dem Cursor darüber.
+   Man   kann   dieses   Problem   umgehen   indem  man  das  'BG  Listview
+   Cursor' Bild auf eine andere Farbe stellt.
+
+
+F: Ich habe RO gestartet und nichts ist passiert. Wo liegt das Problem?
+A: Die  Auflösung  des Bildschirms ist vielleicht zu niedrig, besonders die
+   Bildschirmbreite  könnte  zu  gering  sein, daß RO auf den Schirm passt.
+   Versuchen  Sie  es  einmal  mit  einem kleinern System Font oder mit den
+   Overscan  Prefs  um  ein  paar  Pixel  zu  gewinnen.  Das Minimum das RO
+   benötigt ist 640 x 200 und topaz 8 Zeichensatz.
+
+
+F: Ich habe einen neuen Knopf erstellt um ein CLI Kommando zu starten, aber
+   irgendwie funktioniert das nicht.  Warum geht das bei mir nicht?
+A: Stellen  sie  sicher,  daß  sie  einen  COMMAND Knopf erstellt haben und
+   keinen FUNCTION Knopf.
+
+@endnode
+
+@node registration "Registration"
+@prev discussion
+@next registrationform
+
+ @{b}@{u}Registration@{ub}@{uu}
+
+ Wenn  Sie  sich registrieren lassen bekommen Sie eine Diskette zugeschickt
+ auf  der  sich  die  neuste  Version und Ihr Keyfile befindet.  Mit diesem
+ sogenannten  Keyfile  wird die eingeschränkte Version in einen vollständig
+ funktionierenden  und  mächtigen Dateimanager verwandelt!  Mit dem Keyfile
+ können Sie auch alle  weiteren Versionen voll  verwenden.  Wenn  sie  eine
+ e-mail  Adresse haben,  kann ich Ihnen  das Keyfile mit 'UUencode'-kodiert
+ zumailen.
+
+ Der Preis für eine Registration beträgt mindestens
+
+      30.- DM  (D-Mark),
+      20.- US$ (US Dollar)
+
+ oder  eine US$ 25.- (fünfundzwanzig!) entsprechende Summe in einer anderen
+ Währung.   "Fünfundzwanzig"  weil  ich  meine  Bank  besuchen muß und Ihre
+ ausländische  Währung  verkaufen  muß,  was  in  Deutschland irgendwie ein
+ bisschen  teuer  ist.   Wenn  Sie  aber denken, daß Ihre Bank billiger ist
+ können Sie sich natürlich auch 20.- US$ besorgen und sie mir schicken.
+
+ Der  schnellste  und  billigste  Weg  sich registrieren zu lassen ist Geld
+ zusammen  mit  dem ausgefüllten Registrationsformular in einen Umschlag zu
+ stecken und an folgende Adresse zu schicken:
+
+        Oliver Rummeyer
+        Gartenstrasse 41
+        D-88212 Ravensburg
+        Germany/Europe
+
+ Euro  Cheques  (in DM) sind natürlich auch willkommen, aber bitte schicken
+ Sie  auf keinen Fall ausländische Cheques, weil die Bank vom Empfänger und
+ vom  Absender  eine  Gebühr verlangt.  Wenn Sie wirklich denken Sie müssen
+ unbedingt  einen  solche  Cheque benutzen, dann schlagen Sie bitte $10 für
+ die Gebühren auf.
+
+ Sie  können  das  Geld  auch  direkt  auf  mein Girokonto überweisen, aber
+ vorsicht:  internationale Überweisungen über Banken sind sehr teuer.
+
+  Oliver Rummeyer, Kreissparkasse Ravensburg, BLZ 65050110, Konto 48276999
+
+ Auf  jeden  Fall  sollten  Sie  sicher  stellen  mir Ihren Namen, Adresse,
+ Telefonnummer und e-mail Adresse zu geben.  Sie können diese Informationen
+ auch  über e-mail an mich schicken wenn Sie möchten.  Wenn es Ihnen nichts
+ ausmacht  werden  diese  Daten  in  elektronischer  Form gespeichert.  Sie
+ können   das  Beispiel-Formular  benutzen,  daß  in  dieser  Dokumentation
+ auftaucht. (@{" Registrationsformular " link registrationform})
+
+ Vielen Dank daß Sie das Sharewareprinzip unterstützen!
+
+@endnode
+
+@node registrationform "Registrationsformular"
+@prev registration
+@next updates
+
+     -------------------------
+
+        Oliver Rummeyer
+        Gartenstrasse 41
+        D-88212 Ravensburg
+        Germany/Europe
+
+     -------------------------
+
+
+     Lieber Oliver,
+
+     ich würde gerne ein registrierter Benutzer von "RO" werden.
+
+     Name:     _________________________________________________________
+
+     Addresse: _________________________________________________________
+
+               _________________________________________________________
+
+               _________________________________________________________
+
+     Land:     __________________
+
+     Telefon:  __________________
+
+     E-Mail:  _________________________________________________________
+
+
+     Ich schicke den Shareware-Betrag als (bitte markieren/löschen)
+
+           o   US$  20.- in bar (liegen diesem Brief bei).
+
+           o   DM   30.- in bar (liegen diesem Brief bei).
+
+           o   SFr  30.- in bar (liegen diesem Brief bei).
+
+           o   FFr 120.- in bar (liegen diesem Brief bei).
+
+           o   eurocheque in DM (liegt diesem Brief bei).
+
+           o   Auslands-Cheque in US$ (liegt diesem Brief bei).
+               (plus US$ 10.- für Gebühren).
+
+           o   Banküberweisung.
+
+     Bitte schicke mein Keyfile per (bitte markieren/löschen)
+
+           o   E-mail (UUencode)
+
+           o   normaler Post (Diskette)
+
+
+     Ich habe die Lizenzbestimmungen gelesen und bin einverstanden.
+
+
+      _____________________  ___________________________________________
+            (Datum)                        (Unterschrift)
+
+@endnode
+
+
+@node updates "Updates"
+@prev registrationform
+@next support
+
+ @{b}@{u}Updates@{ub}@{uu}
+
+ Sobald  es  eine  neue  Version  von RO gibt, werde ich eine entsprechende
+ Meldung  in  die passenden Gruppen der elektronischen Netze schicken.  Das
+ Archive  wird  dann  bald  auf vielen Mailboxen und auf allen 'aminet' FTP
+ Servern zu bekommen sein.
+
+ Die  RO  Support Mailbox `Uplink BBS' Sysop Alexander Abt bietet immer die
+ neuste Version zum Fido-File-Request unter folgenden Node-Nummern an:
+
+  Node 1:  +49-0751-96217  2:246/2320 USR 33.6 DS
+  Node 2:  +49-0751-793314 2:246/2321 USR 33.6 DS
+  Node 3:  +49-0751-97376  2:246/2322 Zyx E+
+  Node 4:  +49-0751-793314 2:246/2323 ISDN 16k
+  Node 5:  +49-0751-793315 2:246/2324 ISDN 2k
+
+ Benutzen  Sie  den  magischen Namen 'RO'.  Alternativ können Sie sich auch
+ mit einen Benutzernamen 'RO' und dem Passwort 'RO' einloggen.
+
+ Wie  ich  oben  schon  bemerkt  habe,  benötigen registrierte Benutzer nie
+ wieder  ein  neues  Keyfile  oder  eine  spezielle auf Sie personalisierte
+ Version.  Sie können alle neuen Features sofort benutzen.
+
+@endnode
+
+
+@node support "Support"
+@prev updates
+@next acknowledgments
+
+ @{b}@{u}Support@{ub}@{uu}
+
+ Wenn  Sie  Vorschläge, Fragen, Kritik oder Fehlerbeschreibungen haben oder
+ mein Program einfach nur mögen, dann schreiben Sie am besten an:
+
+ SMail:  Oliver Rummeyer
+         Gartenstrasse 41
+         D-88212 Ravensburg
+         Germany/Europe
+
+ Email:  oliver.rummeyer@student.uni-ulm.de
+ Web:    http://www.uni-ulm.de/~s_orumme/
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: 2.6ui (Amiga)
+
+mQBNAi9OUNkAAAECAMMunTdwFA+DX4SksnWNl0QqP4uAkrStXnHoVTb1Yaz59TMC
+Nw/21MP0QOlG+4qIpIhZ6ayQFrkAeSWtkRG+r4EABRG0KU9saXZlciBSdW1tZXll
+ciA8b2xpdmVyQHJ1bW9yLnJ2LnN1Yi5vcmc+
+=iYz8
+-----END PGP PUBLIC KEY BLOCK-----
+
+@endnode
+
+@node acknowledgments "Danksagungen"
+@prev support
+@next history
+
+ @{b}@{u}Danksagungen@{ub}@{uu}
+
+ Der Autor möchte sich bei seinen Beta-Testern bedanken...
+
+ - Alexander Abt
+
+   ...für seine 'Recog' Dateiarten Erkennung.
+
+ - Frank Schlichting
+
+   ...daß er mein erster Beta-Tester war, für seine tollen Vorschläge
+      und für die Überarbeitung der englischen Anleitung.
+
+ - Jürgen Schubert
+
+   ...für seine absolut geistreichen Vorschläge und für das
+      Installer-Skript.
+
+ ...und...
+
+ - Jean-Francois Fabre
+
+   ...für die französische Anleitung und Catalog-Datei.
+
+ - Jérôme Lovy
+
+   ...für die Überarbeitung der französischen Catalog-Strings
+      und für die Erweiterung der Anleitung.
+
+ - Staffan Palmroos
+
+   ...für die schwedische Anleitung und Catalog-Datei.
+
+ - Ignazzi Carmelo
+
+   ...für die italienische Catalog-Datei.
+
+ - Teemu Valkeapää
+
+   ...für die finnische Catalog-Datei.
+
+ ...und...
+
+ - Rafael D'Halleweyn
+
+   ...für seinen "ARCHandler".
+
+ - Martin "XEN" Hutteloher
+
+   ...für sein MagicWB Paket und seine Erlaubnis ein paar Piktogramme
+      zu benutzen.
+
+ - Stefan Stuntz
+
+   ...für sein "Magic User Interface".
+
+ ...und natürlich bei den registrierten Benutzern.
+
+@endnode
+
+@node history "Geschichte"
+@prev acknowledgments
+@next future
+
+ @{b}@{u}Geschichte@{ub}@{uu}
+
+ - Version 0.80 (26.8.94)
+
+   Erste Veröffentlichung.
+
+ - Version 0.81 (7.9.94)
+
+   o Einige kleine Fehler behoben.
+   o Einen Konfigurations-Schalter hinzugefügt um die Pfad Erweiterung an
+     oder aus zu schalten.
+
+ - Version 0.82 (11.10.94)
+
+   o Einige Fehler behoben.
+   o Es wird jetzt der Standard CLI Suchpfad auch beim WB Start benutzt.
+   o Einige Dateitypen hinzugefügt.
+   o Eine Kommandooption @{" ICONIFY " link menus} hinzugefügt.
+   o Eine Konfigurationsvariable @{" FLUSHMEMORY " link variable} hinzugefügt.
+   o Die Konfigurationsvariable 'HELPFILE' wurde entfernt.
+   o Komplett lokalisiert (Deutsche Catalog Datei mitgeliefert).
+   o Viele andere kleine Änderungen.
+
+ - Version 0.83 (5.12.94)
+
+   o Einige kleine Fehler behoben.
+   o Einige Dateitypen hinzugefügt.
+   o Neue interne Funktionen: @{" UPDATE " link Update} & @{" CURRENT " link Current}
+   o Es wird jetzt eine deutsche Anleitung mitgeliefert.
+   o Die Catalog Dateien haben sich leicht geändert.
+   o Es wird eine italienische Catalog Datei mitgeliefert.
+   o Der Programmcode wurde stark überarbeitet.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+
+ - Version 0.90 (9.1.95)
+
+   o benötigt mindestens MUI 2.3
+   o Alle bekannten Fehler behoben.
+   o Einige Dateitypen hinzugefügt.
+   o Zwei Konfigurationsvariablen @{" FORMATLEFT " link variable} & @{" FORMATRIGHT " link variable} hinzugefügt.
+   o Ein Konfigurationswort @{" HOTKEY " link hotkey} hinzugefügt.
+   o Neue Konfigurationsvariable @{" COPYVERIFY " link variable}.
+   o Neue Konfigurationsvariable 'SYMMETRICAL'.
+   o Das Aktivieren von Listviews ohne Einträge funktioniert jetzt.
+   o Die Kommandostrings der Konfigurationsdatei haben sich stark
+     geändert, es gibt jetzt einige neue '%' Parameter.
+   o Die Archive Kommando Konfiguration hat sich geändert.
+   o Die Funktionen 'COMMAND','EXECUTE' und 'REXX' wurden entfernt.
+   o Es gibt jetzt eine mächtige @{" ARexx Schnittstelle " link arexxinterface}.
+   o Die Catalog Dateien haben sich geändert.
+   o Einige andere Kleinigkeiten wurden verbessert.
+
+ - Version 0.91 (23.1.95)
+
+   o Einige kleine Fehler behoben.
+   o Neue '&' Parameter hinzugefügt.
+   o Die voreingestellten Archivierungs Kommandos haben sich geändert.
+   o Die 'Überschreiben' & 'Schutzbit' Abfrage hat sich geändert.
+   o Es werden ein paar ARexx Beispiele mitgeliefert.
+   o Die Catalog Dateien haben sich geändert.
+   o Das Installations-Skript wurde verbessert.
+   o Im Datei Informations Fenster wird jetzt falls möglich
+     die Version der Datei angezeigt.
+
+ - Version 1.00 (20.3.95)
+
+   o Einige Fehler behoben.
+   o Einige Fehler in den Catalog Dateien behoben.
+   o Der Programmcode wurde überarbeitet.
+   o Es gibt jetzt vom Benutzer frei einstellbare Dateiarten.
+   o Die @{" Dateiarten " link customtype} Konfiguration hat sich stark geändert.
+   o Die @{" Archive " link archive} Kommando Konfiguration hat sich geändert.
+   o Die Konfigurationsvariable 'ARCHANDLER' wurde entfernt.
+   o Es gibt ein paar neue und verbesserte ARexx Beispiele.
+
+ - Version 1.01 (22.3.95)
+
+   o Einige böse Fehler behoben.
+
+ - Version 1.02 (3.4.95)
+
+   o Einige Fehler behoben.
+   o Die Catalog Dateien haben sich leicht geändert.
+   o Deutsche Anleitung leicht verbessert.
+   o Neuer Menüpunkt @{" letzte Meldung anzeigen " link menus}.
+   o Neuer Menüpunkt @{" alles aktualisieren " link menus}.
+
+ - Version 1.03 (4.6.95)
+
+   o Einige Fehler behoben.
+   o Installations Skript verbessert.
+   o Die Behandlung von unbekannten Dateiarten verbessert.
+   o Neue Konfigurationsvariable @{" CHECKDUPES " link variable}.
+   o Neuer Parameter '%a' um den ARexx Portnamen zu ermitteln.
+
+ - Version 1.04 (9.7.95)
+
+   o Einige kleine Fehler behoben.
+   o Die Catalog Dateien haben sich leicht geändert.
+   o Es wird jetzt eine französische Anleitung mitgeliefert.
+   o Es wird eine französische Catalog Datei mitgeliefert.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+   o Listenart kann mit der mittleren Maustaste geändert werden.
+   o Man kann die Kommando Bänke mit der mittleren Maustaste umschalten.
+   o Neuer Menüpunkt @{" Neuen starten " link menus}.
+
+ - Version 1.10 (16.10.95)
+
+   o Es wird jetzt ein Preference Programm mitgeliefert.
+   o Die Konfigurationsdatei wird jetzt in 'ENV:RO/' gespeichert.
+   o Einige kleine Fehler behoben.
+   o Die Catalog Dateien haben sich leicht geändert.
+   o Der Programmcode wurde überarbeitet.
+   o Neue Konfigurationsvariable @{" FRAMES " link variable}.
+   o Neue Konfigurationsvariable @{" MIDDLEMOUSE " link variable}.
+   o Die Konfigurationsdatei unterstützt jetzt '^' als Esc-Zeichen.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+
+ - Version 1.20 (3.12.95)
+
+   o Benötigt jetzt mindestens MUI 3.1
+   o Einige Änderung für MUI3+ durchgeführt.
+   o Einige kleine Fehler behoben.
+   o Die Catalog Dateien haben sich leicht geändert.
+   o Einige überflüssige Menüpunkte entfernt.
+   o Neuer Menüpunkt @{" MUI... " link menus}.
+   o Neuer Menüpunkt @{" RO... " link menus}.
+   o Preferences werden jetzt direkt in RO übernommen.
+   o Die Größe der @{" Listviews " link listview} kann jetzt dynamisch verändert werden.
+   o Ein @{" Drag&Drop " link listview} Mechanismus wurde realisiert.
+
+ - Version 1.21 (5.2.96)
+
+   o Benötigt jetzt mindestens MUI 3.2
+   o Einige kleine Fehler behoben.
+   o Die Konfigurationsvariable 'FRAMES' wurde entfernt.
+   o Installations Skript verbessert.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+
+ - Version 1.22 (14.4.96)
+
+   o Die Catalog Dateien haben sich leicht geändert.
+   o Einige Änderung für MUI3.3 durchgeführt.
+   o Einige Fehler behoben.
+   o Es wird jetzt eine schwedische Anleitung mitgeliefert.
+   o Es wird eine schwedische Catalog Datei mitgeliefert.
+   o Die Konfigurationsvariable 'SYMMETRICAL' wurde entfernt.
+   o @{" Drag&Drop " link listview} Mechanismus leicht geändert.
+   o @{" Change " link Change} Requester hat sich geändert.
+   o Neuer Parameter '&b' um Returncodes zu ignorieren.
+   o Neuer Parameter '&d' um Einträge nicht zu deselektieren.
+   o Neuer Arexx Befehl 'Change' eingebaut.
+   o Neue Konfigurationsvariablen @{" ORDERLEFT " link variable} und @{" ORDERRIGHT " link variable}.
+   o Verzeichnisse werden jetzt nach Preference Änderung wieder eingelesen.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+
+ - Version 1.23 (11.9.96)
+
+   o Einige Fehler behoben.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+   o Die Catalog Dateien haben sich leicht geändert.
+
+ - Version 1.24 (28.11.96)
+
+   o Einige Fehler behoben.
+   o Die Catalog Dateien haben sich geändert.
+   o Neue Konfigurationsvariable @{" PAGES " link variable}.
+   o Vom Benutzer angegebene 'Puffer' werden jetzt fett angezeigt.
+   o Vom Benutzer angegebene 'Puffer' werden immer ganz oben angezeigt.
+   o Kurze 'Bubble Help' zu den wichtigsten Knöpfen eingebaut.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+
+ - Version 1.25 (20.2.97)
+
+   o Benötigt mindestens MUI 3.6
+   o Ein böser Fehler behoben.
+   o Einige kleine Fehler behoben.
+   o Die Catalog Dateien haben sich geändert.
+   o Neue interne Funktione @{" LFOLD " link LFold}.
+   o Ein paar andere Kleinigkeiten wurden verbessert.
+
+ - Version 1.26 (21.4.97)
+
+   o Einige kleine Fehler behoben.
+   o Ein paar andere Kleinigkeiten wurden geändert.
+
+ - Version 1.27 (5.12.97)
+
+   o Einige kleine Fehler behoben.
+   o Ein paar andere Kleinigkeiten wurden geändert.
+
+@endnode
+
+@node future "Zukünftige Erweiterungen"
+@prev history
+@next disclaimer
+
+ @{b}@{u}Zukünftige Erweiterungen@{ub}@{uu}
+
+ o Drag & Drop erweitern.
+ o ARexx-Port verbessern.
+ o Einen horizontalen Scrollbalken in den Listviews einbauen.
+ o Preference Programm verbessern.
+ o Eine Anleitung zum Preference Programm schreiben.
+ o Viele andere Kleinigkeiten...
+
+@endnode
+
+@node disclaimer "Disclaimer"
+@prev future
+@next license
+
+ @{b}@{u}Disclaimer@{ub}@{uu}
+
+ THERE  IS  NO  WARRANTY  FOR  THE  PROGRAM,  TO  THE  EXTENT  PERMITTED BY
+ APPLICABLE  LAW.   EXCEPT  WHEN  OTHERWISE STATED IN WRITING THE COPYRIGHT
+ HOLDER  AND/OR  OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+ OF  ANY  KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+ THE  IMPLIED  WARRANTIES  OF  MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+ IS  WITH  YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+ IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL
+ ANY  COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY REDISTRIBUTE THE PROGRAM
+ AS  PERMITTED  ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL,
+ SPECIAL,  INCIDENTAL  OR  CONSEQUENTIAL  DAMAGES ARISING OUT OF THE USE OR
+ INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR
+ DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES
+ OR  A  FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF
+ SUCH  HOLDER  OR  OTHER  PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ DAMAGES.
+
+@endnode
+
+@node license "License"
+@prev disclaimer
+@next installer
+
+ @{b}@{u}License@{ub}@{uu}
+
+ - You may use RO for a period  of up to 14 days of evaluation.  After that
+   you have to register.
+
+ - You may copy and distribute verbatim copies of the program's executable
+   code  and  documentation as you receive it, in any medium, provided that
+   you   conspicuously   and   appropriately  publish  only  the  original,
+   unmodified  program,  with  all  copyright  notices  and  disclaimers of
+   warranty  intact  and  including  all  the  accompanying  documentation,
+   example files and anything else that came with the original.
+
+ - Except  when  otherwise  stated in  this documentation, you may not copy
+   and/or  distribute  this  program without the accompanying documentation
+   and  other  additional  files  that came with the original.  You may not
+   copy and/or distribute modified versions of this program.
+
+ - You may not copy, modify, sublicense, distribute or transfer the program
+   except  as expressly provided under this license.  Any attempt otherwise
+   to copy, modify, sublicense, distribute or transfer the program is void,
+   and  will  automatically  terminate your rights to use the program under
+   this  license.   However, parties who have received copies, or rights to
+   use  copies,  from  you  under this license will not have their licenses
+   terminated so long as such parties remain in full compliance.
+
+ - By  copying,  distributing  and/or  using the  program you indicate your
+   acceptance of this license to do so, and all its terms and conditions.
+
+ - Each  time  you  redistribute  the  program, the recipient automatically
+   receives a license from the original licensor to copy, distribute and/or
+   use  the  program  subject  to  these terms and conditions.  You may not
+   impose  any  further  restrictions  on  the  recipients' exercise of the
+   rights granted herein.
+
+ - You  may  not  disassemble,  decompile,  re-source  or otherwise reverse
+   engineer the program.
+
+ - You  agree  to  cease  distributing  the  program  and data involved if
+   requested to do so by the author.
+
+@endnode
+
+@node installer "Installer"
+@prev "license"
+@next "magicuserinterface"
+
+ @{b}@{u}Installer@{ub}@{uu}
+
+   RO wird zusammen mit dem `Installer' von Commodore geliefert:
+
+     Der  Installer  und  das  Installer  Project-Icon  sind  (c) Copyright
+     1991-93    Commodore-Amiga,    Inc.     Alle    Rechte    vorbehalten.
+     Vervielfältigt und verbreitet unter Lizenz von Commodore.
+ 
+     DIE  INSTALLER-SOFTWARE  WIRD  ZUR VERFÜGUNG GESTELLT, WIE SIE IST UND
+     KANN  SICH  JEDERZEIT  ÄNDERN.  ES WERDEN KEINERLEI GARANTIEN GEGEBEN.
+     JEGLICHE  BENUTZUNG  FINDET  AUF  IHR  EIGENES  RISIKO STATT.  ES WIRD
+     KEINERLEI HAFTUNG ODER GEWÄHRLEISTUNG ÜBERNOMMEN.
+
+@endnode
+
+@node magicuserinterface "Magic User Interface"
+@prev installer
+
+
+                          This application uses
+
+
+                        MUI - MagicUserInterface
+
+                (c) Copyright 1993/94 by Stefan Stuntz
+
+
+MUI is a system to generate and maintain graphical user interfaces. With
+the  aid  of  a  preferences program, the user of an application has the
+ability to customize the outfit according to his personal taste.
+
+MUI is distributed as shareware. To obtain a complete package containing
+lots of examples and more information about registration please look for
+a  file  called  "muiXXusr.lha"  (XX means the latest version number) on
+your local bulletin boards or on public domain disks.
+
+          If you want to register directly, feel free to send
+
+
+                         DM 30.-  or  US$ 20.-
+
+                                  to
+
+                             Stefan Stuntz
+                        Eduard-Spranger-Straße 7
+                             80935 München
+                                GERMANY
+
+
+@endnode
+
+@index Index
+@node Index
+
+ A
+
+ @{"About" link About}
+ @{"Action" link Action}
+ @{"All" link All}
+ @{"APPWINDOW" link variable}
+ @{"ARCHIVETYPE" link archive}
+ @{"ARexx Schnittstelle" link arexxinterface}
+ @{"Assign" link Assign}
+
+ B
+
+ @{"BINARY" link filetype}
+ @{"BUFFER" link buffer}
+ @{"BUTTON" link button}
+ @{"Buffers" link Buffers}
+ @{"ByName" link ByName}
+ @{"Bytes" link Bytes}
+
+ C
+
+ @{"Change" link Change}
+ @{"CHECKFIT" link variable}
+ @{"CHECKDUPES" link variable}
+ @{"Copy" link Copy}
+ @{"CopyAs" link Copy}
+ @{"COPYDATE" link variable}
+ @{"CopyDev" link CopyDev}
+ @{"COPYFLAGS" link variable}
+ @{"COPYNOTE"  link  variable}
+ @{"COPYVERIFY" link variable}
+ @{"Current" link Current}
+ @{"CUSTOMTYPE" link customtype}
+
+ D
+
+ @{"Danksagungen" link acknowledgments}
+ @{"DEFAULT" link filetype}
+ @{"Delete" link Delete}
+ @{"DELFORCE" link variable}
+ @{"DELVERIFY" link variable}
+ @{"Directory" link Directory}
+ @{"Disk" link Disk}
+ @{"Disclaimer" link disclaimer}
+ @{"Diskussion" link discussion}
+ @{"DRIVE" link drive}
+ @{"Dup" link Dup}
+
+ E
+
+ @{"Expand" link Expand}
+
+ F
+
+ @{"FILETYPE" link filetype}
+ @{"FIRSTLEFT" link varaible}
+ @{"FIRSTRIGHT" link variable}
+ @{"Fit" link Fit}
+ @{"FLUSHMEMORY" link variable}
+ @{"FORMATLEFT" link variable}
+ @{"FORMATRIGHT" link variable}
+ @{"Future" link future}
+
+ G
+
+ @{"Garantie" link disclaimer}
+ @{"Geschichte" link history}
+
+ H
+
+ @{"Hauptfenster" link mainwindow}
+ @{"Help" link Help}
+ @{"HOTDIR" link hotdir}
+ @{"HOTKEY" link hotkey}
+
+ I
+
+ @{"Icon" link Icon}
+ @{"ICONIFY" link menus}
+ @{"Info" link Info}
+ @{"Informations Textfeld" link dirinformation}
+ @{"Installation von RO" link installation}
+ @{"Installer" link installer}
+
+ K
+
+ @{"Kommandoknöpfe" link commandbutton}
+ @{"Konfiguration" link configuration}
+ @{"Kurze Beschreibung" link introduction}
+
+ L
+
+ @{"LActive" link Active}
+ @{"Laufwerksknöpfe" link drivebutton}
+ @{"LCopy" link LCopy}
+ @{"ListArc" link ListArc}
+ @{"Listview" link listview}
+ @{"LParent" link Parent}
+ @{"LReload" link Reload}
+ @{"LRoot" link Root}
+ @{"LSwap" link LSwap}
+
+ M
+
+ @{"Magic User Interface" link magicuserinterface}
+ @{"MakeDir" link MakeDir}
+ @{"MDLoad" link MakeDir}
+ @{"MENU" link menu}
+ @{"Menüs" link menus}
+ @{"MIDDLEMOUSE" link variable}
+ @{"Move" link Move}
+ @{"MoveAs" link MoveAs}
+
+ N
+
+ @{"None" link None}
+ @{"Note" link Note}
+ @{"Nutzungsbedingungen" link license}
+
+ O
+
+ @{"OVERWRITE" link variable}
+ @{"ORDERLEFT" link variable}
+ @{"ORDERRIGHT" link variable}
+
+ P
+
+ @{"Parent" link Parent}
+ @{"Pfad Gadget" link pathgadget}
+ @{"Protect" link Protect}
+
+ Q
+
+ @{"Quit" link Quit}
+
+ R
+
+ @{"RActive" link Active}
+ @{"Reboot" link Reboot}
+ @{"Register" link registergroup}
+ @{"Registrationsformular" link registrationform}
+ @{"Relabel" link Relabel}
+ @{"Reload" link Reload}
+ @{"Rename" link Rename}
+ @{"Root" link Root}
+ @{"RParent" link Parent}
+ @{"RReload" link Reload}
+ @{"RRoot" link Root}
+
+ S
+
+ @{"SetDate" link SetDate}
+ @{"Shrink" link Shrink}
+ @{"SORTLEFT" link variable}
+ @{"SORTRIGHT" link variable}
+ @{"Status Zeile" link statusbar}
+ @{"Support" link support}
+ @{"Systemanforderungen" link requirements}
+
+ T
+
+ @{"Toggle" link Toggle}
+ @{"Touch" link Touch}
+
+ U
+
+ @{"UnArc" link UnArc}
+ @{"Unregistrierte Version" link unregistered}
+ @{"Update" link Update}
+ @{"Updates" link updates}
+
+ V
+
+ @{"VARIABLE" link variable}
+ @{"Volumes" link Volumes}
+
+ W
+
+ @{"Wie registriert man RO" link registration}
+
+@endnode

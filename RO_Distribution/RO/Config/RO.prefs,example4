@@ -1,0 +1,252 @@
+;
+; This is the default config file for 'RO' in german
+;
+
+;
+; Built-in Filetypes
+;
+
+FILETYPE    ASCII      "MultiView >NIL: %f"
+FILETYPE    BINARY     "MultiView >NIL: %f"
+FILETYPE    DEFAULT    "MultiView >NIL: %f"
+
+;
+; User Filetypes
+;
+
+CUSTOMTYPE  "#?"       "FORM????8SVX"  "Iff 8SVX Datei"   "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "FORM????ANIM"  "Iff ANIM Datei"   "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "FORM????ILBM"  "Iff ILBM Datei"   "MultiView >NIL: %f"
+
+CUSTOMTYPE  "#?"       "GIF8?a"        "GIF Bild"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "DMS!"          "DMS Archiv"       "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "??????JFIF"    "JPeg Bild"        "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "$0A050108"     "PCX Bild"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "$424D"         "BMP Bild"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "$59A66A95"     "SunRaster Bild"   "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "$000002"       "Tga Bild"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "$00000A"       "Targa Bild"       "MultiView >NIL: %f"
+
+CUSTOMTYPE  "#?"       "$49492A3F"     "Intel Tiff"       "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "$4D4D3F2A"     "Motorola Tiff"    "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.dvi"   ""              "DVI Datei"        "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.info"  ""              "Icon"             "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.mpg"   ""              "MPeg Film"        "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.fli"   ""              "FLI Anim"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.guide" ""              "AmigaGuide Datei" "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.html"  ""              "HTML Datei"       "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.ps"    ""              "PostScript Datei" "MultiView >NIL: %f"
+
+;
+; Archive Filetypes
+;
+
+ARCHIVETYPE "#?.lha"   ""              "LHA/LZH Archiv"   "LhA v %f"  "LhA x %f &C &R"
+ARCHIVETYPE "#?.lzx"   ""              "LZX Archiv"       "LzX v %f"  "LzX x %f &C &R"
+ARCHIVETYPE "#?.arc"   ""              "ARC Archiv"       "Arc v %f"  "Arc x %f &C &R"
+ARCHIVETYPE "#?.arj"   ""              "ARJ Archiv"       "Arj v %f"  "Arj x %f &C &R"
+ARCHIVETYPE "#?.zip"   ""              "ZIP Archiv"       "Zip v %f"  "Zip x %f &C &R"
+ARCHIVETYPE "#?.zoo"   ""              "ZOO Archiv"       "Zoo v %f"  "Zoo x %f &C &R"
+
+;
+; General Variables
+;
+
+VARIABLE  APPWINDOW     "LOAD"
+VARIABLE  FLUSHMEMORY   "OFF"
+VARIABLE  CREATEICONS   "ON"
+VARIABLE  FOLLOWSCROLL  "ON"
+VARIABLE  PATHEXPAND    "ON"
+VARIABLE  QUITVERIFY    "ON"
+VARIABLE  COMPLETED     "Flash"
+VARIABLE  DRIVEBUTTONS  "Normal"
+VARIABLE  HOTDIRS       "Normal"
+VARIABLE  TEMPDIR       "T:"
+VARIABLE  HISTORY       "50"
+VARIABLE  OUTPUT        "CON:0/0/640/200/Output/CLOSE/AUTO"
+
+;
+; Copy Variables
+;
+
+VARIABLE  COPYBUF       "1048576"
+VARIABLE  COPYDATE      "ON"
+VARIABLE  COPYFLAGS     "ON"
+VARIABLE  COPYNOTE      "ON"
+VARIABLE  COPYSTAT      "ON"
+VARIABLE  COPYVERIFY    "ON"
+VARIABLE  CHECKFIT      "ON"
+VARIABLE  OVERWRITE     "VERIFY"
+
+;
+; Delete Variables
+;
+
+VARIABLE  DELDELAY      "0"
+VARIABLE  DELFORCE      "OFF"
+VARIABLE  DELVERIFY     "ON"
+VARIABLE  DELSTAT       "ON"
+
+;
+; Listview Variables
+;
+
+VARIABLE  LOADLEFT      ""
+VARIABLE  LOADRIGHT     ""
+VARIABLE  PAGELEFT      "Directory"
+VARIABLE  PAGERIGHT     "Directory"
+VARIABLE  FIRSTLEFT     "Dirs"
+VARIABLE  FIRSTRIGHT    "Dirs"
+VARIABLE  SORTLEFT      "Name"
+VARIABLE  SORTRIGHT     "Name"
+VARIABLE  ORDERLEFT     "High"
+VARIABLE  ORDERRIGHT    "High"
+VARIABLE  FORMATLEFT    "NSFDTC"
+VARIABLE  FORMATRIGHT   "NSFDTC"
+
+;
+; Clock Variables
+;
+
+VARIABLE  CLOCKREFRESH  "500"
+VARIABLE  CLOCKPRI      "-10"
+VARIABLE  SHOWDAY       "ON"
+VARIABLE  SHOWDATE      "ON"
+VARIABLE  SHOWTIME      "ON"
+VARIABLE  SHOWSECONDS   "OFF"
+VARIABLE  SHOWMEMORY    "ON"
+
+;
+; Buffers
+;
+
+BUFFER    ""
+BUFFER    ""
+BUFFER    ""
+BUFFER    ""
+BUFFER    ""
+
+;
+; User Menu
+;
+
+MENU      ""            ""
+MENU      ""            ""
+MENU      ""            ""
+MENU      ""            ""
+MENU      ""            ""
+
+;
+; HotDirs
+;
+
+HOTDIR     1            ""
+HOTDIR     2            ""
+HOTDIR     3            ""
+HOTDIR     4            ""
+HOTDIR     5            ""
+HOTDIR     6            ""
+HOTDIR     7            ""
+HOTDIR     8            ""
+HOTDIR     9            ""
+HOTDIR    10            ""
+
+;
+; HotKeys
+;
+
+HOTKEY  "" FUNCTION ""
+HOTKEY  "" FUNCTION ""
+HOTKEY  "" FUNCTION ""
+HOTKEY  "" FUNCTION ""
+HOTKEY  "" FUNCTION ""
+
+HOTKEY  "" COMMAND ""
+HOTKEY  "" COMMAND ""
+HOTKEY  "" COMMAND ""
+HOTKEY  "" COMMAND ""
+HOTKEY  "" COMMAND ""
+
+;
+; Drives
+;
+
+DRIVE      1            "DF0"     "DF0:"
+DRIVE      2            "RAM"     "RAM:"
+DRIVE      3            "DH0"     "DH0:"
+DRIVE      4            "DH1"     "DH1:"
+DRIVE      5            "DH2"     "DH2:"
+DRIVE      6            "DH3"     "DH3:"
+DRIVE      7            "CD0"     "CD0:"
+DRIVE      8            "SQ0"     "SQ0:"
+
+DRIVE      9            "DF0"     "DF0:"
+DRIVE     10            "RAM"     "RAM:"
+DRIVE     11            "DH0"     "DH0:"
+DRIVE     12            "DH1"     "DH1:"
+DRIVE     13            "DH2"     "DH2:"
+DRIVE     14            "DH3"     "DH3:"
+DRIVE     15            "CD0"     "CD0:"
+DRIVE     16            "SQ0"     "SQ0:"
+
+;
+; Command Buttons - First Page
+;
+
+BUTTON     1            COMMAND   "Lesen"         "Most >NIL: %f"
+BUTTON     2            COMMAND   "Starten"       "Run >NIL: %f"
+BUTTON     3            FUNCTION  "Löschen"       DELETE
+BUTTON     4            FUNCTION  "Verschieben"   MOVE
+BUTTON     5            FUNCTION  "Kopieren"      COPY
+BUTTON     6            FUNCTION  "Bytes"         BYTES
+BUTTON     7            FUNCTION  "Alles"         ALL
+BUTTON     8            COMMAND   "Arc"           "LhA >NIL: -x -r a %R %n &c"
+
+BUTTON     9            COMMAND   "Anzeigen"      "MultiView >NIL: %f"
+BUTTON    10            COMMAND   "Editieren"     "Ed >NIL: %f"
+BUTTON    11            FUNCTION  "Berühren"      TOUCH
+BUTTON    12            FUNCTION  "VerschAls"     MOVEAS
+BUTTON    13            FUNCTION  "KopierAls"     COPYAS
+BUTTON    14            FUNCTION  "Passen"        FIT
+BUTTON    15            FUNCTION  "Nichts"        NONE
+BUTTON    16            FUNCTION  "ListArc"       LISTARC
+
+BUTTON    17            FUNCTION  "Aktion"        ACTION
+BUTTON    18            COMMAND   "HexEdit"       "FileX >NIL: %f"
+BUTTON    19            FUNCTION  "Verzeichnis"   MAKEDIR
+BUTTON    20            FUNCTION  "Umbennenen"    RENAME
+BUTTON    21            FUNCTION  "Duplizieren"   DUP
+BUTTON    22            FUNCTION  "Erneuern"      RELOAD
+BUTTON    23            FUNCTION  "Muster"        BYNAME
+BUTTON    24            FUNCTION  "UnArc"         UNARC
+
+;
+; Command Buttons - Second Page
+;
+
+BUTTON    25            COMMAND   "Musik"         "DeliTracker >NIL: MODULE %f"
+BUTTON    26            FUNCTION  "Assign"        ASSIGN
+BUTTON    27            COMMAND   "Kommando"      "%r"
+BUTTON    28            FUNCTION  "Kommentar"     NOTE
+BUTTON    29            FUNCTION  "Wechseln"      CHANGE
+BUTTON    30            FUNCTION  "Mutter"        PARENT
+BUTTON    31            FUNCTION  "Umgekehrt"     TOGGLE
+BUTTON    32            FUNCTION  "Diskette"      DISK
+
+BUTTON    33            FUNCTION  "LTausch"       LSWAP
+BUTTON    34            FUNCTION  "DiskName"      RELABEL
+BUTTON    35            COMMAND   "Execute"       "Execute %r"
+BUTTON    36            FUNCTION  "Schutzbits"    PROTECT
+BUTTON    37            FUNCTION  "Erweitern"     EXPAND
+BUTTON    38            FUNCTION  "Wurzel"        ROOT
+BUTTON    39            FUNCTION  "UpdateSel"     UPDATE
+BUTTON    40            FUNCTION  "Information"   INFO
+
+BUTTON    41            FUNCTION  "LKopieren"     LCOPY
+BUTTON    42            FUNCTION  "KopierDev"     COPYDEV
+BUTTON    43            COMMAND   "Rexx"          "Rx %r"
+BUTTON    44            FUNCTION  "Datum"         SETDATE
+BUTTON    45            FUNCTION  "_Schrumpfen"   SHRINK
+BUTTON    46            FUNCTION  "Aktuelles"     CURRENT
+BUTTON    47            FUNCTION  "Piktogramme"   ICON
+BUTTON    48            FUNCTION  "Hilfe"         HELP

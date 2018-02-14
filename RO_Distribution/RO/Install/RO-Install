@@ -1,0 +1,390 @@
+; $VER: RO-Install 1.26 (21.4.97)
+; Original RO Installer script by Juergen Schubert
+; 100% Rewritten by Oliver Rummeyer
+
+;========================================================
+; Set Strings
+
+(set #nokick
+(cat "You must be using Kickstart 2.04 to use RO. Aborting!"
+))
+
+(set #nomui
+(cat "You need version 3.6 of MUI or better. Aborting!"
+))
+
+(set #startmsg
+(cat "\n\RO installation script.\n"
+     "This script installs RO on your Amiga.\n\n"
+     "Read the Documentation files for\n"
+     "more information on the distribution.\n"
+     "RO © 1994-1997 Oliver Rummeyer\n"
+     "All rights reserved."
+))
+
+(set #icons "Which type of icons would you like to install")
+(set #magicwbicons "MagicWB-Style Icons; 8 colors")
+(set #classicicons "Classic-WB-Style Icons; 4 colors")
+(set #noicons "No Icons")
+
+(set #install "\n\nInstalling RO to\n\n")
+(set #drawer
+(cat "In which disk or drawer should RO be installed?\n"
+     "(A drawer \"RO\" will be created there)"
+))
+
+(set #update
+(cat "A drawer \"RO\" already exists in the specified disk "
+     "or drawer. Your prefs settings are NOT changed if you "
+     "continue the installation procedure. Check the documentation "
+     "as some additional configuration keywords might be "
+     "introduced by this update.\n\n"
+     "Should I continue the installation procedure?"
+))
+
+(set #lang "Which languages should be installed?")
+(set #own
+(cat	"\n\nIf you want to create own versions of\n"
+	"the catalogs please have a look at the\n"
+	"distributions Locale directory. You will\n"
+	"find the .ct and .cd files there."
+))
+
+(set #install-docs "Would you like to install RO's documentation?")
+(set #doc "Which documentation formats would you like to install?")
+(set #doclang "Which language do you prefer for the documentation?")
+
+(set #install-rexx "Would you like to install the arexx examples?")
+(set #drawer-rexx "In which disk or drawer should the arexx examples be installed?")
+
+(set #exitmsg
+(cat "Please support the shareware concept!\n\n"
+     "If you like RO, please send $20.- or DM 30.- to\n\n"
+     "Oliver Rummeyer\n"
+     "Gartenstrasse 41\n"
+     "D-88212 Ravensburg\n"
+     "Germany/Europe"
+))
+;========================================================
+
+(if (< (/ (getversion) 65536) 37)
+(
+    (abort #nokick)
+))
+
+(if (<> (exists "mui:" (noreq)) 0)
+(
+	(if (>= (run "c:version muimaster.library VERSION 17") 5)
+	(
+		(abort #nomui)
+	))
+)
+(
+	(abort #nomui)
+))
+
+;=========================================================
+
+(message #startmsg)
+
+(complete 0)
+
+;=========================================================
+
+(set IconType
+	(askchoice
+		(prompt #icons)
+		(help @askchoice-help)
+		(choices
+			#magicwbicons
+			#classicicons
+			#noicons
+		)
+		(default 0)
+	)
+)
+
+(complete 15)
+
+;=========================================================
+
+(set TargetDir
+	(askdir
+		(prompt #drawer)
+		(default "SYS:Tools")
+		(help @askdir-help)
+	)
+)
+
+(set DestDir (tackon TargetDir "RO"))
+(set @default-dest DestDir)
+
+(if (= (exists DestDir) 2)
+   (message #update)
+)
+
+(complete 30)
+
+;=========================================================
+
+(makedir DestDir
+    (prompt #install DestDir)
+)
+
+(if (= IconType 0)
+(
+   	(copyfiles
+       	(source "")
+        (choices "/Icons/8col/RO.info" "/Icons/8col/ROPrefs.info" "/Icons/8col/RO.guide.info" "/Icons/8col/RegForm.info")
+   	    (dest DestDir)
+    )
+	(copyfiles
+		(source "/Icons/8col/Drawer.info")
+		(dest TargetDir)
+		(newname "RO.info")
+	)
+))
+
+(if (= IconType 1)
+(
+   	(copyfiles
+       	(source "")
+        (choices "/Icons/4col/RO.info" "/Icons/4col/ROPrefs.info" "/Icons/4col/RO.guide.info" "/Icons/4col/RegForm.info")
+   	    (dest DestDir)
+    )
+	(copyfiles
+		(source "/Icons/4col/Drawer.info")
+		(dest TargetDir)
+		(newname "RO.info")
+	)
+))
+
+(copyfiles
+	(help @copyfiles-help)
+	(source "/Binary/RO,binary")
+	(dest DestDir)
+	(newname "RO")
+)
+
+(copyfiles
+	(help @copyfiles-help)
+	(source "/Binary/ROPrefs,binary")
+	(dest DestDir)
+	(newname "ROPrefs")
+)
+
+(if (= (exists "ENV:RO") 0)
+	(makedir "ENV:RO")
+)
+(if (= (exists "ENVARC:RO") 0)
+	(makedir "ENVARC:RO")
+)
+
+(if (= (exists "ENV:RO/RO.prefs") 0)
+	(copyfiles
+		(help @copyfiles-help)
+		(source "/Config/RO.prefs,default")
+		(dest "ENV:RO/")
+		(newname "RO.prefs")
+	)
+)
+
+(if (= (exists "ENVARC:RO/RO.prefs") 0)
+	(copyfiles
+		(help @copyfiles-help)
+		(source "/Config/RO.prefs,default")
+		(dest "ENVARC:RO/")
+		(newname "RO.prefs")
+	)
+)
+
+(complete 45)
+
+;========================================================
+; Install Locale
+
+(if (AND (NOT (= (getassign "Locale") "")) (exists "libs:locale.library"))
+(
+
+	(set Lang
+		(askoptions
+			(prompt #lang)
+			(help @askoptions-help)
+			(choices "Deutsch" "Français" "Svenska" )
+			(default 0)
+		)
+	)
+
+	(if (IN Lang 0)
+		(copyfiles
+			(source "")
+			(choices "/Locale/Catalogs/Deutsch/ro.catalog")
+			(dest "LOCALE:Catalogs/Deutsch")
+		)
+	)
+
+	(if (IN Lang 1)
+		(copyfiles
+			(source "")
+			(choices "/Locale/Catalogs/Français/ro.catalog")
+			(dest "LOCALE:Catalogs/Français")
+		)
+	)
+
+	(if (IN Lang 2)
+		(copyfiles
+			(source "")
+			(choices "/Locale/Catalogs/Svenska/ro.catalog")
+			(dest "LOCALE:Catalogs/Svenska")
+		)
+	)
+
+	(message #own)
+))
+
+(complete 60)
+
+;========================================================
+; Install ARexx Scripts
+
+(if (askbool (help @askbool-help) (prompt #install-rexx))
+(
+	(set RexxDir
+	(askdir
+		(prompt #drawer-rexx)
+		(default "REXX:")
+		(help @askdir-help)
+	))
+
+   	(copyfiles
+       	(source "")
+        (choices
+			"/ARexx/Action.RO"
+			"/ARexx/AddArc.RO"
+			"/ARexx/ArcHandler.RO"
+			"/ARexx/Deiconify.RO"
+			"/ARexx/Iconify.RO"
+			"/ARexx/LoadDir.RO"
+			"/ARexx/LoadOther.RO"
+			"/ARexx/PlayModule.RO"
+			"/ARexx/ShowHtml.RO"
+		)
+   	    (dest RexxDir)
+    )
+
+))
+
+(complete 75)
+
+;=========================================================
+; Install Documentation
+
+(if (askbool (help @askbool-help) (prompt #install-docs))
+(
+
+	(set doctype
+		(askoptions
+			(prompt #doc)
+			(help @askoptions-help)
+			(choices
+				"AmigaGuide ® V39"
+			)
+			(default 1)
+		)
+	)
+
+	(if (<> doctype 0)
+	(
+
+		(set doclang
+			(askchoice
+				(prompt #doclang)
+				(help @askchoice-help)
+				(choices
+					"English"
+					"Deutsch"
+					"Français"
+					"Svenska"
+				)
+				(default 0)
+			)
+		)
+	))
+
+	(if (= doctype 1)
+	(
+
+		(if (= doclang 0)
+		(
+			(copyfiles
+				(source "/Docs/RO.guide,english")
+				(dest DestDir)
+				(newname "RO.guide")
+			)
+			(copyfiles
+				(source "/Docs/RegForm,english")
+				(dest DestDir)
+				(newname "RegForm")
+			)
+		))
+
+		(if (= doclang 1)
+		(
+			(copyfiles
+				(source "/Docs/RO.guide,deutsch")
+				(dest DestDir)
+				(newname "RO.guide")
+			)
+			(copyfiles
+				(source "/Docs/RegForm,deutsch")
+				(dest DestDir)
+				(newname "RegForm")
+			)
+		))
+
+		(if (= doclang 2)
+		(
+			(copyfiles
+				(source "/Docs/RO.guide,francais")
+				(dest DestDir)
+				(newname "RO.guide")
+			)
+			(copyfiles
+				(source "/Docs/RegForm,francais")
+				(dest DestDir)
+				(newname "RegForm")
+			)
+		))
+
+		(if (= doclang 3)
+		(
+			(copyfiles
+				(source "/Docs/RO.guide,svenska")
+				(dest DestDir)
+				(newname "RO.guide")
+			)
+			(copyfiles
+				(source "/Docs/RegForm,svenska")
+				(dest DestDir)
+				(newname "RegForm")
+			)
+		))
+
+	))
+
+	(if (= doctype 0)
+	(
+		(delete	(tackon DestDir "RO.guide.info"))
+		(delete	(tackon DestDir "RegForm.info"))
+	))
+
+)
+(
+	(delete	(tackon DestDir "RO.guide.info"))
+	(delete	(tackon DestDir "RegForm.info"))
+))
+
+(complete 100)
+
+;==========================================================
+(exit #exitmsg)

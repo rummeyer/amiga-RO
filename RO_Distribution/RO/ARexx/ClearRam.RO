@@ -1,0 +1,64 @@
+/* 
+
+   $VER: ClearRam.RO 1.0
+
+   Author:
+    Siegfried Sulovsky (S.Sulovsky@t-online.de)
+
+   Function:
+    Removes everything but the standard files from Ram Disk.
+
+   Requires:
+    RO 0.90 or newer
+
+*/
+
+PARSE ARG PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+'Sleep'
+'Message "Checking files..."'
+p.1="Ram Disk:Clipboards"       /* Definition of standard files in Ram Disk. */
+p.2="Ram Disk:ENV"              /* Might have to be changed.                 */
+p.3="Ram Disk:T"
+p.4="Ram Disk:ADE-datestamp"
+y=4                             /* Count of standard files                   */
+'Path Inactive'
+IF RESULT = "Ram Disk:" THEN DO
+    'Active Inactive'
+END
+'Path Active'
+IF RESULT ~= "Ram Disk:" THEN DO
+    'Load Active "RAM:"'
+END
+'Function "ALL"'
+'NumEntries Active Any'
+i = RESULT
+DO WHILE i>0
+    s=1
+    b=0
+    'GetEntry Active Any'
+    List = RESULT
+    DO x=1 TO y
+	IF List = p.s THEN DO
+	    b=1
+	    x=4
+	END
+	s=s+1
+    END
+    IF b=0 Then do
+	Address Command 'C:delete ' || '"' || List || '" ALL'
+	ADDRESS VALUE PortName
+    END
+    i=i-1
+END
+'Message "Completed."'
+'WakeUp'
+'Refresh Active'
+Exit 0

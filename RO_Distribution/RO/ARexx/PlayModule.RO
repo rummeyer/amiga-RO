@@ -1,0 +1,49 @@
+/* 
+
+   $VER: PlayModule.RO 0.2
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Loads the specified module into DeliTracker and plays it.
+    If DeliTracker isn't started it's loaded by the script.
+
+   Requires:
+    RO 0.90 or newer and DeliTracker 2.01 or newer
+
+   Example:
+    CUSTOMTYPE "#?.mod" "" "Sound Module" "Rx >NIL: REXX:RO/PlayModule.RO %P%N %a"
+
+*/
+
+PARSE ARG FileName PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+
+'Sleep'
+
+IF ~SHOW('Ports','DELITRACKER') THEN
+ DO
+  'Message "Starting DeliTracker..."'
+  ADDRESS 'COMMAND' 'Run >NIL: DeliTracker CX_POPUP=NO'
+  ADDRESS 'COMMAND' 'WaitForPort DELITRACKER'
+  IF ~SHOW('Ports','DELITRACKER') THEN
+   DO
+    'Message "Unable to load DeliTracker II."'
+    'Wakeup'
+    EXIT 10
+   END
+ END
+
+'Message '||'"'||'Loading module '||FileName||'...'||'"'
+
+ADDRESS 'DELITRACKER' 'PLAYMOD '||FileName
+
+'Wakeup'

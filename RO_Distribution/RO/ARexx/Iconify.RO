@@ -1,0 +1,29 @@
+/* 
+
+   $VER: Iconify.RO 0.3
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Hides RO's user interface.
+
+   Requires:
+    RO 0.90 or newer
+
+   Example:
+    Rx >NIL: REXX:RO/Iconify.RO RO.1
+
+*/
+
+PARSE ARG PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+
+'Hide'

@@ -1,0 +1,83 @@
+/* 
+
+   $VER: AddArc.RO 0.3
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Archives all selected files via Stefan Boberg's LhA. Using this
+    script is much faster than using the standard built-in function
+    because LhA isn't started for every file. Another advantage is
+    that it shows the progress output on screen.
+
+   Requires:
+    RO 0.90 or newer and LhA command in the AmigaDOS search path
+
+   Example:
+    BUTTON 8 COMMAND "Arc" "Rx >NIL: REXX:RO/AddArc.RO %a"
+
+*/
+
+PARSE ARG PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+
+ArcCommand='LhA -x -r a'
+Files=''
+
+'Sleep'
+
+'Path Active'
+IF RESULT="RESULT" THEN
+ DO
+  'Wakeup'
+  EXIT 5
+ END
+SourceDir=RESULT
+
+'NumEntries Active Entries'
+Num=RESULT
+IF Num~=0 THEN
+ DO
+
+  'StringReq ""'
+  IF RESULT="RESULT" THEN
+  DO
+   'Wakeup'
+   EXIT 5
+  END
+  Name=RESULT
+
+  DO Index=1 TO Num
+   'GetEntry Active Entries'
+   FileName=RESULT
+
+   Position=LASTPOS("/",FileName)
+   IF Position=0 THEN
+    Position=LASTPOS(":",FileName)
+   NewName=SUBSTR(FileName,Position+1)
+   Files=Files||'*"'||NewName||'*"'||' '
+
+   IF LENGTH(Files) > 180 | Index = Num THEN
+    DO
+     'Message "Adding entries to archive..."'
+     'Command "'||ArcCommand||' *"'||Name||'*" '||Files||' &c" ""'
+     IF RC ~= 0 THEN
+      DO
+       'Wakeup'
+       EXIT 5
+      END
+     Files=''
+    END
+  END
+
+END
+
+'Wakeup'

@@ -1,0 +1,124 @@
+/*
+** Configfile for RO
+*/
+
+/*** FileTypes ***/
+
+FILETYPE ASCII   "SYS:c/lg >NIL: %f"
+FILETYPE BINARY  "SYS:Tools/FileX >NIL: %f"
+FILETYPE DEFAULT "SYS:Utilities/MultiView >NIL: %f"
+
+CUSTOMTYPE  "#?"       "GIF8?a"       "GIF Picture"     "Sys:Tools/ViewGif >NIL: %f"
+CUSTOMTYPE  "#?.dms"   "DMS!"         "DMS Archive"     "DMS Write %f TO DF1:"
+CUSTOMTYPE  "#?"       "??????JFIF"   "JPeg Picture"    "Sys:Tools/ViewJPEG >NIL: %f"
+CUSTOMTYPE  "#?"       "FORM????ILBM" "Iff ILBM File"   "Sys:Tools/ViewIFF >NIL: %f"
+CUSTOMTYPE  "#?.dvi"   ""             "DVI File"        "TeX:bin/ShowDVI >NIL: %f"
+CUSTOMTYPE  "#?.info"  ""             "Icon"            "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"       "@database"    "AmigaGuide File" "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.guide" ""             "AmigaGuide File" "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.mod"   ""             "Sound Module"    "Sys:Sound/DT >nil: MODULE %f"
+
+ARCHIVETYPE "#?"       "$????2D6C68??2D"  "LHA/LZH Archive" "Lz l %f" "Lz -F x %f &C &R"
+ARCHIVETYPE "#?"       "$4C5A5800"        "LZX Archive"     "Lzx v %f" "LzX -X0 x %f &C &R"
+ARCHIVETYPE "#?"       "$1A08"            "ARC Archive"     "Arc v %f" "Arc x %f &C"
+ARCHIVETYPE "#?"       "$504B0304"        "PKZip Archive"   "Unzip -v %f" "Unzip -n %f &C"
+ARCHIVETYPE "#?"       "$5A4F4F20??2E"    "ZOO Archive"     "Zoo v %f" "Zoo x %f &C"
+ARCHIVETYPE "#?"       "$60EA????1E"      "ARJ Archive"     "Unarj l %f" "Unarj e %f &C"
+
+MENU "DMS"            "Tools:DMSWin"
+MENU "SuperDuper"     "Tools:copys/SD"
+MENU "----------"     ""
+MENU "Flush"          "c:Flush"
+MENU ""               ""
+MENU "Imploder"       "Tools:cruncher/Timp"
+
+/*** Drive Buttons ***/
+
+DRIVE  1 "DF0" "DF0:"
+DRIVE  2 "DF1" "DF1:"
+DRIVE  3 "DH0" "DH0:"
+DRIVE  4 "DH1" "DH1:"
+DRIVE  5 "DH2" "DH2:"
+DRIVE  6 "DH3" "DH3:"
+DRIVE  7 "DH4" "DH4:"
+DRIVE  8 "EMS" "EMS:"
+DRIVE  9 "DF0" "DF0:"
+DRIVE 10 "DF1" "DF1:"
+DRIVE 11 "DH0" "DH0:"
+DRIVE 12 "DH1" "DH1:"
+DRIVE 13 "DH2" "DH2:"
+DRIVE 14 "DH3" "DH3:"
+DRIVE 15 "DH4" "DH4:"
+DRIVE 16 "EMS" "EMS:"
+DRIVE 17 "RAM" "RAM:"
+DRIVE 18 "DH5" "DH5:"
+DRIVE 19 "DH6" "DH6:"
+DRIVE 20 "DH7" "DH7:"
+DRIVE 21 "IN"  "INBOUND:"
+DRIVE 22 "OUT" "OUTBOUND:"
+DRIVE 23 "CD0" "CD0:"
+DRIVE 24 "CD1" "CD1:"
+DRIVE 25 "RAM" "RAM:"
+DRIVE 26 "DH5" "DH5:"
+DRIVE 27 "DH6" "DH6:"
+DRIVE 28 "DH7" "DH7:"
+DRIVE 29 "IN"  "INBOUND:"
+DRIVE 30 "OUT" "OUTBOUND:"
+DRIVE 31 "CD0" "CD0:"
+DRIVE 32 "CD1" "CD1:"
+
+/*** Buttons ***/
+
+BUTTON  1 COMMAND  "Read"      "sys:c/lg >NIL: %f"
+BUTTON  2 COMMAND  "Run"       "Run >NIL: %f"
+BUTTON  3 FUNCTION "_Delete"   DELETE
+BUTTON  4 FUNCTION "_Move"     MOVE
+BUTTON  5 FUNCTION "_Copy"     COPY
+BUTTON  6 FUNCTION "_Bytes"    BYTES
+BUTTON  7 FUNCTION "All"       ALL
+BUTTON  8 COMMAND  "Arc"       "Lz -x -r -F -Qh64 a *"%T%R*" %n &c"
+
+BUTTON  9 COMMAND  "View"      "sys:Tools/VT >NIL: %f"
+BUTTON 10 COMMAND  "_Edit"     "sys:Tools/cee >NIL: %f"
+BUTTON 11 FUNCTION "Create"    CREATE
+BUTTON 12 FUNCTION "Move As"   MOVEAS
+BUTTON 13 FUNCTION "Copy As"   COPYAS
+BUTTON 14 FUNCTION "Fit"       FIT
+BUTTON 15 FUNCTION "None"      NONE
+BUTTON 16 FUNCTION "Pattern"   BYNAME
+
+BUTTON 17 FUNCTION "Action"    ACTION
+BUTTON 18 COMMAND  "XEdit"     "sys:Tools/FileX >NIL: %f"
+BUTTON 19 FUNCTION "MakeDir"   MAKEDIR
+BUTTON 20 FUNCTION "Rename"    RENAME
+BUTTON 21 FUNCTION "Dup"       DUP
+BUTTON 22 FUNCTION "Refresh"   RELOAD
+BUTTON 46 FUNCTION "ListArc"   LISTARC
+BUTTON 24 FUNCTION "UnArc"     UNARC
+
+BUTTON 25 COMMAND  "Music"     "sys:Sound/DT >NIL: MODULE %f"
+BUTTON 26 FUNCTION "Assign"    ASSIGN
+BUTTON 27 COMMAND  "Command"   "%r"
+BUTTON 28 FUNCTION "Note"      NOTE
+BUTTON 29 FUNCTION "Touch"     TOUCH
+BUTTON 30 FUNCTION "Parent"    PARENT
+BUTTON 31 FUNCTION "Reverse"   TOGGLE
+BUTTON 32 FUNCTION "Disk"      DISK
+
+BUTTON 33 FUNCTION "LSwap"     LSWAP
+BUTTON 34 FUNCTION "Relabel"   RELABEL
+BUTTON 35 COMMAND  "Execute"   "Execute %r"
+BUTTON 36 FUNCTION "Protect"   PROTECT
+BUTTON 37 FUNCTION "Expand"    EXPAND
+BUTTON 38 FUNCTION "Root"      ROOT
+BUTTON 39 FUNCTION "Icon"      ICON
+BUTTON 40 FUNCTION "Info"      INFO
+
+BUTTON 41 FUNCTION "LCopy"     LCOPY
+BUTTON 42 FUNCTION "CopyDev"   COPYDEV
+BUTTON 43 COMMAND  "Rexx"      "Rx %r"
+BUTTON 44 FUNCTION "SetDate"   SETDATE
+BUTTON 45 FUNCTION "Shrink"    SHRINK
+BUTTON 23 FUNCTION "Change"    CHANGE
+BUTTON 47 FUNCTION "About"     ABOUT
+BUTTON 48 FUNCTION "Quit"      QUIT

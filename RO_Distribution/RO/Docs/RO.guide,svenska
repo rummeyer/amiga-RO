@@ -1,0 +1,3174 @@
+@database "RO Documentation"
+@author "Oliver Rummeyer"
+@(c) "Copyright © 1994-1998 Oliver Rummeyer"
+@$VER: RO Documentation 1.27 (5-Dec-98)
+
+@node main "RO Användarhandledning"
+@toc contents
+@next introduction
+
+	       RO --- En MUI-baserad Filhanterare, Shareware
+
+			       Version 1.27
+
+			    Användarhandledning
+
+		 Copyright © 1994-1998 Av Oliver Rummeyer
+
+				   ----
+
+ @{b}1.  Inledning@{ub}
+
+  1.1  @{" Kort beskrivning       " link introduction}..............Vad är 'RO'?
+  1.2  @{" Systemkrav             " link requirements}..............Vad du behöver för att använda RO
+  1.3  @{" Oregistrerad version?  " link unregistered}..............Är denna version nedbantad?
+
+ @{b}2.  Installation@{ub}
+
+  2.1  @{" Hur du installerar RO  " link installation}..............Hur skall RO installeras?
+
+ @{b}3.  Hur du använder RO@{ub}
+
+  3.1  @{" Programmet             " link mainwindow}..............Hur du använder RO
+  3.2  @{" Menyer                 " link menus}..............ROs Menyer
+  3.3  @{" Inställningar          " link configuration}..............Anpassa RO
+  3.4  @{" ARexx-gränssnitt       " link arexxinterface}..............Hur du använder ROs ARexx-gränssnitt
+  3.5  @{" Annat                  " link discussion}..............Frågor och svar. (FAQ)
+
+ @{b}4.  Registrering@{ub}
+
+  4.1  @{" Hur du registrerar RO  " link registration}..............Hur du blir en registrerad användare
+  4.2  @{" Registreringsblankett  " link registrationform}..............Jag behöver ditt namn, din adress, ...
+
+ @{b}5.  Annat@{ub}
+
+  5.1  @{" Uppdateringar          " link updates}..............Var du får tag i uppdateringar
+  5.2  @{" Korrespondens          " link support}..............Hur du får tag i författaren
+  5.3  @{" Tack till...           " link acknowledgments}..............Författaren vill tacka...
+  5.4  @{" Historia               " link history}..............ROs historia
+  5.5  @{" Framtiden              " link future}..............Om du registrerar dig...
+
+ @{b}6.  Distribution@{ub}
+
+  6.1  @{" Garanti                " link disclaimer}..............Garanti? Ingen garanti!
+  6.2  @{" Användningsvillkor     " link license}..............Vad gäller?
+  6.3  @{" Installeraren          " link installer}..............Om Installeraren
+  6.4  @{" Magic User Interface   " link magicuserinterface}..............Om Magic User Interface
+
+@endnode
+
+@node introduction "Introduktion"
+@prev main
+@next requirements
+
+ @{b}@{u}Kort beskrivning@{ub}@{uu}
+
+ RO  är en ny Intuition-kontrollerad,  fullt konfigurerbar filhanterare för
+ OS 2.04 och senare. ROs kraftfulla  funktioner underlättar och hjälper dig
+ i ditt dagliga arbete  med din  Amiga.  Tack vare RO behöver  du inte lära
+ dig alla krångliga shell-kommandon,  för med RO har du Amigans fulla kraft
+ i din hand.
+
+ Tack vare att programmet använder MUI kan  du  helt  anpassa utseendet och
+ känslan av RO precis så som du vill ha det. @{"Magic User Interface" link magicuserinterface} (MUI) är
+ är ett objektorienterat system för  att  skapa  användargränssnitt (GUIs),
+ utvecklat av Stefan Stuntz. MUI är så bra att det borde  vara  installerat
+ på alla Amigor. Användare  av  MUI-baserade  applikationer har möjligheten
+ att finjustera nästan varje pixel av ett programs användargränssnitt efter
+ eget tycke och smak.
+
+ RO-arkivet skall innehålla följande filer:
+
+   RO/ARexx/Action.RO             RO/Icons/8col/Drawer.info
+   RO/ARexx/AddArc.RO             RO/Icons/8col/RegForm.info
+   RO/ARexx/ArcHandler.RO         RO/Icons/8col/RO.guide.info
+   RO/ARexx/Deiconify.RO          RO/Icons/8col/RO.info
+   RO/ARexx/Iconify.RO            RO/Icons/8col/ROPrefs.info
+   RO/ARexx/LoadDir.RO            RO/Install.info
+   RO/ARexx/LoadOther.RO          RO/Install/Installer
+   RO/ARexx/PlayModule.RO         RO/Install/RO-Install
+   RO/ARexx/ShowHtml.RO           RO/Install/RO-Install.info
+   RO/Binary/RO,binary            RO/LiesMichZuerst
+   RO/Binary/ROPrefs,binary       RO/LiesMichZuerst.info
+   RO/Config/RO.prefs,default     RO/LisezMoiDabord
+   RO/Config/RO.prefs,example1    RO/LisezMoiDabord.info
+   RO/Config/RO.prefs,example2    RO/Locale/Catalogs/Deutsch/ro.catalog
+   RO/Config/RO.prefs,example3    RO/Locale/Catalogs/Français/ro.catalog
+   RO/Config/RO.prefs,example4    RO/Locale/Catalogs/Svenska/ro.catalog
+   RO/Docs/RegForm,deutsch        RO/Locale/RO.cd
+   RO/Docs/RegForm,english        RO/Locale/RO.ct
+   RO/Docs/RegForm,francais       RO/Previews.info
+   RO/Docs/RegForm,svenska        RO/Previews/Preview1
+   RO/Docs/RO.guide,deutsch       RO/Previews/Preview1.info
+   RO/Docs/RO.guide,english       RO/Previews/Preview2
+   RO/Docs/RO.guide,francais      RO/Previews/Preview2.info
+   RO/Docs/RO.guide,svenska       RO/Previews/Preview3
+   RO/Icons/4col/Drawer.info      RO/Previews/Preview3.info
+   RO/Icons/4col/RegForm.info     RO/ReadMeFirst
+   RO/Icons/4col/RO.guide.info    RO/ReadMeFirst.info
+   RO/Icons/4col/RO.info          RO/RO_v125.Announce
+   RO/Icons/4col/ROPrefs.info     RO/RO_v125.ReadMe
+   RO.info
+
+ MUI är inte inkluderat i RO-arkivet, men du bör kunna få tag i det i
+ varje mailbox eller vid din närmaste Aminet-mirror.
+
+@endnode
+
+@node requirements "Systemkrav"
+@next unregistered
+@prev introduction
+
+ @{b}@{u}Systemkrav@{ub}@{uu}
+
+ RO kräver minst version  2.04  av  Amigans operativsystem. RO kräver också
+ version 3.6 eller senare av "Magic User Interface" (MUI) av Stefan Stuntz.
+ Kickstart 1.3 stöds INTE, varken  av  RO eller av  MUI.  Denna version bör
+ betraktas som föråldrad. Byt upp dig till 2.04, eller ännu hellre till 3.1
+ om du har Kickstart 1.3  eller  äldre.  RO kräver inte någon speciell pro-
+ cessor,  men en  snabbare CPU  rekommenderas.  Underhåll och layout kräver
+ många komplexa beräkningar, så en 68000 baserad maskin kan vara lite slö.
+
+ RO kan automatiskt packa upp XPK- och PowerPacker-komprimerade filer om du
+ har xpkmaster.library, powerpacker.library och minst en XPK-komprimerings-
+ modul installerat.  Om  du vill att RO skall  behandla arkiv som kataloger
+ behöver du också ARCHandler.
+
+ XPK är Copyright © Urban Mueller, Bryan Ford & Christian Schneider.
+ PowerPacker är Copyright © Nico François.
+ ARCHandler är Copyright © Rafael D'Halleweyn.
+
+
+@endnode
+
+@node unregistered "Oregistrerad version?"
+@next installation
+@prev requirements
+
+ @{b}@{u}Oregistrerad version@{ub}@{uu}
+
+ Jag har  beslutat att  släppa  RO  som modifierad  shareware.  RO fungerar
+ till fullo, men i den  oregistrerade versionen dyker "Om"-rutan upp regel-
+ bundet för att påminna dig om att betala sharewareavgiften. Om du använder
+ den oregistrerade versionen är  "Spara"-knappen  i  inställningsprogrammet
+ avstängd. Du måste då använda en texteditor för att ändra inställningarna.
+ RO har varit, och kommer fortfarande att vara ett tidskrävande projekt för
+ mig. Om du tycker om detta program  och vill att  jag fortsätter  utveckla
+ det borde du uppmuntra mig genom att betala in registreringsavgiften. Tack.
+
+ @{" Hur du registrerar RO " Link registration}
+
+@endnode
+
+@node installation "Installation"
+@next mainwindow
+@prev unregistered
+
+ @{b}@{u}Installation@{ub}@{uu}
+
+ RO kommer med ett  installationsscript  vilket hjälper dig att  installera
+ alla nödvändiga filer, men om du är en expertanvändare vill du kanske göra
+ det själv, manuellt.
+
+ Kopiera filerna 'RO,binary'  och  'ROPrefs,binary' till valfri katalog med
+ namnen 'RO' och 'ROPrefs' respektive.  Du kan alternativt kopiera inställ-
+ ningsprogrammet till SYS:Prefs med namnet 'RO' eller 'ROPrefs'. Nu behöver
+ du kopiera ikonerna  till  föregående kataloger. Kopiera  'RO.prefs'  till
+ 'ENVARC:RO/' och 'ENV:RO/'. Om du har en nyckelfil kopieras den till 'S:',
+ 'L:' eller till samma katalog som du kopierade huvudprogrammet. Sätt också
+ systemvariabeln 'KEYPATH'  till sökvägen till nyckelfilen.  Om du använder
+ Workbench 2.1 eller senare kan du  kopiera valfri översättning (RO/Locale/
+ Catalogs/<språk>/ro.catalog) till 'LOCALE:Catalogs/<språk>/'.
+
+@endnode
+
+@node mainwindow "Programmet"
+@prev installation
+@next registergroup
+
+ @{b}@{u}Programmet@{ub}@{uu}
+
+ När du startar RO öppnas ROs fönster som innehåller följande objekt:
+
+ @{" Kortregister          " link registergroup}       Ändrar fillistans innehåll
+ @{" Informationsrader     " link dirinformation}       Visar bl.a. vilken enhet som används
+ @{" Fillistor             " link listview}       Visar bl.a. innehållet i en katalog
+ @{" Sökvägsrutor          " link pathgadget}       Används för att ange sökväg manuellt
+ @{" Enhetsknappar         " link drivebutton}       Direktval för ofta använda enheter
+ @{" Kommandoknappar       " link commandbutton}       Utför funktioner på valda filer
+ @{" Statusraden           " link statusbar}       Visar diverse information
+
+@endnode
+
+@node registergroup "Kortregister"
+@prev mainwindow
+@next dirinformation
+
+ @{b}@{u}Kortregistret@{ub}@{uu}
+
+ Kortregistret överst i fönstret låter dig välja vad  fillistan under skall
+ innehålla.  Du kan välja  mellan  'Katalog',  'Buffertar'  och  'Volymer'.
+ Beroende  på  dina MUI-inställningar  kan  registret se ut som ett vanligt
+ kortregister eller som en vanlig cykel-knapp.  De tre olika listtyperna är
+ beskrivna i @{" 'Fillistor' " link listview}.  Om du har en mus med tre knappar kan du ändra
+ listtyp genom  att klicka  med  mittenknappen ovanför listan.
+
+@endnode
+
+@node dirinformation "Informationsrader"
+@prev registergroup
+@next listview
+
+ @{b}@{u}Informationrader@{ub}@{uu}
+
+ Det finns ett textfält ovanför varje fillista där en del information visas
+ om vald enhet: Fritt diskutrymme i procent och kilobytes, och använt disk-
+ utrymme i kilobytes. Det liknar titelraden i ett vanligt Workbench-fönster
+ så det borde se bekant ut. Om ingen enhet är vald står det  'Ingen Enhet'.
+
+ Om du markerar en eller flera rader  i  listan  ändras raden till att visa
+ hur många filer  och  kataloger som är markerade och det sammanlagda antal
+ bytes som de markerade filerna representerar.
+
+ Raden används  också för att  visa vilken fillista  som  för närvarande är
+ aktiv. Detta är mycket viktigt att veta eftersom det är den aktiva som be-
+ traktas som källkatalog och det är den som påverkas  av  de  funktioner du
+ använder. När du markerar en rad i en lista blir den listan den aktiva men
+ du kan också växla aktiv lista med '`'-knappen (den ovanför TAB).  Med TAB
+ kan du växla mellan inmatningsrutorna.  Bakgrunden i  den  aktiva  listans
+ informationsrad ändrar färg till den som definieras i MUI som 'Fillback'.
+
+ Sist men inte minst  kan också  informationraden  användas som en 'Moder'-
+ knapp.  Om du klickar  på  den visas föregående katalog  i  katalogträdet.
+ Om det inte finns någon föregående katalog visas volymlistan.
+
+@endnode
+
+
+@node listview "Fillistor"
+@prev dirinformation
+@next pathgadget
+
+ @{b}@{u}Fillistorna@{ub}@{uu}
+
+ Du kan ändra  på storleksförhållandet  mellan fillistorna genom att flytta
+ balansknappen i sidled. RO har också en Drag&Drop-mekanism  så  att du kan
+ kopiera filer genom att dra dem från den ena listan till  den andra.
+
+ RO har tre olika fillistor:
+
+ 'Katalog'-listan är den viktigaste listan. Den  används för att visa inne-
+ hållet i en katalog. Här markerar du filer och kataloger och om du dubbel-
+ klickar  på  en  katalog ändras fillistans innehåll till katalogens. Om du
+ dubbelklickar på en fil försöker RO ta reda  på  vad det är för typ av fil
+ och starta  ett  program  som hanterar sådana filer. Du kan definiera fil-
+ typer i RO.prefs och om du har Kickstart 3.0  eller  högre  kan  du  också
+ använda 'Datatypes'.  För en detaljerad beskriv ning om hur man definierar
+ filtyper, se kapitlet @{" Inställningar " link configuration}.
+
+ 'Buffertar'-listan är en historie-lista där RO kommer ihåg ett antal kata-
+ loger.  Du kan också ange kataloger vid start, se @{" Inställningar " link configuration}.  Genom
+ att dubbelklicka på en katalog visas den katalogen.
+
+ 'Volymer'-listan visar alla tillgängliga AmigaDOS volymer. Dubbelklicka på
+ en volym så visas katalogen.  Det är viktigt att skilja mellan enheter och
+ volymer.  En volym är ett skilt media i en enhet: en diskdrive är en enhet,
+ men disketten i den är en volym.  Vissa enheter kan bara ha en  volym, som
+ t.ex hårddiskpartitioner.  Även logiska enheter  visas  i  volymlistan. En
+ logisk enhet är egentligen en pekare till en viss katalog, till exempel är
+ den logiska enheten LIBS: en pekare till katalogen SYS:Libs.
+
+@endnode
+
+@node pathgadget "Sökvägsrutor"
+@prev listview
+@next drivebutton
+
+ @{b}@{u}Sökvägsrutor@{ub}@{uu}
+
+ Sökvägsrutorna finns under  de  båda fillistorna  och  innehåller sökvägen
+ för den katalog som visas.  Skriver  du  in  en  sökväg  här så visas mot-
+ svarande katalog. RO expanderar alla logiska enhetsnamn och  enhetsbeteck-
+ ningar,  exempelvis  expanderas HD0: till Workbench:, och LIBS: expanderas
+ till Workbench:Libs, under förutsättning att din systempartition ligger på
+ HD0: och heter Workbench:. Detta är ett sätt att snabbt komma åt kataloger:
+ Om du  till  exempel  skriver  'SYS:Devs/DOS<RETURN>'  hamnar du direkt på
+ 'Workbench:Devs/DOSDrivers'.  Du  kan också skriva in mer avancerade saker
+ som 'Workbench:Devs/DataTypes///L/File<RETURN>' och hamna i  'Workbench:L/
+ FileSystem_Trans/'.  Namnifyllnad fungerar bara på den sista delen av sök-
+ vägssträngen.
+
+@endnode
+
+@node drivebutton "Enhetsknappar"
+@prev pathgadget
+@next commandbutton
+
+ @{b}@{u}Enhetsknappar@{ub}@{uu}
+
+ Under sökvägsrutorna har RO normalt  16  enhetsknappar, men antalet utökas
+ automatiskt till  32  om  du definierar fler.  Klicka på en enhetsknapp så
+ visas automatiskt katalogen  för  den  enheten i någon av listorna. Vilken
+ lista som skall påverkas anges av variabeln @{"DRIVEBUTTONS" link variable 51}. Om variabeln är
+ satt till "Active" så påverkas den aktiva fillistan av alla enhetsknappar,
+ och om variabeln är satt till  "Normal"  påverkas  den  fillista som finns
+ omedelbart ovanför knappen.
+
+@endnode
+
+@node commandbutton "Kommandoknappar"
+@prev drivebutton
+@next statusbar
+
+ @{b}@{u}Kommandoknappar@{ub}@{uu}
+
+ Under enhetsknapparna finns  3 x 8  kommandoknappar. Dessa knappar används
+ för att utföra olika funktioner  på de markerade filerna i den aktiva fil-
+ listan. 24 knappar är inte tillräckligt för de mer  än  50  interna  funk-
+ tionerna så jag skapade en 'knappbanksmekanism'.  Du kan  välja bank genom
+ att klicka på statusraden under kommandoknapparna.  Om du använder en tre-
+ knapparsmus kan du också byta bank  genom  att klicka med mittenknappen på
+ någon kommandoknapp.
+
+ För närvarande stöder RO 5 bankar vilket ger 120 knappar, men detta kanske
+ utökas i framtiden. De flesta interna funktioner öppnar ett statusfönster.
+ Om du stänger det avbryts funktionen men om du trycker på dess ikonifiera-
+ knapp utförs funktionen i bakgrunden.
+
+ Dessa interna funktioner finns för närvarande:
+
+    @{" About     " link About}              Visar 'Om'-fönstret.
+    @{" Action    " link Action}              Kör ett program beroende på filtyp.
+    @{" All       " link All}              Markerar alla rader i den aktiva listan.
+    @{" Assign    " link Assign}              Skapar en logisk enhet för katalogen  i  den
+                              aktiva listan.
+    @{" Buffers   " link Buffers}              Visar buffertlistan.
+    @{" ByName    " link ByName}              Markerar filer baserat på filnamn.
+    @{" Bytes     " link Bytes}              Summerar markerade filers storlek.
+    @{" Change    " link Change}              Anger  sorteringskriteria   för  den  aktiva
+                              listan.
+    @{" Copy      " link Copy}              Kopierar filer och kataloger.
+    @{" CopyAs    " link Copy}              Kopierar filer och kataloger och byter namn.
+    @{" CopyDev   " link CopyDev}              Kopierar filer till en enhet.
+    @{" Current   " link Current}              Hoppar till aktuell katalog.
+    @{" Delete    " link Delete}              Raderar filer och kataloger.
+    @{" Directory " link Directory}              Visar fillistan.
+    @{" Disk      " link Disk}              Visar information om aktiv enhet.
+    @{" Dup       " link Dup}              Duplicerar filer.
+    @{" Expand    " link Expand}              Expanderar en sökväg till  dess  ARCHandler-
+                              motsvarighet.
+    @{" Fit       " link Fit}              Testar om filerna ryms i målkatalogen.
+    @{" Help      " link Help}              Visar online hjälp.
+    @{" Icon      " link Icon}              Markerar motsvarande ikonfiler.
+    @{" Info      " link Info}              Visar information om markerade filer.
+    @{" LActive   " link Active}              Aktiverar den vänstra listan.
+    @{" LCopy     " link LCopy}              Kopierar den aktiva listans sökväg till den
+                              inaktiva listan.
+    @{" LFold     " link LFold}              Göm den högra fillistan.
+    @{" LSwap     " link LSwap}              Byter innehållet i listorna.
+    @{" ListArc   " link ListArc}              Listar innehållet i ett arkiv.
+    @{" LParent   " link Parent}              Hoppar till moderkatalogen på vänstra sidan.
+    @{" LReload   " link Reload}              Uppdaterar den vänstra listan.
+    @{" LRoot     " link Root}              Hoppar till rotkatalogen på vänstra sidan.
+    @{" MakeDir   " link MakeDir}              Skapar katalog.
+    @{" MDLoad    " link MakeDir}              Skapar katalog och hoppa dit.
+    @{" Move      " link Move}              Flyttar filer och kataloger.
+    @{" MoveAs    " link MoveAs}              Flyttar filer och kataloger och byter namn.
+    @{" None      " link None}              Avmarkerar alla filer.
+    @{" Note      " link Note}              Ändrar filkommentar.
+    @{" Parent    " link Parent}              Hoppar till moderkatalog.
+    @{" Protect   " link Protect}              Ändrar filattributflaggor.
+    @{" Quit      " link Quit}              Avslutar RO.
+    @{" RActive   " link Active}              Aktiverar den högra listan.
+    @{" Reboot    " link Reboot}              Startar om datorn.
+    @{" Relabel   " link Relabel}              Byter namn på volymer.
+    @{" Reload    " link Reload}              Uppdaterar den aktiva listan.
+    @{" Rename    " link Rename}              Byter namn på filer.
+    @{" Root      " link Root}              Hoppar till rotkatalogen.
+    @{" RParent   " link Parent}              Hoppar till moderkatalogen på högra sidan.
+    @{" RReload   " link Reload}              Uppdaterar den högra listan.
+    @{" RRoot     " link Root}              Hoppar till rotkatalogen på högra sidan.
+    @{" SetDate   " link SetDate}              Ändrar datum på en fil eller katalog.
+    @{" Shrink    " link Shrink}              Krymper en ARCHandler-sökväg till en vanlig
+                              sökväg.
+    @{" Toggle    " link Toggle}              Växlar Markerad/Avmarkerad på alla filer.
+    @{" Touch     " link Touch}              Uppdaterar datum eller skapar en ny fil.
+    @{" UnArc     " link UnArc}              Packar upp ett arkiv.
+    @{" Update    " link Update}              Markerar filer för uppdatering.
+    @{" Volumes   " link Volumes}              Visar volymlistan.
+
+ ...och du kan även ange vilket AmigaDOS-kommando som helst. Se
+ @{" Inställningar " link configuration} för mer information.
+
+@endnode
+
+@node statusbar "Statusraden"
+@prev commandbutton
+@next menus
+
+ @{b}@{u}Statusraden@{ub}@{uu}
+
+ ROs statusrad är  textraden längst ner i  fönstret.  Den används  till att
+ visa information om vad som händer eller varför någon funktion avbröt. Som
+ sades tidigare i "Kommandoknappar"-delen används den också att byta mellan
+ kommandoknappsbankar.  Den  användas  också  till att visa tiden och/eller
+ fritt minne,  men det är helt upp till dig, så  jag  rekommenderar dig att
+ kolla in @{" Inställningar " link configuration}.
+
+@endnode
+
+@node menus "Menyer"
+@prev statusbar
+@next configuration
+
+ @{b}@{u}Menyer@{ub}@{uu}
+
+ ROs menyer ser ut som följande:
+
+ o Program
+
+   - Uppdatera allt
+
+     Uppdaterar vänster och höger katalog.
+
+   - Senaste meddelande
+
+     Visar det senaste meddelandet i statusraden.
+
+   - Om...
+
+     Visar  "Om..."-rutan.  Det är denna ruta som visas med jämna mellanrum
+     om du använder en oregistrerad version.
+
+   - Om MUI...
+
+     Visar  "Om MUI..."-rutan.
+
+   - Ikonifiera
+
+     Ikonifierar RO och lägger upp en 'App-ikon' på din Workbench-skärm. Du
+     kan använda  den som  en  multi-funktions-ikon  eftersom  de filer som
+     släpps på ikonen startar upp ett  motsvarande visningsprogram.  Du kan
+     tvinga RO  att  starta ikonifierat  genom  att  ange  ICONIFY  som ett
+     CLI-argument eller som en TOOLTYPE.
+
+   - Avsluta
+
+     Avslutar RO.
+
+ o Diverse
+
+   - Kopiera
+
+     o Flaggor
+
+       Växlar mellan om  du vill bevara filattributflaggorna  vid kopiering
+       eller inte. Det är samma sak som @{" COPYFLAGS " link variable} flaggan i inställnings-
+       programmet/-filen.
+
+     o Datum
+
+       Växlar mellan  om  du vill bevara filernas tid- och datuminformation
+       vid kopiering eller inte. Det är samma sak som @{" COPYDATE " link variable} flaggan i
+       inställningprogrammet/-filen.
+
+     o Kommentar
+
+       Växlar mellan  om  du vill bevara filkommentarer vid kopiering eller
+       inte.   Det  är  samma  sak  som @{" COPYNOTE " link variable} flaggan i inställnings-
+       programmet/-filen.
+
+     o Kolla filer
+
+       Om denna flagga är satt verifierar RO alla filer vid filkopiering. I
+       inställningsprogrammet/-filen heter denna flagga @{" COPYVERIFY " link variable}.
+
+     o Kolla diskutrymme
+
+       Slå på denna flagga  om du vill  att RO automatiskt  skall kolla att
+       valda filer  får rum i målkatalogen  för de kopieras.  Eftersom RAM:
+       alltid är 100 % full testas  inte  ram-disken.  Denna flagga sätts i
+       inställningsprogrammet/-filen som @{" CHECKFIT " link variable}.
+
+   - Radera
+
+     o Tvinga
+
+       Om denna flagga är satt raderar  RO  även  raderingsskyddade  filer.
+       Motsvarar @{" DELFORCE " link variable} i inställningsprogrammet/-filen.
+
+     o Fråga
+
+       Om denna flagga är satt frågar alltid  RO  om  du är säker på att du
+       vill radera en fil.  Denna flagga heter @{" DELVERIFY " link variable} i inställnings-
+       programmet/-filen.
+
+   - Skriv över
+
+     Här har  du  fyra alternativ  att  välja  mellan: 'Alltid' , 'Aldrig',
+     'Äldre' eller 'Fråga'.  Du kan  naturligtvis  bara  välja  en  av dem.
+     Heter  @{" ALWAYS, NEVER, OLDER och VERIFY " link variable}  i  inställningsprogrammet/
+     -filen.
+
+ o Inställningar
+
+   - Inställningar...
+
+     Här kan du starta inställningsprogrammet för RO. RO är helt konfigurer-
+     bart från det. När du avslutar inställningsprogrammet med 'Save' eller
+     'Use' uppdateras RO automatiskt med de nya inställningarna.
+
+   - MUI inställningar...
+
+     Med detta menyval kan du starta MUI-inställningsprogrammet. Där kan du
+     ändra alla MUI-specifika inställningar i RO.
+ 
+@endnode
+
+@node configuration "Inställningar"
+@prev menus
+@next filetype
+
+ @{b}@{u}Inställningar@{ub}@{uu}
+
+ RO  konfigureras  via   en  textfil  som  måste  finnas  i  'ENV:RO/'  och
+ 'ENVARC:RO/'  och måste  heta  'RO.prefs'.  Om du  använder  installeraren
+ hamnar alla filer på  rätt  ställe  meddetsamma.  Du kan använda en vanlig
+ texteditor  eller det  speciella inställningsprogrammet  för  att  ändra i
+ inställningsfilen. Jag har inkluderat några exempel, se 'Config'-katalogen.
+
+ RO förstår följande nyckelord:
+
+ @{" FILETYPE    " link filetype}
+ @{" CUSTOMTYPE  " link customtype}
+ @{" ARCHIVETYPE " link archive}
+ @{" VARIABLE    " link variable}
+ @{" MENU        " link menu}
+ @{" BUFFER      " link buffer}
+ @{" HOTKEY      " link hotkey}
+ @{" HOTDIR      " link hotdir}
+ @{" DRIVE       " link drive}
+ @{" BUTTON      " link button}
+
+ Obs: Fönstrens storlek och andra saker  som har med layout och tangentbord
+      att göra ställs in i inställningsprogrammet för MUI. Jag rekommederar
+      verkligen att du läser dokumentationen för MUI noggrannt. Tack.
+
+@endnode
+
+@node filetype "Filtypsinställningar"
+@prev configuration
+@next customtype
+
+ @{b}@{u}FILETYPE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    FILETYPE "TypeID" "Command"
+
+ @{u}BESKRIVNING@{uu}
+
+    Med detta nyckelord kan du ställa in kommandon för de grundläggande fil-
+    typerna.  TypeID  måste vara en av de tre  värdena  beskrivna nedan och
+    "Command" är ett CLI-kommando där %f indikerar positionen där filnamnet
+    skjuts in.  Filnamnet som skjuts in kommer  att innehålla de citations-
+    tecken som behövs, så skriv inte dit dem en gång till.
+
+    ASCII        Standard ASCII textfil.
+    DEFAULT      Filer som inte känns igen av CUSTOMTYPE
+    BINARY       Okända binärfiler.
+
+ @{u}ARGUMENT@{uu}
+
+    "TypeID"     Fördefinierat värde, se ovan.
+    "Command"    CLI kommando som skall exekveras.
+
+    Dessa parametrar kan ingå i "Command":
+
+    %a           namn på en arexx port.
+    %f           källfilnamn med sökväg MED citationstecken.
+    %F           källfilnamn med sökväg UTAN citationstecken.
+    %n           endast källfilnamn MED citationstecken.
+    %N           endast källfilnamn UTAN citationstecken.
+    %p           källsökväg MED citationstecken.
+    %P           källsökväg UTAN citationstecken.
+    %t           målsökväg MED citationstecken.
+    %T           målsökväg UTAN citationstecken.
+    %s           källenhet MED citationstecken.
+    %S           källenhet UTAN citationstecken.
+    %d           målenhet MED citationstecken.
+    %D           målenhet UTAN citationstecken.
+    %r           fråga efter en sträng från användaren för varje fil.
+    %R           fråga efter en sträng från användaren en gång
+
+    &b           avbryt inte kommandots utförande vid fel.
+    &c           använd aktuell katalog som källsökväg.
+    &C           använd aktuell katalog som målsökväg.
+    &d           avmarkera inte valda filer/kataloger efter utförandet.
+    &r           uppdaterar källkatalogen.
+    &R           uppdaterar målkatalogen.
+    &w           resultatfönstret måste stängas av användaren.
+
+    %%           procenttecken
+    &&           OCH-tecken
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    "Command"  är satt till  "MultiView >NIL: %f" för alla understödda fil-
+    typer.
+
+ @{u}EXEMPEL@{uu}
+
+    FILETYPE BINARY "FileX >NIL: %f"
+
+@endnode
+
+@node customtype "CUSTOMTYPE"
+@prev filetype
+@next archive
+
+ @{b}@{u}CUSTOMTYPE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    CUSTOMTYPE "Pattern" "Hex" "Desc" "Command"
+
+ @{u}BESKRIVNING@{uu}
+
+    Med detta nyckelord väljer du  vilket program som skall köras för vilka
+    filer. Sedan version 1.00 av RO är det möjligt att själv definiera fil-
+    typer.  Om filen inte känns igen kommer @{" DEFAULT " link filetype} kommandot att köras,
+    och om även det  misslyckas kommer filen att  betraktas som en binärfil
+    och @{" BINARY " link filetype} kommandot  kommer att köras.  XPK och PP filer packas upp
+    före testerna.  "Command" måste innehålla ett '%f' där filnamnet kommer
+    att skjutas in. Använd inte citationstecken i "Command" - de kommer att
+    läggas in automatiskt.  "Pattern" är ett standard  AmigaDOS-mönster som
+    används för att matcha filnamn. "Hex" är en sträng med ASCII-tecken som
+    också används för att känna igen filtypen.  Här kan du skriva en vanlig
+    sträng med ett  '?'  som markerar ett okänt tecken, exempel: '??-lh?-',
+    eller en hexadecimal sträng  med ett dollartecken ('$') först som visar
+    RO att  det  är  en hexadecimal sträng , exempel: '$????2D6C68??2D'. Du
+    måste dock alltid skriva dubbla frågetecken om du använder hexadecimala
+    strängar. Hexadecimala strängar översätts internt till en sträng av den
+    förra typen,  och  kan  användas när man behöver icke-skrivbara tecken,
+    som till exempel NewLine ($10).
+
+ @{u}ARGUMENT@{uu}
+
+    "Pattern"    Ett standard AmigaDOS filnamnsmönster.
+    "Hex"        Sträng att jämföra med början av filen.
+    "Desc"       Beskrivning av filtypen.
+    "Command"    Program som skall köras.
+
+    Dessa parametrar kan ingå i 'Command':
+
+    %a           namn på en arexx port.
+    %f           källfilnamn med sökväg MED citationstecken.
+    %F           källfilnamn med sökväg UTAN citationstecken.
+    %n           endast källfilnamn MED citationstecken.
+    %N           endast källfilnamn UTAN citationstecken.
+    %p           källsökväg MED citationstecken.
+    %P           källsökväg UTAN citationstecken.
+    %t           målsökväg MED citationstecken.
+    %T           målsökväg UTAN citationstecken.
+    %s           källenhet MED citationstecken.
+    %S           källenhet UTAN citationstecken.
+    %d           målenhet MED citationstecken.
+    %D           målenhet UTAN citationstecken.
+    %r           fråga efter en sträng från användaren för varje fil.
+    %R           fråga efter en sträng från användaren en gång
+
+    &b           avbryt inte kommandots utförande vid fel.
+    &c           använd aktuell katalog som källsökväg.
+    &C           använd aktuell katalog som målsökväg.
+    &d           avmarkera inte valda filer/kataloger efter utförandet.
+    &r           uppdaterar källkatalogen.
+    &R           uppdaterar målkatalogen.
+    &w           resultatfönstret måste stängas av användaren.
+
+    %%           procenttecken
+    &&           OCH-tecken
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    CUSTOMTYPE "#?" "FORM????8SVX" "Iff 8SVX File"     "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "FORM????ANIM" "Iff ANIM File"     "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "FORM????ILBM" "Iff ILBM File"     "MultiView >NIL: %f"
+
+    CUSTOMTYPE "#?" "GIF8?a"       "GIF Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "DMS!"         "DMS Archive"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "??????JFIF"   "JPeg Picture"      "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$0A050108"    "PCX Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$424D"        "BMP Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$59A66A95"    "SunRaster Picture" "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$000002"      "Tga Picture"       "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "$00000A"      "Targa Picture"     "MultiView >NIL: %f"
+
+    CUSTOMTYPE "#?" "II*?"         "Intel Tiff"        "MultiView >NIL: %f"
+    CUSTOMTYPE "#?" "MM?*"         "Motorola Tiff"     "MultiView >NIL: %f"
+
+    CUSTOMTYPE "#?.dvi"   ""       "DVI File"          "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.info"  ""       "Icon"              "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.mpg"   ""       "MPeg Movie"        "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.fli"   ""       "FLI Anim"          "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.guide" ""       "AmigaGuide File"   "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.html"  ""       "HTML File"         "MultiView >NIL: %f"
+    CUSTOMTYPE "#?.ps"    ""       "PostScript File"   "MultiView >NIL: %f"
+
+ @{u}EXEMPEL@{uu}
+
+    CUSTOMTYPE "#?" "@database" "AmigaGuide File" "MultiView >NIL: %f"
+
+@endnode
+
+@node archive "ARCHIVETYPE"
+@prev customtype
+@next variable
+
+ @{b}@{u}ARCHIVETYPE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    ARCHIVETYPE "Pattern" "Hex" "Desc" "ListArc" "UnArc"
+
+ @{u}BESKRIVNING@{uu}
+
+    Med detta nyckelord berättar  du  för  RO  hur  det skall använda olika
+    arkiveringsprogram.  Man anger två kommandosträngar för varje arkivtyp:
+    "ListArc" anger syntaxen  för  att  lista innehållet i arkivet, "UnArc"
+    anger rätt  metod  att  packa  upp  arkivet. "Pattern" är ett  standard
+    AmigaDOS-mönster som används för att matcha filnamn. "Hex" är en sträng
+    med ASCII-tecken som också används för att känna igen filtypen. Här kan
+    du skriva en vanlig sträng som  '??-lh?-'  eller en  hexadecimal sträng
+    som  till  exempel  '$????2D6C68??2D'.  Om  det  första  tecknet är ett
+    dollartecken ($) översätter RO "HEX" till en vanlig ASCII-sträng. Detta
+    är användbart när man behöver  icke-skrivbara  tecken som t.ex. NewLine
+    ($10).  "ListArc" och  "UnArc"  måste innehålla ett '%f' för filnamnet.
+    Sedan version 1.00 av RO används  kommandoknapparna  för att lägga till
+    filer till arkiv, t.ex. genom "LhA >NIL: -x -r a %R %n &c" som kommando.
+
+ @{u}ARGUMENT@{uu}
+
+    "Pattern"    Ett standard AmigaDOS filnamnsmönster.
+    "Hex"        Sträng att jämföra med början av filen.
+    "Desc"       Beskrivning av filtypen.
+    "ListArc"    Kommando för att lista innehållet i arkivet.
+    "UnArc"      Kommando för att packa upp arkivet.
+
+    Dessa parametrar kan ingå i 'ListArc' och 'UnArc':
+
+    %a           namn på en arexx port.
+    %f           källfilnamn med sökväg MED citationstecken.
+    %F           källfilnamn med sökväg UTAN citationstecken.
+    %n           endast källfilnamn MED citationstecken.
+    %N           endast källfilnamn UTAN citationstecken.
+    %p           källsökväg MED citationstecken.
+    %P           källsökväg UTAN citationstecken.
+    %t           målsökväg MED citationstecken.
+    %T           målsökväg UTAN citationstecken.
+    %s           källenhet MED citationstecken.
+    %S           källenhet UTAN citationstecken.
+    %d           målenhet MED citationstecken.
+    %D           målenhet UTAN citationstecken.
+    %r           fråga efter en sträng från användaren för varje fil.
+    %R           fråga efter en sträng från användaren en gång
+
+    &b           avbryt inte kommandots utförande vid fel.
+    &c           använd aktuell katalog som källsökväg.
+    &C           använd aktuell katalog som målsökväg.
+    &d           avmarkera inte valda filer/kataloger efter utförandet.
+    &r           uppdaterar källkatalogen.
+    &R           uppdaterar målkatalogen.
+    &w           resultatfönstret måste stängas av användaren.
+
+    %%           procenttecken
+    &&           OCH-tecken
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    ARCHIVETYPE "#?.lha" "" "LHA/LZH Archive" "LhA v %f" "LhA x %f &C &R"
+    ARCHIVETYPE "#?.lzx" "" "LZX Archive"     "LzX v %f" "LzX x %f &C &R"
+    ARCHIVETYPE "#?.arc" "" "ARC Archive"     "Arc v %f" "Arc x %f &C &R"
+    ARCHIVETYPE "#?.arj" "" "ARJ Archive"     "Arj v %f" "Arj x %f &C &R"
+    ARCHIVETYPE "#?.zip" "" "ZIP Archive"     "Zip v %f" "Zip x %f &C &R"
+    ARCHIVETYPE "#?.zoo" "" "ZOO Archive"     "Zoo v %f" "Zoo x %f &C &R"
+
+ @{u}EXEMPEL@{uu}
+
+    ARCHIVETYPE "#?" "$4C5A5800" "LZX Archive" "LzX v %f" "LzX x %f &C &R"
+
+@endnode
+
+@node variable "VARIABLE"
+@prev archive
+@next menu
+
+ @{b}@{u}VARIABLE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    VARIABLE "VarID" "Value"
+
+ @{u}BESKRIVNING@{uu}
+
+    Detta nyckelord används till att sätta vissa viktiga variabler. "VarID"
+    är en av  nedanstående variabelnamn och  "Value"  är en parametersträng
+    för variabeln.
+
+    Globala variabler:
+
+    - APPWINDOW
+      Med denna variabel bestämmer  du  vad  som skall hända när användaren
+      släpper en ikon på en lista. Om du sätter APPWINDOW till "LOAD" visas
+      filens katalog i fillistan, och  om  du sätter  APPWINDOW till "COPY"
+      kommer filen att kopieras till den katalog som visas av listan.
+
+      Exempel: VARIABLE APPWINDOW "LOAD"
+
+
+    - COMPLETED
+      Här väljer du vad som skall  hända när RO blir klar med en funktion i 
+      ikonifierat läge. COMPLETED kan vara 'QUIET' , 'FLASH' eller 'POPUP'.
+
+      Exempel: VARIABLE COMPLETED "QUIET"
+
+
+    - CHECKFIT
+      Denna variabel kan vara antingen PÅ ("ON") eller AV ("OFF") och anger
+      om RO skall testa om de markerade filerna  får rum i målkatalogen vid
+      kopiering.  RO  räknar bytes och undersöker hur många block som krävs
+      för  att  filen  skall  få plats. Eftersom en fil alltid tar lite mer
+      plats än vad som anges av filstorleken (på grund av organiseringen av
+      filer på mediat)  så  kan  det hända att en fil som ser ut att rymmas
+      inte ryms i alla fall. RO tar detta med i beräkningen.
+
+      Exempel: VARIABLE CHECKFIT "ON"
+
+
+    - CREATEICONS
+      Om du vill  att  RO  alltid  skall skapa  en  tillhörande ikon när RO
+      skapar en fil eller katalog skall  du sätta denna variabel till "ON",
+      om inte sätter du den till "OFF".
+
+      Exempel: VARIABLE CREATEICONS "OFF"
+
+
+    - DRIVEBUTTONS
+      Det finns  två  sätt  att hantera enhetsknapparna:  I  "Normal"-läget
+      gäller  enhetsknapparna  bara för  den lista  som är  närmast ovanför
+      knappen. Om du har en HD0: - knapp  på vänster sida gäller den alltså
+      för den vänstra sidan  och omvänt om du har en  HD0: - knapp på höger
+      sida gäller den för den högra sidan.
+      I "Active"-läget gäller alla sexton knapparna  för den aktiva listan.
+      Alltså om vänster lista är aktiv  och du trycker på en enhetsknapp på 
+      höger sida kommer vänster lista att påverkas.
+
+      Exempel: VARIABLE DRIVEBUTTONS "Active"
+
+
+    - FLUSHMEMORY
+      Om du vill att RO skall rensa minnet  när  du avslutar, sätt då denna
+      variabel till "ON".  Detta är samma sak  som att skriva "Avail FLUSH"
+      i ett kommandoskal.
+
+      Exempel: VARIABLE FLUSHMEMORY "ON"
+
+
+    - FOLLOWSCROLL
+      Med denna variabel väljer du om du vill att fillistan skall rulla med
+      när du utför operationer på flera filer. Denna variabel kan vara "ON"
+      eller "OFF".
+
+      Exempel: VARIABLE FOLLOWSCROLL "OFF"
+
+
+    - HISTORY
+      Här ställer du in hur många buffertar RO skall komma ihåg.
+
+      Exempel: VARIABLE HISTORY "42"
+
+
+    - HOTDIRS
+      Denna variabel  fungerar  på  samma sätt  som  DRIVEBUTTONS,  men för
+      HotDirs. Funktionstangenterna F1 till F5 gäller för vänstra sida, och
+      tangenterna F6 till F10 för högra.
+
+      Exempel: VARIABLE HOTDIRS "Active"
+
+
+    - MIDDLEMOUSE
+      Om du har en treknapparsmus kan  du  med  den här variabeln välja hur
+      mittenknappen skall  fungera.  MIDDLEMOUSE  kan vara  ett av följande
+      alternativ:  'LIST',  'BANK', 'BOTH' och 'NONE'. Med 'LIST' växlar du
+      fillistor,  med  'BANK' växlar du knappbank.  Väljer du 'BOTH' gäller
+      båda två, och väljer du 'NONE'  stänger du av mittenknappsfunktionen.
+
+      Exempel: VARIABLE MIDDLEMOUSE "NONE"
+
+
+    - OUTPUT
+      Med OUTPUT specifierar du vart den text  som eventuellt generas av de
+      DOS-kommandon som RO startar skall hamna.
+
+      Exempel: VARIABLE OUTPUT "CON:0/0/640/400/Output/CLOSE/AUTO"
+
+
+    - OVERWRITE
+      Här väljer du vad som skall hända  ifall  du skriver till  en fil som
+      redan  finns. "ALWAYS"  skriver  obönhörligt  över  målfilen, "NEVER"
+      avbryter operationen  om målfilen  redan  finns. "OLDER" skriver över
+      målfilen endast om den är äldre och  "VERIFY" genererar  en förfrågan
+      om du är säker.
+
+      Exempel: VARIABLE OVERWRITE "ALWAYS"
+
+
+    - PATHEXPAND
+      Denna variabel  kontrollerar  sökvägsexpansionen. Om variabeln är "ON"
+      kommer sökvägen alltid att expanderas, men äldre filsystem som ParNet,
+      SerNet eller MessyDOS har problem med detta, så använder du dessa
+      kanske du vill slå av det.
+
+      Exempel: VARIABLE PATHEXPAND "ON"
+
+
+    - QUITVERIFY
+      Kontrollerar "Vill du verkligen avsluta RO?"-rutan.
+
+      Exempel: VARIABLE QUITVERIFY "ON"
+
+
+    - TEMPDIR
+      Här bestämmer du vilken katalog som skall  användas  för de temporära
+      filer som vissa kommandon generar.
+
+      Exempel: VARIABLE TEMPDIR "TEMP:"
+
+
+    Variabler vid kopiering:
+
+    - COPYBUF
+      Anger hur stor buffer RO skall använda när den skall kopiera filer.
+
+      Exempel: VARIABLE COPYBUF "50000"
+
+
+    - COPYDATE
+      Anger om filens datum och tid skall bevaras vid filkopiering. Om inte
+      används den aktuella tidpunktens datum och tid.
+
+      Exempel: VARIABLE COPYDATE "OFF"
+
+
+    - COPYFLAGS
+      Här anger du om filattributflaggorna  skall bevaras vid filkopiering.
+      Om inte används RWED.
+
+      Exempel: VARIABLE COPYFLAGS "OFF"
+
+
+    - COPYNOTE
+      Här anger  du  om  filkommentarer  skall bevaras vid filkopiering. Om 
+      inte blir filkommentaren tom.
+
+      Exempel: VARIABLE COPYNOTE "OFF"
+
+
+    - COPYSTAT
+      Här väljer du om RO skall skriva ut vilken fil  som RO kopierar eller
+      inte. Om du ofta kopierar många små filer kan det vara bra att slå av
+      denna funktion eftersom  det  kan  vara  ganska processorkrävande att
+      skriva namnet på varje fil på statusraden.
+
+      Exempel: VARIABLE COPYSTAT "OFF"
+
+
+    - COPYVERIFY
+      Anger om du vill att RO  skall  kontrollera  alla filer den kopierar.
+      Kopieringen tar  lite  längre tid om  COPYVERIFY  är på,  men å andra
+      sidan kan du vara säker på att filerna är korrekta.
+
+      Exempel: VARIABLE COPYVERIFY "OFF"
+
+
+    Variabler vid radering:
+
+    - DELDELAY
+      Här anger du en fördröjning i 'ticks'  (50 ticks = 1 sekund)  före RO
+      raderar en temporär fil. Det kan vara användbart  om du har ett text-
+      visningsprogram  som  inte  är  snabbt nog att ladda in den temporära
+      filen före den raderas. VARNING: Det kan bli problem att radera filen
+      om programmet låser den temporära filen.
+
+      Exempel: VARIABLE DELDELAY "50" 
+
+
+    - DELFORCE
+      Här slår du på eller av om du vill att RO skall ignorera skrivskydds-
+      flaggan när filer raderas. Denna flagga gäller också när filer skrivs
+      över.
+
+      Exempel: VARIABLE DELFORCE "ON"
+
+
+    - DELSTAT
+      Anger om du vill att  namnet på de filer  som skall raderas skrivs ut
+      på statusraden. Se COPYSTAT.
+
+      Exempel: VARIABLE DELSTAT "OFF"
+
+
+    - DELVERIFY
+      Slår på och av "Är du säker?"-rutan.
+
+      Exempel: VARIABLE DELVERIFY "OFF"
+
+
+
+    Variabler som påverkar fillistorna:
+
+    - FORMATLEFT/FORMATRIGHT
+      Här bestämmer  du hur  filerna skall presenteras i fillistan. Ange en
+      kombination  av  bokstäverna  N (Namn) ,  S (Storlek) ,  F (Flaggor),
+      D (Datum), T (Tid) och C (Kommentar).
+
+      Exempel: VARIABLE FORMATLEFT "NTSC"
+
+
+    - LOADLEFT/LOADRIGHT
+      Här kan du ange vilka kataloger som skall visas i respektive fillista
+      när programmet startar
+
+      Exempel: VARIABLE LOADRIGHT "RAM:"
+
+
+    - PAGELEFT/PAGERIGHT
+      Dessa variabler väljer vilken fillista  som skall synas på respektive
+      sida. Välj mellan 'Directory', 'Buffers' och 'Volumes'.
+
+      Exempel: VARIABLE PAGERIGHT "Volumes"
+
+
+    - FIRSTLEFT/FIRSTRIGHT
+      Väljer hur raderna skall sorteras i listorna.  "Dirs" sorterar  kata-
+      loger först,  "Files" sorterar filer först och  "Mixed" blandar filer
+      och kataloger.
+
+      Exempel: VARIABLE FIRSTLEFT  "Mixed"
+
+
+    - SORTLEFT/SORTRIGHT
+      Anger sorteringskriteria i listorna. Välj mellan  "Name" , "Date" och
+      "Size".
+
+      Exempel: VARIABLE SORTRIGHT "Size"
+
+
+    - ORDERLEFT/ORDERRIGHT
+
+      Här kan du välja hur du vill  sortera raderna i fillistan. Med "High" 
+      sorteras listorna från A-Ö, med "Low" sorteras listorna från Ö-A.
+
+      Exempel: VARIABLE SORTRIGHT "High"
+
+
+    - CHECKDUPES
+      Anger om RO skall undvika dubbletter i Buffert-listan.
+
+      Exempel: VARIABLE CHECKDUPES "OFF"
+
+
+    - PAGES
+      Här kan du välja ON (på) eller OFF (av) om du vill ha buffertlistorna
+      i kortregisterform eller inte.  Om inte kan du bara byta lista med de
+      interna funktionerna @{" Buffers " link Buffers},  @{" Directory " link Directory} och @{" Volumes   " link Volumes}, eller med
+      mittenmusknappen om du har en sån. Fördelen med att ha denna variabel
+      av (OFF) är att RO får ett mer standardiserat utseende.
+
+      Exempel: VARIABLE PAGES "OFF"
+
+
+
+    Variabler för klockan:
+
+    - CLOCKPRI
+      Klockan  i  RO  är implementerad som en skild process, och här kan du
+      bestämma vilken prioritet den processen skall  ha.  CLOCKPRI kan vara
+      mellan -128 och +127.
+
+      Exempel: VARIABLE CLOCKPRI "0"
+
+
+    - CLOCKREFRESH
+      Här väljer du hur ofta klockan skall uppdateras. Anges i 'ticks', där
+      50 ticks är 1 sekund. Här bör du inte ange ett för lågt värde, för då
+      börjar klockan att 'blinka'.
+
+      Exempel: VARIABLE CLOCKREFRESH "50"
+
+
+    - SHOWDATE
+      Här anger du om du vill visa dagens daturm i statusraden.
+
+      Exempel: VARIABLE SHOWDATE "OFF"
+
+
+    - SHOWDAY
+      Här anger du om du vill skriva ut vilken dag det är i statusraden.
+
+      Exempel: VARIABLE SHOWDAY "ON"
+
+
+    - SHOWTIME
+      Här anger du om du vill skriva ut tiden i statusraden.
+
+      Exempel: VARIABLE SHOWTIME "OFF"
+
+
+    - SHOWSECONDS
+      Här bestämmer du om du vill att ROs klocka skall visa sekunder. Denna
+      variabel är bara intressant om du väljer att  visa  klockan i status-
+      raden, se SHOWTIME.  Jag föreslår  att  slå av denna funktion för att
+      undvika att slösa på processorkraft.
+
+      Exempel: VARIABLE SHOWSECONDS "ON"
+
+
+    - SHOWMEMORY
+      Här anger du om du vill skriva  ut  information  om  fritt minne m.m.
+      Informationen skrivs i samma stil som i Workbench.
+
+      Exempel: VARIABLE SHOWMEMORY "ON"
+
+
+ @{u}FÖRINSTÄLLDA VÄRDEN@{uu}
+    
+    VARIABLE  APPWINDOW     "LOAD"
+    VARIABLE  FLUSHMEMORY   "OFF"
+    VARIABLE  CREATEICONS   "ON"
+    VARIABLE  FOLLOWSCROLL  "ON"
+    VARIABLE  PATHEXPAND    "ON"
+    VARIABLE  QUITVERIFY    "ON"
+
+    VARIABLE  COMPLETED     "Flash"
+    VARIABLE  DRIVEBUTTONS  "Normal"
+    VARIABLE  HOTDIRS       "Normal"
+    VARIABLE  MIDDLEMOUSE   "Both"
+
+    VARIABLE  TEMPDIR       "T:"
+    VARIABLE  HISTORY       "50"
+    VARIABLE  OUTPUT        "CON:0/0/640/200/Output/CLOSE/AUTO"
+
+    VARIABLE  COPYBUF       "524288"
+    VARIABLE  COPYDATE      "ON"
+    VARIABLE  COPYFLAGS     "ON"
+    VARIABLE  COPYNOTE      "ON"
+    VARIABLE  COPYSTAT      "ON"
+    VARIABLE  COPYVERIFY    "OFF"
+
+    VARIABLE  CHECKFIT      "ON"
+    VARIABLE  OVERWRITE     "VERIFY"
+
+    VARIABLE  DELDELAY      "0"
+    VARIABLE  DELFORCE      "OFF"
+    VARIABLE  DELVERIFY     "ON"
+    VARIABLE  DELSTAT       "ON"
+
+    VARIABLE  FORMATLEFT    "NSFDTC"
+    VARIABLE  FORMATRIGHT   "NSFDTC"
+    VARIABLE  LOADLEFT      ""
+    VARIABLE  LOADRIGHT     ""
+    VARIABLE  PAGELEFT      "Directory"
+    VARIABLE  PAGERIGHT     "Directory"
+    VARIABLE  FIRSTLEFT     "Dirs"
+    VARIABLE  FIRSTRIGHT    "Dirs"
+    VARIABLE  SORTLEFT      "Name"
+    VARIABLE  SORTRIGHT     "Name"
+    VARIABLE  ORDERLEFT     "High"
+    VARIABLE  ORDERRIGHT    "High"
+    VARIABLE  CHECKDUPES    "ON"
+    VARIABLE  PAGES         "ON"
+
+    VARIABLE  CLOCKREFRESH  "500"
+    VARIABLE  CLOCKPRI      "-10"
+    VARIABLE  SHOWDAY       "ON"
+    VARIABLE  SHOWDATE      "ON"
+    VARIABLE  SHOWTIME      "ON"
+    VARIABLE  SHOWSECONDS   "OFF"
+    VARIABLE  SHOWMEMORY    "ON"
+
+@endnode
+
+@node menu "Menyinställningar"
+@prev variable
+@next buffer
+
+ @{b}@{u}MENU@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    MENU "MenuText" "Command"
+
+ @{u}BESKRIVNING@{uu}
+
+     Med detta nyckelord kan du skapa en egen meny med upp till 20 menyval.
+     Om du vill utföra någon funktion på markerade  filer  måste  kommandot
+     innehålla ett '%f', där filnamnet kommer  att  skjutas  in. Om du bara
+     vill starta något program som till exempel en kalkylator eller en disk-
+     kopierare behöver inte %f finnas i kommandot.
+
+ @{u}ARGUMENT@{uu}
+
+    "MenuText"   Max 40 tecken för texten i menyn.
+    "Command"    Program som skall köras.
+
+    Dessa parametrar kan ingå i 'Command':
+
+    %a           namn på en arexx port.
+    %f           källfilnamn med sökväg MED citationstecken.
+    %F           källfilnamn med sökväg UTAN citationstecken.
+    %n           endast källfilnamn MED citationstecken.
+    %N           endast källfilnamn UTAN citationstecken.
+    %p           källsökväg MED citationstecken.
+    %P           källsökväg UTAN citationstecken.
+    %t           målsökväg MED citationstecken.
+    %T           målsökväg UTAN citationstecken.
+    %s           källenhet MED citationstecken.
+    %S           källenhet UTAN citationstecken.
+    %d           målenhet MED citationstecken.
+    %D           målenhet UTAN citationstecken.
+    %r           fråga efter en sträng från användaren för varje fil.
+    %R           fråga efter en sträng från användaren en gång
+
+    &b           avbryt inte kommandots utförande vid fel.
+    &c           använd aktuell katalog som källsökväg.
+    &C           använd aktuell katalog som målsökväg.
+    &d           avmarkera inte valda filer/kataloger efter utförandet.
+    &r           uppdaterar källkatalogen.
+    &R           uppdaterar målkatalogen.
+    &w           resultatfönstret måste stängas av användaren.
+
+    %%           procenttecken
+    &&           OCH-tecken
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    MENU "" ""
+
+ @{u}EXEMPEL@{uu}
+
+    MENU "Calculator" "SYS:Tools/Calculator"
+
+@endnode
+
+@node buffer "Buffertinställningar"
+@prev menu
+@next hotkey
+
+ @{b}@{u}BUFFER@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    BUFFER "PathName"
+
+ @{u}BESKRIVNING@{uu}
+
+    Med detta nyckelord  kan du specifiera  vad  som skall ingå i  Buffert-
+    listan från början. Endast minnet begränsar hur mycket som ryms.
+
+ @{u}ARGUMENT@{uu}
+
+    "PathName"   namn på den katalog som skall ingå i bufferten.
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    BUFFER ""
+
+ @{u}EXEMPEL@{uu}
+
+    BUFFER "DH1:Comm/Term/Uploads"
+
+@endnode
+
+@node hotkey "HotKey-inställningar"
+@prev buffer
+@next hotdir
+
+ @{b}@{u}HOTKEY@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    HOTKEY "RawKey" "Commandtype" "Command"
+
+ @{u}BESKRIVNING@{uu}
+
+    Du kan definiera  upp  till 50 snabbtangenter. Dessa snabbtangenter gör
+    det enkelt att starta program  eller  utföra interna funktioner. Du bör
+    noggrannt kontrollera  att  du inte definierar snabbtangenter som redan
+    används någon annanstans.  Alla interna kommandon  beskrivs i @{" BUTTON " link button}
+    delen.
+
+ @{u}ARGUMENT@{uu}
+
+    "RawKey"      standard AmigaDOS 'rawkey'-sträng
+    "CommandType" antingen COMMAND eller FUNCTION för ett CLI-kommando eller
+                  en intern funktion respektive.
+    "Command"     Program som skall köras.
+
+    Dessa parametrar kan ingå i 'Command':
+
+    %a           namn på en arexx port.
+    %f           källfilnamn med sökväg MED citationstecken.
+    %F           källfilnamn med sökväg UTAN citationstecken.
+    %n           endast källfilnamn MED citationstecken.
+    %N           endast källfilnamn UTAN citationstecken.
+    %p           källsökväg MED citationstecken.
+    %P           källsökväg UTAN citationstecken.
+    %t           målsökväg MED citationstecken.
+    %T           målsökväg UTAN citationstecken.
+    %s           källenhet MED citationstecken.
+    %S           källenhet UTAN citationstecken.
+    %d           målenhet MED citationstecken.
+    %D           målenhet UTAN citationstecken.
+    %r           fråga efter en sträng från användaren för varje fil.
+    %R           fråga efter en sträng från användaren en gång
+
+    &b           avbryt inte kommandots utförande vid fel.
+    &c           använd aktuell katalog som källsökväg.
+    &C           använd aktuell katalog som målsökväg.
+    &d           avmarkera inte valda filer/kataloger efter utförandet.
+    &r           uppdaterar källkatalogen.
+    &R           uppdaterar målkatalogen.
+    &w           resultatfönstret måste stängas av användaren.
+
+    %%           procenttecken
+    &&           OCH-tecken
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+    HOTKEY  "" FUNCTION ""
+
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+    HOTKEY  "" COMMAND ""
+
+ @{u}EXEMPEL@{uu}
+
+    HOTKEY "ctrl alt del" FUNCTION "REBOOT"
+    HOTKEY "shift c"      FUNCTION "COPYAS"
+    HOTKEY "left"         FUNCTION "PARENT"
+
+@endnode
+
+@node hotdir "HotDir-intällningar"
+@prev hotkey
+@next drive
+
+ @{b}@{u}HOTDIR@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    HOTDIR "Number" "PathName"
+
+ @{u}BESKRIVNING@{uu}
+
+    Här kan du definiera upp till 10 s.k. HotDirs. Dessa HotDirs kommer man
+    åt med knapparna F1-F10. 'Number' måste vara mellan 1 och 10.
+
+ @{u}ARGUMENT@{uu}
+
+    "Number"     nummer på en funktionstangent.
+    "PathName"   katalog att associera till funktionstangenten.
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    HOTDIR  1 ""
+    HOTDIR  2 ""
+    HOTDIR  3 ""
+    HOTDIR  4 ""
+    HOTDIR  5 ""
+    HOTDIR  6 ""
+    HOTDIR  7 ""
+    HOTDIR  8 ""
+    HOTDIR  9 ""
+    HOTDIR 10 ""
+
+ @{u}EXEMPEL@{uu}
+
+    HOTDIR  5 "DH1:Comm/Term/Uploads"
+
+@endnode
+
+@node drive "Enhetsknappinställningar"
+@prev hotdir
+@next button
+
+ @{b}@{u}DRIVE@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    DRIVE "Number" "GadgetText" "PathName"
+
+ @{u}BESKRIVNING@{uu}
+
+    Här kan du definiera  upp till 32 enhetsknappar.  Om du bara definierar
+    16 eller färre  får du en rad med knappar,  definierar du mer än 16 får
+    du två rader.  Texten "GadgetText" är begränsad till 10 tecken, och det
+    borde  vara  tillräckligt - om  man  skulle  ha fler tecken  skulle det
+    behövas en väldigt hög upplösning på skärmen för att alla knappar skall
+    få rum.  Det kan till och med  hända att  fönstret inte ryms på skärmen
+    med bara 5 tecken/knapp!
+
+ @{u}ARGUMENT@{uu}
+
+    "Number"     numret på enhetsknappen mellan 1 och 32
+    "GadgetText" max 10 tecken som knapptext
+    "PathName"   enhet/katalog
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    DRIVE  1 "DF0" "DF0:"
+    DRIVE  2 "DF1" "DF1:"
+    DRIVE  3 "DH0" "DH0:"
+    DRIVE  4 "DH1" "DH1:"
+    DRIVE  5 "DH2" "DH2:"
+    DRIVE  6 "DH3" "DH3:"
+    DRIVE  7 "CD0" "CD0:"
+    DRIVE  8 "RAM" "RAM:"
+    DRIVE  9 "DF0" "DF0:"
+    DRIVE 10 "DF1" "DF1:"
+    DRIVE 11 "DH0" "DH0:"
+    DRIVE 12 "DH1" "DH1:"
+    DRIVE 13 "DH2" "DH2:"
+    DRIVE 14 "DH3" "DH3:"
+    DRIVE 15 "CD0" "CD0:"
+    DRIVE 16 "RAM" "RAM:"
+
+ @{u}EXEMPEL@{uu}
+
+    DRIVE 2 "INBOUND" "Work:News/Inbound/"
+
+@endnode
+
+@node button "Kommandoknappsinställningar"
+@prev drive
+@next arexxinterface
+
+ @{b}@{u}BUTTON@{ub}@{uu}
+
+ @{u}SYNOPSIS@{uu}
+
+    BUTTON "Number" "ButtonType" "GadgetText" "Command"
+
+ @{u}BESKRIVNING@{uu}
+
+    Detta är det viktigaste nyckelordet  i  ROs  inställningsfil, med detta
+    väljer du vilka kommandon kommandoknapparna skall ha. Efter nyckelordet
+    anger du vilken knapp du vill definiera. Numret måste vara mellan 1 och
+    120. För närvarande stöder RO två typer av knappar: CLI-Kommandon eller
+    interna funktioner.  När du definerar en knapp anger du med '%f' var du
+    vill att filnamnen skall fyllas i.  Det finns också flera andra %-inst-
+    ruktioner, se längre  ner.  RO  använder  den  vanliga  system-sökvägen
+    (PATH-kommandot i AmigaDOS) så du behöver inte fylla i fullständig sök-
+    väg till kommandot.  Du måste också ange en textsträng till knappen och
+    den får inte vara längre än 20 tecken. Du kan ange en snabbtangent till
+    knappen direkt genom att skriva ett '_'  före den bokstav som skall an-
+    vändas, jfr '_Copy', 'R_ename' m.m. Varning dock för att definera samma
+    tangent flera gånger, som '_Delete' och  '_Disk'.  För närvarande finns
+    följande interna funktioner:
+
+    @{" About     " link About}              Visar 'Om'-fönstret.
+    @{" Action    " link Action}              Kör ett program beroende på filtyp.
+    @{" All       " link All}              Markerar alla rader i den aktiva listan.
+    @{" Assign    " link Assign}              Skapar en logisk enhet för katalogen  i  den
+                              aktiva listan.
+    @{" Buffers   " link Buffers}              Visar buffertlistan.
+    @{" ByName    " link ByName}              Markerar filer baserat på filnamn.
+    @{" Bytes     " link Bytes}              Summerar markerade filers storlek.
+    @{" Change    " link Change}              Anger  sorteringskriteria   för  den  aktiva
+                              listan.
+    @{" Copy      " link Copy}              Kopierar filer och kataloger.
+    @{" CopyAs    " link Copy}              Kopierar filer och kataloger och byter namn.
+    @{" CopyDev   " link CopyDev}              Kopierar filer till en enhet.
+    @{" Current   " link Current}              Hoppar till aktuell katalog.
+    @{" Delete    " link Delete}              Raderar filer och kataloger.
+    @{" Directory " link Directory}              Visar fillistan.
+    @{" Disk      " link Disk}              Visar information om aktiv enhet.
+    @{" Dup       " link Dup}              Duplicerar filer.
+    @{" Expand    " link Expand}              Expanderar en sökväg till  dess  ARCHandler-
+                              motsvarighet.
+    @{" Fit       " link Fit}              Testar om filerna ryms i målkatalogen.
+    @{" Help      " link Help}              Visar online hjälp.
+    @{" Icon      " link Icon}              Markerar motsvarande ikonfiler.
+    @{" Info      " link Info}              Visar information om markerade filer.
+    @{" LActive   " link Active}              Aktiverar den vänstra listan.
+    @{" LCopy     " link LCopy}              Kopierar den aktiva listans sökväg till den
+                              inaktiva listan.
+    @{" LFold     " link LFold}              Göm den högra fillistan.
+    @{" LSwap     " link LSwap}              Byter innehållet i listorna.
+    @{" ListArc   " link ListArc}              Listar innehållet i ett arkiv.
+    @{" LParent   " link Parent}              Hoppar till moderkatalogen på vänstra sidan.
+    @{" LReload   " link Reload}              Uppdaterar den vänstra listan.
+    @{" LRoot     " link Root}              Hoppar till rotkatalogen på vänstra sidan.
+    @{" MakeDir   " link MakeDir}              Skapar katalog.
+    @{" MDLoad    " link MakeDir}              Skapar katalog och hoppa dit.
+    @{" Move      " link Move}              Flyttar filer och kataloger.
+    @{" MoveAs    " link MoveAs}              Flyttar filer och kataloger och byter namn.
+    @{" None      " link None}              Avmarkerar alla filer.
+    @{" Note      " link Note}              Ändrar filkommentar.
+    @{" Parent    " link Parent}              Hoppar till moderkatalog.
+    @{" Protect   " link Protect}              Ändrar filattributflaggor.
+    @{" Quit      " link Quit}              Avslutar RO.
+    @{" RActive   " link Active}              Aktiverar den högra listan.
+    @{" Reboot    " link Reboot}              Startar om datorn.
+    @{" Relabel   " link Relabel}              Byter namn på volymer.
+    @{" Reload    " link Reload}              Uppdaterar den aktiva listan.
+    @{" Rename    " link Rename}              Byter namn på filer.
+    @{" Root      " link Root}              Hoppar till rotkatalogen.
+    @{" RParent   " link Parent}              Hoppar till moderkatalogen på högra sidan.
+    @{" RReload   " link Reload}              Uppdaterar den högra listan.
+    @{" RRoot     " link Root}              Hoppar till rotkatalogen på högra sidan.
+    @{" SetDate   " link SetDate}              Ändrar datum på en fil eller katalog.
+    @{" Shrink    " link Shrink}              Krymper en ARCHandler-sökväg till en vanlig
+                              sökväg.
+    @{" Toggle    " link Toggle}              Växlar Markerad/Avmarkerad på alla filer.
+    @{" Touch     " link Touch}              Uppdaterar datum eller skapar en ny fil.
+    @{" UnArc     " link UnArc}              Packar upp ett arkiv.
+    @{" Update    " link Update}              Markerar filer för uppdatering.
+    @{" Volumes   " link Volumes}              Visar volymlistan.
+
+ @{u}ARGUMENT@{uu}
+
+    "Number"     anger vilken knapp det gäller, mellan 1 och 120
+    "ButtonType" COMMAND eller FUNCTION
+    "GadgetText" 20 tecken som knapptext
+    "Command"    CLI kommando som skall exekveras.
+
+    Dessa parametrar kan ingå i "Command":
+
+    %a           namn på en arexx port.
+    %f           källfilnamn med sökväg MED citationstecken.
+    %F           källfilnamn med sökväg UTAN citationstecken.
+    %n           endast källfilnamn MED citationstecken.
+    %N           endast källfilnamn UTAN citationstecken.
+    %p           källsökväg MED citationstecken.
+    %P           källsökväg UTAN citationstecken.
+    %t           målsökväg MED citationstecken.
+    %T           målsökväg UTAN citationstecken.
+    %s           källenhet MED citationstecken.
+    %S           källenhet UTAN citationstecken.
+    %d           målenhet MED citationstecken.
+    %D           målenhet UTAN citationstecken.
+    %r           fråga efter en sträng från användaren för varje fil.
+    %R           fråga efter en sträng från användaren en gång
+
+    &b           avbryt inte kommandots utförande vid fel.
+    &c           använd aktuell katalog som källsökväg.
+    &C           använd aktuell katalog som målsökväg.
+    &d           avmarkera inte valda filer/kataloger efter utförandet.
+    &r           uppdaterar källkatalogen.
+    &R           uppdaterar målkatalogen.
+    &w           resultatfönstret måste stängas av användaren.
+
+    %%           procenttecken
+    &&           OCH-tecken
+
+ @{u}FÖRINSTÄLLT@{uu}
+
+    BUTTON     1     COMMAND   "Read"        "Most >NIL: %f"
+    BUTTON     2     COMMAND   "Run"         "Run >NIL: %f"
+    BUTTON     3     FUNCTION  "_Delete"     DELETE
+    BUTTON     4     FUNCTION  "_Move"       MOVE
+    BUTTON     5     FUNCTION  "_Copy"       COPY
+    BUTTON     6     FUNCTION  "_Bytes"      BYTES
+    BUTTON     7     FUNCTION  "All"         ALL
+    BUTTON     8     COMMAND   "Arc"         "LhA >NIL: -x -r a %R %n &c"
+
+    BUTTON     9     COMMAND   "View"        "MultiView >NIL: %f"
+    BUTTON    10     COMMAND   "_Edit"       "Ed >NIL: %f"
+    BUTTON    11     FUNCTION  "Touch"       TOUCH
+    BUTTON    12     FUNCTION  "Move As"     MOVEAS
+    BUTTON    13     FUNCTION  "Copy As"     COPYAS
+    BUTTON    14     FUNCTION  "Fit"         FIT
+    BUTTON    15     FUNCTION  "None"        NONE
+    BUTTON    16     FUNCTION  "ListArc"     LISTARC
+
+    BUTTON    17     FUNCTION  "_Action"     ACTION
+    BUTTON    18     COMMAND   "XEdit"       "FileX >NIL: %f"
+    BUTTON    19     FUNCTION  "MakeDir"     MAKEDIR
+    BUTTON    20     FUNCTION  "_Rename"     RENAME
+    BUTTON    21     FUNCTION  "Dup"         DUP
+    BUTTON    22     FUNCTION  "Refresh"     RELOAD
+    BUTTON    23     FUNCTION  "_Pattern"    BYNAME
+    BUTTON    24     FUNCTION  "UnArc"       UNARC
+
+    BUTTON    25     COMMAND   "Music"       "DeliTracker >NIL: MODULE %f"
+    BUTTON    26     FUNCTION  "Assign"      ASSIGN
+    BUTTON    27     COMMAND   "Command"     "%r"
+    BUTTON    28     FUNCTION  "_Comment"    NOTE
+    BUTTON    29     FUNCTION  "Change"      CHANGE
+    BUTTON    30     FUNCTION  "Parent"      PARENT
+    BUTTON    31     FUNCTION  "Reverse"     TOGGLE
+    BUTTON    32     FUNCTION  "_Disk"       DISK
+
+    BUTTON    33     FUNCTION  "LSwap"       LSWAP
+    BUTTON    34     FUNCTION  "_Relabel"    RELABEL
+    BUTTON    35     COMMAND   "Execute"     "Execute %r"
+    BUTTON    36     FUNCTION  "_Protect"    PROTECT
+    BUTTON    37     FUNCTION  "_Expand"     EXPAND
+    BUTTON    38     FUNCTION  "Root"        ROOT
+    BUTTON    39     FUNCTION  "_Update"     UPDATE
+    BUTTON    40     FUNCTION  "_Info"       INFO
+
+    BUTTON    41     FUNCTION  "LCopy"       LCOPY
+    BUTTON    42     FUNCTION  "CopyDev"     COPYDEV
+    BUTTON    43     COMMAND   "Rexx"        "Rx %r"
+    BUTTON    44     FUNCTION  "SetDate"     SETDATE
+    BUTTON    45     FUNCTION  "_Shrink"     SHRINK
+    BUTTON    46     FUNCTION  "Current"     CURRENT
+    BUTTON    47     FUNCTION  "Icon"        ICON
+    BUTTON    48     FUNCTION  "Help"        HELP
+
+ @{u}EXEMPEL@{uu}
+
+    BUTTON 98 COMMAND "DirTree" "DirTree %f"
+
+@endnode
+
+@node About
+@prev Volumes
+@next Action
+
+ @{b}@{u}About@{ub}@{uu}
+
+ Denna  funktion  öppnar  en  "Om"-ruta  som  visar  min  adress  och  lite
+ information om registrering.
+
+@endnode
+
+@node Action
+@prev About
+@next All
+
+ @{b}@{u}Action@{ub}@{uu}
+
+ Denna funktion  utför  ett  kommando  för alla valda filer beroende på dess
+ filtyp. Du  måste  ange  ett  standardkommando för alla filtyper om du vill
+ använda denna  funktion.  Om en filtyp inte har ett standardkommando kommer
+ MultiView  att  startas  för  alla  filtyper.  Se @{" FILETYPE " link  filetype} delen för mer
+ information.
+
+ Du kan avbryta denna funktion genom att stänga dess fönster.
+
+@endnode
+
+@node All
+@prev Action
+@next Assign
+
+ @{b}@{u}All@{ub}@{uu}
+
+ Denna funktion markerar alla rader i den aktiva fillistan.
+
+@endnode
+
+@node Assign
+@prev All
+@next Buffers
+
+ @{b}@{u}Assign@{ub}@{uu}
+
+ Denna funktion skapar en logisk enhet för sökvägen i den aktiva fillistan.
+ En dialogruta  dyker upp där du kan skriva det namn du vill ha på enheten.
+ Du behöver inte skriva in ett avslutande kolon.
+
+@endnode
+
+@node Buffers
+@prev Assign
+@next ByName
+
+ @{b}@{u}Buffers@{ub}@{uu}
+
+ Visar buffertlistan.
+
+@endnode
+
+@node ByName
+@prev Buffers
+@next Bytes
+
+ @{b}@{u}ByName@{ub}@{uu}
+
+ Denna funktion markerar rader baserat på ett namnmönster i den aktiva fil-
+ listan.  En dialogruta dyker upp och frågar dig efter ett mönster.  Du kan
+ skriva in vilket legalt AmigaDOS mönster som helst.
+
+@endnode
+
+@node Bytes
+@prev ByName
+@next Change
+
+ @{b}@{u}Bytes@{ub}@{uu}
+
+ Denna funktion  summerar  storlekarna på de markerade raderna i den aktiva
+ fillistan.  Om kataloger  är  markerade summeras innehållet i katalogerna.
+ Informationen  visas i  statusraden  som  '64728 Bytes  i 109 filer och 15
+ Kataloger'.
+
+ Du kan avbryta denna funktion genom att stänga dess fönster.
+
+@endnode
+
+@node Change
+@prev Bytes
+@next Copy
+
+ @{b}@{u}Change@{ub}@{uu}
+
+ Med denna funktion ändrar du sorteringskriteriet för den aktiva fillistan.
+ Denna  funktion  gör  samma  sak  som variablerna @{" SORTLEFT " link variable}, @{" SORTRIGHT " link variable},
+ @{" FIRSTLEFT " link variable},   @{" FIRSTRIGHT " link variable},  @{" ORDERLEFT " link variable}  och  @{" ORDERRIGHT " link variable}.   Funktionen
+ öppnar ett fönster där du kan välja mellan de möjliga alternativen.
+
+@endnode
+
+@node Copy
+@prev Change
+@next CopyDev
+
+ @{b}@{u}Copy@{ub}@{uu}
+
+ Denna funktion  kopierar alla valda filer  och  kataloger från den katalog
+ som anges av  den aktiva fillistan till den katalog som anges av den icke-
+ aktiva listan.  Om  du  använder CopyAs-funktionen dyker en dialogruta upp
+ som frågar  dig  efter ett  nytt namn  för aktuell fil.  Du kan hoppa över
+ filer genom att klicka på 'Hoppa över'  eller avbryta funktionen genom att
+ klicka på 'Avbryt'.  Du kan också avbryta  denna funktion genom att stänga
+ dess fönster.
+
+ I inställningsprogrammet/-filen kan du välja om du vill bevara filattribut,
+ filkommentarer och skapelsedatum vid kopiering. Se @{" VARIABLE " link variable} delen.
+
+@endnode
+
+@node CopyDev
+@prev Copy
+@next Current
+
+ @{b}@{u}CopyDev@{ub}@{uu}
+
+ Denna funktion  kopierar alla valda filer  i  den aktiva fillistan till en
+ enhet.  En dialogruta öppnas  där du kan fylla i vilken  enhet du vill ha.
+ Denna funktion är  mycket användbar  om du har en  massa textfiler  som du
+ vill skriva ut. Då 'CopyDev':ar du bara dom till 'PRT:'!
+
+@endnode
+
+@node Current
+@prev CopyDev
+@next Delete
+
+ @{b}@{u}Current@{ub}@{uu}
+
+ Denna funktion visar aktuell katalog i den aktiva fillistan. Aktuell katalog
+ är den som anges av CLI-Kommandot 'CD'.
+
+@endnode
+
+@node Delete
+@prev Current
+@next Directory
+
+ @{b}@{u}Delete@{ub}@{uu}
+
+ Denna funktion raderar alla filer och kataloger som är markerade i den
+ aktiva fillistan.  Om  variabeln @{" DELVERIFY " link variable} är satt dyker en dialog-
+ ruta upp och fråga dig om du är säker först.
+
+ Du kan avbryta denna funktion genom att stänga dess fönster.
+
+@endnode
+
+@node Directory
+@prev Delete
+@next Disk
+
+ @{b}@{u}Directory@{ub}@{uu}
+
+ Visar fillistan.
+
+@endnode
+
+@node Disk
+@prev Directory
+@next Dup
+
+ @{b}@{u}Disk@{ub}@{uu}
+
+ Denna funktion öppnar ett fönster med information  om den  enhet som anges
+ av den aktiva fillistan. Här kan du se saker som ledigt utrymme och block-
+ storlek.
+
+@endnode
+
+@node Dup
+@prev Disk
+@next Expand
+
+ @{b}@{u}Dup@{ub}@{uu}
+
+ Denna funktion duplicerar alla valda filer i den aktiva fillistan. För
+ varje fil frågar RO hur du vill kopiera den. Tryck på 'Avbryt' för att av-
+ bryta eller 'Hoppa över' om du vill hoppa över någon fil.
+
+@endnode
+
+@node Expand
+@prev Dup
+@next Fit
+
+ @{b}@{u}Expand@{ub}@{uu}
+
+ Om du använder ARCHandler kan detta vara användbart för dig.  Denna funk-
+ tion expanderar sökvägen i den aktiva fillistan, ex.: 'System:Devs/' till
+ 'Archives:System/Devs/'
+
+@endnode
+
+@node Fit
+@prev Expand
+@next Help
+
+ @{b}@{u}Fit@{ub}@{uu}
+
+ Denna funktion  beräknar hur många bytes  de markerade filerna  kommer att
+ behöva i målkatalogen.  RO tar med även med i beräkningen  hur många bytes
+ som förloras på grund av organiseringen på disken. Denna information visas
+ sedan  nere på  statusrader  som  också  berättar  om de markerade filerna
+ kommer att rymmas eller inte.
+
+ Du kan avbryta denna funktion genom att stänga dess fönster.
+
+@endnode
+
+@node Help
+@prev Fit
+@next Icon
+
+ @{b}@{u}Help@{ub}@{uu}
+
+ Denna funktion  visar  huvudsidan i  online-hjälpfilen.  Du kan också göra
+ detta genom att trycka på HELP-tangenten.  Om du trycker på HELP-tangenten
+ kommer RO också att  försöka hitta det stycke  som handlar om det som mus-
+ pilen står på.  Försäkra dig om att systemvariabeln  'ENV:AmigaGuide/Path'
+ är korrekt satt  så att  RO  kan hitta sin hjälpfil om den inte är i samma
+ katalog som huvudprogrammet.
+
+@endnode
+
+@node Icon
+@prev Help
+@next Info
+
+ @{b}@{u}Icon@{ub}@{uu}
+
+ Denna funktion markerar alla '.info'-filer som hör till de andra markerade
+ filerna i den aktiva fillistan.
+
+@endnode
+
+@node Info
+@prev Icon
+@next Active
+
+ @{b}@{u}Info@{ub}@{uu}
+
+ Denna funktion visar information om de markerade filerna i den aktiva fil-
+ listan. Här kan du se saker som filtyp och skyddsbitar. För att komma till
+ nästa fil stänger  du rutan genom  att klicka på 'Okej'.  Om du klickar på
+ 'Avbryt' eller på stängknappen avbryts funktionen.
+
+@endnode
+
+@node Active
+@prev Info
+@next LCopy
+
+ @{b}@{u}Active@{ub}@{uu}
+
+ Denna funktion gör en  fillista aktiv.  LActive gör den  vänstra aktiv och
+ RActive gör den högra aktiv.
+
+@endnode
+
+@node LCopy
+@prev Active
+@next LFold
+
+ @{b}@{u}LCopy@{ub}@{uu}
+
+ Denna funktion kopierar den aktiva fillistans sökväg till den andra fil-
+ listan.
+
+@endnode
+
+@node LFold
+@prev LCopy
+@next LSwap
+
+ @{b}@{u}LFold@{ub}@{uu}
+
+ Denna funktion används för att gömma/visa den högra fillistan.
+
+@endnode
+
+@node LSwap
+@prev LFold
+@next ListArc
+
+ @{b}@{u}LSwap@{ub}@{uu}
+
+ Denna funktion byter den aktiva fillistans och den icke-aktiva fillistans
+ sökvägar med varandra.
+
+@endnode
+
+@node ListArc
+@prev LSwap
+@next Parent
+
+ @{b}@{u}ListArc@{ub}@{uu}
+
+ Denna funktion listar innehållet i alla markerade arkiv med hjälp av den
+ listfunktion som angavs i arkivsdefinitionen.
+
+ Du kan avbryta denna funktion genom att stänga dess fönster.
+
+@endnode
+
+@node Parent
+@prev ListArc
+@next Reload
+
+ @{b}@{u}Parent@{ub}@{uu}
+
+ Denna funktion visar moderkatalogen i den aktiva fillistan. Om du använder
+ 'LParent' utförs en 'Parent' operation på den vänstra fillistan, och om du
+ använder 'RParent' utförs 'Parent' på den högra listan. Om listan inte har
+ någon moderkatalog uppdateras bara listan.
+
+@endnode
+
+@node Reload
+@prev Parent
+@next Root
+
+ @{b}@{u}Reload@{ub}@{uu}
+
+ Funktionerna Reload, LReload and RReload uppdaterar den aktiva, den vänstra
+ respektive den högra fillistan.
+
+@endnode
+
+@node Root
+@prev Reload
+@next MakeDir
+
+ @{b}@{u}Root@{ub}@{uu}
+
+ Root, LRoot och RRoot  visar  rotkatalogen  hos den  aktiva,  den  vänstra
+ respektive den högra fillistan.
+
+@endnode
+
+@node MakeDir
+@prev Root
+@next Move
+
+ @{b}@{u}MakeDir@{ub}@{uu}
+
+ Denna funktion öppnar ett fönster och frågar dig efter ett namn och skapar
+ en katalog med detta namn. Om du använder 'MDLoad' ändras också den aktiva
+ fillistans sökväg till denna katalog.
+
+@endnode
+
+@node Move
+@prev MakeDir
+@next None
+
+ @{b}@{u}Move@{ub}@{uu}
+
+ Denna funktion flyttar alla markerade filer  och kataloger från den aktiva
+ listans katalog till den andra.  Om du använder MoveAs hoppar en ruta fram
+ som frågar dig efter ett nytt namn på den flyttade filen/katalogen. Du kan
+ avbryta  funktionen  genom att  klicka på  'Avbryt' eller hoppa över filer
+ genom att klicka på 'Hoppa över'. RO testar om du flyttar filer inom samma
+ enhet, och byter då bara namn på filerna, vilket är mycket snabbare än att
+ kopiera och radera.
+
+ I inställningsprogrammet/-filen kan du välja om du vill bevara filattribut,
+ filkommentarer och skapelsedatum vid flyttning. Se @{" VARIABLE " link variable} delen.
+
+@endnode
+
+@node None
+@prev Move
+@next Note
+
+@{b}@{u}None@{ub}@{uu}
+
+ Denna funktion avmarkerar alla filer i den aktiva fillistan.
+
+@endnode
+
+@node Note
+@prev None
+@next Protect
+
+ @{b}@{u}Note@{ub}@{uu}
+
+ Denna  funktion låter dig ändra  filkommentaren  på alla markerade filer i
+ den  aktiva fillistan.  En dialogruta dyker upp med den  gamla kommentaren
+ och där kan du ändra den.  'Hoppa över'  avbryter  för  filen och 'Avbryt'
+ avbryter helt och hållet.
+
+@endnode
+
+@node Protect
+@prev Note
+@next Quit
+
+ @{b}@{u}Protect@{ub}@{uu}
+
+ Med denna funktion  kan du ändra filattributflaggorna för de valda filerna
+ i den aktiva listan. För varje  flagga kan du välja 'Ignorera', 'Ja' eller
+ 'Nej'. Ignorera betyder att  flaggan inte påverkas, JA  sätter flaggan och
+ NEJ tar bort den.  Du kan antingen ställa in  flaggorna för filerna en och
+ en, eller så kan du sätta flaggorna  för alla filer  på en gång  genom att
+ trycka på 'Alla'. 'Avbryt' avbryter funktionen.
+
+@endnode
+
+@node Quit
+@prev Protect
+@next Reboot
+
+@{b}@{u}Quit@{ub}@{uu}
+
+ Avslutar RO.
+
+@endnode
+
+@node Reboot
+@prev Quit
+@next Relabel
+
+ @{b}@{u}Reboot@{ub}@{uu}
+
+ Startar om din dator utan förvarning :).
+
+@endnode
+
+@node Relabel
+@prev Reboot
+@next Rename
+
+ @{b}@{u}Relabel@{ub}@{uu}
+
+ Med denna funktion byter du namn på den volym som anges av den aktiva fil-
+ listan. En dialogruta öppnas som låter dig ändra volymens namn. Klicka på
+ 'Avbryt' om du ångrar dig.
+
+@endnode
+
+@node Rename
+@prev Relabel
+@next SetDate
+
+ @{b}@{u}Rename@{ub}@{uu}
+
+ Denna funktion låter dig ändra namn på de markerade filerna/katalogerna i
+ den aktiva fillistan. En dialogruta dyker upp som låter dig ändra fil-
+ namnet. Klicka på 'Hoppa över' om du inte vill ändra namnet på aktuell fil
+ och 'Avbryt' om du vill avbryta funktionen. När du är klar kan du antingen
+ trycka <return> eller klicka på 'Okej'.
+
+@endnode
+
+@node SetDate
+@prev Rename
+@next Shrink
+
+ @{b}@{u}SetDate@{ub}@{uu}
+
+ Med  denna  funktion  kan du  ändra på de i den aktiva fillistan markerade
+ filernas skapelsedatum  och  -tid.  En dialogruta  dyker upp med det gamla
+ datumet  och tiden i en strängknapp.  Där kan du  skriva in en ny tid, men
+ det måste vara i standard AmigaDOS format,  samma format som du ser i fil-
+ listan. Tryck 'Hoppa över' för att inte ändra en fil, och 'Avbryt' för att
+ avbryta.
+
+@endnode
+
+@node Shrink
+@prev SetDate
+@next Toggle
+
+ @{b}@{u}Shrink@{ub}@{uu}
+
+ Om du använder ARCHandler  kan detta  vara  en användbar funktion för dig.
+ Denna funktion krymper den aktiva  listans sökväg, enl.:  Archives:System/
+ Devs krymps till System:Devs,  men det fungerar  bara om sökvägens katalog
+ inte är ett arkiv. Jämför med @{" Expand  " link Expand}
+
+@endnode
+
+@node Toggle
+@prev Shrink
+@next Touch
+
+ @{b}@{u}Toggle@{ub}@{uu}
+
+ Denna funktion  markerar/avmarkerar  växelvis  alla  filer/kataloger i den
+ aktiva fillistan.
+
+@endnode
+
+@node Touch
+@prev Toggle
+@next UnArc
+
+ @{b}@{u}Touch@{ub}@{uu}
+
+ Om du har en eller fler markerade rader i den aktiva fillistan kommer
+ denna funktion att uppdatera skapelsedatum och tid till det nuvarande. Om
+ du inte har markerat något i den aktiva listan kommer denna funktion att
+ öppna en dialogruta som frågar dig efter ett namn. Sedan skapas en tom fil
+ med detta namn.
+
+@endnode
+
+@node UnArc
+@prev Touch
+@next Update
+
+ @{b}@{u}UnArc@{ub}@{uu}
+
+ Denna funktion packar upp alla valda arkiv i den aktiva fillistan till
+ katalogen som anges av den icke-aktiva listan, enligt den metod som angas
+ i definitionen av arkivet.
+
+ Du kan avbryta denna funktion genom att stänga dess fönster.
+
+@endnode
+
+@node Update
+@prev UnArc
+@next Volumes
+
+ @{b}@{u}Update@{ub}@{uu}
+
+ Denna funktion markerar alla rader i den aktiva fillistan som redan finns
+ i den andra listan. Detta är användbart när du uppdaterar ett programpaket.
+ Om du vill markera alla filer i den aktiva fillistan som INTE finns i den
+ icke-aktiva, kan du använda 'Update' och sedan 'Reverse'.
+
+@endnode
+
+@node Volumes
+@prev Update
+@next About
+
+ @{b}@{u}Volumes@{ub}@{uu}
+
+ Visar volymlistan.
+
+@endnode
+
+@node arexxinterface "Arexx-gränssnittet"
+@prev button
+@next discussion
+
+ @{b}@{u}ARexx-gränssnittet@{ub}@{uu}
+
+ RO har en inbyggd ARexx-port, som förstår följande kommandon:
+
+
+   - QUIT
+
+     Avslutar RO.
+
+
+   - HIDE
+
+     Gömmer (ikonifierar) RO.
+
+
+   - SHOW
+
+     Visar RO igen (motsatsen till HIDE).
+
+
+   - INFO ITEM/A
+
+     Beroende på den angivna parametern fylls resultatsträngen med föl-
+     jande information:
+
+        - "title"       Programmets namn (RO).
+
+        - "author"      Författaren till RO.
+
+        - "copyright"   Copyright-meddelande.
+
+        - "description" Kort beskrivning.
+
+        - "version"     Versionsinformation.
+
+        - "base"        Namnet på ARexxporten
+
+        - "screen"      Namnet på den allmänna skärmen.
+
+
+     Exempel: 'Info "title"'
+
+
+   - HELP FILE/A
+
+     En lista på alla ROs ARexxkommandon skrivs ut till en given fil.
+
+     Exempel: 'Help "RAM:RexxCommands"'
+
+
+   - ACTIVE SIDE/A
+
+     Gör en fillista till den aktiva fillistan. 'Active Left' aktiverar den
+     vänstra sidan och 'Active Right' aktiverar den högra.  'Active Active'
+     returnerar  vilken sida som för närvarande är aktiv. 'Active Inactive'
+     returnerar motsatsen.
+
+     Exempel: 'Active Inactive'
+
+
+   - CHOICEREQ STRING/A
+
+     'ChoiceReq  Sträng' öppnar en dialogruta  där  användaren kan svara Ja
+     eller Nej. Om svaret är Ja returneras '1', annars returneras '0'.
+
+     Exempel: 'ChoiceReq "Är du säker?"'
+
+
+   - CHANGE SIDE/A,SWITCH/A
+
+     Med denna funktion  kan  du  byta  sorteringskriteriet för en fillista
+     direkt på samma sätt  som  du  kan göra med 'Change'-rutan. SIDE/A kan
+     vara 'Left' , 'Right' , 'Active'  eller  'Inactive'. SWITCH/A kan vara
+     'Dirs', 'Files', 'Mixed', 'Name', 'Date', 'Size', 'High' eller 'Low'.
+
+     Exempel: 'Change Active Mixed'
+
+
+   - COMMAND STRING/A,FILE/A
+
+     Startar ett AmigaDOS-kommando.  Allt du behöver göra är att skicka med
+     en sträng  som beskriver  hur  kommandot skall utföras med hjälp av de
+     %-kommandon som finns beskrivna  på andra ställen i denna text. FILE/A
+     är namnet på den fil som  ersätter  %f eller %F i STRING/A. Om ett fel
+     inträffar medans kommandot exekveras sätts variabeln RC till en felkod
+     skild från 0.
+
+     Exempel: 'Command "Delete %f" "S:User-Startup"'
+
+
+   - FILEACTION FILE/A
+
+     Aktiverar filigenkänningen i RO. Det är precis samma sak som att dubbel-
+     klicka på FILE/A i en fillista.
+
+     Exempel: 'FileAction "S:Startup-Sequence"'
+
+
+   - FUNCTION NAME/A
+
+     Anropar en intern funktion i RO.
+
+     Exempel: 'Function "COPYAS"'
+
+
+   - GETENTRY SIDE/A,TYPE/A
+
+     'GetEntry' returnerar  den första  markerade  filen/katalogen från den
+     angivna sidan  och  avmarkerar  den.  Sidan  kan vara 'Left', 'Right',
+     'Active'  eller  'Inactive'.  Om du  vill  att  'GetEntry'  bara skall
+     returnera filer anger du 'Files' som TYPE/A. Om du vill att 'GetEntry'
+     bara skall returnera kataloger anger du 'Dirs'. Om du vill ha båda två
+     anger du 'Any'. Om det inte finns några markerade filer/kataloger kvar
+     sätter 'GetEntry' 'Result=RESULT'.
+
+     Exempel: 'GetEntry Active Files'
+
+
+   - LOAD SIDE/A,DIR/A
+
+     Visar en katalog i den  angivna  fillistan.  SIDE/A  kan  vara 'Left',
+     'Right', 'Active' eller 'Inactive'.  DIR/A  är den  katalog  som skall
+     visas.
+
+     Exempel: 'Load Active "RAM:"'
+
+
+   - MESSAGE STRING/A
+
+     Skriver ett meddelande  på  statusraden. 'Message "Detta är ett test"'
+     skriver  'Detta är ett test'  på  statusraden.  För  att förhindra att
+     klockan  skriver över texten bör  du använda 'Sleep' före och 'Wakeup'
+     efter MESSAGE.
+
+     Exempel: 'Message "Das ist ein Test"'
+
+
+   - NUMENTRIES SIDE/A,TYPE/A
+
+     Returnerar antalet  markerade  filer/kataloger  på  den  angivna sidan.
+     SIDE/A kan vara 'Left', 'Right', 'Active' eller 'Inactive'. Om du bara
+     är intresserad  av  antalet filer sätter  du  TYPE/A till 'Files'. För
+     kataloger endast använder du 'Dirs', och vill du ha både kataloger och
+     filer använder du 'Any'.
+
+     Exempel: 'NumEntries Active Dirs'
+
+
+   - PATH SIDE/A
+
+     Detta kommando returnerar den angivna listans sökväg. SIDE/A kan vara
+     'Left',  'Right',  'Active'  eller  'Inactive'. Om ingen sökväg finns
+     sätter 'PATH' 'Result=RESULT'.
+
+     Exempel: 'Path Right'
+
+
+   - REFRESH SIDE/A
+
+     Uppdaterar  den  angivna  sidan.  SIDE/A  kan  vara  'Left', 'Right',
+     'Active' eller 'Inactive'.  Om sidan inte visar någon  katalog sätter
+     'REFRESH' 'Result=RESULT'.
+
+     Exempel: 'Refresh Inactive'
+
+
+   - SLEEP
+
+     Med denna funktion kan du söva ner RO,  vilket  innebär att programmet
+     ignorerar alla inkommande  signaler  och  klockan.  Detta kommando bör
+     vara det första i alla  ARexx-program  för  att  förhindra att klockan
+     förstör dina programmets meddelanden på statusraden.
+
+
+   - STRINGREQ STRING/A
+
+     Med StringReq kan du be användaren skriva in en sträng i en strängruta.
+     'StringReq "PRT:"' skapar ett fönster med en stränginmatningsruta där
+     det står PRT: från början, med som användaren kan ändra. Om användaren
+     klicka på 'Avbryt' sätts Result till 'RESULT'.
+
+     Exempel: 'StringReq "T:__TEMPFILE__"'
+
+
+   - WAKEUP
+
+     Med 'Wakeup' väcker du upp RO igen. Om du använder 'Sleep' måste du
+     alltid använda 'Wakeup', annars låser sig RO tills du kör ett 'Wakeup'
+     kommando (t.ex från CLI).
+
+
+ Om du anropar ett ARexx-program från RO  till exempel genom att använda en
+ knapp måste du försäkra dig om  att  kommandosträngen  innehåller 'Rx'. RO
+ behöver det för att känna av att det är ett ARexx-program det är frågan om.
+ Om du inte gör så kan datorn hamna i ett dödläge.
+
+ Om du behöver ett namn på en markerad fil i  ditt  ARexx-program använd %f
+ och inte %F, annars kan du få problem med citationstecknen.
+
+@endnode
+
+@node discussion "Frågor och svar"
+@prev arexxinterface
+@next registration
+
+F: Ibland märker inte RO att jag har markerat en fil. Varför?
+S: Nej så är det inte.  I vissa fall kan det vara svårt att se om en fil är
+   markerad eller inte eftersom  markören  som  behövs  för  tangentbordets
+   skull har nästan  samma  färg  som  en rad som är markerad. Du kan ändra
+   detta i inställningsprogrammet för MUI i 'Listviews'-delen.
+
+
+F: Jag startar RO men ingenting händer. Vad är det som är fel?
+S: Upplösningen  på  det  skärmläge du använder kan vara för låg så att ROs
+   fönster inte ryms.  Försök med att använda ett mindre typsnitt eller att
+   använda OverScan.  Minimikrav för RO är en 640x200 pixels skärm och typ-
+   snittet Topaz 8.
+
+
+F: Jag har skapat en knapp som skall starta ett CLI-kommando, men det fung-
+   erar inte. Varför?
+S: Försäkra dig om att du använde COMMAND som knapptyp, inte FUNCTION.
+
+@endnode
+
+@node registration "Registrering"
+@prev discussion
+@next registrationform
+
+ @{b}@{u}Registrering@{ub}@{uu}
+
+ Om du registrerar RO kommer du att få en diskett med den senaste versionen
+ av RO och en personlig nyckelfil,  som  gör din oregistrerade version till
+ en full, registrerad version.  Denna nyckelfil gäller sedan för alla fram-
+ tida versioner av RO.  Om du har en e-post-adress kan du få din  nyckelfil
+ som ett ascii-kodat (uuencode) e-brev.
+
+ Priset för att registrera RO är
+
+      30.- DM  (D-Mark),   (motsvarar ca. 143 sek. i skrivandes stund.)
+      20.- US$ (US Dollar)
+
+ eller en summa motsvarande US$ 25,- ( ca. 172 sek.) i någon annan valuta.
+ Detta beror på att det kostar mig en hel del att växla in utländsk valuta
+ till D-Mark här i Tyskland.  Om du tror att din bank växlar billigare kan
+ du ju köpa USD 20 hos dig och skicka mig dem.
+
+ Det snabbaste, billigaste  och  enklaste sättet att registrera dig är att
+ lägga pengarna i ett kuvert tillsammans med din registreringsblankett och
+ skicka dem till:
+
+        Oliver Rummeyer
+        Gartenstrasse 41
+        D-88212 Ravensburg
+        Germany/Europe
+
+ Euro-checkar  (i DMark)  är  också  välkomna,  men skicka inte några andra
+ sorters checkar eftersom banken tar hutlösa avgifter för att växla in dem.
+ Om du absolut måste använda checkar så lägg till ytterligare USD 10.
+
+ Du kan också föra över pengar direkt till  mitt  bankkonto,  men observera
+ att internationella banköverföringar är väldigt dyra.
+
+  Oliver Rummeyer, Kreissparkasse Ravensburg, BLZ 65050110, Konto 48276999
+
+ Hur du än gör, glöm inte bort att skriva namn, adress, telefonnummer och
+ eventuell e-postadress på talongen. Du kan skicka denna information via
+ elektronisk post om du vill. Denna information kommer att läggas in i mitt
+ dataregister. Du kan använda denna @{" Registreringsblankett " link registrationform}.
+
+ Tack för att du stödjer Shareware!
+
+@endnode
+
+@node registrationform "Registreringsblankett"
+@prev registration
+@next updates
+
+     -------------------------
+
+        Oliver Rummeyer
+        Gartenstrasse 41
+        D-88212 Ravensburg
+        Germany/Europe
+
+     -------------------------
+
+
+     Hej Oliver,
+
+     Jag vill gärna bli en registrerad användare av RO.
+
+     Namn:    _________________________________________________________
+
+     Adress:  _________________________________________________________
+
+              _________________________________________________________
+
+              _________________________________________________________
+
+     Land:    __________________
+
+     Telefon: __________________
+
+     E-post:  _________________________________________________________
+
+
+     Jag skickar dig pengarna via (markera vilket)
+
+           o   20 USD i sedlar, som kommer med detta brev.
+
+           o   30 DMark i sedlar, som kommer med detta brev.
+
+           o   30 SFr i sedlar, som kommer med detta brev.
+
+           o   120 FFR i sedlar, som kommer med detta brev.
+
+           o   En Euro-check uställd i DMark, som kommer med detta brev.
+
+           o   En annan check utställd i USD, som kommer med detta brev
+               (med 10 dollar extra för inväxlingen).
+
+           o   En kontoöverföring.
+
+     Var snäll och sänd min personliga nyckelfil via (fyll i rätt alternativ)
+
+           o   e-brev (ascii-kodat)
+
+           o   vanligt brev (en diskett)
+
+
+     Jag har läst registreringsvillkoren och godkänner dessa.
+
+
+     _____________________  ___________________________________________
+           (Datum)                          (Underskrift)
+
+@endnode
+
+@node updates "Updates"
+@prev registrationform
+@next support
+
+ @{b}@{u}Uppdateringar@{ub}@{uu}
+
+ Varje gång  jag  släpper  en  ny version av RO kommer jag att anmäla detta
+ i lämpliga nyhetsgrupperna i  olika elektroniska nätverk.  Det nya paketet
+ kommer att finnas tillgängligt på  olika databaser och på alla AmiNet FTP-
+ baser.
+
+ ROs  support-mailbox  `Uplink BBS'  har  alltid den senaste versionen till
+ nerladdning via dessa noder:
+
+  Node 1:  +49-0751-96217  2:246/2320 USR 33.6 DS
+  Node 2:  +49-0751-793314 2:246/2321 USR 33.6 DS
+  Node 3:  +49-0751-97376  2:246/2322 Zyx E+
+  Node 4:  +49-0751-793314 2:246/2323 ISDN 16k
+  Node 5:  +49-0751-793315 2:246/2324 ISDN 2k
+
+ Använd det 'magiska' namnet `RO'. Annar kan du logga in som användare 'RO'
+ med password 'RO'.
+
+ Som tidigare  beskrivet  behöver  inte  registrerade  användare  någon  ny
+ nyckelfil  eller  någon  personlig  version.  Registrerade  användare  kan
+ omedelbart utnyttja alla nya funktioner.
+
+@endnode
+
+@node support "Korrespondens"
+@prev updates
+@next acknowledgments
+
+ @{b}@{u}Korrespondens@{ub}@{uu}
+
+ Om du har några förslag, frågor, kritik eller bugrapporter eller om du bara
+ gillar mitt program kan du kontakta mig på:
+
+ SMail:  Oliver Rummeyer
+         Gartenstrasse 41
+         D-88212 Ravensburg
+         Germany/Europe
+
+ Email:  oliver.rummeyer@student.uni-ulm.de
+ Web:    http://www.uni-ulm.de/~s_orumme/
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: 2.6ui (Amiga)
+
+mQBNAi9OUNkAAAECAMMunTdwFA+DX4SksnWNl0QqP4uAkrStXnHoVTb1Yaz59TMC
+Nw/21MP0QOlG+4qIpIhZ6ayQFrkAeSWtkRG+r4EABRG0KU9saXZlciBSdW1tZXll
+ciA8b2xpdmVyQHJ1bW9yLnJ2LnN1Yi5vcmc+
+=iYz8
+-----END PGP PUBLIC KEY BLOCK-----
+
+@endnode
+
+@node acknowledgments "Tack till..."
+@prev support
+@next history
+
+ @{b}@{u}Tack till...@{ub}@{uu}
+
+ Författaren vill tacka...
+
+ - Alexander Abt
+
+   ...för hans 'Recog' filtypsigenkänning.
+
+ - Frank Schlichting
+
+   ...för att vara min första beta-testare, för hans suveräna förslag
+      och för hans arbete med dokumentationen.
+
+ - Juergen Schubert
+
+   ...för hans geniala förslag och för hans installationsskript.
+
+ ...och...
+
+ - Jean-Francois Fabre
+
+   ...för den franska översättningen av dokumentationen och catalog-filen.
+
+ - Staffan Palmroos
+
+   ...för den svenska översättningen av dokumentationen och catalog-filen.
+
+ - Jérôme Lovy
+
+   ...för att han gjort om den franska katalog-filen och för att
+      han förbättrat dokumentationen.
+
+ - Ignazzi Carmelo
+
+   ...för den italienska översättningen.
+
+ - Teemu Valkeapaa
+
+   ...för den finska översättningen.
+
+ ..och..
+
+ - Rafael D'Halleweyn
+
+   ...för hans "ARCHandler".
+
+ - Martin "XEN" Hutteloher
+
+   ...för hans MagicWB-paket och hans tillåtelse att använda några av hans
+      ikoner i detta paket.
+
+ - Stefan Stuntz
+
+   ...för hans "Magic User Interface".
+
+ ...och sist men inte minst alla registrerade användare.
+
+@endnode
+
+@node history "Historia"
+@prev acknowledgments
+@next future
+
+ @{b}@{u}Historia@{ub}@{uu}
+
+ - Version 0.80 (26.8.94)
+
+   Den första version som släpptes.
+
+ - Version 0.81 (7.9.94)
+
+   o Fixade några mindre buggar.
+   o Lade till sökvägsexpansionvariabeln.
+
+ - Version 0.82 (11.10.94)
+
+   o Fixade några buggar.
+   o Använder systemsökvägen om programmet startas från Workbench.
+   o Lade till några filtyper.
+   o Lade till kommandoradsfunktionen @{" ICONIFY " link menus}.
+   o Lade till variabeln @{" FLUSHMEMORY " link variable}.
+   o Tog bort variabeln 'HELPFILE', använder 'ENV:AmigaGuide/Path' i stället.
+   o Fullt lokaliserat (tysk översättning medföljde).
+   o Kommandoknapparna tillåter snabbtangenter.
+   o Flera andra mindre ändringar.
+
+ - Version 0.83 (5.12.94)
+
+   o Fixade några mindre buggar.
+   o Lade till några filtyper.
+   o Nya interna funktioner: @{" UPDATE " link Update} & @{" CURRENT " link Current}
+   o Tysk översättning av dokumentationen.
+   o Catalog-filerna ändrades.
+   o Italiensk catalog-fil.
+   o En stor uppfräschning av programkoden.
+   o Andra mindre ändringar.
+
+ - Version 0.90 (9.1.95)
+
+   o Kräver nu MUI 2.3 eller bättre.
+   o Fixade alla kända buggar.
+   o Lade till några filtyper.
+   o Lade till variablerna @{" FORMATLEFT " link variable} och @{" FORMATRIGHT " link variable}.
+   o Lade till @{" HOTKEY " link hotkey}.
+   o Lade till variabeln @{" COPYVERIFY " link variable}.
+   o Lade till variabeln 'SYMMETRICAL'.
+   o Förbättrade fillistorna.
+   o Ändrade kommandosträngarna i inställningsfilen.
+     Lade till flera nya '%'-kommandon.
+   o Ändrade arkiv-inställningen.
+   o Tog bort funktionerna 'COMMAND','EXECUTE' and 'REXX'.
+   o Lade till ett @{" ARexx-gränssnitt " link arexxinterface} som klarar alla grundläggande
+     funktioner.
+   o Ändrade Catalog-filerna.
+   o Flera andra mindre ändringar.
+
+ - Version 0.91 (23.1.95)
+
+   o Fixade några mindre buggar.
+   o Lade till '&'-kommandon.
+   o Ändrade arkivkommandonas inställningar.
+   o Ändrade overwrite & unprotect-rutorna.
+   o Lade till några ARexx-exempel.
+   o Catalog-filerna ändrades.
+   o Förbättrat installationsskript.
+   o Om-rutan visar nu versioninformation.
+
+ - Version 1.00 (20.3.95)
+
+   o Fixade några mindre buggar.
+   o Catalog-filerna ändrades.
+   o Snyggade till programkoden lite.
+   o Lade till användardefinerbara filtyper.
+   o Ändrade @{" filetype " link customtype} inställningen.
+   o Ändrade @{" archive " link archive} inställningen.
+   o Tog bort variabeln 'ARCHANDLER'.
+   o Ändrade och lade till ARexx-exempel.
+
+ - Version 1.01 (22.3.95)
+
+   o Fixade några allvarliga buggar.
+
+ - Version 1.02 (3.4.95)
+
+   o Fixade några buggar.
+   o Catalog-filerna ändrades.
+   o Förbättrade den tyska dokumentationen.
+   o Ny meny: @{" Senaste Meddelande " link menus}.
+   o Ny meny: @{" Uppdatera allt " link menus}.
+
+ - Version 1.03 (4.6.95)
+
+   o Fixade några buggar.
+   o Förbättrat installationsskript.
+   o Förbättrade hanteringen av okända filtyper.
+   o Lade till variabeln @{" CHECKDUPES " link variable}.
+   o Lade till '%a'-kommandot för att få reda på ARexxportens namn.
+
+ - Version 1.04 (9.7.95)
+
+   o Fixade några buggar.
+   o Catalog-filerna ändrades.
+   o Lade till den franska dokumentationen.
+   o Lade till den franska catalog-filen.
+   o Andra mindre ändringar.
+   o Lade till list-cyklingen med den tredje musknappen.
+   o Lade till bankväxlingen med den tredje musknappen.
+   o Ny meny: @{" Spawn New " link menus}.
+
+ - Version 1.10 (16.10.95)
+
+   o Lade till inställningsprogrammet.
+   o Inställningarna sparas nu i 'ENV:RO/'
+   o Fixade några mindre buggar.
+   o Catalog-filerna ändrades.
+   o Snyggade till programkoden lite.
+   o Lade till variabeln 'FRAMES'.
+   o Lade till variabeln @{" MIDDLEMOUSE " link variable}.
+   o '^' kan nu användas som ESCAPE-tecken.
+   o Andra mindre ändringar.
+
+ - Version 1.20 (3.12.95)
+
+   o Kräver MUI 3.1 eller bättre
+   o Gjorde några mindre ändringar i samband med MUI3+.
+   o Fixade några mindre buggar.
+   o Catalog-filerna ändrades.
+   o Tog bort några onödiga menyer.
+   o Ny meny: @{" MUI... " link menus}.
+   o Ny meny: @{" RO... " link menus}.
+   o Förbättrade ROs hantering av inställningsfilen.
+   o Införde variabel @{" liststorlek " link listview}.
+   o Införde en @{" drag&drop " link listview} mekanism.
+
+ - Version 1.21 (5.2.96)
+
+   o Kräver MUI 3.2 eller bättre.
+   o Fixade några mindre buggar.
+   o Tog bort variabeln 'FRAMES'.
+   o Förbättrat installationsskript.
+   o Andra mindre ändringar.
+
+ - Version 1.22 (14.4.96)
+
+   o Catalog-filerna ändrades.
+   o Gjorde några ändringar för MUI3.3 kompabilitet.
+   o Fixade några buggar.
+   o Svensk dokumentation.
+   o Svensk catalog-fil.
+   o Tog bort variabeln 'SYMMETRICAL'.
+   o Ändrade @{" drag&drop " link listview} mekanismen.
+   o Lade till '&b' parametern för att ignorera returkoder.
+   o Lade till '&d' parametern för att inte avmarkera val.
+   o Lade till arexx-kommandot @{" Change " link arexxinterface} för att byta sorteringskriteria.
+   o Lade till variablerna @{" ORDERLEFT " link variable} och @{" ORDERRIGHT " link variable}.
+   o Läser nu in katalogerna på nytt efter en ändring i inställningarna.
+   o Andra mindre ändringar.
+
+ - Version 1.23 (11.9.96)
+
+   o Fixade några buggar.
+   o Andra mindre ändringar.
+   o Catalog-filerna ändrades.
+
+ - Version 1.24 (28.11.96)
+
+   o Fixade några buggar.
+   o Catalog-filerna ändrades.
+   o Lade till variabeln @{" PAGES " link variable}.
+   o Användardefinierade buffertar visas i fetstil.
+   o Användardefinierade buffertar visas alltid överst.
+   o Lade till 'Prat-Bubble-Hjälp'.
+   o Andra mindre ändringar.
+
+ - Version 1.25 (20.2.97)
+
+   o Kräver MUI 3.6 eller bättre
+   o Fixat en större bug.
+   o Fixat några mindre buggar.
+   o Catalog-filerna ändrades.
+   o Ny intern funktion @{" LFOLD " link LFold}.
+   o Andra mindre ändringar.
+
+ - Version 1.26 (21.4.97)
+
+   o Fixat några mindre buggar.
+   o Andra mindre ändringar.
+
+ - Version 1.27 (5.12.98)
+
+   o Fixat några mindre buggar.
+   o Andra mindre ändringar.
+
+@endnode
+
+@node future "Future Enhancments"
+@prev history
+@next disclaimer
+
+ @{b}@{u}Framtida Förbättringar@{ub}@{uu}
+
+ o Förbättrad 'Drag&Drop'-mekanism.
+ o Förbättrad ARexx-port.
+ o Horisontell rullningslist för fillistorna.
+ o Förbättrat inställningsprogram.
+ o Skriva dokumentation för inställningsprogrammet.
+ o Många andra mindre ändringar...
+
+@endnode
+
+@node disclaimer "Disclaimer"
+@prev future
+@next license
+
+ @{b}@{u}Disclaimer@{ub}@{uu}
+
+ (Av tolkningsskäl lämnas denna text oöversatt (om jag försökte mig på att
+  översätta den skulle du inte förstå ett jota ;) )
+
+ THERE  IS  NO  WARRANTY  FOR  THE  PROGRAM,  TO  THE  EXTENT  PERMITTED BY
+ APPLICABLE  LAW.   EXCEPT  WHEN  OTHERWISE STATED IN WRITING THE COPYRIGHT
+ HOLDER  AND/OR  OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+ OF  ANY  KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+ THE  IMPLIED  WARRANTIES  OF  MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+ IS  WITH  YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+ IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL
+ ANY  COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY REDISTRIBUTE THE PROGRAM
+ AS  PERMITTED  ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL,
+ SPECIAL,  INCIDENTAL  OR  CONSEQUENTIAL  DAMAGES ARISING OUT OF THE USE OR
+ INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR
+ DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES
+ OR  A  FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF
+ SUCH  HOLDER  OR  OTHER  PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ DAMAGES.
+
+@endnode
+
+@node license "Användningsvillkor"
+@prev disclaimer
+@next installer
+
+ @{b}@{u}Användningsvillkor@{ub}@{uu}
+
+ - Du får testa RO i en period på upp till 14 dagar  innan du bestämmer dig
+   om du vill registrera dig.  Efter det måste du registrera dig om du vill
+   använda RO.
+
+ - Du får kopiera och sprida programmet  och dess dokumentation hur du vill
+   och på vilket media du vill under  förutsättning att arkivet är komplett
+   och inte ändrat i.
+
+ - Utom där det särkilt anges får  du  kopiera  och/eller  sprida  delar av
+   detta program utan de tillhörande filer som ingick i paketet från början.
+   Du får inte kopiera och sprida modifierade versioner av detta program.
+
+ - Om du bryter mot ovanstående  regler förlorar du automatiskt  rätten att 
+   använda detta program, dock får andra som mottagit kopior,  eller rätten
+   att använda kopior av dig fortfarande använda detta program under förut-
+   sättning att de fullföljer dessa regler.
+
+ - Genom att kopiera, sprida  och/eller  använda detta program visar du att
+   du godkänner dessa villkor och allt vad de innebär.
+
+ - Varje gång du enligt dessa villkor  sprider detta program får mottagaren
+   automatiskt rätten att använda detta program på det sätt som författaren/
+   författarna angivit i dessa villkor.  Du får inte lägga till ytterligare
+   villkor till de som författaren/författarna angett i denna text.
+
+ - Du får inte på något sätt försöka få fram en källkod till detta program.
+
+ - Du accepterar att upphöra med spridningen av detta  program  och  till-
+   hörande data om författaren/författarna kräver detta.
+
+@endnode
+
+@node installer "Installeraren"
+@prev "license"
+@next "magicuserinterface"
+
+ @{b}@{u}Installeraren@{ub}@{uu}
+
+   Med RO kommer `Installeraren' från Ex-Commodore:
+   (Denna text tillhör installeraren - översättes inte.)
+
+     Installer and Installer project icon
+     (c) Copyright 1991-93 Commodore-Amiga, Inc.  All Rights Reserved.
+     Reproduced and distributed under license from Commodore.
+     
+     INSTALLER SOFTWARE IS PROVIDED "AS-IS" AND SUBJECT TO CHANGE;
+     NO WARRANTIES ARE MADE. ALL USE IS AT YOUR OWN RISK. NO LIABILITY
+     OR RESPONSIBILITY IS ASSUMED.
+
+@endnode
+
+@node magicuserinterface "Magic User Interface"
+@prev installer
+
+	(denna text tillhör Magic User Interface - översättes inte.)
+
+                          This application uses
+
+
+                        MUI - MagicUserInterface
+
+                (c) Copyright 1993/94 by Stefan Stuntz
+
+
+MUI is a system to generate and maintain graphical user interfaces. With
+the  aid  of  a  preferences program, the user of an application has the
+ability to customize the outfit according to his personal taste.
+
+MUI is distributed as shareware. To obtain a complete package containing
+lots of examples and more information about registration please look for
+a  file  called  "muiXXusr.lha"  (XX means the latest version number) on
+your local bulletin boards or on public domain disks.
+
+          If you want to register directly, feel free to send
+
+
+                         DM 30.-  or  US$ 20.-
+
+                                  to
+
+                             Stefan Stuntz
+                        Eduard-Spranger-Straße 7
+                             80935 München
+                                GERMANY
+
+
+@endnode
+
+@index Index
+@node Index
+
+ A
+
+ @{"Action" link Action}
+ @{"All" link All}
+ @{"APPWINDOW" link variable}
+ @{"ARCHIVETYPE" link archive}
+ @{"ARexx-gränssnittet" link arexxinterface}
+ @{"Assign" link Assign}
+
+ B
+
+ @{"BINARY" link filetype}
+ @{"BUFFER" link buffer}
+ @{"BUTTON" link button}
+ @{"Buffers" link Buffers}
+ @{"ByName" link ByName}
+ @{"Bytes" link Bytes}
+
+ C
+
+ @{"Change" link Change}
+ @{"CHECKFIT" link variable}
+ @{"Copy" link Copy}
+ @{"CopyAs" link Copy}
+ @{"COPYDATE" link variable}
+ @{"CopyDev" link CopyDev}
+ @{"COPYFLAGS" link variable}
+ @{"COPYNOTE" link variable}
+ @{"COPYVERIFY" link variable}
+ @{"Current" link Current}
+ @{"CUSTOMTYPE" link customtype}
+
+ D
+
+ @{"DEFAULT" link filetype}
+ @{"Delete" link Delete}
+ @{"DELFORCE" link variable}
+ @{"DELVERIFY" link variable}
+ @{"Directory" link Directory}
+ @{"Disk" link Disk}
+ @{"DRIVE" link drive}
+ @{"Dup" link Dup}
+
+ E
+
+ @{"Enhetsknappar" link drivebutton}
+ @{"Expand" link Expand}
+
+ F
+
+ @{"FILETYPE" link filetype}
+ @{"Fillistor" link listview}
+ @{"FIRSTLEFT" link variable}
+ @{"FIRSTRIGHT" link variable}
+ @{"Fit" link Fit}
+ @{"FLUSHMEMORY" link variable}
+ @{"FORMATLEFT" link variable}
+ @{"FORMATRIGHT" link variable}
+ @{"Frågor och svar" link discussion}
+ @{"Framtiden" link future}
+
+ G
+
+ @{"Garanti" link disclaimer}
+
+ H
+
+ @{"Help" link Help}
+ @{"History" link history}
+ @{"HOTDIR" link hotdir}
+ @{"HOTKEY" link hotkey}
+ @{"Hur du installerar RO" link installation}
+ @{"Hur du registrerar RO" link registration}
+
+ I
+
+ @{"Icon" link Icon}
+ @{"ICONIFY" link menus}
+ @{"Info" link Info}
+ @{"Informationsrader" link dirinformation}
+ @{"Installeraren" link installer}
+ @{"Inställningar" link configuration}
+
+ K
+
+ @{"Kommandoknappar" link commandbutton}
+ @{"Korrespondens" link support}
+ @{"Kort beskrivning" link introduction}
+ @{"Kortregister" link registergroup}
+
+ L
+
+ @{"LActive" link Active}
+ @{"LCopy" link LCopy}
+ @{"LFold" link LFold}
+ @{"License" link license}
+ @{"ListArc" link ListArc}
+ @{"LParent" link Parent}
+ @{"LReload" link Reload}
+ @{"LRoot" link Root}
+ @{"LSwap" link LSwap}
+
+ M
+
+ @{"Magic User Interface" link magicuserinterface}
+ @{"MakeDir" link MakeDir}
+ @{"MDLoad" link MakeDir}
+ @{"MENU" link menu}
+ @{"Menyerna" link menus}
+ @{"MIDDLEMOUSE" link variable}
+ @{"Move" link Move}
+ @{"MoveAs" link MoveAs}
+
+ N
+
+ @{"None" link None}
+ @{"Note" link Note}
+
+ O
+
+ @{"Om..." link About}
+ @{"ORDERLEFT" link variable}
+ @{"ORDERRIGHT" link variable}
+ @{"Oregistrerad version" link unregistered}
+ @{"OVERWRITE" link variable}
+
+ P
+
+ @{"Parent" link Parent}
+ @{"Programmet" link mainwindow}
+ @{"Protect" link Protect}
+
+ Q
+
+ @{"Quit" link Quit}
+
+ R
+
+ @{"RActive" link Active}
+ @{"Reboot" link Reboot}
+ @{"Registreringsblankett" link registrationform}
+ @{"Relabel" link Relabel}
+ @{"Reload" link Reload}
+ @{"Rename" link Rename}
+ @{"Root" link Root}
+ @{"RParent" link Parent}
+ @{"RReload" link Reload}
+ @{"RRoot" link Root}
+
+ S
+
+ @{"SetDate" link SetDate}
+ @{"Shrink" link Shrink}
+ @{"SORTLEFT" link variable}
+ @{"SORTRIGHT" link variable}
+ @{"Statusraden" link statusbar}
+ @{"Systemkrav" link requirements}
+ @{"Sökvägsrutor" link pathgadget}
+
+ T
+
+ @{"Tack till..." link acknowledgments}
+ @{"Toggle" link Toggle}
+ @{"Touch" link Touch}
+
+ U
+
+ @{"UnArc" link UnArc}
+ @{"Update" link Update}
+ @{"Uppdateringar" link updates}
+
+ V
+
+ @{"VARIABLE" link variable}
+ @{"Volymer" link Volumes}
+
+@endnode

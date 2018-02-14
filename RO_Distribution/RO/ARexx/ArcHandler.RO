@@ -1,0 +1,37 @@
+/* 
+
+   $VER: ArcHandler.RO 0.3
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Loads the ArcHandler equivalent directory of the active directory.
+
+   Requires:
+    RO 0.90 or newer
+
+   Example:
+     CUSTOMTYPE "#?.lha" "" "LHA/LZH Archive" "Rx >NIL: REXX:RO/ArcHandler.RO %N %a"
+
+*/
+
+PARSE ARG FileName PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+
+'Path Active'
+IF RESULT="RESULT" THEN
+  EXIT 5
+SourceDir=RESULT
+
+Position=POS(":",SourceDir)
+Directory='ARC:'||SUBSTR(SourceDir,1,Position-1)||'/'SUBSTR(SourceDir,Position+1)
+
+'Load Active "'||Directory||FileName||'"'

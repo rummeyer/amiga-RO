@@ -1,0 +1,122 @@
+Short:    MUI-Based FileManager
+Author:   Oliver Rummeyer <oliver.rummeyer@student.uni-ulm.de>
+Uploader: Oliver Rummeyer <oliver.rummeyer@student.uni-ulm.de>
+Version:  1.27
+Type:     util/dir
+Replaces: util/dir/RO_v126.lha
+
+RO is a new Intuition-controlled, fully user-configurable file manager
+for OS 2.04 and newer.  You can use RO to copy, move, rename or delete
+files,  and  you can perform a filetype sensitive action command (e.g.
+show  pictures  or  texts,  play  sounds,  etc with one single command
+button) on files via GUI.
+
+RO's  mighty features will assist and help you on your daily work with
+your  Amiga.   With  RO  there is no need to learn those cryptic shell
+commands,  because  you  have  the complete power of your Amiga in one
+hand.
+
+Some features are:
+
+  o uses MUI
+  o small executable
+  o highly configurable
+  o user configurable filetypes
+  o supports datatypes
+  o supports XPK, PP and ARCHandler
+  o path name completer
+  o more than 50 internal commands
+  o user menu support
+  o hotkey & hotdir support
+  o powerful arexx port
+  o very fast directory and file operations
+  o appicon launches progs for defined filetypes
+  o english, french and german documentation & catalog
+  o supports middle mouse button
+  o nice preference program
+  o dynamic listviews
+  o drag & drop
+
+I decided to release RO as crippled shareware.  RO is fully functional
+but  in the unregistered version the about requester appears  regulary
+to  remind you  to  pay  the shareware fee.  If you like this  product
+and you want me to continue its development you should support me with
+the shareware fee. Thank You.
+
+Changes:
+
+
+- Version 1.20 (3.12.95)
+
+  o Requires MUI 3.1 or better.
+  o Made some changes for MUI3+ compatibily.
+  o Fixed some minor bugs.
+  o Catalog files changed.
+  o Removed some useless menu entries.
+  o New menu entry MUI...
+  o New menu entry RO...
+  o Improved RO prefs handling.
+  o Implemented resizeable listviews.
+  o Implemented drag&drop mechanism.
+
+- Version 1.21 (5.2.96)
+
+  o Requires MUI 3.2 or better.
+  o Fixed some minor bugs.
+  o Removed config variable FRAMES.
+  o Improved installation script.
+  o Other minor changes.
+
+- Version 1.22 (14.4.96)
+
+  o Catalog files changed.
+  o Made some changes for MUI3.3 compatibily.
+  o Fixed some bugs.
+  o Swedish documentation included.
+  o Included swedish catalog file.
+  o Removed config variable <bl>Symmetrical</bl>.
+  o Changed drag&drop mechanism.
+  o Changed command requester 'Change'.
+  o Added '&b' parameter to ignore returncodes.
+  o Added '&d' parameter to not deselect entries.
+  o Added arexx command 'Change' to change sort order.
+  o Added config variable ORDERLEFT and ORDERRIGHT.
+  o Reload directories after preference change.
+  o Other minor changes.
+
+- Version 1.23 (11.9.96)
+
+  o Fixed some bugs.
+  o Other minor changes.
+  o Catalog files changed.
+
+- Version 1.24 (24.11.96)
+
+  o Fixed some bugs.
+  o Catalog files changed.
+  o Added config variable PAGES.
+  o User defined 'Buffers' are displayed bold.
+  o User defined 'Buffers' are always displayed on top.
+  o Added 'Bubble Help'.
+  o Other minor changes.
+
+- Version 1.25 (20.2.97)
+
+  o Requires MUI 3.6 or better.
+  o Fixed a major bug.
+  o Fixed some minor bugs.
+  o Catalog files changed.
+  o New internal Function LFOLD.
+  o Other minor changes.
+
+- Version 1.26 (21.4.97)
+
+  o Fixed some minor bugs.
+  o Other minor changes.
+
+- Version 1.27 (5.12.98)
+
+  o Fixed some minor bugs.
+  o Other minor changes.
+
+RO requires Magic User Interface (MUI) version 3.6 or later.

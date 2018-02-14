@@ -1,0 +1,68 @@
+TITLE
+
+    RO
+
+VERSION
+
+    1.27
+
+AUTHOR
+
+    Oliver Rummeyer
+    Gartenstrasse 41
+    D-88212 Ravensburg
+    Germany/Europe
+
+    <oliver.rummeyer@student.uni-ulm.de>
+
+DESCRIPTION
+
+    RO is a Intuition-controlled, fully user-configurable
+    file manager for OS 2.04 and newer. You can use RO to copy,
+    move, rename or delete files, and you can perform a filetype
+    sensitive action command (e.g. show pictures or texts, play
+    sounds, etc with one single command button) on files via GUI.
+
+    Some features are:
+
+     o uses MUI
+     o very small executable
+     o highly configurable
+     o user configurable filetypes
+     o supports datatypes
+     o supports XPK, PP and ARCHandler
+     o path name completer
+     o more than 50 internal commands
+     o user menu support
+     o hotkey & hotdir support
+     o powerful arexx port
+     o very fast directory and file operations
+     o appicon launches progs for defined filetypes
+     o english, french, german and swedish documentation & catalog
+     o supports middle mouse button
+     o nice preference program
+     o dynamic listviews
+     o drag & drop
+
+NEW FEATURES
+
+    - Version 1.27 (5.12.98)
+
+     o Fixed some minor bugs.
+     o Other minor changes.
+
+REQUIREMENTS
+
+    RO requires Magic User Interface (MUI) version 3.6 or later.
+
+PRICE
+
+    Shareware fee US$ 20 or 30,- DM 
+
+DISTRIBUTABILITY
+
+    Shareware, RO 1.27 is (c) 1994-1998 by Oliver Rummeyer
+
+-- 
+Oliver Rummeyer
+oliver.rummeyer@student.uni-ulm.de

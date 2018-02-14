@@ -1,0 +1,125 @@
+;
+; This is my config file for 'RO'
+;
+
+;
+; Filetypes
+;
+
+FILETYPE    ASCII        "Most >NIL: %f"
+FILETYPE    BINARY       "FileX >NIL: %f"
+FILETYPE    DEFAULT      "MultiView >NIL: %f"
+
+CUSTOMTYPE  "#?.dvi"     ""                 "DVI File"            "Run >NIL: TeX:bin/ShowDVI >NIL: %f NOLog on"
+CUSTOMTYPE  "#?.library" ""                 "Shared Library"      "LoadLib %f"
+CUSTOMTYPE  "#?.dms"     "DMS!"             "DMS Archive"         "DMS Write %f To %R"
+CUSTOMTYPE  "#?.mod"     ""                 "Sound Module"        "Rx >NIL: Rexx:RO/PlayModule.RO %P%N %a"
+CUSTOMTYPE  "mod.#?"     ""                 "Sound Module"        "Rx >NIL: Rexx:RO/PlayModule.RO %P%N %a"
+CUSTOMTYPE  "#?.s3m"     ""                 "Scream Module"       "Rx >NIL: Rexx:RO/PlayModule.RO %P%N %a"
+CUSTOMTYPE  "TFMX.#?"    ""                 "TFMX Module"         "Rx >NIL: Rexx:RO/PlayModule.RO %P%N %a"
+CUSTOMTYPE  "#?"         "PSID"             "PlaySID Module"      "Rx >NIL: Rexx:RO/PlayModule.RO %P%N %a"
+CUSTOMTYPE  "#?.htm"     ""                 "HTML File"           "Rx >NIL: Rexx:RO/ShowHtml.RO %F"
+CUSTOMTYPE  "#?.html"    ""                 "HTML File"           "Rx >NIL: Rexx:RO/ShowHtml.RO %F"
+CUSTOMTYPE  "#?"         "GIF8?a"           "GIF Picture"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "FORM????ILBM"     "Iff ILBM File"       "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "$0A050108"        "PCX Picture"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "??????JFIF"       "JPeg Picture"        "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "FORM????8SVX"     "Iff 8SVX File"       "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.info"    ""                 "Icon"                "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "@database"        "AmigaGuide File"     "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "@DATABASE"        "AmigaGuide File"     "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.guide"   ""                 "AmigaGuide File"     "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "$424D"            "BMP Picture"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "$59A66A95"        "SunRaster Picture"   "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "$000002"          "Tga Picture"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?"         "$00000A"          "Targa Picture"       "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.xpm"     ""                 "XPM Picture"         "MultiView >NIL: %f"
+CUSTOMTYPE  "#?.ps"      ""                 "Postscript File"     "Multiview >NIL: %f"
+CUSTOMTYPE  "#?.eps"     ""                 "Postscript File"     "Multiview >NIL: %f"
+
+ARCHIVETYPE "#?"         "$????2D6C68??2D"  "LHA/LZH Archive"     "LhA v %f"      "LhA x %f &C &R"
+ARCHIVETYPE "#?.run"     ""                 "LHA/LZH SFX Archive" "LhA v %f"      "LhA x %f &C &R"
+ARCHIVETYPE "#?"         "$4C5A5800"        "LZX Archive"         "LzX v %f"      "LzX x %f &C &R"
+ARCHIVETYPE "#?.zoo"     ""                 "ZOO Archive"         "Zoo v %f"      "Zoo x %f &C &R"
+ARCHIVETYPE "#?.arc"     ""                 "ARC Archive"         "Arc v %f"      "Arc x %f &C &R"
+ARCHIVETYPE "#?.tar.gz"  ""                 "TGZ Archive"         "UnTgz -v %f"   "UnTgz %f &C &R"
+ARCHIVETYPE "#?.tgz"     ""                 "TGZ Archive"         "UnTgz -v %f"   "UnTgz %f &C &R"
+ARCHIVETYPE "#?.gz"      ""                 "GZIP Archive"        "GZip -l %f"    "GZip -d %f &r"
+ARCHIVETYPE "#?.tar"     ""                 "TAR Archive"         "Tar -t -f %f"  "Tar -x -f %f &C &R"
+ARCHIVETYPE "#?.zip"     "$504B"            "PKZIP Archive"       "UnZip -v %f"   "UnZip -x %f &C &R"
+ARCHIVETYPE "#?"         "$60EA????1E"      "ARJ Archive"         "UnArj l %f"    "Unarj e %f &C"
+ARCHIVETYPE "#?.uu"      ""                 "UUEncode Archive"    "Most >NIL: %f" "UUDecode %f &C &R"
+
+;
+; Variables
+;
+
+VARIABLE  OUTPUT        "KCON:////Output/CLOSE/AUTO/KEEPCLOSED"
+VARIABLE  CREATEICONS   "OFF"
+VARIABLE  CHECKDUPES    "ON"
+VARIABLE  QUITVERIFY    "OFF"
+VARIABLE  PAGES         "OFF"
+VARIABLE  LOADLEFT      "RAM:"
+VARIABLE  LOADRIGHT     "RAM:"
+
+;
+; Command Buttons - First Page
+;
+
+BUTTON     1            COMMAND   "Music"         "Rx >NIL: Rexx:RO/PlayModule.RO %F %a"
+BUTTON     2            COMMAND   "Run"           "Run >NIL: %f"
+BUTTON     3            FUNCTION  "_Delete"       DELETE
+BUTTON     4            FUNCTION  "_Move"         MOVE
+BUTTON     5            FUNCTION  "_Copy"         COPY
+BUTTON     6            FUNCTION  "_Bytes"        BYTES
+BUTTON     7            FUNCTION  "All"           ALL
+BUTTON     8            COMMAND   "Arc"           "Rx >NIL: REXX:RO/AddArc.RO %a"
+
+BUTTON     9            COMMAND   "View"          "Run >NIL: <NIL: MultiView %f"
+BUTTON    10            COMMAND   "_Edit"         "Rx >NIL: REXX:FrexxEdStart.rexx %f STICKY"
+BUTTON    11            FUNCTION  "Touch"         TOUCH
+BUTTON    12            FUNCTION  "Move As"       MOVEAS
+BUTTON    13            FUNCTION  "Copy As"       COPYAS
+BUTTON    14            FUNCTION  "Fit"           FIT
+BUTTON    15            FUNCTION  "None"          NONE
+BUTTON    16            FUNCTION  "ListArc"       LISTARC
+
+BUTTON    17            FUNCTION  "_Action"       ACTION
+BUTTON    18            COMMAND   "XEdit"         "FileX >NIL: %f"
+BUTTON    19            FUNCTION  "MakeDir"       MAKEDIR
+BUTTON    20            FUNCTION  "_Rename"       RENAME
+BUTTON    21            FUNCTION  "Dup"           DUP
+BUTTON    22            FUNCTION  "Refresh"       RELOAD
+BUTTON    23            FUNCTION  "_Pattern"      BYNAME
+BUTTON    24            FUNCTION  "UnArc"         UNARC
+
+;
+; Command Buttons - Second Page
+;
+
+BUTTON    25            COMMAND   "_LLoad"        "Rx >NIL: REXX:RO/LoadOther.RO %F %a"
+BUTTON    26            FUNCTION  "Assign"        ASSIGN
+BUTTON    27            COMMAND   "Command"       "%r &w"
+BUTTON    28            FUNCTION  "_Comment"      NOTE
+BUTTON    29            FUNCTION  "Change"        CHANGE
+BUTTON    30            FUNCTION  "Parent"        PARENT
+BUTTON    31            FUNCTION  "Reverse"       TOGGLE
+BUTTON    32            FUNCTION  "_Disk"         DISK
+
+BUTTON    33            FUNCTION  "LFold"         LFOLD
+BUTTON    34            FUNCTION  "_Relabel"      RELABEL
+BUTTON    35            COMMAND   "_Search"       "Search %p %r All &w"
+BUTTON    36            FUNCTION  "_Protect"      PROTECT
+BUTTON    37            FUNCTION  "E_xpand"       EXPAND
+BUTTON    38            FUNCTION  "Root"          ROOT
+BUTTON    39            FUNCTION  "_Update"       UPDATE
+BUTTON    40            FUNCTION  "_Info"         INFO
+
+BUTTON    41            FUNCTION  "LSwap"         LSWAP
+BUTTON    42            FUNCTION  "CopyDev"       COPYDEV
+BUTTON    43            COMMAND   "_Find"         "Find #?%r#? %p All Sum &w"
+BUTTON    44            FUNCTION  "SetDate"       SETDATE
+BUTTON    45            FUNCTION  "S_hrink"       SHRINK
+BUTTON    46            FUNCTION  "Current"       CURRENT
+BUTTON    47            FUNCTION  "Icon"          ICON
+BUTTON    48            FUNCTION  "Help"          HELP

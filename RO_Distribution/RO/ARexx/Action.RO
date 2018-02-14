@@ -1,0 +1,54 @@
+/* 
+
+   $VER: Action.RO 0.3
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Starts a fileaction for the specified file. If RO is not
+    running it's loaded automatically. This rexx program is
+    useful as a RO starter script for ToolManager as well.
+
+   Requires:
+    RO 0.90 or newer
+
+   Example:
+    Rx >NIL: REXX:RO/Action.RO S:Startup-Sequence RO.1
+
+*/
+
+PARSE ARG FileName PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+
+IF ~SHOW('Ports',PortName) THEN
+ DO
+
+  IF Length(FileName) > 0 THEN
+    ADDRESS 'COMMAND' 'Run >NIL: RO ICONIFY'
+  ELSE
+    ADDRESS 'COMMAND' 'Run >NIL: RO'
+
+  ADDRESS 'COMMAND' 'WaitForPort '||PortName
+
+  IF ~SHOW('Ports',PortName) THEN
+   DO
+    EXIT 10
+   END
+ END
+
+OPTIONS RESULTS
+
+IF Length(FileName) = 0 THEN
+  'Show'
+ELSE DO
+  'Sleep'
+  'FileAction '||FileName
+  'Wakeup'
+END

@@ -1,0 +1,35 @@
+/* 
+
+   $VER: ShowHTML.RO 0.1
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Loads the specified HTML file into IBrowse and displays it.
+    If IBrowse isn't currently running it's started by the script.
+
+   Requires:
+    RO 0.90 or newer and IBrowse 1.0 or newer
+
+   Example:
+    CUSTOMTYPE "#?.html" "" "HTML Document" "Rx >NIL: REXX:RO/ShowHTML.RO %F"
+
+*/
+
+PARSE ARG Name
+
+OPTIONS RESULTS
+
+IF ~SHOW('Ports','IBROWSE') THEN
+ DO
+  ADDRESS 'COMMAND' 'Run >NIL: Work:IBrowse/IBrowse'
+  ADDRESS 'COMMAND' 'WaitForPort IBROWSE'
+  IF ~SHOW('Ports','IBROWSE') THEN
+   DO
+    EXIT 10
+   END
+ END
+
+IF Name ~= "" THEN
+  ADDRESS 'IBROWSE' 'GOTOURL file:///'||STRIP(Name,,'"')

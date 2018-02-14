@@ -1,0 +1,29 @@
+/* 
+
+   $VER: LoadDir.RO 0.2
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Loads the specified directory in the active listview.
+
+   Requires:
+    RO 0.90 or newer
+
+   Example:
+    Rx >NIL: REXX:RO/LoadDir.RO System:Devs/DOSDrivers RO.1
+
+*/
+
+PARSE ARG Directory PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+
+'Load Active "'||Directory||'"'

@@ -1,0 +1,29 @@
+/* 
+
+   $VER: DeIconify.RO 0.1
+
+   Author:
+    Oliver Rummeyer (oliver.rummeyer@student.uni-ulm.de)
+
+   Function:
+    Shows RO's user interface.
+
+   Requires:
+    RO 0.90 or newer
+
+   Example:
+    Rx >NIL: REXX:RO/DeIconify.RO RO.1
+
+*/
+
+PARSE ARG PortName
+
+IF PortName="" THEN
+ PortName='RO.1'
+ELSE
+ PortName=STRIP(PortName)
+
+ADDRESS VALUE PortName
+OPTIONS RESULTS
+
+'Wakeup'
