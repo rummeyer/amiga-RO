@@ -14,21 +14,21 @@ hand.
 
 Some features are:
 
-  o uses MUI
-  o small executable
-  o highly configurable
-  o user configurable filetypes
-  o supports datatypes
-  o supports XPK, PP and ARCHandler
-  o path name completer
-  o more than 50 internal commands
-  o user menu support
-  o hotkey & hotdir support
-  o powerful arexx port
-  o very fast directory and file operations
-  o appicon launches progs for defined filetypes
-  o english, french and german documentation & catalog
-  o supports middle mouse button
-  o nice preference program
-  o dynamic listviews
-  o drag & drop
+* uses MUI
+* small executable
+* highly configurable
+* user configurable filetypes
+* supports datatypes
+* supports XPK, PP and ARCHandler
+* path name completer
+* more than 50 internal commands
+* user menu support
+* hotkey & hotdir support
+* powerful arexx port
+* very fast directory and file operations
+* appicon launches progs for defined filetypes
+* english, french and german documentation & catalog
+* supports middle mouse button
+* nice preference program
+* dynamic listviews
+* drag & drop
