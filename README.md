@@ -1,4 +1,4 @@
-# amiga-RO: A MUI-Based FileManager for m68k-amigaos
+RO: A MUI-Based FileManager for m68k-amigaos
 
 RO is a new Intuition-controlled, fully user-configurable file manager
 for OS 2.04 and newer.  You can use RO to copy, move, rename or delete
