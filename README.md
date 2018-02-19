@@ -1,5 +1,4 @@
-# amiga-RO
-A MUI-Based FileManager for m68k-amigaos
+# amiga-RO: A MUI-Based FileManager for m68k-amigaos
 
 RO is a new Intuition-controlled, fully user-configurable file manager
 for OS 2.04 and newer.  You can use RO to copy, move, rename or delete
@@ -12,7 +11,7 @@ your  Amiga.   With  RO  there is no need to learn those cryptic shell
 commands,  because  you  have  the complete power of your Amiga in one
 hand.
 
-Some features are:
+## Some features are:
 
 * uses MUI
 * small executable
@@ -33,4 +32,8 @@ Some features are:
 * dynamic listviews
 * drag & drop
 
-Requires SAS/C Compiler to build!
+## Prerequisites
+
+* SAS/C v6.5+
+* XPK by Dirk Stoecker (http://aminet.net/util/pack/xpk_Develop.lha)
+* WBPath by Ralph Babel (http://aminet.net/dev/src/wbpath.lha)
