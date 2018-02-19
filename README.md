@@ -34,6 +34,6 @@ hand.
 
 ## Prerequisites
 
-* SAS/C v6.5+
+* SAS/C v6.58
 * XPK by Dirk Stoecker (http://aminet.net/util/pack/xpk_Develop.lha)
 * WBPath by Ralph Babel (http://aminet.net/dev/src/wbpath.lha)
