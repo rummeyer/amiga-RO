@@ -47,3 +47,7 @@ hand.
 * SAS/C v6.58
 * XPK by Dirk Stoecker (http://aminet.net/util/pack/xpk_Develop.lha)
 * WBPath by Ralph Babel (http://aminet.net/dev/src/wbpath.lha)
+
+## Copyright
+
+Copyright (c) 1994 - 2018 Oliver Rummeyer
