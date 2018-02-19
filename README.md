@@ -34,7 +34,13 @@ hand.
 
 ## Screenshot
 
+### RO
+
 ![Screenshot](Pics/Preview1.png)
+
+### Prefs
+
+![Screenshot](Pics/Preview4.png)
 
 ## Prerequisites
 
