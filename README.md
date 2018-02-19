@@ -32,6 +32,10 @@ hand.
 * dynamic listviews
 * drag & drop
 
+## Screenshot
+
+![Screenshot](Pics/Preview1.png)
+
 ## Prerequisites
 
 * SAS/C v6.58
