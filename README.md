@@ -47,6 +47,7 @@ hand.
 * SAS/C v6.58
 * XPK by Dirk Stoecker (http://aminet.net/util/pack/xpk_Develop.lha)
 * WBPath by Ralph Babel (http://aminet.net/dev/src/wbpath.lha)
+* ARCHandler by Rafael DHalleweyn (http://aminet.net/util/arc/ARCHandler2_0c.lha)
 
 ## Copyright
 
