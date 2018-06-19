@@ -5,7 +5,7 @@
 **
 ** ROPrefs -- MUI-Based FileManager Prefs, Shareware
 **
-** Copyright © 1994, 1995 by Oliver Rummeyer
+** Copyright © 1994-1998 by Oliver Rummeyer
 **
 */
 
@@ -18,6 +18,10 @@ int main ( int argc, char *argv[] )
 	char * str;
 
 	CheckKey();
+
+	if (global_Special)
+		global_KeyFile = TRUE;
+
 	Init();
 
 	set( wi_Main, MUIA_Window_Open, TRUE );
@@ -26,7 +30,6 @@ int main ( int argc, char *argv[] )
 	{
 		AboutRequester();
 		set( bt_Save, MUIA_Disabled, TRUE );
-		set( bt_Use, MUIA_Disabled, TRUE );
 		DoMethod( wi_Main, MUIM_Window_SetMenuState, ID_MenuSaveAs, FALSE );
 	}
 
@@ -381,7 +384,10 @@ int main ( int argc, char *argv[] )
 
 			case ID_CommandAEnter:
 				get( st_CommandA, MUIA_String_Contents, &str );
-				strcpy( cfg_RecogCommand[Bactive-3], str );
+				if(Bactive>2)
+					strcpy( cfg_RecogCommand[Bactive-3], str );
+				else
+					strcpy( cfg_FileType[Bactive], str );
 				break;
 
 			case ID_CommandBEnter:

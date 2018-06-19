@@ -32,7 +32,6 @@ extern char cfg_ButtonText[120][81];
 extern char cfg_Format[2][256];
 extern char cfg_HotKey[50][41];
 extern BOOL cfg_PageType;
-extern LONG cfg_MultiSelect;
 
 APTR app_RumorOpus;
 APTR wi_Main;
@@ -61,9 +60,7 @@ APTR bt_StringCancel;
 APTR bt_StringSkip;
 APTR bt_StringAll;
 APTR sg_Scroll[2];
-/*
 APTR gr_List[2];
-*/
 APTR bl_Balance;
 APTR FoldGroup;
 

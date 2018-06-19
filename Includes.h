@@ -61,7 +61,7 @@ enum Ids
 {
 	ID_Start,
 
-	ID_About, ID_Iconify, ID_CopyFlags, ID_CopyDate, ID_CopyNote, ID_CheckSpace, ID_Verify, ID_Force, ID_OverYes, ID_OverNo,
+	ID_About, ID_AboutMUI, ID_Iconify, ID_CopyFlags, ID_CopyDate, ID_CopyNote, ID_CheckSpace, ID_Verify, ID_Force, ID_OverYes, ID_OverNo,
 	ID_OverVerify, ID_OverOlder, ID_MUIPrefs, ID_ROPrefs, ID_CopyVerify, ID_Message, ID_UpdateAll, ID_Spawn,
 
 	ID_Menu_0,  ID_Menu_1,  ID_Menu_2,  ID_Menu_3,  ID_Menu_4,  ID_Menu_5,  ID_Menu_6,  ID_Menu_7,  ID_Menu_8,  ID_Menu_9,
@@ -78,6 +78,7 @@ enum Ids
 	ID_DoubleClick, ID_VolumeLeft, ID_VolumeRight, ID_BufferLeft, ID_BufferRight, ID_UpdateTextLeft, ID_LeftActive,
 	ID_UpdateTextRight, ID_StringEnterLeft, ID_StringEnterRight, ID_StatusLeft, ID_StatusRight, ID_RightActive,
 	ID_StatusBar, ID_PageChange, ID_TildeCycle, ID_LeftChange, ID_RightChange, ID_OpenChange, ID_Sleep, ID_WakeUp,
+	ID_StringOkay, ID_StringSkip, ID_StringAll, ID_StringCancel,
 
 	ID_Stop,
 

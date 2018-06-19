@@ -121,6 +121,9 @@ SAVEDS ASM LONG AppMsgFunc( REG(a2) APTR obj, REG(a1) struct AppMessage **x )
 	{
 		strcpy( Status_String, strdup( Error( ErrorNum ) ) );
 		set( bt_StatusBar, MUIA_Text_Contents, Status_String );
+
+		if ( iconified )
+			DisplayBeep( 0 );
 	}
 	else
 		SleepClock( FALSE );
@@ -367,7 +370,7 @@ SAVEDS ASM LONG StringRexxFunc( REG(a1) ULONG *arg )
 	if ( cptr = (char *)*arg )
 	{
 		strcpy( String, cptr );
-		strcpy( String, StringRequester( GetCatStr( 75, "Input Request" ), String, "", 256, FALSE, &Skip, &Cancel ) );
+		strcpy( String, StringRequester( GetCatStr( 75, "Input Request" ), String, "", 256, 0, &Skip, &Cancel ) );
 		if ( !Cancel )
 			set( app_RumorOpus, MUIA_Application_RexxString, String );
 	}
@@ -520,6 +523,46 @@ SAVEDS ASM LONG FunctionRexxFunc( REG(a1) ULONG *arg )
 		strcpy( cfg_ButtonCommand[170], cptr );
 		cfg_ButtonType[170] = TRUE;
 		Button(170);
+	}
+
+	return( RETURN_OK );
+}
+
+/*
+**
+** ChangeRexxFunc()
+**
+*/
+
+SAVEDS ASM LONG ChangeRexxFunc( REG(a1) ULONG *arg )
+{
+	char *cptr, String[256];
+	int side;
+
+	if ( cptr = (char *)*arg )
+	{
+		side = StringSide ( cptr );
+		if ( side != -1 )
+		{
+			arg++;
+			if ( cptr = (char *)*arg )
+			{
+				strcpy( String, cptr );
+				if(stricmp("Dirs",String)==0) cfg_FirstType[side]=MUIV_Dirlist_SortDirs_First;
+				if(stricmp("Files",String)==0) cfg_FirstType[side]=MUIV_Dirlist_SortDirs_Last;
+				if(stricmp("Mixed",String)==0) cfg_FirstType[side]=MUIV_Dirlist_SortDirs_Mix;
+				if(stricmp("Name",String)==0) cfg_SortType[side]=MUIV_Dirlist_SortType_Name;
+				if(stricmp("Date",String)==0) cfg_SortType[side]=MUIV_Dirlist_SortType_Date;
+				if(stricmp("Size",String)==0) cfg_SortType[side]=MUIV_Dirlist_SortType_Size;
+
+				if(stricmp("High",String)==0) cfg_SortHighLow[side]=FALSE;
+				if(stricmp("Low",String)==0) cfg_SortHighLow[side]=TRUE;
+
+				set( lv_Directory[side], MUIA_Dirlist_SortType, cfg_SortType[side] );
+				set( lv_Directory[side], MUIA_Dirlist_SortDirs, cfg_FirstType[side] );
+				set( lv_Directory[side], MUIA_Dirlist_SortHighLow, cfg_SortHighLow[side] );
+			}
+		}
 	}
 
 	return( RETURN_OK );

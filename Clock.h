@@ -15,6 +15,7 @@ extern BOOL cfg_ShowDate;
 extern BOOL cfg_ShowDay;
 extern char global_ClockFormat[81];
 extern char global_IdleStatus[41];
+extern char global_GroupSeparator[2];
 
 extern struct Library * DOSBase;
 extern struct Library * IntuitionBase;
@@ -25,7 +26,7 @@ extern long wait_process (struct ProcMsg *);
 struct ProcMsg * global_ClockMessage = NULL;
 BOOL global_QuitClock = FALSE;
 BOOL global_UpdateAllowed = TRUE;
-LONG global_SleepClock = 1;
+extern LONG global_SleepClock;
 
 void UpdateClock ( void );
 void InstallClock ( void );

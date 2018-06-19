@@ -4,6 +4,8 @@
 **
 */
 
+BOOL global_ConfigChange = FALSE;
+
 extern struct ProcMsg * global_ClockMessage;
 
 extern LONG Active_Side;
@@ -14,11 +16,12 @@ extern APTR lv_Directory[2];
 extern APTR app_RumorOpus;
 extern APTR bt_StatusBar;
 extern APTR ButtonPage;
+extern APTR pg_Page[2];
 
 extern char cfg_ButtonCommand[171][81];
 __far extern char cfg_HotDir[10][81];
 extern char cfg_MenuEntry[20][81];
-extern char Status_String[512];
+extern char Status_String[1024];
 
 extern BOOL cfg_ButtonType[171];
 extern BOOL cfg_HotDirs;
@@ -29,6 +32,7 @@ extern void SleepClock ( BOOL Sleep_BOOL );
 extern void SleepWindow ( BOOL Sleep_BOOL );
 extern void ListCopy ( int side );
 extern void ListSwap ( void );
+extern void ListFold ( void );
 extern void LoadRoot ( int side );
 extern void LoadParent ( int side );
 extern void ActivateList ( int side );

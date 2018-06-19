@@ -17,9 +17,7 @@ extern APTR pg_Page[2];
 extern APTR st_PathGadget[2];
 extern APTR lv_Directory[2];
 extern APTR bt_StatusText[2];
-/*
 extern APTR gr_List[2];
-*/
 
 extern char global_GroupSeparator[2];
 extern char global_Exec_String[256];

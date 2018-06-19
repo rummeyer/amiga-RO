@@ -13,9 +13,11 @@ extern APTR lv_Volumes[2];
 extern APTR pg_Page[2];
 
 extern char global_Path[2][512];
+extern char global_Userserial[5];
 
 extern LONG cfg_History;
 extern LONG global_Actions;
+extern LONG global_NumBuffers;
 
 extern BOOL global_DirLoaded[2];
 extern BOOL global_KeyFile;
@@ -32,7 +34,8 @@ extern char * GetPath ( int side );
 extern char * GetCatStr ( int num, char *defstring );
 extern char * NumberToString ( ULONG num );
 
-BOOL global_Illegal = FALSE;
+BOOL global_Reload = FALSE;
+
 LONG global_CursorPos[2];
 
 void Reload ( int side );

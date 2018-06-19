@@ -59,6 +59,7 @@ void MenuCommand ( int i )
 
 void Button ( int Num )
 {
+	ULONG Iconified;
 	char * Str = NULL;
 	int ErrorNum = -14;
 
@@ -71,11 +72,15 @@ void Button ( int Num )
 		else
 		{
 			if(stricmp(cfg_ButtonCommand[Num],"ABOUT")==0)		{ ErrorNum = 0; AboutRequester(); }
+			if(stricmp(cfg_ButtonCommand[Num],"DIRECTORY")==0)	{ ErrorNum = 0; set( pg_Page[Active_Side], MUIA_Group_ActivePage, 0 ); }
+			if(stricmp(cfg_ButtonCommand[Num],"BUFFERS")==0)	{ ErrorNum = 0; set( pg_Page[Active_Side], MUIA_Group_ActivePage, 1 ); }
+			if(stricmp(cfg_ButtonCommand[Num],"VOLUMES")==0)	{ ErrorNum = 0; set( pg_Page[Active_Side], MUIA_Group_ActivePage, 2 ); }
 			if(stricmp(cfg_ButtonCommand[Num],"CHANGE")==0)		{ ErrorNum = 0; Change( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"DISK")==0)		{ ErrorNum = 0; DiskInfo( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"SWITCH")==0)		{ ErrorNum = 0; BankSwitch(); }
 			if(stricmp(cfg_ButtonCommand[Num],"LCOPY")==0)		{ ErrorNum = 0; ListCopy( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"LSWAP")==0)		{ ErrorNum = 0; ListSwap(); }
+			if(stricmp(cfg_ButtonCommand[Num],"LFOLD")==0)		{ ErrorNum = 0; ListFold(); }
 			if(stricmp(cfg_ButtonCommand[Num],"LROOT")==0)		{ ErrorNum = 0; LoadRoot( Left_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"RROOT")==0)		{ ErrorNum = 0; LoadRoot( Right_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"ROOT")==0)		{ ErrorNum = 0; LoadRoot( Active_Side ); }
@@ -95,7 +100,7 @@ void Button ( int Num )
 			if(stricmp(cfg_ButtonCommand[Num],"SHRINK")==0)		{ ErrorNum = 0; Shrink( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"EXPAND")==0)		{ ErrorNum = 0; Expand( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"ALL")==0)		{ ErrorNum = 0; DoMethod( lv_Directory[Active_Side], MUIM_List_Select, MUIV_List_Select_All, MUIV_List_Select_On, NULL ); UpdateNumFiles( Active_Side ); }
-			if(stricmp(cfg_ButtonCommand[Num],"NONE")==0)		{ ErrorNum = 0; DoMethod( lv_Directory[Active_Side], MUIM_List_Select, MUIV_List_Select_All, MUIV_List_Select_Off, NULL ); UpdateNumFiles( Active_Side ); }
+			if(stricmp(cfg_ButtonCommand[Num],"NONE")==0)		{ ErrorNum = 0; set( lv_Directory[Active_Side], MUIA_List_Active, MUIV_List_Active_Off ); DoMethod( lv_Directory[Active_Side], MUIM_List_Select, MUIV_List_Select_All, MUIV_List_Select_Off, NULL ); UpdateNumFiles( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"TOGGLE")==0)		{ ErrorNum = 0; DoMethod( lv_Directory[Active_Side], MUIM_List_Select, MUIV_List_Select_All, MUIV_List_Select_Toggle, NULL ); UpdateNumFiles( Active_Side ); }
 			if(stricmp(cfg_ButtonCommand[Num],"HELP")==0)		{ ErrorNum = 0; DoMethod( app_RumorOpus, MUIM_Application_ShowHelp, NULL, "RO.guide", "main", 0 ); }
 			if(stricmp(cfg_ButtonCommand[Num],"QUIT")==0)		{ ErrorNum = 0; DoMethod( app_RumorOpus, MUIM_Application_ReturnID, MUIV_Application_ReturnID_Quit ); }
@@ -132,11 +137,17 @@ void Button ( int Num )
 
 	if ( Str != NULL )
 	{
+		if ( !global_ConfigChange )
+		{
+			SleepClock( TRUE );
+			SleepClock( TRUE );
+		}
 		strcpy( Status_String, Str );
-		set( bt_StatusBar, MUIA_Text_Contents, Status_String );
+		DoMethod( app_RumorOpus, MUIM_Application_ReturnID, ID_Message );
+		get( app_RumorOpus, MUIA_Application_Iconified, &Iconified );
+		if ( Iconified )
+			DisplayBeep( 0 );
 	}
-	else
-		SleepClock( FALSE );
 
-	SleepWindow( FALSE );
+	Sleep( FALSE );
 }

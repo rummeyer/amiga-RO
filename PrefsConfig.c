@@ -32,6 +32,7 @@ void DefaultConfig( void )
 	set( cm_ShowMemory, MUIA_Selected, TRUE);
 	set( cm_CheckDupes, MUIA_Selected, TRUE);
 	set( cm_Symmetrical, MUIA_Selected, FALSE);
+	set( cm_RegPages, MUIA_Selected, TRUE);
 
 	set( cy_Overwrite, MUIA_Cycle_Active, 3);
 	set( cy_PageLeft, MUIA_Cycle_Active, 0);
@@ -42,6 +43,8 @@ void DefaultConfig( void )
 	set( cy_HotMode, MUIA_Cycle_Active, 0);
 	set( cy_FirstLeft, MUIA_Cycle_Active, 0);
 	set( cy_SortLeft, MUIA_Cycle_Active, 0);
+	set( cy_HighLowLeft, MUIA_Cycle_Active, 0);
+	set( cy_HighLowRight, MUIA_Cycle_Active, 0);
 	set( cy_FirstRight, MUIA_Cycle_Active, 0);
 	set( cy_SortRight, MUIA_Cycle_Active, 0);
 	set( cy_MiddleMouse, MUIA_Cycle_Active, 0);
@@ -125,7 +128,7 @@ BOOL LoadConfig( char * filename )
 				if (i<255&&!Comment)
 				{
 					line[i] = c;
-					if(line[i]=='"') if((i-1)>0) if(line[i-1]!='*') { quote=!quote; line[i]=' '; i--; }
+					if(line[i]=='"') if((i-1)>0) if(line[i-1]!='*') { quote=!quote; line[i]=' '; i--; } else {line[i-1]='"'; line[i]=' '; i--;}
 					if(line[i]==' '&&(!quote)) {if((i-1)>0) if((line[i-1]!=' ')&&(num<6)) { pos[num]=i+1; num++; i++; }}
 					else i++;
 				}
@@ -168,6 +171,8 @@ BOOL LoadConfig( char * filename )
 					if(stricmp("FIRSTRIGHT",word[1])==0)	{if(stricmp("Dirs",word[2])==0) dummy=0; if(stricmp("Files",word[2])==0) dummy=1; if(stricmp("Mixed",word[2])==0) dummy=2; set( cy_FirstRight, MUIA_Cycle_Active, dummy);}
 					if(stricmp("SORTLEFT",word[1])==0)		{if(stricmp("Name",word[2])==0) dummy=0; if(stricmp("Date",word[2])==0) dummy=1; if(stricmp("Size",word[2])==0) dummy=2; set( cy_SortLeft, MUIA_Cycle_Active, dummy);}
 					if(stricmp("SORTRIGHT",word[1])==0)		{if(stricmp("Name",word[2])==0) dummy=0; if(stricmp("Date",word[2])==0) dummy=1; if(stricmp("Size",word[2])==0) dummy=2; set( cy_SortRight, MUIA_Cycle_Active, dummy);}
+					if(stricmp("ORDERLEFT",word[1])==0)		{if(stricmp("High",word[2])==0) dummy=0; else dummy=1; set( cy_HighLowLeft, MUIA_Cycle_Active, dummy);}
+					if(stricmp("ORDERRIGHT",word[1])==0)	{if(stricmp("High",word[2])==0) dummy=0; else dummy=1; set( cy_HighLowRight, MUIA_Cycle_Active, dummy);}
 					if(stricmp("MIDDLEMOUSE",word[1])==0)	{if(stricmp("BOTH",word[2])==0) dummy=0; if(stricmp("LIST",word[2])==0) dummy=1; if(stricmp("BANK",word[2])==0) dummy=2; if(stricmp("NONE",word[2])==0) dummy=3; set( cy_MiddleMouse, MUIA_Cycle_Active, dummy);}
 					if(stricmp("CHECKFIT",word[1])==0)		{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_CheckFit, MUIA_Selected, bool); }
 					if(stricmp("FLUSHMEMORY",word[1])==0)	{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_FlushMemory, MUIA_Selected, bool); }
@@ -189,7 +194,7 @@ BOOL LoadConfig( char * filename )
 					if(stricmp("SHOWSECONDS",word[1])==0)	{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_ShowSeconds, MUIA_Selected, bool); }
 					if(stricmp("SHOWMEMORY",word[1])==0)	{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_ShowMemory, MUIA_Selected, bool); }
 					if(stricmp("CHECKDUPES",word[1])==0)	{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_CheckDupes, MUIA_Selected, bool); }
-					if(stricmp("SYMMETRICAL",word[1])==0)	{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_Symmetrical, MUIA_Selected, bool); }
+					if(stricmp("PAGES",word[1])==0)	{if(stricmp("ON",word[2])==0) bool=TRUE; if(stricmp("OFF",word[2])==0) bool=FALSE; set( cm_RegPages, MUIA_Selected, bool); }
 				}
 
 				if((stricmp("HOTDIR",word[0])==0)&&(strlen(word[2])<81)&&(strlen(word[2])>0))
@@ -366,6 +371,8 @@ BOOL SaveConfig( char * filename )
 
 		sprintf( string, "VARIABLE CHECKDUPES \"%s\"\n", GetSwitch(cm_CheckDupes) );
 		fwrite( string, 1, strlen(string), file );
+		sprintf( string, "VARIABLE PAGES \"%s\"\n", GetSwitch(cm_RegPages) );
+		fwrite( string, 1, strlen(string), file );
 		sprintf( string, "VARIABLE CREATEICONS \"%s\"\n", GetSwitch(cm_CreateIcons) );
 		fwrite( string, 1, strlen(string), file );
 		sprintf( string, "VARIABLE FLUSHMEMORY \"%s\"\n", GetSwitch(cm_FlushMemory) );
@@ -375,8 +382,6 @@ BOOL SaveConfig( char * filename )
 		sprintf( string, "VARIABLE PATHEXPAND \"%s\"\n", GetSwitch(cm_PathExpand) );
 		fwrite( string, 1, strlen(string), file );
 		sprintf( string, "VARIABLE QUITVERIFY \"%s\"\n", GetSwitch(cm_QuitVerify) );
-		fwrite( string, 1, strlen(string), file );
-		sprintf( string, "VARIABLE SYMMETRICAL \"%s\"\n", GetSwitch(cm_Symmetrical) );
 		fwrite( string, 1, strlen(string), file );
 		sprintf( string, "VARIABLE SHOWDAY \"%s\"\n", GetSwitch(cm_ShowDay) );
 		fwrite( string, 1, strlen(string), file );
@@ -462,6 +467,12 @@ BOOL SaveConfig( char * filename )
 		fwrite( string, 1, strlen(string), file );
 		get( cy_SortRight, MUIA_Cycle_Active, &dummy );
 		sprintf( string, "VARIABLE SORTRIGHT \"%s\"\n", CYA_Sort[dummy] );
+		fwrite( string, 1, strlen(string), file );
+		get( cy_HighLowLeft, MUIA_Cycle_Active, &dummy );
+		sprintf( string, "VARIABLE ORDERLEFT \"%s\"\n", CYA_HighLow[dummy] );
+		fwrite( string, 1, strlen(string), file );
+		get( cy_HighLowRight, MUIA_Cycle_Active, &dummy );
+		sprintf( string, "VARIABLE ORDERRIGHT \"%s\"\n", CYA_HighLow[dummy] );
 		fwrite( string, 1, strlen(string), file );
 		get( st_LoadLeft, MUIA_String_Contents, &str );
 		sprintf( string, "VARIABLE LOADLEFT \"%s\"\n", str );

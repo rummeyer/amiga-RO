@@ -4,6 +4,8 @@
 **
 */
 
+BOOL global_Special = FALSE;
+
 extern BOOL global_KeyFile;
 extern BOOL global_DirLoaded[2];
 extern BOOL global_AskOnce;
@@ -16,7 +18,7 @@ extern BOOL cfg_DelVerify;
 extern BOOL cfg_DropIcons;
 extern BOOL cfg_CheckFit;
 extern LONG global_SleepClock;
-extern BOOL global_Illegal;
+extern BOOL global_ConfigChange;
 
 extern LONG cfg_LeftPage;
 extern LONG cfg_RightPage;
@@ -29,8 +31,10 @@ extern APTR app_RumorOpus;
 extern APTR bt_StatusBar;
 extern APTR pg_Page[2];
 extern APTR st_PathGadget[2];
+extern APTR vg_Virtual[2];
+extern APTR sb_Horizontal[2];
+extern APTR sb_Vertical[2];
 extern APTR lv_Directory[2];
-extern APTR wi_Progress;
 extern APTR lv_Buffers[2];
 extern APTR lv_Volumes[2];
 extern APTR bt_StatusText[2];
@@ -47,7 +51,7 @@ extern struct DiskObject * DiskObject;
 
 extern char cfg_LeftLoad[81];
 extern char cfg_RightLoad[81];
-extern char Status_String[512];
+extern char Status_String[1024];
 
 extern void Init ( void );
 extern void CheckKey ( void );

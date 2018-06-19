@@ -21,7 +21,7 @@ __far extern char cfg_RecogHex[100][41];
 __far extern char cfg_RecogName[100][41];
 __far extern char cfg_RecogCommand[100][81];
 __far extern char cfg_RecogCommandB[100][81];
-extern char Status_String[512];
+extern char Status_String[1024];
 
 extern char cfg_FileType[3][81];
 
@@ -54,6 +54,7 @@ BOOL Clone ( char * Source_String, char * Target_String );
 int Overwrite ( char * Source_String, char * File_String );
 int CopyFile ( char * Source_String, char * Target_String, BOOL NoBreak );
 int CopyDirectory ( char * Source_String, char * Target_String );
+int Delete ( char * FileName_String );
 int DeleteDirectory ( char * Path_String );
 int BytesDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULONG, ULONG * Dirs_ULONG );
 int FitDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULONG, ULONG * Dirs_ULONG, ULONG BlockSize_ULONG );

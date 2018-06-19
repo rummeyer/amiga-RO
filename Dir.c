@@ -11,6 +11,7 @@ void Reload ( int side )
 {
 	if ( global_DirLoaded[side] )
 	{
+		global_Reload = TRUE;
 		global_CursorPos[side] = MUIV_List_Active_Off;
 		get( lv_Directory[side], MUIA_List_Active, &global_CursorPos[side] );
 		LoadDirectory( global_Path[side], side );
@@ -19,6 +20,7 @@ void Reload ( int side )
 	{
 		if ( global_DirLoaded[OtherSide( side )] )
 		{
+			global_Reload = TRUE;
 			global_CursorPos[OtherSide( side )] = MUIV_List_Active_Off;
 			get( lv_Directory[OtherSide( side )], MUIA_List_Active, &global_CursorPos[OtherSide( side )] );
 			LoadDirectory( global_Path[OtherSide( side )], OtherSide( side ) );
@@ -51,7 +53,11 @@ int LoadDirectory ( char * Path_String, int side )
 			oldlock = CurrentDir( lock );
 			lock = CurrentDir( oldlock );
 
-			global_CursorPos[side] = MUIV_List_Active_Off;
+			if ( !global_Reload )
+				global_CursorPos[side] = MUIV_List_Active_Off;
+			else
+				global_Reload = FALSE;
+
 			if ( !global_KeyFile )
 				global_Actions++;
 			Examine( lock, fib );
@@ -105,12 +111,12 @@ int LoadDirectory ( char * Path_String, int side )
 					{
 						if ( Entries_LONG != cfg_History )
 							for ( i = 0; i < 2; i++ )
-								DoMethod( lv_Buffers[i], MUIM_List_InsertSingle, NewPath_String, MUIV_List_Insert_Top );
+								DoMethod( lv_Buffers[i], MUIM_List_InsertSingle, NewPath_String, global_NumBuffers );
 						else
 							for ( i = 0; i < 2; i++ )
 							{
 								DoMethod( lv_Buffers[i], MUIM_List_Remove, MUIV_List_Remove_Last );
-								DoMethod( lv_Buffers[i], MUIM_List_InsertSingle, NewPath_String, MUIV_List_Insert_Top );
+								DoMethod( lv_Buffers[i], MUIM_List_InsertSingle, NewPath_String, global_NumBuffers );
 							}
 					}
 
@@ -118,9 +124,6 @@ int LoadDirectory ( char * Path_String, int side )
 					set( pg_Page[side], MUIA_Group_ActivePage, 0 );
 				}
 			}
-			if ( !global_KeyFile )
-				if ( global_Actions == 0 )
-					global_Illegal = TRUE;
 			UnLock( lock );
 		}
 		else
@@ -129,9 +132,6 @@ int LoadDirectory ( char * Path_String, int side )
 	}
 	else
 		ErrorNum = -1;
-
-	if ( global_Actions > 20 )
-		global_Illegal = TRUE;
 
 	return( ErrorNum );
 }
@@ -211,10 +211,23 @@ void LoadVolume ( int side )
 
 void LoadBuffer ( int side )
 {
-	char * Buffer_String;
+	char * Buffer_String, * Help_String, Path[512];
+	int i, len;
 
 	DoMethod( lv_Buffers[side], MUIM_List_GetEntry, MUIV_List_GetEntry_Active, &Buffer_String );
-	LoadDirectory( Buffer_String, side );
+	Help_String = strstr( Buffer_String, "\33b" );
+	if ( Help_String != NULL )
+	{
+		len = strlen( Buffer_String );
+		for( i = 2; i < len; i++ )
+		{
+			Path[i-2] = Buffer_String[i];
+		}
+		Path[i-2] = 0;
+		LoadDirectory( Path, side );
+	}
+	else
+		LoadDirectory( Buffer_String, side );
 }
 
 /*
@@ -230,7 +243,7 @@ void UpdateStatusText ( int side )
 	char * cptr;
 	BPTR lock, newlock;
 	struct InfoData * pid;
-	ULONG BytesTotal_ULONG, BytesUsed_ULONG, Bytes_Used, Bytes_Free;
+	ULONG KBytesTotal_ULONG, KBytesUsed_ULONG, KBytes_Used, KBytes_Free;
 	LONG Entries_ULONG, Visible_ULONG;
 	BOOL success;
 	int i,j,k=0,Percent = 100;
@@ -253,33 +266,39 @@ void UpdateStatusText ( int side )
 		if ( pid )
 		{
 			Info(lock,pid);
-			BytesTotal_ULONG = ( pid -> id_NumBlocks ) * ( pid -> id_BytesPerBlock );
-			BytesUsed_ULONG = ( pid -> id_NumBlocksUsed ) * ( pid -> id_BytesPerBlock );
-			if ( ( BytesTotal_ULONG / 100 ) > 0 )
-				Percent = ( BytesUsed_ULONG / ( BytesTotal_ULONG / 100 ) );
+			KBytesTotal_ULONG = (( pid -> id_NumBlocks ) / 1024) * ( pid -> id_BytesPerBlock );
+			KBytesUsed_ULONG = (( pid -> id_NumBlocksUsed) / 1024) * ( pid -> id_BytesPerBlock );
+			if (KBytesTotal_ULONG < 1024)
+				KBytesTotal_ULONG = ( pid -> id_NumBlocks ) * ( pid -> id_BytesPerBlock ) / 1024;
+			if (KBytesUsed_ULONG < 1024)
+				KBytesUsed_ULONG = ( pid -> id_NumBlocksUsed) * ( pid -> id_BytesPerBlock ) / 1024;
+
+			if ( ( KBytesTotal_ULONG / 100 ) > 0 )
+				Percent = ( KBytesUsed_ULONG / ( KBytesTotal_ULONG / 100 ) );
 			if ( Percent > 100 ) Percent = 100;
+
 			strcpy( Unit_Free, "K" );
 			strcpy( Unit_Used, "K" );
-			Bytes_Free = ( BytesTotal_ULONG - BytesUsed_ULONG ) / 1024;
-			Bytes_Used = BytesUsed_ULONG / 1024;
-			if ( Bytes_Free > 9999 )
+			KBytes_Free = ( KBytesTotal_ULONG - KBytesUsed_ULONG );
+			KBytes_Used = KBytesUsed_ULONG;
+			if ( KBytes_Free > 9999 )
 			{
-				Bytes_Free = Bytes_Free / 1024;
+				KBytes_Free = KBytes_Free / 1024;
 				strcpy( Unit_Free, "M" );
 			}
-			if ( Bytes_Used > 9999 )
+			if ( KBytes_Used > 9999 )
 			{
-				Bytes_Used = Bytes_Used / 1024;
+				KBytes_Used = KBytes_Used / 1024;
 				strcpy( Unit_Used, "M" );
 			}
-			strcpy( BytesFree_String, NumberToString( Bytes_Free ) );
-			strcpy( BytesUsed_String, NumberToString( Bytes_Used ) );
+			strcpy( BytesFree_String, NumberToString( KBytes_Free ) );
+			strcpy( BytesUsed_String, NumberToString( KBytes_Used ) );
 			sprintf( Text_String, GetCatStr( 42, "%s  %ld%% full, %s%s free, %s%s in use" ), Device_String, Percent, BytesFree_String, Unit_Free, BytesUsed_String, Unit_Used );
 			set( bt_StatusText[side], MUIA_Text_Contents, Text_String );
 			if ( !global_DirLoaded[side] ) global_DirLoaded[side] = TRUE;
 			if ( !global_KeyFile )
 			{
-				if ( global_Actions > 9 )
+				if ( global_Actions > 29 )
 				{
 					SleepWindow( TRUE );
 					current = malloc( sizeof ( struct DateStamp ) );
@@ -288,7 +307,7 @@ void UpdateStatusText ( int side )
 						DateStamp( current );
 						i = current->ds_Tick;
 						j = i;
-						while ( ( j >= i && ( j - i < 250 ) ) && AboutRequester() )
+						while ( ( j >= i && ( j - i < 256 ) ) && AboutRequester() )
 						{
 							k++;
 							DateStamp( current );
@@ -307,6 +326,7 @@ void UpdateStatusText ( int side )
 		}
 		UnLock( lock );
 	}
+
 	if ( global_CursorPos[side] != MUIV_List_Active_Off )
 	{
 		get( lv_Directory[side], MUIA_List_Entries, &Entries_ULONG );
@@ -321,6 +341,7 @@ void UpdateStatusText ( int side )
 		set( lv_Directory[side], MUIA_List_Active, global_CursorPos[side] );
 		global_CursorPos[side] = MUIV_List_Active_Off;
 	}
+
 }
 
 /*
@@ -331,7 +352,7 @@ void UpdateStatusText ( int side )
 
 void UpdateNumFiles( int side )
 {
-	char Text_String[128], NumFiles_String[11], NumDirs_String[11], NumBytes_String[11];
+	char Text_String[128], NumFiles_String[41], NumDirs_String[41], NumBytes_String[41];
 	ULONG i, NumFiles = 0, NumDirs = 0, NumBytes = 0, Size, Entries_ULONG, Selection_State;
 	__aligned struct FileInfoBlock * fib;
 

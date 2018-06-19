@@ -1,4 +1,4 @@
-FROM LIB:c.o "Application.o"+"Buttons.o"+"Clock.o"+"Config.o"+"Dir.o"+"DoFunction.o"+"File.o"+"Functions.o"+"Hooks.o"+"WBPath.o"+"Key.o"+"Main.o"+"Misc.o"+"Path.o"+"Process.o"+"Startup.o"+"Request.o"
+FROM LIB:c.o "Application.o"+"Buttons.o"+"Clock.o"+"Config.o"+"Main.o"+"Request.o"+"DoFunction.o"+"File.o"+"Dir.o"+"Functions.o"+"Hooks.o"+"WBPath.o"+"Misc.o"+"Path.o"+"Key.o"+"Process.o"+"Startup.o"
 TO "Main"
 LIB LIB:xpk.lib LIB:sc.lib LIB:amiga.lib
 BATCH

@@ -1,7 +1,7 @@
 #include "Includes.h"
 #include "Application.h"
 
-#define VERSION    "$VER: RO 1.28 Beta (19.06.18)"
+#define VERSION    "$VER: RO 1.25 (1.2.97)"
 
 
 /*
@@ -107,23 +107,31 @@ APTR MakeLV ( int side )
 					MUIA_InputMode, MUIV_InputMode_RelVerify,
 					End,
 
-				Child, lv_Directory[side] = ListviewObject,
-					MUIA_Font, MUIV_Font_Fixed,
-					MUIA_HelpNode, "Listview",
-					MUIA_Listview_DragType, 1,
-					MUIA_Listview_Input, TRUE,
-					MUIA_Listview_ScrollerPos, MUIV_Listview_ScrollerPos_Default,
-					MUIA_Listview_MultiSelect, cfg_MultiSelect,
-					MUIA_Listview_List, lv_Dir[side] = NewObject(CL_MyDirList->mcc_Class,NULL,
-						InputListFrame,
-						MUIA_Dirlist_FilterDrawers, FALSE,
-						MUIA_Dirlist_MultiSelDirs, TRUE,
-						MUIA_Dirlist_SortType, cfg_SortType[side],
-						MUIA_Dirlist_SortDirs, cfg_FirstType[side],
-						MUIA_Dirlist_SortHighLow, cfg_SortHighLow[side],
-						MUIA_List_Format, cfg_Format[side],
-						MUIA_List_ShowDropMarks, FALSE,
-						TAG_DONE),
+				Child, gr_List[side] = HGroup, GroupSpacing(0),
+					Child, /* sg_Scroll[side] = ScrollgroupObject,
+						MUIA_Scrollgroup_Contents, */ VirtgroupObject,
+							MUIA_Virtgroup_Input, FALSE,
+							InputListFrame,
+							Child, lv_Directory[side] = ListviewObject,
+/*								MUIA_FixWidthTxt, "00000000000000000000000000000000000000000000000000000000000000000000000000000000",*/
+								MUIA_Font, MUIV_Font_Fixed,
+								MUIA_HelpNode, "Listview",
+								MUIA_Listview_DragType, 1,
+								MUIA_Listview_Input, TRUE,
+								MUIA_Listview_ScrollerPos, MUIV_Listview_ScrollerPos_Default /*None*/,
+								MUIA_Listview_MultiSelect, MUIV_Listview_MultiSelect_Always,
+								MUIA_Listview_List, lv_Dir[side] = NewObject(CL_MyDirList->mcc_Class,NULL,
+									MUIA_Dirlist_FilterDrawers, FALSE,
+									MUIA_Dirlist_MultiSelDirs, TRUE,
+									MUIA_Dirlist_SortType, cfg_SortType[side],
+									MUIA_Dirlist_SortDirs, cfg_FirstType[side],
+									MUIA_Dirlist_SortHighLow, cfg_SortHighLow[side],
+									MUIA_List_Format, cfg_Format[side],
+									MUIA_List_ShowDropMarks, FALSE,
+									TAG_DONE),
+								End,
+							End,
+						/*End,*/
 					End,
 
 				Child, st_PathGadget[side] = StringObject,
@@ -177,23 +185,31 @@ APTR MakeLV ( int side )
 					MUIA_InputMode, MUIV_InputMode_RelVerify,
 					End,
 
-				Child, lv_Directory[side] = ListviewObject,
-					MUIA_Font, MUIV_Font_Fixed,
-					MUIA_HelpNode, "Listview",
-					MUIA_Listview_DragType, 1,
-					MUIA_Listview_Input, TRUE,
-					MUIA_Listview_ScrollerPos, MUIV_Listview_ScrollerPos_Default,
-					MUIA_Listview_MultiSelect, cfg_MultiSelect,
-					MUIA_Listview_List, lv_Dir[side] = NewObject(CL_MyDirList->mcc_Class,NULL,
-						InputListFrame,
-						MUIA_Dirlist_FilterDrawers, FALSE,
-						MUIA_Dirlist_MultiSelDirs, TRUE,
-						MUIA_Dirlist_SortType, cfg_SortType[side],
-						MUIA_Dirlist_SortDirs, cfg_FirstType[side],
-						MUIA_Dirlist_SortHighLow, cfg_SortHighLow[side],
-						MUIA_List_Format, cfg_Format[side],
-						MUIA_List_ShowDropMarks, FALSE,
-						TAG_DONE),
+				Child, gr_List[side] = HGroup, GroupSpacing(0),
+					Child, /* sg_Scroll[side] = ScrollgroupObject,
+						MUIA_Scrollgroup_Contents, */ VirtgroupObject,
+							MUIA_Virtgroup_Input, FALSE,
+							InputListFrame,
+							Child, lv_Directory[side] = ListviewObject,
+/*								MUIA_FixWidthTxt, "00000000000000000000000000000000000000000000000000000000000000000000000000000000",*/
+								MUIA_Font, MUIV_Font_Fixed,
+								MUIA_HelpNode, "Listview",
+								MUIA_Listview_DragType, 1,
+								MUIA_Listview_Input, TRUE,
+								MUIA_Listview_ScrollerPos, MUIV_Listview_ScrollerPos_Default /*None*/,
+								MUIA_Listview_MultiSelect, MUIV_Listview_MultiSelect_Always,
+								MUIA_Listview_List, lv_Dir[side] = NewObject(CL_MyDirList->mcc_Class,NULL,
+									MUIA_Dirlist_FilterDrawers, FALSE,
+									MUIA_Dirlist_MultiSelDirs, TRUE,
+									MUIA_Dirlist_SortType, cfg_SortType[side],
+									MUIA_Dirlist_SortDirs, cfg_FirstType[side],
+									MUIA_Dirlist_SortHighLow, cfg_SortHighLow[side],
+									MUIA_List_Format, cfg_Format[side],
+									MUIA_List_ShowDropMarks, FALSE,
+									TAG_DONE),
+								End,
+							End,
+						/*End,*/
 					End,
 
 				Child, st_PathGadget[side] = StringObject,
@@ -252,7 +268,7 @@ BOOL StartApplication ( void )
 		MUIA_Application_HelpFile, "RO.guide",
 		MUIA_Application_Title         , "RO",
 		MUIA_Application_Version       , VERSION,
-		MUIA_Application_Copyright     , "Copyright © 1994-2018 by Oliver Rummeyer",
+		MUIA_Application_Copyright     , "Copyright © 1994-1997 by Oliver Rummeyer",
 		MUIA_Application_Author        , "Oliver Rummeyer",
 		MUIA_Application_Description   , GetCatStr( 0, "MUI-Based FileManager" ),
 		MUIA_Application_Base          , "RO",
@@ -261,7 +277,7 @@ BOOL StartApplication ( void )
 
 		SubWindow,
 			wi_Main = WindowObject,
-			MUIA_Window_Title, "RO 1.28 Beta (19.06.18) -- Copyright © 1994-2018 by Oliver Rummeyer",
+			MUIA_Window_Title, "RO 1.25 (1.2.97) -- Copyright © 1994-1997 by Oliver Rummeyer",
 			MUIA_Window_ID, 1,
 			MUIA_Window_Menustrip, Menu = MUI_MakeObject(MUIO_MenustripNM,MenuData,0),
 			MUIA_Window_NeedsMouseObject, TRUE,
@@ -648,6 +664,24 @@ void Methods ( void )
 	get( sg_Scroll[Left_Side], MUIA_Scrollgroup_HorizBar, &sb_Horizontal[Left_Side] );
 	get( sg_Scroll[Right_Side], MUIA_Scrollgroup_VertBar, &sb_Vertical[Right_Side] );
 	get( sg_Scroll[Right_Side], MUIA_Scrollgroup_HorizBar, &sb_Horizontal[Right_Side] );
+
+/*
+
+#define MUIA_List_TopPixel                  0x80429df3 /* V4  ..g LONG */
+#define MUIA_List_TotalPixel                0x8042a8f5 /* V4  ..g LONG */
+#define MUIA_List_VisiblePixel              0x804273e9 /* V4  ..g LONG */
+
+	DoMethod( sb_Vertical[Left_Side], MUIM_Notify, MUIA_Prop_First, MUIV_EveryTime, lv_Dir[Left_Side], 3, MUIM_Set, MUIA_List_TopPixel, MUIV_TriggerValue );
+	DoMethod( lv_Dir[Left_Side], MUIM_Notify, MUIA_List_TotalPixel, MUIV_EveryTime, sb_Vertical[Left_Side], 3, MUIM_Set, MUIA_Prop_Entries, MUIV_TriggerValue );
+	DoMethod( lv_Dir[Left_Side], MUIM_Notify, MUIA_List_VisiblePixel, MUIV_EveryTime, sb_Vertical[Left_Side], 3, MUIM_Set, MUIA_Prop_Visible, MUIV_TriggerValue );
+	DoMethod( lv_Dir[Left_Side], MUIM_Notify, MUIA_List_TopPixel, MUIV_EveryTime, sb_Vertical[Left_Side], 3, MUIM_Set, MUIA_Prop_First, MUIV_TriggerValue );
+
+	DoMethod( sb_Vertical[Right_Side], MUIM_Notify, MUIA_Prop_First, MUIV_EveryTime, lv_Dir[Right_Side], 3, MUIM_Set, MUIA_List_TopPixel, MUIV_TriggerValue );
+	DoMethod( lv_Dir[Right_Side], MUIM_Notify, MUIA_List_TotalPixel, MUIV_EveryTime, sb_Vertical[Right_Side], 3, MUIM_Set, MUIA_Prop_Entries, MUIV_TriggerValue );
+	DoMethod( lv_Dir[Right_Side], MUIM_Notify, MUIA_List_VisiblePixel, MUIV_EveryTime, sb_Vertical[Right_Side], 3, MUIM_Set, MUIA_Prop_Visible, MUIV_TriggerValue );
+	DoMethod( lv_Dir[Right_Side], MUIM_Notify, MUIA_List_TopPixel, MUIV_EveryTime, sb_Vertical[Right_Side], 3, MUIM_Set, MUIA_Prop_First, MUIV_TriggerValue );
+
+*/
 
 	/*** Window Notifications ***/
 

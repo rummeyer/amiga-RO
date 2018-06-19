@@ -4,6 +4,8 @@
 **
 */
 
+extern BOOL global_Special;
+
 extern BOOL global_KeyFile;
 
 extern APTR app_RumorOpusPrefs;

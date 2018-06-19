@@ -1,12 +1,14 @@
 Failat 21
 ChangeTaskPri -1
-stack 250000
+Stack 100000
 
-smake
+smake all
+
+copy sc:project/main sc:project/RO
 copy sc:project/main sc:project/RO_Release/Binary/RO,binary
+copy sc:project/prefsmain "sc:project/ROPrefs"
 copy sc:project/prefsmain "sc:project/RO_Release/Binary/ROPrefs,binary"
-copy sc:project/prefsmain "System:Prefs/RO"
 
-stack 8192
+Stack 16384
 ChangeTaskPri 0
 Failat 10

@@ -71,7 +71,38 @@ RumorOpus Prefs 0.81 beta 2 (26.11.95)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 o Bugfix bei Keyfile einlesen.
 
-RumorOpus Prefs 0.82 beta 1 (5.12.95)
+RumorOpus Prefs 0.82 beta 1 (5.1.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o cfg_Frames entfernt.
+
+RumorOpus Prefs 0.82 beta 2 (1.3.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o cfg_Symmetrical entfernt
+o HighLow eingebaut
+
+RumorOpus Prefs 0.82 beta 3 (1.3.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neue &Flags in Popup eingebaut.
+
+RumorOpus Prefs 0.83 beta 1 (23.8.96)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-o NetBSD installiert, Plattencrash, Backup unbrauchbar,
-  PrefsStartup.c neu geschrieben.
+o Bug beim einlesen der Config gefixt, der die Buttons durcheinander
+  gewuerfelt hat.
+o Recompiled fuer Mui3.6
+
+RumorOpus Prefs 0.84 beta 1 (22.10.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neuer Switch cfg_RegisterPages
+
+RumorOpus Prefs 0.85 beta 1 (22.12.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fix: Es koennen jetzt auch die ersten Drei Filetypes
+  geaendert werden.
+
+RumorOpus Prefs 0.85 beta 2 (9.2.97)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neue Funktion LFOLD, die eine Liste wegfaltet.
+
+RumorOpus Prefs 0.86 beta 1 (25.3.97)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Adresse in Requester geaendert.

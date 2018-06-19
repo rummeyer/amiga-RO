@@ -1,4 +1,4 @@
-FROM LIB:c.o "PrefsApplication.o"+"PrefsConfig.o"+"Key.o"+"PrefsHooks.o"+"PrefsMain.o"+"PrefsRequest.o"+"PrefsStartup.o"
+FROM LIB:c.o "PrefsApplication.o"+"PrefsRequest.o"+"PrefsConfig.o"+"PrefsMain.o"+"PrefsHooks.o"+"Key.o"+"PrefsStartup.o"
 TO "PrefsMain"
 LIB LIB:sc.lib LIB:amiga.lib
 BATCH

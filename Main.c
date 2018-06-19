@@ -5,7 +5,7 @@
 **
 ** RO -- MUI-Based FileManager, Shareware
 **
-** Copyright © 1994, 1995 by Oliver Rummeyer
+** Copyright © 1994-2018 by Oliver Rummeyer
 **
 */
 
@@ -25,6 +25,10 @@ int main ( int argc, char *argv[] )
 	global_ARGV = argv;
 
 	CheckKey();
+
+	if (global_Special)
+		global_KeyFile = TRUE;
+
 	Init();
 
 	strcpy( global_Path[Left_Side], "" );
@@ -53,7 +57,6 @@ int main ( int argc, char *argv[] )
 	strcpy( global_ARexxName, String );
 
 	set( wi_Main, MUIA_Window_Open, TRUE );
-	get( wi_Main, MUIA_Window_Window, &IntuiWindow );
 
 	while ( !global_QuitProgram )
 	{
@@ -62,12 +65,12 @@ int main ( int argc, char *argv[] )
 		{
 			if ( strlen( cfg_LeftLoad ) > 0 ) LoadDirectory( cfg_LeftLoad, Left_Side );
 			if ( strlen( cfg_RightLoad ) > 0 ) LoadDirectory( cfg_RightLoad, Right_Side );
-			UpdateClock();
 			global_SleepClock = 0;
+			UpdateClock();
 			set( wi_Main, MUIA_Window_ActiveObject, lv_Directory[Left_Side]);
 			Once=3;
 		}
-		if ( ( id > ID_Start ) && ( id < ID_Stop ) && ( id != ID_UpdateTextLeft ) && ( id != ID_UpdateTextRight ) && ( id != ID_Sleep ) && ( id != ID_WakeUp ) ) SleepClock( FALSE );
+		if ( ( id > ID_Start ) && ( id < ID_Stop ) && ( id != ID_UpdateTextLeft ) && ( id != ID_UpdateTextRight ) && ( id != ID_Sleep ) && ( id != ID_WakeUp ) && (id != ID_Message) ) SleepClock( FALSE );
 		switch( id )
 		{
 
@@ -78,6 +81,7 @@ int main ( int argc, char *argv[] )
 			/*** Menu Handling ***/
 
 			case ID_About:		AboutRequester();										break;
+			case ID_AboutMUI:	DoMethod( app_RumorOpus, MUIM_Application_AboutMUI, wi_Main ); break;
 			case ID_Iconify:	set( app_RumorOpus, MUIA_Application_Iconified, 1 );	break;
 			case ID_CopyFlags:	cfg_CopyFlags = !cfg_CopyFlags;							break;
 			case ID_CopyDate:	cfg_CopyDate = !cfg_CopyDate;							break;
@@ -107,13 +111,13 @@ int main ( int argc, char *argv[] )
 			case ID_ROPrefs:
 				SleepWindow( TRUE );
 				if( Exists( PrefsName ) )
-					i = ExecuteCommandNoOutput( PrefsName, "" );
+					i = ExecuteCommandNoOutput( PrefsName, " " );
 				else
 					if( Exists( "SYS:Prefs/ROPrefs" ) )
-						i = ExecuteCommandNoOutput( "SYS:Prefs/ROPrefs", "" );
+						i = ExecuteCommandNoOutput( "SYS:Prefs/ROPrefs", " " );
 					else
 						if( Exists( "SYS:Prefs/RO" ) )
-							i = ExecuteCommandNoOutput( "SYS:Prefs/RO", "" );
+							i = ExecuteCommandNoOutput( "SYS:Prefs/RO", " " );
 						else
 						{
 							i = 10;
@@ -176,17 +180,6 @@ int main ( int argc, char *argv[] )
 				set( wi_Main, MUIA_Window_ActiveObject, st_PathGadget[Right_Side] );
 				break;
 					
-			/*** Window Update Events ***/
-
-			case ID_OpenChange:
-				get( wi_Main, MUIA_Window_Open, &Opened );
-				if ( Opened )
-				{
-					set( wi_Progress, MUIA_Window_Open, FALSE );
-					get( wi_Main, MUIA_Window_Window, &IntuiWindow );
-				}
-				break;
-
 			/*** ARexx Events ***/
 
 			case ID_Sleep:				Sleep(TRUE);				break;
@@ -308,12 +301,14 @@ int main ( int argc, char *argv[] )
 			case ID_Menu_19:			MenuCommand(19);					break;
 		}
 
-		if ( global_Illegal )
-			ColdReboot();
+		get( wi_Main, MUIA_Window_Open, &Opened );
 
 		if ( Opened )
+			{
+			get( wi_Main, MUIA_Window_Window, &IntuiWindow );
 			if ( IntuiWindow )
 				if ( IntuiWindow->MessageKey )
+
 					if ( IntuiWindow->MessageKey->Class == IDCMP_MOUSEBUTTONS )
 					{
 						if ( IntuiWindow->MessageKey->Code == SELECTDOWN )
@@ -342,6 +337,7 @@ int main ( int argc, char *argv[] )
 									if ( cfg_MiddleMouse == 2 || cfg_MiddleMouse == 3 ) BankSwitch();
 							}
 					}
+			}
 
 		if ( signal && !global_QuitProgram ) Wait(signal);
 		if ( Once == 1 )
@@ -354,6 +350,8 @@ int main ( int argc, char *argv[] )
 		{
 			set( pg_Page[Left_Side], MUIA_Group_ActivePage, cfg_LeftPage );
 			set( pg_Page[Right_Side], MUIA_Group_ActivePage, cfg_RightPage );
+			SleepClock(TRUE);
+			SleepClock(FALSE);
 			Once = 0;
 		}
 
@@ -378,11 +376,16 @@ int main ( int argc, char *argv[] )
 			DiskObject = GetDiskObject( "PROGDIR:RO" );
 			if ( DiskObject ) set(app_RumorOpus, MUIA_Application_DiskObject, DiskObject );
 
+			if ( global_DirLoaded[Left_Side] )
+				LoadDirectory( global_Path[Left_Side], Left_Side );
+			if ( global_DirLoaded[Right_Side] )
+				LoadDirectory( global_Path[Right_Side], Right_Side );
+
 			SleepClock(FALSE);
 			set( wi_Main, MUIA_Window_Open, TRUE );
 
-			get( wi_Main, MUIA_Window_Window, &IntuiWindow );
 			BOOL_ReloadConfig = FALSE;
+			global_ConfigChange = TRUE;
 		}
 	}
 

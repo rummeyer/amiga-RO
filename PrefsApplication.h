@@ -28,6 +28,8 @@ APTR st_FormatLeft;
 APTR cy_PageLeft;
 APTR cy_FirstLeft;
 APTR cy_SortLeft;
+APTR cy_HighLowLeft;
+APTR cy_HighLowRight;
 APTR st_LoadRight;
 APTR st_FormatRight;
 APTR cy_PageRight;
@@ -68,6 +70,7 @@ APTR cm_ShowSeconds;
 APTR cm_ShowMemory;
 APTR cm_CheckDupes;
 APTR cm_Symmetrical;
+APTR cm_RegPages;
 APTR bt_AddEvent;
 APTR bt_DelEvent;
 APTR bt_AddFiletype;
@@ -108,6 +111,7 @@ const char *CYA_Overwrite[] = { "Always", "Never", "Older", "Verify", NULL };
 const char *CYA_Pages[] = { "Directory", "Buffers", "Volumes", NULL };
 const char *CYA_First[] = { "Dirs", "Files", "Mixed", NULL };
 const char *CYA_Sort[] = { "Name", "Date", "Size", NULL };
+const char *CYA_HighLow[] = { "High", "Low", NULL };
 const char *CYA_Event[] = { "Hotkey", "Button", "Drive", "Menu", "Buffer", NULL };
 const char *CYA_TypeBtn[] = { "Function", "Command", NULL };
 const char *CYA_Type[] = { "Custom", "Archive", NULL };
@@ -127,7 +131,7 @@ struct NewMenu MenuData[] =
 	{ NM_ITEM , "Last Saved",        "L",0,0,(APTR)ID_MenuLast    },
 	{ NM_ITEM , "Restore",           "R",0,0,(APTR)ID_MenuRestore },
 	{ NM_TITLE, "Settings" ,          0 ,0,0,(APTR)0              },
-	{ NM_ITEM , "MUI...",             0 ,0,0,(APTR)ID_MUIPrefs    },
+	{ NM_ITEM , "MUI settings...",    0 ,0,0,(APTR)ID_MUIPrefs    },
 	{ NM_END ,  NULL                , 0 ,0,0,(APTR)0              }
 };
 
@@ -154,6 +158,8 @@ static const char *PopVars[] =
 	"&C - change to target path",
 	"&r - reload source directory",
 	"&R - reload target directory",
+	"&b - nobreak on returncode",
+	"&d - nodeselect entries",
 	"&w - wait",
 	NULL
 };
@@ -164,6 +170,7 @@ static const char *PopNames[] =
 	"ACTION",
 	"ALL",
 	"ASSIGN",
+	"BUFFERS",
 	"BYNAME",
 	"BYTES",
 	"CHANGE",
@@ -172,6 +179,7 @@ static const char *PopNames[] =
 	"COPYDEV",
 	"CURRENT",
 	"DELETE",
+	"DIRECTORY",
 	"DISK",
 	"DUP",
 	"EXPAND",
@@ -181,6 +189,7 @@ static const char *PopNames[] =
 	"INFO",
 	"LACTIVE",
 	"LCOPY",
+	"LFOLD",
 	"LISTARC",
 	"LPARENT",
 	"LRELOAD",
@@ -211,6 +220,7 @@ static const char *PopNames[] =
 	"TOUCH",
 	"UNARC",
 	"UPDATE",
+	"VOLUMES",
 	NULL
 };
 

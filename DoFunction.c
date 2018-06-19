@@ -24,11 +24,12 @@ int DoFunction( int Operation, int side, char * Argument )
 	char * ptrA = NULL, * NewName_String, * cptr;
 	BOOL Action_BOOL = FALSE, ReloadSrc_BOOL = FALSE, Skip = FALSE, Cancel = FALSE, success, All_BOOL = FALSE, Request_Dst = FALSE;
 	BOOL Fitting_BOOL = TRUE, Move_BOOL = FALSE, As_BOOL = FALSE, SameDevice_BOOL = FALSE, Done;
-	BOOL ReloadDst_BOOL = FALSE;
+	BOOL ReloadDst_BOOL = FALSE, NoBreak_BOOL = FALSE, NoDeselect_BOOL = FALSE, Jumped = FALSE, CommentAll_BOOL = FALSE;
 	int ErrorNum = 0, rc, l, TypeNum = -1;
 
 	if ( Argument != NULL )
 	{
+		ParseMisc( Argument, &NoBreak_BOOL, &NoDeselect_BOOL );
 		ParseReload( Argument, &ReloadSrc_BOOL, &ReloadDst_BOOL );
 		ParseNeedTarget( side, Argument, &Request_Dst );
 	}
@@ -46,7 +47,7 @@ int DoFunction( int Operation, int side, char * Argument )
 		if ( ptrA == NULL )
 		{
 			rc = ExecuteCommand( Argument, "" );
-			if ( rc != 0 )
+			if ( rc != 0 && !NoBreak_BOOL)
 				ErrorNum = -4;
 		}
 	}
@@ -58,6 +59,7 @@ int DoFunction( int Operation, int side, char * Argument )
 			Over = cfg_Overwrite;
 			DelForce = cfg_DelForce;
 
+			get( lv_Directory[side], MUIA_List_Active, &Active_LONG );
 			get( lv_Directory[side], MUIA_List_Entries, &Entries_ULONG );
 			for ( i = 0; i < Entries_ULONG; i++ )
 			{
@@ -69,8 +71,16 @@ int DoFunction( int Operation, int side, char * Argument )
 						FirstSelected_LONG = i;
 				}
 			}
+
+			if ( k == 0 && Active_LONG != MUIV_List_Active_Off)
+			{
+				k = 1;
+				DoMethod( lv_Directory[side], MUIM_List_Select, Active_LONG, MUIV_List_Select_On, NULL );
+			}
+
 			set( ga_Gauge, MUIA_Gauge_Current, 0 );
 			set( ga_Gauge, MUIA_Gauge_Max, k );
+
 
 			if ( k > 0 )
 			{
@@ -79,7 +89,6 @@ int DoFunction( int Operation, int side, char * Argument )
 
 				if ( cfg_Scroll )
 				{
-					get( lv_Directory[side], MUIA_List_Active, &Active_LONG );
 					get( lv_Directory[side], MUIA_List_Visible, &Visible_LONG );
 					get( lv_Directory[side], MUIA_List_First, &First_LONG );
 
@@ -107,6 +116,7 @@ int DoFunction( int Operation, int side, char * Argument )
 							DoMethod( lv_Directory[side], MUIM_List_Jump, i - 1 + Visible_LONG );
 						else
 							DoMethod( lv_Directory[side], MUIM_List_Jump, Entries_ULONG - 1 );
+						Jumped = TRUE;
 					}
 
 					DoMethod( app_RumorOpus, MUIM_Application_InputBuffered );
@@ -133,7 +143,7 @@ int DoFunction( int Operation, int side, char * Argument )
 									sprintf( Status_String, GetCatStr( 46, "Executing Command for '%s'..." ), FileName_String );
 									set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 									rc = ExecuteCommand( Argument, FileName_String );
-									if ( rc != 0 )
+									if ( rc != 0 && !NoBreak_BOOL)
 										ErrorNum = -4;
 									Action_BOOL = TRUE;
 								}
@@ -147,6 +157,8 @@ int DoFunction( int Operation, int side, char * Argument )
 									sprintf( Status_String, GetCatStr( 47, "Performing FileAction for '%s'..." ), FileName_String );
 									set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 									ErrorNum = FileAction( FileName_String );
+									if ( ErrorNum == -4 && NoBreak_BOOL)
+										ErrorNum = 0;
 								}
 								break;
 
@@ -155,7 +167,7 @@ int DoFunction( int Operation, int side, char * Argument )
 								set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 								if ( !Action_BOOL )
 								{
-									NewName_String = StringRequester( GetCatStr( 49, "Copy selected files to device" ), "PRT:", "/", 31, FALSE, &Skip, &Cancel );
+									NewName_String = StringRequester( GetCatStr( 49, "Copy selected files to device" ), "PRT:", "/", 31, 0, &Skip, &Cancel );
 									if ( ! ( strlen( NewName_String ) > 0 ) )
 										Cancel = TRUE;
 									else
@@ -183,9 +195,8 @@ int DoFunction( int Operation, int side, char * Argument )
 								}
 								break;
 
-							case drop_entries:
 							case unarc_entries:
-								if ( fib -> fib_DirEntryType < 0 )
+								if ( fib -> fib_DirEntryType < 0 && global_DirLoaded[OtherSide(side)] )
 								{
 									sprintf( Status_String, GetCatStr( 77, "Extracting '%s' to '%s'..." ), FileName_String, GetPath( OtherSide( side ) ) );
 									set( bt_StatusBar, MUIA_Text_Contents, Status_String );
@@ -195,12 +206,13 @@ int DoFunction( int Operation, int side, char * Argument )
 								}
 								if ( strlen( String ) > 0 )
 								{
+									ParseMisc( Argument, &NoBreak_BOOL, &NoDeselect_BOOL );
 									ParseReload( String, &ReloadSrc_BOOL, &ReloadDst_BOOL );
 									ParseNeedTarget( side, String, &Request_Dst );
 									if ( Request_Dst )
 									{
 										rc = ExecuteCommand( String, FileName_String );
-										if ( rc != 0 )
+										if ( rc != 0 && !NoBreak_BOOL)
 											ErrorNum = -4;
 										Action_BOOL = TRUE;
 									}
@@ -208,15 +220,9 @@ int DoFunction( int Operation, int side, char * Argument )
 										Cancel = TRUE;
 									break;
 								}
-								else
-								{
-									if ( Operation != drop_entries)
-									{
-										DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_On, NULL );
-										break;
-									}
-								}
+								break;
 
+							case drop_entries:
 							case copy_entries:
 							case move_entries:
 							case copyas_entries:
@@ -291,7 +297,7 @@ int DoFunction( int Operation, int side, char * Argument )
 													sprintf( String, GetCatStr( 57, "Copy '%s' as" ), FilePart( FileName_String ) );
 												else
 													sprintf( String, GetCatStr( 58, "Move '%s' as" ), FilePart( FileName_String ) );
-												NewName_String = StringRequester( String, FilePart( FileName_String ), ":/", 31, TRUE, &Skip, &Cancel );
+												NewName_String = StringRequester( String, FilePart( FileName_String ), ":/", 31, 1, &Skip, &Cancel );
 												strcpy( String, NewName_String );
 											}
 											else
@@ -304,13 +310,13 @@ int DoFunction( int Operation, int side, char * Argument )
 												{
 													sprintf( Help_String_A, "/%s/", FileName_String );
 													sprintf( Help_String_B, "/%s/", Target_String );
-													if ( ( strstr( Help_String_B, Help_String_A ) == NULL ) || ( stricmp( FileName_String, Target_String ) == 0 ) )
+													if ( ( strstr( Help_String_B, Help_String_A ) == NULL ) && ( stricmp( FileName_String, Target_String ) != 0 ) )
 													{
 														if ( Exists( Target_String ) )
 														{
 															Proceed = Overwrite( FileName_String, Target_String );
 															if ( Proceed == 1 )
-																ErrorNum = RemoveFile( Target_String );
+																ErrorNum = Delete( Target_String );
 															if ( Proceed == 0 )
 															{
 																ErrorNum = -20;
@@ -368,7 +374,7 @@ int DoFunction( int Operation, int side, char * Argument )
 								sprintf( Status_String, GetCatStr( 59, "Renaming '%s'..." ), FileName_String );
 								set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 								sprintf( String, GetCatStr( 60, "Rename '%s' as" ), fib -> fib_FileName );
-								NewName_String = StringRequester( String, fib -> fib_FileName, ":/", 31, TRUE, &Skip, &Cancel );
+								NewName_String = StringRequester( String, fib -> fib_FileName, ":/", 31, 1, &Skip, &Cancel );
 								if ( !Skip && !Cancel && strlen( NewName_String ) > 0 )
 								{
 									Done = TRUE;
@@ -394,7 +400,7 @@ int DoFunction( int Operation, int side, char * Argument )
 								sprintf( Status_String, GetCatStr( 61, "Duplicating '%s'..." ), FileName_String );
 								set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 								sprintf( String, GetCatStr( 62, "Duplicate '%s' as" ), fib -> fib_FileName );
-								NewName_String = StringRequester( String, fib -> fib_FileName, ":/", 31, TRUE, &Skip, &Cancel );
+								NewName_String = StringRequester( String, fib -> fib_FileName, ":/", 31, 1, &Skip, &Cancel );
 								if ( !Skip && !Cancel && strlen( NewName_String ) > 0 )
 								{
 									Done = TRUE;
@@ -435,11 +441,17 @@ int DoFunction( int Operation, int side, char * Argument )
 							case comment_entries:
 								sprintf( Status_String, GetCatStr( 64, "Setting comment for '%s'..." ), FileName_String );
 								set( bt_StatusBar, MUIA_Text_Contents, Status_String );
-								sprintf( String, GetCatStr( 65, "Enter comment for '%s'" ), fib -> fib_FileName );
-								NewName_String = StringRequester( String, fib -> fib_Comment, "", 80, TRUE, &Skip, &Cancel );
-								if ( !Skip && !Cancel )
+								if ( !CommentAll_BOOL )
 								{
-									success = SetComment( FileName_String, NewName_String );
+									sprintf( String, GetCatStr( 65, "Enter comment for '%s'" ), fib -> fib_FileName );
+									NewName_String = StringRequester( String, fib -> fib_Comment, "", 80, 2, &Skip, &Cancel );
+									strcpy( Version_String, NewName_String );
+								}
+								if ( Skip )
+									CommentAll_BOOL = TRUE;
+								if ( !Cancel || CommentAll_BOOL )
+								{
+									success = SetComment( FileName_String, Version_String );
 									if ( !success )
 										ErrorNum = IoErr();
 									else
@@ -474,7 +486,7 @@ int DoFunction( int Operation, int side, char * Argument )
 								if ( ErrorNum == 0 )
 								{
 									sprintf( Status_String, GetCatStr( 67, "Enter datestamp for '%s'" ), fib -> fib_FileName );
-									NewName_String = StringRequester( Status_String, String, "", 80, TRUE, &Skip, &Cancel );
+									NewName_String = StringRequester( Status_String, String, "", 80, 1, &Skip, &Cancel );
 									if ( !Skip && !Cancel && strlen( NewName_String ) > 0 )
 									{
 										rc = sscanf( NewName_String, "%s %s", Date_String, Time_String );
@@ -629,9 +641,12 @@ int DoFunction( int Operation, int side, char * Argument )
 										switch ( DoMethod( app_RumorOpus, MUIM_Application_Input, &signal ) )
 										{
 											case MUIV_Application_ReturnID_Quit:
-												global_QuitProgram = TRUE;
-												Cancel = TRUE;
-												success = FALSE;
+												global_QuitProgram = QuitRequester();
+												if ( global_QuitProgram )
+												{
+													Cancel = TRUE;
+													success = FALSE;
+												}
 												break;
 
 											case 1:
@@ -663,12 +678,13 @@ int DoFunction( int Operation, int side, char * Argument )
 								}
 								if ( strlen( String ) > 0 )
 								{
+									ParseMisc( Argument, &NoBreak_BOOL, &NoDeselect_BOOL );
 									ParseReload( String, &ReloadSrc_BOOL, &ReloadDst_BOOL );
 									ParseNeedTarget( side, String, &Request_Dst );
 									if ( Request_Dst )
 									{
 										rc = ListArchive( String, FileName_String );
-										if ( rc != 0 )
+										if ( rc != 0 && !NoBreak_BOOL)
 											ErrorNum = -4;
 										Action_BOOL = TRUE;
 									}
@@ -676,7 +692,8 @@ int DoFunction( int Operation, int side, char * Argument )
 										Cancel = TRUE;
 								}
 								else
-									DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_Off, NULL );
+									if ( !NoDeselect_BOOL )
+										DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_Off, NULL );
 								break;
 
 							case protect_entries:
@@ -711,7 +728,7 @@ int DoFunction( int Operation, int side, char * Argument )
 												MUIA_Group_SameSize, TRUE,
 												Child, bt_Okay = SimpleButton(GetCatStr( 72, "_Okay" ) ),
 												Child, HSpace(0),
-												Child, bt_All = SimpleButton(GetCatStr( 88, "_All" ) ),
+												Child, bt_All = SimpleButton(GetCatStr( 88, "A_ll" ) ),
 												Child, HSpace(0),
 												Child, bt_Cancel = SimpleButton(GetCatStr( 73, "_Cancel" ) ),
 												End,
@@ -736,9 +753,12 @@ int DoFunction( int Operation, int side, char * Argument )
 										switch ( DoMethod( app_RumorOpus, MUIM_Application_Input, &signal ) )
 										{
 											case MUIV_Application_ReturnID_Quit:
-												global_QuitProgram = TRUE;
-												Cancel = TRUE;
-												success = FALSE;
+												global_QuitProgram = QuitRequester();
+												if ( global_QuitProgram )
+												{
+													Cancel = TRUE;
+													success = FALSE;
+												}
 												break;
 
 											case 1:
@@ -832,7 +852,9 @@ int DoFunction( int Operation, int side, char * Argument )
 						if ( Cancel || ErrorNum != 0 ) break;
 						Action_BOOL = TRUE;
 
-						DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_Toggle, NULL );
+						if ( !NoDeselect_BOOL )
+							DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_Toggle, NULL );
+						/* UpdateNumFiles(side); */
 
 						k++;
 						set( ga_Gauge, MUIA_Gauge_Current, k );
@@ -849,7 +871,7 @@ int DoFunction( int Operation, int side, char * Argument )
 						Reload( side );
 					else
 					{
-						if ( cfg_Scroll )
+						if ( cfg_Scroll && Jumped )
 						{
 							set( lv_Directory[side], MUIA_List_Quiet, TRUE );
 							DoMethod( lv_Directory[side], MUIM_List_Jump, Entries_ULONG - 1 );
@@ -870,7 +892,7 @@ int DoFunction( int Operation, int side, char * Argument )
 
 			if ( !Action_BOOL && ( Operation == touch_entries ) )
 			{
-				NewName_String = StringRequester( GetCatStr( 89, "Enter file name" ), "", ":/", 31, FALSE, &Skip, &Cancel );
+				NewName_String = StringRequester( GetCatStr( 89, "Enter file name" ), "", ":/", 31, 0, &Skip, &Cancel );
 				if ( !Cancel && strlen( NewName_String ) > 0 )
 				{
 					sprintf( Target_String, "%s%s", GetPath( side ), NewName_String );

@@ -22,6 +22,12 @@ void DefaultConfig ( void )
 		strcpy( cfg_RecogCommandB[i], "" );
 	}
 
+	for( i = 0; i < 32; i++ )
+	{
+		strcpy(cfg_DriveText[i],"");
+		strcpy(cfg_Drive[i],"");
+	}
+
 	cfg_CheckFit				= TRUE;
 	cfg_ClockPri				= -10;
 	cfg_ClockRefresh			= 500;
@@ -41,6 +47,8 @@ void DefaultConfig ( void )
 	cfg_DropIcons				= FALSE;
 	cfg_FirstType[Left_Side]	= MUIV_Dirlist_SortDirs_First;
 	cfg_FirstType[Right_Side]	= MUIV_Dirlist_SortDirs_First;
+	cfg_SortHighLow[Left_Side]	= FALSE;
+	cfg_SortHighLow[Right_Side]	= FALSE;
 	cfg_History         		= 50;
 	cfg_HotDirs					= FALSE;
 	cfg_Overwrite				= 2;
@@ -55,59 +63,23 @@ void DefaultConfig ( void )
 	cfg_CheckDupes              = TRUE;
 	cfg_SortType[Left_Side]		= MUIV_Dirlist_SortType_Name;
 	cfg_SortType[Right_Side]	= MUIV_Dirlist_SortType_Name;
-	cfg_ScrollerPos[Left_Side]	= MUIV_Listview_ScrollerPos_Default;
-	cfg_ScrollerPos[Right_Side]	= MUIV_Listview_ScrollerPos_Default;
 	cfg_LeftPage				= 0;
 	cfg_RightPage				= 0;
 	cfg_FlushMemory				= FALSE;
 	cfg_MiddleMouse				= 3;
+	cfg_MultiSelect				= MUIV_Listview_MultiSelect_Always;
+	cfg_PageType				= TRUE;
 
 	strcpy( cfg_LeftLoad,       "" );
 	strcpy( cfg_RightLoad,      "" );
-	strcpy( cfg_LeftFormat,     "COL=0, COL=1 P=\33r, COL=4, COL=2, COL=3, COL=5" );
-	strcpy( cfg_RightFormat,    cfg_LeftFormat );
+	strcpy( cfg_Format[Left_Side],     "COL=0, COL=1 P=\33r, COL=4, COL=2, COL=3, COL=5" );
+	strcpy( cfg_Format[Right_Side],    cfg_Format[Left_Side] );
 	strcpy( cfg_Output,         "CON:0/0/640/200/Output/CLOSE/AUTO" );
 	strcpy( cfg_TempDir,        "T:" );
 
 	strcpy( cfg_FileType[0],    "MultiView >NIL: %f" );
 	strcpy( cfg_FileType[1],    cfg_FileType[0] );
 	strcpy( cfg_FileType[2],    cfg_FileType[0] );
-
-	strcpy( cfg_Drive[0],       "DF0:" );  
-	strcpy( cfg_Drive[1],       "DF1:" );  
-	strcpy( cfg_Drive[2],       "DH0:" );  
-	strcpy( cfg_Drive[3],       "DH1:" );  
-	strcpy( cfg_Drive[4],       "DH2:" );  
-	strcpy( cfg_Drive[5],       "DH3:" );  
-	strcpy( cfg_Drive[6],       "CD0:" );  
-	strcpy( cfg_Drive[7],       "RAM:" );  
-
-	strcpy( cfg_Drive[8],       cfg_Drive[0] );
-	strcpy( cfg_Drive[9],       cfg_Drive[1] );
-	strcpy( cfg_Drive[10],      cfg_Drive[2] );
-	strcpy( cfg_Drive[11],      cfg_Drive[3] );
-	strcpy( cfg_Drive[12],      cfg_Drive[4] );
-	strcpy( cfg_Drive[13],      cfg_Drive[5] );
-	strcpy( cfg_Drive[14],      cfg_Drive[6] );
-	strcpy( cfg_Drive[15],      cfg_Drive[7] );
-
-	strcpy( cfg_DriveText[0],   "DF0");
-	strcpy( cfg_DriveText[1],   "DF1");
-	strcpy( cfg_DriveText[2],   "DH0");
-	strcpy( cfg_DriveText[3],   "DH1");
-	strcpy( cfg_DriveText[4],   "DH2");
-	strcpy( cfg_DriveText[5],   "DH3");
-	strcpy( cfg_DriveText[6],   "CD0");
-	strcpy( cfg_DriveText[7],   "RAM");
-
-	strcpy( cfg_DriveText[8],   cfg_DriveText[0] );
-	strcpy( cfg_DriveText[9],   cfg_DriveText[1] );
-	strcpy( cfg_DriveText[10],  cfg_DriveText[2] );
-	strcpy( cfg_DriveText[11],  cfg_DriveText[3] );
-	strcpy( cfg_DriveText[12],  cfg_DriveText[4] );
-	strcpy( cfg_DriveText[13],  cfg_DriveText[5] );
-	strcpy( cfg_DriveText[14],  cfg_DriveText[6] );
-	strcpy( cfg_DriveText[15],  cfg_DriveText[7] );
 
 	strcpy( cfg_HotDir[0], "" );
 	strcpy( cfg_HotDir[1], "" );
@@ -220,7 +192,7 @@ void DefaultConfig ( void )
 	strcpy( cfg_ButtonText[44],    "_Shrink" );
 	strcpy( cfg_ButtonText[45],    "Current" );
 	strcpy( cfg_ButtonText[46],    "Icon" );
-	strcpy( cfg_ButtonText[47],    "Help" );
+	strcpy( cfg_ButtonText[47],    "Buffers" );
 
 	strcpy( cfg_ButtonCommand[0],  "Most >NIL: %f" );
 	strcpy( cfg_ButtonCommand[1],  "Run >NIL: %f" );
@@ -270,7 +242,7 @@ void DefaultConfig ( void )
 	strcpy( cfg_ButtonCommand[44], "SHRINK" );
 	strcpy( cfg_ButtonCommand[45], "CURRENT" );
 	strcpy( cfg_ButtonCommand[46], "ICON" );
-	strcpy( cfg_ButtonCommand[47], "HELP" );
+	strcpy( cfg_ButtonCommand[47], "BUFFERS" );
 }
 
 /*
@@ -426,10 +398,6 @@ BOOL LoadConfig( BOOL FirstPass )
 					if(stricmp("PATHEXPAND",word[1])==0)	{if(stricmp("ON",word[2])==0) cfg_PathExpand=TRUE; if(stricmp("OFF",word[2])==0) cfg_PathExpand=FALSE;}
 					if(stricmp("QUITVERIFY",word[1])==0)	{if(stricmp("ON",word[2])==0) cfg_QuitVerify=TRUE; if(stricmp("OFF",word[2])==0) cfg_QuitVerify=FALSE;}
 					if(stricmp("FOLLOWSCROLL",word[1])==0)	{if(stricmp("ON",word[2])==0) cfg_Scroll=TRUE; if(stricmp("OFF",word[2])==0) cfg_Scroll=FALSE;}
-					if(stricmp("FIRSTLEFT",word[1])==0)		{if(stricmp("Dirs",word[2])==0) cfg_FirstType[Left_Side]=MUIV_Dirlist_SortDirs_First; if(stricmp("Files",word[2])==0) cfg_FirstType[Left_Side]=MUIV_Dirlist_SortDirs_Last; if(stricmp("Mixed",word[2])==0) cfg_FirstType[Left_Side]=MUIV_Dirlist_SortDirs_Mix;}
-					if(stricmp("FIRSTRIGHT",word[1])==0)	{if(stricmp("Dirs",word[2])==0) cfg_FirstType[Right_Side]=MUIV_Dirlist_SortDirs_First; if(stricmp("Files",word[2])==0) cfg_FirstType[Right_Side]=MUIV_Dirlist_SortDirs_Last; if(stricmp("Mixed",word[2])==0) cfg_FirstType[Right_Side]=MUIV_Dirlist_SortDirs_Mix;}
-					if(stricmp("SORTLEFT",word[1])==0)		{if(stricmp("Name",word[2])==0) cfg_SortType[Left_Side]=MUIV_Dirlist_SortType_Name; if(stricmp("Date",word[2])==0) cfg_SortType[Left_Side]=MUIV_Dirlist_SortType_Date; if(stricmp("Size",word[2])==0) cfg_SortType[Left_Side]=MUIV_Dirlist_SortType_Size;}
-					if(stricmp("SORTRIGHT",word[1])==0)		{if(stricmp("Name",word[2])==0) cfg_SortType[Right_Side]=MUIV_Dirlist_SortType_Name;	if(stricmp("Date",word[2])==0) cfg_SortType[Right_Side]=MUIV_Dirlist_SortType_Date;	if(stricmp("Size",word[2])==0) cfg_SortType[Right_Side]=MUIV_Dirlist_SortType_Size;}
 					if(stricmp("SHOWDAY",word[1])==0)		{if(stricmp("ON",word[2])==0) cfg_ShowDay=TRUE; if(stricmp("OFF",word[2])==0) cfg_ShowDay=FALSE;}
 					if(stricmp("SHOWDATE",word[1])==0)		{if(stricmp("ON",word[2])==0) cfg_ShowDate=TRUE; if(stricmp("OFF",word[2])==0) cfg_ShowDate=FALSE;}
 					if(stricmp("SHOWTIME",word[1])==0)		{if(stricmp("ON",word[2])==0) cfg_ShowClock=TRUE; if(stricmp("OFF",word[2])==0) cfg_ShowClock=FALSE;}
@@ -462,12 +430,13 @@ BOOL LoadConfig( BOOL FirstPass )
 					}
 				}
 
-				if(stricmp("BUFFER",word[0])==0)
+				if((stricmp("BUFFER",word[0])==0)&&(strlen(word[1])>0))
 				{
-						strcpy( bufferstring, word[1] );
-						AddPart(bufferstring,"",sizeof(bufferstring));
+						sprintf( bufferstring, "\33b%s", word[1] );
+						AddPart( bufferstring, "", sizeof(bufferstring) );
 						DoMethod(lv_Buffers[Left_Side], MUIM_List_InsertSingle, bufferstring, MUIV_List_Insert_Bottom);
 						DoMethod(lv_Buffers[Right_Side], MUIM_List_InsertSingle, bufferstring, MUIV_List_Insert_Bottom);
+						global_NumBuffers++;
 				}
 
 				if((stricmp("HOTDIR",word[0])==0)&&(strlen(word[2])<81))
@@ -480,7 +449,6 @@ BOOL LoadConfig( BOOL FirstPass )
 				{
 					if((strlen(word[2])<81)&&(strlen(word[3])<81))
 					{
-						if(!drivefound) for(i=0;i<32;i++) {strcpy(cfg_DriveText[i],""); strcpy(cfg_Drive[i],"");}
 						drivefound=TRUE;
 						i=strtol(word[1],NULL,10);
 						if(i>16) moredrives=TRUE;
@@ -502,19 +470,14 @@ BOOL LoadConfig( BOOL FirstPass )
 
 				if(stricmp("VARIABLE",word[0])==0)
 				{
-					if(stricmp("SYMMETRICAL",word[1])==0)
-					{
-						if(stricmp("ON",word[2])==0)
-						{
-							cfg_ScrollerPos[Left_Side]=MUIV_Listview_ScrollerPos_Right;
-							cfg_ScrollerPos[Right_Side]=MUIV_Listview_ScrollerPos_Left;
-						}
-						else
-						{
-							cfg_ScrollerPos[Left_Side]=MUIV_Listview_ScrollerPos_Default;
-							cfg_ScrollerPos[Right_Side]=MUIV_Listview_ScrollerPos_Default;
-						}
-					}
+					if(stricmp("FIRSTLEFT",word[1])==0)		{if(stricmp("Dirs",word[2])==0) cfg_FirstType[Left_Side]=MUIV_Dirlist_SortDirs_First; if(stricmp("Files",word[2])==0) cfg_FirstType[Left_Side]=MUIV_Dirlist_SortDirs_Last; if(stricmp("Mixed",word[2])==0) cfg_FirstType[Left_Side]=MUIV_Dirlist_SortDirs_Mix;}
+					if(stricmp("FIRSTRIGHT",word[1])==0)	{if(stricmp("Dirs",word[2])==0) cfg_FirstType[Right_Side]=MUIV_Dirlist_SortDirs_First; if(stricmp("Files",word[2])==0) cfg_FirstType[Right_Side]=MUIV_Dirlist_SortDirs_Last; if(stricmp("Mixed",word[2])==0) cfg_FirstType[Right_Side]=MUIV_Dirlist_SortDirs_Mix;}
+					if(stricmp("SORTLEFT",word[1])==0)		{if(stricmp("Name",word[2])==0) cfg_SortType[Left_Side]=MUIV_Dirlist_SortType_Name; if(stricmp("Date",word[2])==0) cfg_SortType[Left_Side]=MUIV_Dirlist_SortType_Date; if(stricmp("Size",word[2])==0) cfg_SortType[Left_Side]=MUIV_Dirlist_SortType_Size;}
+					if(stricmp("SORTRIGHT",word[1])==0)		{if(stricmp("Name",word[2])==0) cfg_SortType[Right_Side]=MUIV_Dirlist_SortType_Name;	if(stricmp("Date",word[2])==0) cfg_SortType[Right_Side]=MUIV_Dirlist_SortType_Date;	if(stricmp("Size",word[2])==0) cfg_SortType[Right_Side]=MUIV_Dirlist_SortType_Size;}
+					if(stricmp("ORDERLEFT",word[1])==0)		{if(stricmp("High",word[2])==0) cfg_SortHighLow[Left_Side]=FALSE; else cfg_SortHighLow[Left_Side]=TRUE;}
+					if(stricmp("ORDERRIGHT",word[1])==0)	{if(stricmp("High",word[2])==0) cfg_SortHighLow[Right_Side]=FALSE; else cfg_SortHighLow[Right_Side]=TRUE;}
+					if(stricmp("PAGES",word[1])==0)	{if(stricmp("ON",word[2])==0) cfg_PageType=TRUE; if(stricmp("OFF",word[2])==0) cfg_PageType=FALSE;}
+					if(stricmp("MULTISELECT",word[1])==0)	{if(stricmp("ON",word[2])==0) cfg_MultiSelect=MUIV_Listview_MultiSelect_Always; if(stricmp("OFF",word[2])==0) cfg_MultiSelect=MUIV_Listview_MultiSelect_Shifted;}
 				}
 
 				if(stricmp("BUTTON",word[0])==0)
@@ -592,9 +555,9 @@ BOOL LoadConfig( BOOL FirstPass )
 								else strcat( Format_String, "\0" );
 							}
 							if(stricmp("FORMATLEFT",word[1])==0)
-								strcpy( cfg_LeftFormat, Format_String );
+								strcpy( cfg_Format[Left_Side], Format_String );
 							if(stricmp("FORMATRIGHT",word[1])==0)
-								strcpy( cfg_RightFormat, Format_String );
+								strcpy( cfg_Format[Right_Side], Format_String );
 						}
 						else
 							Error = TRUE;
@@ -617,6 +580,7 @@ BOOL LoadConfig( BOOL FirstPass )
 	if ( !FirstPass && !Error )
 	{
 		for(i=0;i<16;i++)  set(bt_Drive[i], MUIA_Text_Contents, cfg_DriveText[i]);
+        if(!drivefound) set(Row[0], MUIA_ShowMe, FALSE);
 		if(moredrives) for(i=16;i<32;i++) set(bt_Drive[i], MUIA_Text_Contents, cfg_DriveText[i]);
 		else set(Row[1], MUIA_ShowMe, FALSE);
 	}

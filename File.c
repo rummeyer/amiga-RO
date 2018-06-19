@@ -157,7 +157,7 @@ int RemoveAFile ( char * File_String )
 
 int Overwrite ( char * Source_String, char * File_String )
 {
-	char Text_String[1024];
+	char Text_String[512];
 	int Over = 0;
 	LONG Result_LONG;
 	int num;
@@ -284,18 +284,19 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 	int ErrorNum = 0;
 	BPTR lock;
 	FILE * Source_File, * Target_File;
-	int Proceed,Percent = 100;
-	LONG AvailMem_LONG, MemSize_LONG, size_src, size_dst, pos=0, i, Opened, Iconified;
+	int Proceed, Percent = 100;
+	LONG AvailMem_LONG, MemSize_LONG, size_src, size_dst, pos=0, i, Opened=TRUE, Iconified=FALSE;
 	__aligned struct FileInfoBlock * fib;
-	char * Buffer[2], String[1024], Source_String[512], Target_String[512];
+	char * Buffer[2], Source_String[256], Target_String[256], Cat_String[81];
 
 	strcpy( Source_String, Source );
 	strcpy( Target_String, Target );
 
 	if ( cfg_CopyStat && Progress )
 	{
-		sprintf( String, GetCatStr( 93, "Copying '%s' to '%s'... (%s%% done)" ), Source_String, Target_String, NumberToString( 0 ) );
-		set( bt_StatusBar, MUIA_Text_Contents, String );
+		strcpy( Cat_String, GetCatStr( 93, "Copying '%s' to '%s'... (%s%% done)" ) );
+		sprintf( Status_String, Cat_String, Source_String, Target_String, "0" );
+		set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 	}
 
 	lock = Lock( Source_String, ACCESS_READ );
@@ -305,7 +306,7 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 		{
 			Proceed = Overwrite( Source_String, Target_String );
 			if ( Proceed == 1 )
-				ErrorNum = RemoveFile( Target_String );
+				ErrorNum = Delete( Target_String );
 			if ( Proceed == 0 )
 			{
 				ErrorNum = -20;
@@ -381,8 +382,8 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 												if ( ( ( fib -> fib_Size ) / 100 ) > 0 )
 													Percent = ( pos / ( ( fib -> fib_Size ) / 100 ) );
 												if ( Percent > 100 ) Percent = 100;
-												sprintf( String, GetCatStr( 93, "Copying '%s' to '%s'... (%s%% done)" ), Source_String, Target_String, NumberToString ( Percent ) );
-												set( bt_StatusBar, MUIA_Text_Contents, String );
+												sprintf( Status_String, Cat_String, Source_String, Target_String, NumberToString ( Percent ) );
+												set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 											}
 										}
 										else
@@ -413,7 +414,7 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 			if ( ErrorNum == 0 )
 				Clone( Source_String, Target_String );
 			else
-				DeleteFile( Target_String );
+				Delete( Target_String );
 		}
 
 		if ( Proceed == -1 )
@@ -437,7 +438,7 @@ int CopyDirectory ( char * Source_String, char * Target_String )
 {
 	int ErrorNum = 0;
 	__aligned struct FileInfoBlock * fib;
-	char Source[512], Target[512];
+	char Source[256], Target[256];
 	BPTR lock, dirlock;
 
 	dirlock = CreateDir( Target_String );
@@ -500,7 +501,7 @@ int DeleteDirectory ( char * Path_String )
 	BPTR lock;
 	__aligned struct FileInfoBlock * fib;
 	BOOL IsDir_BOOL, FreeAll_BOOL = FALSE;
-	char Source[512];
+	char Source[256];
 
 	strcpy( Source, Path_String );
 	lock = Lock( Source, ACCESS_READ );
@@ -612,7 +613,7 @@ int Copy ( char * FileName_String, char * Target_String )
 	int ErrorNum = 0;
 	BPTR lock;
 	__aligned struct FileInfoBlock * fib;
-	char Help_String_A[512], Help_String_B[512];
+	char Help_String_A[256], Help_String_B[256];
 	BOOL IsDir_BOOL;
 
 	lock = Lock( FileName_String, ACCESS_READ );
@@ -665,7 +666,7 @@ int BytesDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULON
 	BPTR lock;
 	__aligned struct FileInfoBlock * fib;
 	int ErrorNum = 0;
-	char Path[512];
+	char Path[256];
 	LONG Opened, Iconified;
 
 	strcpy( Path, Path_String );
@@ -728,7 +729,7 @@ int FitDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULONG,
 	BPTR lock;
 	__aligned struct FileInfoBlock * fib;
 	int ErrorNum = 0;
-	char Path[512];
+	char Path[256];
 	LONG Opened, Iconified;
 
 	strcpy( Path, Path_String );
@@ -794,7 +795,7 @@ int ExecuteCommand ( char * Command_String, char * File_String )
 	int rc = 10;
 	char Out_String[256], Exec_String[512];
 	BPTR file, path, newlock, oldlock;
-	BOOL Wait_BOOL, CD_Source, CD_Dest;
+	BOOL Wait_BOOL, CD_Source, CD_Dest, NoBreak_BOOL = FALSE, Error = FALSE;
 
 	if ( strlen( Command_String ) > 0 )
 		strcpy( Exec_String, ParseCommand( Command_String, File_String, &Wait_BOOL, &CD_Source, &CD_Dest ) );
@@ -820,6 +821,8 @@ int ExecuteCommand ( char * Command_String, char * File_String )
 				newlock = Lock( GetPath( Active_Side ), ACCESS_READ );
 				if ( newlock )
 					oldlock = CurrentDir( newlock );
+				else
+					Error = TRUE;
 			}
 
 			if ( CD_Dest && global_DirLoaded[OtherSide(Active_Side)])
@@ -827,10 +830,12 @@ int ExecuteCommand ( char * Command_String, char * File_String )
 				newlock = Lock( GetPath( OtherSide( Active_Side ) ), ACCESS_READ );
 				if ( newlock )
 					oldlock = CurrentDir( newlock );
+				else
+					Error = TRUE;
 			}
 		}
 
-		if ( strlen( Exec_String ) > 0 )
+		if ( strlen( Exec_String ) > 0 && !Error )
 		{
 			if ( global_ARGC == 0 )
 			{
@@ -855,6 +860,10 @@ int ExecuteCommand ( char * Command_String, char * File_String )
 
 		Close( file );
 	}
+
+	if ( NoBreak_BOOL )
+		rc = 0;
+
 	return( rc );
 }
 
@@ -869,7 +878,7 @@ int ExecuteCommandNoOutput ( char * Command_String, char * File_String )
 	int rc = 10;
 	char Exec_String[512];
 	BPTR file, path, newlock, oldlock;
-	BOOL Wait_BOOL, CD_Source, CD_Dest;
+	BOOL Wait_BOOL, CD_Source, CD_Dest, NoBreak_BOOL = FALSE, Error = FALSE;
 
 	if ( strlen( Command_String ) > 0 )
 		strcpy( Exec_String, ParseCommand( Command_String, File_String, &Wait_BOOL, &CD_Source, &CD_Dest ) );
@@ -884,6 +893,8 @@ int ExecuteCommandNoOutput ( char * Command_String, char * File_String )
 				newlock = Lock( GetPath( Active_Side ), ACCESS_READ );
 				if ( newlock )
 					oldlock = CurrentDir( newlock );
+				else
+					Error = TRUE;
 			}
 
 			if ( CD_Dest && global_DirLoaded[OtherSide(Active_Side)])
@@ -891,10 +902,12 @@ int ExecuteCommandNoOutput ( char * Command_String, char * File_String )
 				newlock = Lock( GetPath( OtherSide( Active_Side ) ), ACCESS_READ );
 				if ( newlock )
 					oldlock = CurrentDir( newlock );
+				else
+					Error = TRUE;
 			}
 		}
 
-		if ( strlen( Exec_String ) > 0 )
+		if ( strlen( Exec_String ) > 0 && !Error )
 		{
 			if ( global_ARGC == 0 )
 			{
@@ -919,6 +932,10 @@ int ExecuteCommandNoOutput ( char * Command_String, char * File_String )
 
 		Close( file );
 	}
+
+	if ( NoBreak_BOOL )
+		rc = 0;
+
 	return( rc );
 }
 
@@ -933,7 +950,7 @@ int ListArchive ( char * Command_String, char * File_String )
 	BPTR outfile, infile, path;
 	char out[128], Exec_String[512];
 	int rc = 10;
-	BOOL Wait_BOOL, CD_Source, CD_Dest;
+	BOOL Wait_BOOL, CD_Source, CD_Dest, NoBreak_BOOL = FALSE;
 
 	strcpy( out, cfg_TempDir );
 	infile=Open("NIL:",MODE_OLDFILE);
@@ -969,6 +986,10 @@ int ListArchive ( char * Command_String, char * File_String )
 		}
 		Close(infile);
 	}
+
+	if ( NoBreak_BOOL )
+		rc = 0;
+
 	return( rc );
 }
 
@@ -982,68 +1003,85 @@ int FileAction ( char * File_String )
 {
 	BPTR lock;
 	int ErrorNum = 0, rc = 0, Num;
-	char string[512], newname[512];
+	char string[256], newname[256];
 	BOOL success;
+	__aligned struct FileInfoBlock * fib;
 
-	lock = Lock( File_String, ACCESS_READ );
-	if ( lock )
+	fib = malloc( sizeof( struct FileInfoBlock ) );
+	if ( fib )
 	{
-		SleepWindow(TRUE);
-		Num = Recog( File_String );
-
-		if ( Num == -4 )
+		lock = Lock( File_String, ACCESS_READ );
+		if ( lock )
 		{
-			if(XpkBase=OpenLibrary(XPKNAME,0))
+			Examine( lock, fib );
+			if ( fib -> fib_Size > 0 )
 			{
-				strcpy(newname,cfg_TempDir);
-				strcpy(string,FilePart(File_String));
-				AddPart(newname,string,sizeof(newname));
-				rc=XpkUnpackTags( XPK_InName, File_String, XPK_OutName, newname, XPK_NoClobber, TRUE, TAG_DONE	);
-				if(rc==XPKERR_OK)
+				SleepWindow(TRUE);
+				Num = Recog( File_String );
+
+				if ( Num == -4 )
 				{
-					FileAction(newname);
-					Delay(cfg_DelDelay);
-					success=DeleteFile(newname);
-					if(!success) ErrorNum = IoErr();
+					if(XpkBase=OpenLibrary(XPKNAME,0))
+					{
+						strcpy(newname,cfg_TempDir);
+						strcpy(string,FilePart(File_String));
+						AddPart(newname,string,sizeof(newname));
+						rc=XpkUnpackTags( XPK_InName, File_String, XPK_OutName, newname, XPK_NoClobber, TRUE, TAG_DONE	);
+						if(rc==XPKERR_OK)
+						{
+							FileAction(newname);
+							Delay(cfg_DelDelay);
+							success=DeleteFile(newname);
+							if(!success) ErrorNum = IoErr();
+						}
+						else ErrorNum = -9;
+						CloseLibrary(XpkBase);
+					}
+					else ErrorNum = -8;
 				}
-				else ErrorNum = -9;
-				CloseLibrary(XpkBase);
+
+				if ( Num == -3 )
+				{
+					sprintf( string, GetCatStr( 140, "File %s is an executable.\nDo you really want to start it?" ), File_String );
+					if( (MUI_Request( app_RumorOpus, wi_Main, 0, GetCatStr( 50, "Request" ), GetCatStr( 139, "*_Okay|_Cancel" ), string, TAG_END ) ) == 1)
+						rc = ExecuteCommand( "Run >NIL: %f &c", File_String );
+				}
+
+				if ( Num == -2 )
+					rc = ExecuteCommand( cfg_FileType[1], File_String );
+
+				if ( Num == -1 )
+					Num = RecogArchive( File_String );
+
+				if ( Num == -1 )
+				{
+					rc = ExecuteCommandNoOutput( cfg_FileType[2], File_String );
+					if( rc != 0 )
+						rc = ExecuteCommand( cfg_FileType[0], File_String );
+						if( rc != 0 )
+							ErrorNum = -4;
+				}
+
+				if ( Num >= 0 )
+				{
+					if( strlen( cfg_RecogCommandB[Num] ) > 0 )
+						rc = ListArchive( cfg_RecogCommand[Num], File_String );
+					else
+						rc = ExecuteCommand( cfg_RecogCommand[Num], File_String );
+				}
+
+				SleepWindow( FALSE );
 			}
-			else ErrorNum = -8;
-		}
-
-		if ( Num == -3 )
-			rc = ExecuteCommand( "Run >NIL: %f &c", File_String );
-
-		if ( Num == -2 )
-			rc = ExecuteCommand( cfg_FileType[1], File_String );
-
-		if ( Num == -1 )
-			Num = RecogArchive( File_String );
-
-		if ( Num == -1 )
-		{
-			rc = ExecuteCommandNoOutput( cfg_FileType[2], File_String );
-			if( rc != 0 )
-				rc = ExecuteCommand( cfg_FileType[0], File_String );
-				if( rc != 0 )
-					ErrorNum = -4;
-		}
-
-		if ( Num >= 0 )
-		{
-			if( strlen( cfg_RecogCommandB[Num] ) > 0 )
-				rc = ListArchive( cfg_RecogCommand[Num], File_String );
 			else
-				rc = ExecuteCommand( cfg_RecogCommand[Num], File_String );
+				ErrorNum = -4;
+
+			UnLock( lock );
 		}
-
-
-		SleepWindow( FALSE );
-		UnLock( lock );
+		else
+			ErrorNum = IoErr();
 	}
 	else
-		ErrorNum = IoErr();
+		ErrorNum = -1;
 
 	if ( ErrorNum == 0 )
 		if ( rc != 0 )

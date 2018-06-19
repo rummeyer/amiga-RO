@@ -47,10 +47,10 @@ int MouseSide ( int X, int Y )
 	LONG Top, Bottom, Width, Height, Left, Right;
 	int ret = -1;
 
-	get( lv_Directory[Left_Side], MUIA_TopEdge, &Top );
-	get( lv_Directory[Left_Side], MUIA_BottomEdge, &Bottom );
-	get( lv_Directory[Right_Side], MUIA_LeftEdge, &Left );
-	get( lv_Directory[Left_Side], MUIA_RightEdge, &Right );
+	get( gr_List[Left_Side], MUIA_TopEdge, &Top );
+	get( gr_List[Left_Side], MUIA_BottomEdge, &Bottom );
+	get( gr_List[Right_Side], MUIA_LeftEdge, &Left );
+	get( gr_List[Left_Side], MUIA_RightEdge, &Right );
 	get( wi_Main, MUIA_Window_Width, &Width );
 	get( wi_Main, MUIA_Window_Height, &Height );
 

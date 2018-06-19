@@ -27,7 +27,7 @@ char * ConvertNumberClock( ULONG num )
 			if( (k == 3) && ( j - 1 > 0 ) )
 			{
 				k=0; j--;
-				Target[j] = '.';
+				Target[j] = global_GroupSeparator[0];
 			}
 		}
 		sprintf( Source, "%s", Target );

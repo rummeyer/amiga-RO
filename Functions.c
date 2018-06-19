@@ -31,6 +31,23 @@ void ListCopy ( int side )
 
 /*
 **
+** ListFold()
+**
+*/
+
+void ListFold ( void )
+{
+	global_Unfolded = !global_Unfolded;
+	DoMethod( FoldGroup, MUIM_Group_InitChange );
+	set( bl_Balance, MUIA_ShowMe, global_Unfolded );
+	set( pg_Page[Right_Side], MUIA_ShowMe, global_Unfolded );
+	ActivateList(Left_Side);
+	ActivateList(Left_Side);
+	DoMethod( FoldGroup, MUIM_Group_ExitChange );
+}
+
+/*
+**
 ** CreateDirectory()
 **
 */
@@ -44,7 +61,7 @@ int CreateDirectory ( int side, BOOL LoadIt )
 
 	if ( global_DirLoaded[side] )
 	{
-		String = StringRequester( GetCatStr( 94, "Enter directory name" ), "", ":/", 31, FALSE, &Skip, &Cancel );
+		String = StringRequester( GetCatStr( 94, "Enter directory name" ), "", ":/", 31, 0, &Skip, &Cancel );
 		if ( !Cancel && strlen( String ) > 0 )
 		{
 			strcpy( Path_String, GetPath( side ) );
@@ -103,7 +120,7 @@ int RelabelDevice ( int side )
 				* cptr = '\0';
 				strcpy( OldName_String, String );
 				sprintf( Title_String, GetCatStr( 95, "Relabel '%s' as" ), OldName_String );
-				NewName_String = StringRequester( Title_String, OldName_String, ":/", 31, FALSE, &Skip, &Cancel );
+				NewName_String = StringRequester( Title_String, OldName_String, ":/", 31, 0, &Skip, &Cancel );
 				strcat( OldName_String, ":" );
 				if ( !Cancel )
 				{
@@ -153,7 +170,7 @@ int MakeAssign ( int side )
 
 	if ( global_DirLoaded[side] )
 	{
-		Name_String = StringRequester( GetCatStr( 96, "Enter assign name for directory" ), "", "", 31, FALSE, &Skip, &Cancel );
+		Name_String = StringRequester( GetCatStr( 96, "Enter assign name for directory" ), "", "", 31, 0, &Skip, &Cancel );
 		if ( !Cancel && strlen( Name_String ) > 0 )
 		{
 			strcpy( Device_String, Name_String );
@@ -192,7 +209,7 @@ void Select ( int side )
 
 	if ( global_DirLoaded[side] )
 	{
-		Pattern_String = StringRequester( GetCatStr( 97, "Enter select pattern" ), global_Pattern_String, ":/", 81, FALSE, &Skip, &Cancel );
+		Pattern_String = StringRequester( GetCatStr( 97, "Enter select pattern" ), global_Pattern_String, ":/", 81, 0, &Skip, &Cancel );
 		if ( !Cancel && strlen( Pattern_String ) > 0 )
 		{
 			strcpy( global_Pattern_String, Pattern_String );
@@ -285,10 +302,11 @@ void Icon ( int side )
 void Change ( int side )
 {
 	BOOL Running = TRUE, NoChange = FALSE;
-	APTR wi_Change, bt_Okay, bt_Cancel, cy_Sort, cy_First;
-	ULONG signal;
+	APTR wi_Change, bt_Okay, bt_Cancel, cy_Sort, cy_First, cy_HighLow;
+	ULONG signal, num;
 	const char *cya_Sort[] = { "X", "X", "X", NULL };
 	const char *cya_First[] = { "X", "X", "X", NULL };
+	const char *cya_HighLow[] = { "X", "X", NULL };
 
 	cya_Sort[0] = GetCatStr( 98, "Name" );
 	cya_Sort[1] = GetCatStr( 99, "Date" );
@@ -296,6 +314,8 @@ void Change ( int side )
 	cya_First[0] = GetCatStr( 101, "Dirs" );
 	cya_First[1] = GetCatStr( 102, "Files" );
 	cya_First[2] = GetCatStr( 103, "Mixed" );
+	cya_HighLow[0] = GetCatStr( 128, "High" );
+	cya_HighLow[1] = GetCatStr( 129, "Low" );
 
 	wi_Change = WindowObject,
 		MUIA_Window_ID, 4,
@@ -306,6 +326,7 @@ void Change ( int side )
 			Child, HGroup, MUIA_Group_SameSize, TRUE,
 				Child, cy_Sort = Radio( GetCatStr( 105, "Sort" ), cya_Sort ),
 				Child, cy_First = Radio( GetCatStr( 106, "First" ), cya_First ),
+				Child, cy_HighLow = Radio( GetCatStr( 130, "Order" ), cya_HighLow ),
 				End,
 			Child, HGroup,
 				MUIA_Group_SameSize, TRUE,
@@ -326,14 +347,20 @@ void Change ( int side )
 	set(cy_Sort, MUIA_Radio_Active, cfg_SortType[side] );
 	set(cy_First, MUIA_Radio_Active, cfg_FirstType[side] );
 
+	if ( !cfg_SortHighLow[side] )
+		set(cy_HighLow, MUIA_Radio_Active, 0 );
+	else
+		set(cy_HighLow, MUIA_Radio_Active, 1 );
+
 	set( wi_Change, MUIA_Window_Open, TRUE );
 	while ( Running )
 	{
 		switch ( DoMethod( app_RumorOpus, MUIM_Application_Input, &signal ) )
 		{
 			case MUIV_Application_ReturnID_Quit:
-				global_QuitProgram = TRUE;
-				Running = FALSE;
+				global_QuitProgram = QuitRequester();
+				if ( global_QuitProgram )
+					Running = FALSE;
 				break;
 
 			case 1:
@@ -353,8 +380,15 @@ void Change ( int side )
 	{
 		get( cy_Sort, MUIA_Radio_Active, &cfg_SortType[side] );
 		get( cy_First, MUIA_Radio_Active, &cfg_FirstType[side] );
+		get( cy_HighLow, MUIA_Radio_Active, &num );
+		if ( num == 0 )
+			cfg_SortHighLow[side] = FALSE;
+		else
+			cfg_SortHighLow[side] = TRUE;
+
 		set( lv_Directory[side], MUIA_Dirlist_SortType, cfg_SortType[side] );
 		set( lv_Directory[side], MUIA_Dirlist_SortDirs, cfg_FirstType[side] );
+		set( lv_Directory[side], MUIA_Dirlist_SortHighLow, cfg_SortHighLow[side] );
 	}
 
 	DoMethod(app_RumorOpus, OM_REMMEMBER, wi_Change );
@@ -467,8 +501,9 @@ void DiskInfo ( int side )
 					switch ( DoMethod( app_RumorOpus, MUIM_Application_Input, &signal ) )
 					{
 						case MUIV_Application_ReturnID_Quit:
-							Running = FALSE;
-							global_QuitProgram = TRUE;
+							global_QuitProgram = QuitRequester();
+							if( global_QuitProgram )
+								Running = FALSE;
 							break;
 
 						case 1:
@@ -496,7 +531,7 @@ void DiskInfo ( int side )
 
 char * Bytes ( int side )
 {
-	ULONG i, k = 0, Entries_ULONG, Selection_State, Iconified;
+	ULONG i, k = 0, Entries_ULONG, Active_LONG, Selection_State, Iconified;
 	char FileName_String[512], String[512], Return_String[256], Size_String[3][21];
 	BOOL Action_BOOL = FALSE;
 	__aligned struct FileInfoBlock * fib;
@@ -505,11 +540,17 @@ char * Bytes ( int side )
 
 	if ( global_DirLoaded[side] )
 	{
+		get( lv_Directory[side], MUIA_List_Active, &Active_LONG );
 		get( lv_Directory[side], MUIA_List_Entries, &Entries_ULONG );
 		for ( i = 0; i < Entries_ULONG; i++ )
 		{
 			DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_Ask, &Selection_State );
 			if ( Selection_State == MUIV_List_Select_On ) k++;
+		}
+		if ( k == 0 && Active_LONG != MUIV_List_Active_Off)
+		{
+			k = 1;
+			DoMethod( lv_Directory[side], MUIM_List_Select, Active_LONG, MUIV_List_Select_On, NULL );
 		}
 		set( ga_Gauge, MUIA_Gauge_Current, 0 );
 		set( ga_Gauge, MUIA_Gauge_Max, k );
@@ -575,6 +616,7 @@ char * Bytes ( int side )
 			}
 			else
 				strcpy( Return_String, Error( ErrorNum ) );
+
 			return( Return_String );
 		}
 	}
@@ -589,7 +631,7 @@ char * Bytes ( int side )
 
 char * Fit ( int side, BOOL window )
 {
-	ULONG i, k = 0, Entries_ULONG, Selection_State, Iconified;
+	ULONG i, k = 0, Entries_ULONG, Active_LONG, Selection_State, Iconified;
 	char FileName_String[512], String[512], Return_String[256], Size_String[3][21];
 	BOOL Action_BOOL = FALSE;
 	__aligned struct FileInfoBlock * fib;
@@ -610,6 +652,7 @@ char * Fit ( int side, BOOL window )
 				Info( lock, pid );
 				BlockSize_ULONG = pid -> id_BytesPerBlock;
 
+				get( lv_Directory[side], MUIA_List_Active, &Active_LONG );
 				get( lv_Directory[side], MUIA_List_Entries, &Entries_ULONG );
 				if ( window )
 				{
@@ -617,6 +660,11 @@ char * Fit ( int side, BOOL window )
 					{
 						DoMethod( lv_Directory[side], MUIM_List_Select, i, MUIV_List_Select_Ask, &Selection_State );
 						if ( Selection_State == MUIV_List_Select_On ) k++;
+					}
+					if ( k == 0 && Active_LONG != MUIV_List_Active_Off)
+					{
+						k = 1;
+						DoMethod( lv_Directory[side], MUIM_List_Select, Active_LONG, MUIV_List_Select_On, NULL );
 					}
 					set( ga_Gauge, MUIA_Gauge_Current, 0 );
 					set( ga_Gauge, MUIA_Gauge_Max, k );

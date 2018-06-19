@@ -20,13 +20,17 @@ extern BOOL global_DirLoaded[2];
 extern BOOL cfg_ButtonType[171];
 extern BOOL global_AskOnce;
 
+extern LONG cfg_FirstType[2];
+extern LONG cfg_SortType[2];
+extern BOOL cfg_SortHighLow[2];
+
 extern LONG Active_Side;
 extern LONG cfg_Overwrite;
 extern LONG cfg_DelForce;
 
 extern char cfg_ButtonCommand[171][81];
 __far extern char cfg_Drive[32][81];
-extern char Status_String[512];
+extern char Status_String[1024];
 
 extern void Reload(int side);
 extern void Sleep(BOOL i);
@@ -51,4 +55,4 @@ extern void UpdateNumFiles( int side );
 extern char * Error( int error_number );
 extern char * GetPath ( int side );
 extern char * GetCatStr( int num, char *defstring );
-extern char * StringRequester ( char *Title_String, char *Gadget_String, char *Reject_String, int MaxLength, BOOL SkipGadget, BOOL *Skip, BOOL *Cancel );
+extern char * StringRequester ( char *Title_String, char *Gadget_String, char *Reject_String, int MaxLength, int SkipGadget, BOOL *Skip, BOOL *Cancel );

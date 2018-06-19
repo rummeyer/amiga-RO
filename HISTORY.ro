@@ -689,7 +689,7 @@ o Fehler in der Menu Config Fehlerueberpruefung behoben... leere Menus wurden
 o Fehler beim Aufruf von Tools im Menu... wurden immer mit 'PROGNAME ""'
   aufgerufen und einige Tools haben dann wrong number of arguments ausgegeben.
   RO startet die Programme jetzt mit 'Run >NIL: PROGNAME'
-o Neue interne Funktion REBOOT... ¤µ®¹NO CARRIER ;)
+o Neue interne Funktion REBOOT... ï¿½ï¿½ï¿½ï¿½NO CARRIER ;)
 o Neue interne Funktion EXPAND, erweitert einen Pfadnamen auf seinen
   ArcHandler Namen. (z.B. 'Work:Downloads/' -> 'Archives:Work/Downloads/')
 o Neue interne Funktion SHRINK, verkleinert einen ArcHandler Pfadnamen auf
@@ -1014,7 +1014,7 @@ o Config Variable 'HELPFILE' rausgenommen... AmigaGuide durchsucht
 o Ein paar Aenderungen bei den Path Extend Funktionen...
 o Alle Requester temporaer in AslRequester umgewandelt... Ist kaum zumutbar,
   aber dann laeuft RO stabil (Juergen?). Evtl. ist es besser wenn man RTPatch
-  installiert und mit den ReqToolsPrefs die Requesterposition einstellt. 
+  installiert und mit den ReqToolsPrefs die Requesterposition einstellt.
 o Relabel Funktion etwas geaendert, mann kann jetzt auch kein '' mehr eingeben.
 
 RumorOpus 0.82 beta 3 (10.10.94)
@@ -1048,17 +1048,17 @@ o Alle Reqs jetzt wieder MUI... das muss ich mir noch was anderes ueberlegen...
 
 RumorOpus 0.82 beta 5 (12.10.94)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-o Ein paar Strings wurden in dem Deutschen Catalog geändert.
+o Ein paar Strings wurden in dem Deutschen Catalog geï¿½ndert.
 o Ich hab jetzt alles lokalisiert (nicht die Filetypen), wer Deutsch will soll
   Deutsch haben! Ich habe bei der Uebersetzung jetzt autentisches Dr.PK
   Material verwendet (Die Amiga-Handbuecher :))
 o Gesamtes Programmpacket ist jetzt in deutsch&englisch (Die Anleitung muss ich
-  leider noch übersetzen...)
+  leider noch ï¿½bersetzen...)
 o Fix fuer NFS bei Verwendung eines AutoMounters auf Unix Seite.
 o Config Parser etwas umgeschrieben um KeyButtons zu ermoeglichen.
 o Kommand Buttons koennen jetzt auch uber Tastatur bedient werden, indem
   man in der Konfig als Button Text sowas wie '_Copy' oder 'R_ename' angibt.
-o Man kann jetzt auch durch die Listviews Cyclen mit '`' (über Tab-Taste).
+o Man kann jetzt auch durch die Listviews Cyclen mit '`' (ï¿½ber Tab-Taste).
 o Mir reichts, ich hab jetzt wieder auf SystemReqs umgestellt :(
 
 RumorOpus 0.82 beta 6 (15.10.94)
@@ -1128,7 +1128,7 @@ o Das entpacken laeuft jetzt anders ab und zwar wird jetzt nur ein %s
 
 RumorOpus 0.84 beta 1 (10.12.94)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-o Fehlerabfrage wenn CD ins DestDir fehl schlägt beim entpacken.
+o Fehlerabfrage wenn CD ins DestDir fehl schlï¿½gt beim entpacken.
 o Fehlerabfrage bei ArcAdd wenn Device nicht mehr gemounted ist,
   von dem Files archiviert werden sollen.
 o Wenn man beim Move ein File geskippt hat wurde es trotzdem
@@ -1222,7 +1222,7 @@ o Wenn man ein ARexx Script startet wird dieses ASyncron getan, es wird ein
   'Run' vor den CommandoString geschrieben, weil es sonst einen Deadlock
   gibt (Das ARexxscript wartet dann darauf, dass es fertig gelaufen ist).
   "Rx >NIL: rexx:PlayMod.RO %F" -> "Run >NIL: Rx >NIL: rexx:PlayMod.RO %F"
-o Versions Nummer erhöht, halte ich fuer angemessen. :-)
+o Versions Nummer erhï¿½ht, halte ich fuer angemessen. :-)
 
 RumorOpus 0.90 beta 2 (6.1.95)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1231,9 +1231,9 @@ o ARexx Kommando 'getentry' etwas erweitert. Man kann jetzt mit
   mit 'GetEntry Active Dirs' das erste Dir. Wenn man anstatt Files oder
   Dirs 'All' angibt funktioniert GetEntry wie bisher.
 o Ein paar Sicherheitsabfragen eingebaut, und die ARexx ReturnValues
-  einheitlich gestaltet wenn etwas faehlschlägt wird immer Result=RESULT
+  einheitlich gestaltet wenn etwas faehlschlï¿½gt wird immer Result=RESULT
   zurueckgegeben.
-o NumEntries gibt jetzt nicht mehr alle Einträge zurück sondern nur
+o NumEntries gibt jetzt nicht mehr alle Eintrï¿½ge zurï¿½ck sondern nur
   die selektierten, auch hier kann man jetzt den Typ wie bei GetEntry
   angeben.
 o ARexx Examples verbessert und berichtigt.
@@ -1243,11 +1243,11 @@ RumorOpus 0.90 (9.1.95 - Public Release)
 o Neues ARexx Kommando 'function', das eine interne Funktion aufruft.
   'Function "COPYAS"' mach das selbe wie der CopyAs Button... war so
   einfach zu realisieren, da hab ichs halt doch gemacht.
-o Die Schlaffunktion hat jetzt einen Zaehler, der verhindert daß
+o Die Schlaffunktion hat jetzt einen Zaehler, der verhindert daï¿½
   die Uhr erneuert wird wenn RO nach einem Wakeup immer noch
   schlaeft. (z.B. 'Sleep' 'Sleep' 'Message "Test"' 'Wakeup' und die
   Message steht immer noch da)
-o Listview Aktivierung intern etwas überarbeitet und 'legaler' gemacht.
+o Listview Aktivierung intern etwas ï¿½berarbeitet und 'legaler' gemacht.
 o Der Execute String hat sich nochmals drastisch geaendert! mit '&'
   kann man jetzt noch Optionen angeben, unterstuetzt wird jetzt
   einiges mehr auf % maessig. Am besten die *ANLEITUNG* lesen.
@@ -1260,7 +1260,7 @@ RumorOpus 0.91 beta 1 (14.1.95)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 o kleine Aenderung bei der NumberToString Funktion.
 o ArcAdd Default hat sich geaendert *"%T%R*" -> %R, macht die Default
-  Config fuer Durschnitts-User leichter verständlich und sieht besser
+  Config fuer Durschnitts-User leichter verstï¿½ndlich und sieht besser
   aus.
 o Es wird jetzt nur dann ein geladenes ZielVerz. verlangt, wenn dieses
   zum fuellen der % Parameter benoetigt wird.
@@ -1269,17 +1269,17 @@ o Requester bei Copy & Delete etwas geaendert.
 o ein paar kleine Fehler im ARexx Port behoben.
 o ein paar neue ARexx Scripts sind dazu gekommen und die alten
   wurden etwas verbessert.
-o Catalog hat sich geändert.
+o Catalog hat sich geï¿½ndert.
 
 RumorOpus 0.91 beta 2 (15.1.95)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 o UnArc Config musste leider nochmal etwas geaendert werden.
 o Fehler in der ListArc Funktion behoben, es wurde immer LhA
-  ausgeführt.
+  ausgefï¿½hrt.
 o AddArc Skript musste nochmal geaendert werden, da es scheinbar
   Probleme gibt bei CLI Kommandos deren laenge >255 ist.
 o Return Codes bei den ARexx Kommandos verbessert.
-o Fehler bei Touch wenn ein File erstellt werden sollte, daß schon
+o Fehler bei Touch wenn ein File erstellt werden sollte, daï¿½ schon
   da war kam keine Warnung.
 
 RumorOpus 0.91 beta 3 (19.1.95)
@@ -1287,7 +1287,7 @@ RumorOpus 0.91 beta 3 (19.1.95)
 o Fehler bei der Verwendung des deutschen Catalogs behoben.
 o MoveAs bei selbem Device und File schon vorhanden: Skip
   hat nicht funktioniert.
-o Installer Skript etwas verändert.
+o Installer Skript etwas verï¿½ndert.
 
 RumorOpus 0.91 (23.1.95)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1485,7 +1485,117 @@ o Kleiner Fehler in der LV-Aktivierung behoben.
 o Kleiner Fehler beim Iconifizieren, der durch MUI3 verursacht
   wird umgangen.
 
-RumorOpus 1.21 beta 1 (5.12.95)
+RumorOpus 1.21 beta 1 (10.12.95)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Benutzt niemals ReOrg... Request.c und Startup.c defekt,
+  Backup defekt, neu geschrieben.
+o Backup fuer die Ewigkeit angelegt, ca.160 Seiten ausgedruckt.
+o CreateIcons=ON hat nicht funktioniert, fixed.
+o QuitProgram verursacht jetzt ueberall einen QuitReq wenn eingestellt.
+o cfg_Frames ist ueberfluessig geworden, weil bei MUI3 immer ON.
+o Fehler der Cursor-Positionierung bei Reload gefixt.
+
+RumorOpus 1.21 beta 2 (5.2.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler bei Cursor-Positionierung gefixt.
+o Bessere Fehlerbehandlung bei &C wenn Directory nicht verfuegbar.
+o Removed some MUI workarounds.
+o Added some MUI workarounds.
+o Installed Aminet/MUIFix... removed some MUI workarounds.
+
+RumorOpus 1.22 beta 1 (1.3.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fehler bei FileAction auf File mit Size=0 behoben.
+o RO vorbereitet fuer einen Horiz-Scroller,
+  wegen unzumutbarer MUI Bugs noch auskommentiert
+o Fehler bei FirstLeft/Right und SortLeft/Right gefixt.
+o Neue Variable NOBreak, bei der alle RC von Externen
+  Kommandos nicht mehr zum Abbruch der Operation fuehren
+o Variable Symmetrical entfernt, wegen kurz vor Einfuehrung
+  des Horiz Scroller Layouts.
+o Button Change erweitert um Order.
+o Neue RexxFunktion 'Change SIDE/A SWITCH/A' wie Button
+  Change.
+o Neue Variable ORDERLEFT HIGH|LOW
+o Neuer Menupunkt About MUI...
+o Neue Funktionen Buffers, Directory, Volumes um eigene
+  Buttons damit zu belegen.
+o Bug gefixt bei der Bytes Funktion.
+
+RumorOpus 1.22 beta 2 (21.3.96)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-o NetBSD installiert, Plattencrash, Backup unbrauchbar,
-  Startup.c neu geschrieben, Request.c neu geschrieben.
+o cfg_NoBreak entfernt, hab ne bessere Idee.
+o Fixed Enforcer Hit, beim Deiconifizieren.
+o Wenn nur ein Dir gedragdropt wird, dann wirds
+  in die andere Seite eingelesen... wie frueher beim
+  Sid mit Pfeil aktiv.
+o Der '.' bei 1.000.000,- ist jetzt localisiert.
+
+RumorOpus 1.22 beta 3 (25.3.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Workaround fuer die MUI Abstuertze geschrieben... Und es
+  war nicht meine Schuld! Grrr...
+o Skip Gadget im String Requester kommt jetzt wieder nur
+  bei Bedarf.
+o Drag'n'Drop jetzt nur noch Copy... Ich muss mir irgendwie
+  noch was besseres einfallen lassen, evtl. mit Qualifier
+o Neue Flags &b (NoBreak - Returncodes ignorieren) und
+  &d (NoDeselect - Eintraege nach Aktion nicht deselektieren)
+o Nachdem man die Prefs geaendert hat und sie neu eingelesen
+  werden, werden die zu letzt eingelesenen Dirs wieder angezeigt.
+
+RumorOpus 1.22 beta 4 (4.4.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Kleiner Bug bei &d gefixt.
+
+RumorOpus 1.23 beta 1 (23.8.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Config einlesen varaendert.
+o Recompiled fuer Mui3.6
+
+RumorOpus 1.23 (11.9.96)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Menu Text 'Settings' geaendert
+
+RumorOpus 1.24 beta 1 (10.10.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Menu Text 'Options/Overwrite' geaendert
+o Bug bei Move wenn Verzeichniss schon existiert gefixt.
+o Shortcut im Protect Requester war doppelt belegt... fixed.
+o Bug gefixt bei 'Move HD2:Text HD2:Text'
+o Bug gefixt bei Bytes/Fit/etc. wurde die Message sofort wieder
+  ueberschrieben... bei global_ConfigChange=TRUE nicht mehr!
+
+RumorOpus 1.24 beta 2 (1.11.96)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Neuer Config Switch cfg_RegisterPages und ein paar
+  interne Aenderungen.
+o Wenn keine Drives in RO.prefs definiert sind, dann erscheinen
+  auch _keine_ Drive Buttons.
+o In der Buffers Seite werden die Userdefinierten Eintraege jetzt
+  Fett gedruckt und stehen immer ganz oben.
+o Bubble Help
+
+RumorOpus 1.25 (20.2.97)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Copyright ans Jahr angepasst
+o Neue Funktion LFOLD, die eine Liste wegfaltet.
+o Comment hat jetzt einen 'All' Button.
+o Virtuelles Gruppen Zeux rausgeschmissen... MUI wird das
+  wohl nie mehr koennen.
+o global_Illegal gibt's jetzt nicht mehr. Scheinbar hat RO
+  manchmal zu unrecht einen ColdReboot() durchgefuehrt.
+
+RumorOpus 1.26 (25.3.97)
+~~~~~~~~~~~~~~~~~~~~~~~~
+o Adresse in Requester geaendert.
+
+RumorOpus 1.27 (6.9.97)
+~~~~~~~~~~~~~~~~~~~~~~~
+o Selektionslogik leicht veraendert
+o Neue Variable MULTISELECT mit der man MultiAlways ausschalten kann
+o Recompiled with SAS/C 6.58
+
+RumorOpus 1.28 beta 1 (19.06.18)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o Fixed device status text >4GB

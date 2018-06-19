@@ -12,13 +12,15 @@ LONG cfg_DelDelay;
 LONG cfg_FirstType[2];
 LONG cfg_History;
 LONG cfg_Overwrite;
-LONG cfg_ScrollerPos[2];
 LONG cfg_SortType[2];
+BOOL cfg_SortHighLow[2];
 LONG cfg_LeftPage;
 LONG cfg_RightPage;
 LONG cfg_MiddleMouse;
+LONG cfg_MultiSelect;
 LONG global_MaximumBank;
 LONG global_HotKeyNum;
+LONG global_NumBuffers = 0;
 
 BOOL cfg_CheckFit;
 BOOL cfg_CopyDate;
@@ -44,6 +46,7 @@ BOOL cfg_ShowMem;
 BOOL cfg_ButtonType[171];
 BOOL cfg_FlushMemory;
 BOOL cfg_CheckDupes;
+BOOL cfg_PageType;
 
 char cfg_LeftLoad[81];
 char cfg_RightLoad[81];
@@ -64,8 +67,7 @@ __far char cfg_RecogName[100][41];
 __far char cfg_RecogCommand[100][81];
 __far char cfg_RecogCommandB[100][81];
 
-char cfg_LeftFormat[256];
-char cfg_RightFormat[256];
+char cfg_Format[2][256];
 char cfg_HotKey[50][41];
 
 extern APTR Menu;

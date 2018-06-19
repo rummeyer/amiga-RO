@@ -1,7 +1,7 @@
 #include "PrefsIncludes.h"
 #include "PrefsApplication.h"
 
-#define VERSION    "$VER: ROPrefs 0.81 (25.11.95)"
+#define VERSION    "$VER: ROPrefs 0.86 (5.12.98)"
 
 /*
 **
@@ -16,14 +16,14 @@ BOOL StartApplication ( void )
 		MUIA_Application_HelpFile, "RO.guide",
 		MUIA_Application_Title         , "ROPrefs",
 		MUIA_Application_Version       , VERSION,
-		MUIA_Application_Copyright     , "Copyright © 1994, 1995 by Oliver Rummeyer",
+		MUIA_Application_Copyright     , "Copyright © 1994-1998 by Oliver Rummeyer",
 		MUIA_Application_Author        , "Oliver Rummeyer",
 		MUIA_Application_Description   , "MUI-Based FileManager Prefs",
 		MUIA_Application_Base          , "ROPREFS",
 
 		SubWindow,
 			wi_Main = WindowObject,
-			MUIA_Window_Title, "RO Prefs 0.81 (25.11.95)",
+			MUIA_Window_Title, "RO Prefs 0.86 (5.12.98)",
 			MUIA_Window_ID, 10,
 			MUIA_Window_Menustrip, Menu = MUI_MakeObject( MUIO_MenustripNM, MenuData, 0),
 			MUIA_Window_NeedsMouseObject, TRUE,
@@ -31,7 +31,7 @@ BOOL StartApplication ( void )
 			MUIA_HelpNode, "Configuration",
 			WindowContents, VGroup,
 
-				Child, pg_Page = RegisterGroup( Pages ), MUIA_Register_Frame, TRUE,
+				Child, pg_Page = RegisterGroup( Pages ),
 
 					Child, HGroup, MUIA_Group_SameSize, TRUE,
 						Child, ColGroup(2),
@@ -41,7 +41,7 @@ BOOL StartApplication ( void )
 							Child, KeyLabel1("FollowScroll",'r'), Child, cm_FollowScroll = KeyCheckMark(TRUE,'r'),
 							Child, KeyLabel1("PathExpand",'x'), Child, cm_PathExpand = KeyCheckMark(TRUE,'x'),
 							Child, KeyLabel1("QuitVerify",'q'), Child, cm_QuitVerify = KeyCheckMark(TRUE,'q'),
-							Child, KeyLabel1("Symmetrical",'m'), Child, cm_Symmetrical = KeyCheckMark(FALSE,'m'),
+							Child, KeyLabel1("CheckFit",'h'), Child, cm_CheckFit = KeyCheckMark(TRUE,'h'),
 							End,
 						Child, ColGroup(2),
 							Child, KeyLabel1("ShowDay",'w' ), Child, cm_ShowDay = KeyCheckMark(TRUE,'w'),
@@ -54,14 +54,12 @@ BOOL StartApplication ( void )
 							End,
 						Child, ColGroup(2),
 							Child, KeyLabel1("DelStat",'a'), Child, cm_DelStat = KeyCheckMark(TRUE,'a'),
-							Child, KeyLabel1("CheckFit",'h'), Child, cm_CheckFit = KeyCheckMark(TRUE,'h'),
 							Child, KeyLabel1("CopyDate",'c' ), Child, cm_CopyDate = KeyCheckMark(TRUE,'c'),
 							Child, KeyLabel1("CopyFlags",'g'), Child, cm_CopyFlags = KeyCheckMark(TRUE,'g'),
 							Child, KeyLabel1("CopyNote",'p'), Child, cm_CopyNote = KeyCheckMark(TRUE,'p'),
 							Child, KeyLabel1("CopyStat",'s'), Child, cm_CopyStat = KeyCheckMark(TRUE,'s'),
 							Child, KeyLabel1("CopyVerify",'v'), Child, cm_CopyVerify = KeyCheckMark(FALSE,'v'),
-							Child, VSpace(0), Child, VSpace(0),
-							Child, VSpace(0), Child, VSpace(0),
+							Child, KeyLabel1("Pages",'e'), Child, cm_RegPages = KeyCheckMark(FALSE,'e'),
 							End,
 						End,
 
@@ -97,8 +95,9 @@ BOOL StartApplication ( void )
 					Child, HGroup,
 						Child, ColGroup(2), GroupFrameT("Left"),
 							Child, KeyLabel1("Page",'p'), Child, cy_PageLeft = KeyCycle(CYA_Pages,'p'),
-							Child, KeyLabel1("First",'f'), Child, cy_FirstLeft = KeyCycle(CYA_First,'f'),
 							Child, KeyLabel1("Sort",'s'), Child, cy_SortLeft = KeyCycle(CYA_Sort,'s'),
+							Child, KeyLabel1("First",'f'), Child, cy_FirstLeft = KeyCycle(CYA_First,'f'),
+							Child, KeyLabel1("Order",'r'), Child, cy_HighLowLeft = KeyCycle(CYA_HighLow,'r'),
 							Child, KeyLabel1("Load",'l'),
 							Child, PopaslObject,
 								MUIA_Popstring_String, st_LoadLeft = KeyString( "", 81, 'l' ),
@@ -122,19 +121,20 @@ BOOL StartApplication ( void )
 								End,
 							End,
 						Child, ColGroup(2), GroupFrameT("Right"),
-							Child, KeyLabel1("Page",'a'), Child, cy_PageRight = KeyCycle(CYA_Pages,'a'),
-							Child, KeyLabel1("First",'i'), Child, cy_FirstRight = KeyCycle(CYA_First,'i'),
+							Child, KeyLabel1("Page",'e'), Child, cy_PageRight = KeyCycle(CYA_Pages,'e'),
 							Child, KeyLabel1("Sort",'o'), Child, cy_SortRight = KeyCycle(CYA_Sort,'o'),
-							Child, KeyLabel1("Load",'d'),
+							Child, KeyLabel1("First",'i'), Child, cy_FirstRight = KeyCycle(CYA_First,'i'),
+							Child, KeyLabel1("Order",'d'), Child, cy_HighLowRight = KeyCycle(CYA_HighLow,'d'),
+							Child, KeyLabel1("Load",'a'),
 							Child, PopaslObject,
-								MUIA_Popstring_String, st_LoadRight = KeyString( "", 81, 'd' ),
+								MUIA_Popstring_String, st_LoadRight = KeyString( "", 81, 'a' ),
 								MUIA_Popstring_Button, PopButton(MUII_PopDrawer),
 								ASLFR_TitleText  , "Select a drawer...",
 								ASLFR_DrawersOnly, TRUE,
 								End,
-							Child, KeyLabel1("Format",'r'),
+							Child, KeyLabel1("Format",'t'),
 							Child, pp_FormatRight = PopobjectObject,
-								MUIA_Popstring_String, st_FormatRight = KeyString( "", 7, 'r' ),
+								MUIA_Popstring_String, st_FormatRight = KeyString( "", 7, 't' ),
 								MUIA_Popstring_Button, bt_FormatRight = PopButton(MUII_PopUp),
 								MUIA_Popobject_StrObjHook, &StrObjHook,
 								MUIA_Popobject_ObjStrHook, &ObjStrHook2,
@@ -437,8 +437,8 @@ void Methods ( void )
 	DoMethod( cm_ShowTime, MUIM_Notify, MUIA_Selected, FALSE, cm_ShowSeconds, 3, MUIM_Set, MUIA_Selected, FALSE );
 
 	DoMethod(wi_Main, MUIM_Window_SetCycleChain, st_ClockPri, st_Refresh, st_Buffer, st_Delay, st_History, st_Output, st_TempDir,
-	cy_AppWindow, cy_Completed, cy_DriveMode, cy_HotMode, cy_MiddleMouse, cy_Overwrite, cy_PageLeft, cy_FirstLeft, cy_SortLeft,
-	st_LoadLeft, st_FormatLeft, cy_PageRight, cy_FirstRight, cy_SortRight, st_LoadRight, st_FormatRight, st_HotDir[0], st_HotDir[1],
+	cy_AppWindow, cy_Completed, cy_DriveMode, cy_HotMode, cy_MiddleMouse, cy_Overwrite, cy_PageLeft, cy_SortLeft, cy_FirstLeft, cy_HighLowLeft,
+	st_LoadLeft, st_FormatLeft, cy_PageRight, cy_SortRight, cy_FirstRight, cy_HighLowRight, st_LoadRight, st_FormatRight, st_HotDir[0], st_HotDir[1],
 	st_HotDir[2], st_HotDir[3], st_HotDir[4], st_HotDir[5], st_HotDir[6], st_HotDir[7], st_HotDir[8], st_HotDir[9],
 	st_Input, bt_AddEvent, bt_DelEvent, cy_Event, cy_Type, st_Command, st_Directory, st_Filetypes, bt_AddFiletype,
 	bt_DelFiletype, cy_Filetype, st_Recog, st_Pattern, st_CommandA, st_CommandB, bt_Save, bt_Use, bt_Cancel, NULL);

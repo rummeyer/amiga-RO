@@ -3,9 +3,9 @@
 # Tue Dec 05 01:37:32 1995
 #
 
-OBJSA= Application.o Buttons.o Clock.o Config.o Dir.o DoFunction.o File.o Functions.o Hooks.o WBPath.o Key.o Main.o Misc.o Path.o Process.o Startup.o Request.o\
+OBJSA= Application.o Buttons.o Clock.o Config.o Main.o Request.o DoFunction.o File.o Dir.o Functions.o Hooks.o WBPath.o Misc.o Path.o Key.o Process.o Startup.o\
 
-OBJSB= PrefsApplication.o PrefsConfig.o Key.o PrefsHooks.o PrefsMain.o PrefsRequest.o PrefsStartup.o\
+OBJSB= PrefsApplication.o PrefsRequest.o PrefsConfig.o PrefsMain.o PrefsHooks.o Key.o PrefsStartup.o\
 
 Main: $(OBJSA)
    sc LIBRARY LIB:xpk.lib link to Main with <<
@@ -17,7 +17,7 @@ PrefsMain: $(OBJSB)
 $(OBJSB)
 <
 
-all: PrefsMain Main
+all: Main PrefsMain
 
 Application.o: Application.c Includes.h Application.h
 

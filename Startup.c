@@ -34,7 +34,7 @@ void InitVars( void )
 	strcpy( MenuStrings[10], GetCatStr(16, "Delete" ) );
 	strcpy( MenuStrings[11], GetCatStr(17, "Verify" ) );
 	strcpy( MenuStrings[12], GetCatStr(18, "Force" ) );
-	strcpy( MenuStrings[13], GetCatStr(19, "Overwrite" ) );
+	strcpy( MenuStrings[13], GetCatStr(19, "Replace" ) );
 	strcpy( MenuStrings[14], GetCatStr(20, "Always" ) );
 	strcpy( MenuStrings[15], GetCatStr(21, "Never" ) );
 	strcpy( MenuStrings[16], GetCatStr(22, "Older" ) );
@@ -43,6 +43,15 @@ void InitVars( void )
 	strcpy( MenuStrings[19], GetCatStr(124, "Check Files" ) );
 	strcpy( MenuStrings[20], GetCatStr(25, "Last Message" ) );
 	strcpy( MenuStrings[21], GetCatStr(24, "Update All" ) );
+	strcpy( MenuStrings[22], GetCatStr(131, "About MUI..." ) );
+	strcpy( MenuStrings[23], GetCatStr(132, "Setup..." ) );
+	strcpy( MenuStrings[24], GetCatStr(133, "MUI settings..." ) );
+
+	strcpy( ShortHelp[0], GetCatStr(134, "This information textfield displays\ninformation about the current device.\nClick here to load parent directory." ) );
+	strcpy( ShortHelp[1], GetCatStr(135, "Directory path gadget displays current\nloaded directory. Enter path string here\nto load a specific directory." ) );
+	strcpy( ShortHelp[2], GetCatStr(136, "General status information textfield. Click\nhere to switch between button banks." ) );
+	strcpy( ShortHelp[3], GetCatStr(137, "These user configurable directory\ngadgets are used as 'fastlinks' to\ndirectories or devices." ) );
+	strcpy( ShortHelp[4], GetCatStr(138, "These command buttons are used to\nperform actions on selected entries." ) );
 }
 
 /*
@@ -53,9 +62,20 @@ void InitVars( void )
 
 void Init ( void )
 {
+	struct Locale * def_Locale;
+
 	if (!(MUIMasterBase = OpenLibrary(MUIMASTER_NAME,MUIMASTER_VMIN)))
 		Fail();
 
+	def_Locale = OpenLocale( NULL );
+	if ( def_Locale )
+	{
+		strcpy( global_GroupSeparator, def_Locale -> loc_GroupSeparator );
+		CloseLocale( def_Locale );
+	}
+	else
+		strcpy( global_GroupSeparator, "." );
+	
 	global_Catalog = OpenCatalog( NULL, "ro.catalog", TAG_DONE );
 
 	InitVars();
