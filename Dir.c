@@ -39,7 +39,7 @@ int LoadDirectory ( char * Path_String, int side )
 	__aligned struct FileInfoBlock * fib;
 	BPTR lock, newlock, oldlock;
 	APTR ActiveObject_APTR;
-	char NewPath_String[512], Buffer[512], * Buffer_String;
+	char NewPath_String[4096], Buffer[4096], * Buffer_String;
 	LONG Entries_LONG, i;
 	BOOL Found_BOOL = FALSE, success;
 	int ErrorNum = 0;
@@ -144,7 +144,7 @@ int LoadDirectory ( char * Path_String, int side )
 
 void LoadParent ( int side )
 {
-	char String[512], NewPath_String[512], *cptr;
+	char String[4096], NewPath_String[4096], *cptr;
 
 	if ( global_DirLoaded[side] )
 	{
@@ -211,7 +211,7 @@ void LoadVolume ( int side )
 
 void LoadBuffer ( int side )
 {
-	char * Buffer_String, * Help_String, Path[512];
+	char * Buffer_String, * Help_String, Path[4096];
 	int i, len;
 
 	DoMethod( lv_Buffers[side], MUIM_List_GetEntry, MUIV_List_GetEntry_Active, &Buffer_String );
@@ -268,9 +268,9 @@ void UpdateStatusText ( int side )
 			Info(lock,pid);
 			KBytesTotal_ULONG = (( pid -> id_NumBlocks ) / 1024) * ( pid -> id_BytesPerBlock );
 			KBytesUsed_ULONG = (( pid -> id_NumBlocksUsed) / 1024) * ( pid -> id_BytesPerBlock );
-			if (KBytesTotal_ULONG < 1024)
+			if (KBytesTotal_ULONG < ( 1024 * 1024 ))
 				KBytesTotal_ULONG = ( pid -> id_NumBlocks ) * ( pid -> id_BytesPerBlock ) / 1024;
-			if (KBytesUsed_ULONG < 1024)
+			if (KBytesUsed_ULONG < ( 1024 * 1024 ))
 				KBytesUsed_ULONG = ( pid -> id_NumBlocksUsed) * ( pid -> id_BytesPerBlock ) / 1024;
 
 			if ( ( KBytesTotal_ULONG / 100 ) > 0 )
@@ -375,7 +375,7 @@ void UpdateNumFiles( int side )
 					NumDirs++;
 			}
 		}
-	
+
 		if ( ( NumDirs > 0 ) || ( NumFiles > 0 ) )
 		{
 			strcpy( NumFiles_String, NumberToString( NumFiles ) );
