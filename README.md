@@ -51,4 +51,4 @@ hand.
 
 ## Copyright:
 
-Copyright (c) 1994 - 2018 Oliver Rummeyer
+Copyright (c) 1994 - 2019 Oliver Rummeyer
