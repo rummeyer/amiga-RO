@@ -62,7 +62,7 @@ SAVEDS ASM LONG AppMsgFunc( REG(a2) APTR obj, REG(a1) struct AppMessage **x )
 							AddPart( Buffer, ap -> wa_Name, sizeof( Buffer ) );
 							AddPart( path, ap -> wa_Name, sizeof( path ));
 							ErrorNum = CopyFile( Buffer, path, TRUE );
-							if ( ErrorNum == -20 )
+							if ( ErrorNum == ERR_SKIPPED )
 								ErrorNum = 0;
 							if ( ErrorNum == 0 )
 								CopyFile( strcat( Buffer, ".info" ), strcat( path, ".info" ), TRUE );
@@ -73,7 +73,7 @@ SAVEDS ASM LONG AppMsgFunc( REG(a2) APTR obj, REG(a1) struct AppMessage **x )
 							if ( strstr( path, Buffer ) == NULL )
 							{
 								ErrorNum = CopyDirectory( Buffer, path );
-								if ( ErrorNum == -20 )
+								if ( ErrorNum == ERR_SKIPPED )
 									ErrorNum = 0;
 								if ( ErrorNum == 0 )
 								{

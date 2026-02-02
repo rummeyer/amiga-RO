@@ -41,73 +41,6 @@ int RemoveFile ( char * File_String )
 			ErrorNum = IoErr();
 			if ( ErrorNum == ERROR_DELETE_PROTECTED )
 			{
-				ErrorNum = 0;
-
-				if ( cfg_DelForce == 0 )
-				{
-					sprintf( Text_String, GetCatStr( 90, "File %s is protected from deletion.\nDo you wish to unprotect it?" ), File_String );
-					num = MUI_Request( app_RumorOpus, wi_Main, 0, GetCatStr( 50, "Request" ), GetCatStr( 91, "*_Okay|_All|_Skip|_None|_Cancel" ), Text_String, TAG_END );
-	
-					switch ( num )
-					{
-						case 1 :	UnProt_BOOL = TRUE;					break;
-						case 2 :	cfg_DelForce = 1;					break;
-						case 3 :	UnProt_BOOL = FALSE;				break;
-						case 4 :	cfg_DelForce = 2;					break;
-						case 0 :	ErrorNum = ERROR_DELETE_PROTECTED;	break;
-					}
-				}
-
-				if ( UnProt_BOOL || cfg_DelForce == 1 )
-				{
-					success = SetProtection( File_String, 0 );
-					if ( !success )
-						ErrorNum = IoErr();
-					else
-					{
-						success = DeleteFile( File_String );
-						if ( !success )
-							ErrorNum = IoErr();
-						else
-							ErrorNum = 0;
-					}
-				}
-				else
-					if ( ErrorNum == 0 )
-						ErrorNum = -20;
-			}
-		}
-	}
-	else
-		ErrorNum = -12;
-
-	return( ErrorNum );
-}
-
-/*
-**
-** RemoveAFile()
-**
-*/
-
-int RemoveAFile ( char * File_String )
-{
-	char Text_String[1024];
-	int ErrorNum = 0, num;
-	LONG Opened, Iconified;
-	BOOL UnProt_BOOL = FALSE, success;
-
-	DoMethod( app_RumorOpus, MUIM_Application_InputBuffered );
-	get( wi_Progress, MUIA_Window_Open, &Opened );
-	get( app_RumorOpus, MUIA_Application_Iconified, &Iconified );
-	if ( Opened || Iconified )
-	{
-		success = DeleteFile( File_String ); 
-		if ( !success )
-		{
-			ErrorNum = IoErr();
-			if ( ErrorNum == ERROR_DELETE_PROTECTED )
-			{
 				if ( cfg_DelForce == 0 )
 				{
 					sprintf( Text_String, GetCatStr( 90, "File %s is protected from deletion.\nDo you wish to unprotect it?" ), File_String );
@@ -139,7 +72,7 @@ int RemoveAFile ( char * File_String )
 		}
 	}
 	else
-		ErrorNum = -12;
+		ErrorNum = ERR_ABORTED;
 
 	return( ErrorNum );
 }
@@ -295,9 +228,9 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 				ErrorNum = Delete( Target_String );
 			if ( Proceed == 0 )
 			{
-				ErrorNum = -20;
+				ErrorNum = ERR_SKIPPED;
 				if ( cfg_Overwrite == 1 )
-					ErrorNum = -7;
+					ErrorNum = ERR_FILE_EXISTS;
 			}
 		}
 		else
@@ -356,7 +289,7 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 												size_src = fread( Buffer[1], 1, size_dst, Target_File );
 												if( memcmp( Buffer[0], Buffer[1], size_src ) != 0 )
 												{
-													ErrorNum = -13;
+													ErrorNum = ERR_VERIFY;
 													break;
 												}
 												fseek( Target_File, 0, SEEK_END );
@@ -373,21 +306,21 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 											}
 										}
 										else
-											ErrorNum = -12;
+											ErrorNum = ERR_ABORTED;
 									}
 									if ( cfg_CopyVerify ) free( Buffer[1] );
 								}
 								else
-									ErrorNum = -1;
+									ErrorNum = ERR_NO_MEMORY;
 								free( Buffer[0] );
 							}
 							else
-								ErrorNum = -1;
+								ErrorNum = ERR_NO_MEMORY;
 							free( fib );
 						}
 					}
 					else
-						ErrorNum = -1;
+						ErrorNum = ERR_NO_MEMORY;
 					fclose( Target_File );
 				}
 				else
@@ -404,7 +337,7 @@ int CopyFile ( char * Source, char * Target, BOOL Progress )
 		}
 
 		if ( Proceed == -1 )
-			ErrorNum = -7;
+			ErrorNum = ERR_FILE_EXISTS;
 
 		UnLock(lock);
 	}
@@ -455,7 +388,7 @@ int CopyDirectory ( char * Source_String, char * Target_String )
 					else
 					{
 						ErrorNum = CopyFile( Source, Target, TRUE );
-						if ( ErrorNum == -20 )
+						if ( ErrorNum == ERR_SKIPPED )
 							ErrorNum = 0;
 					}
 					if ( ErrorNum != 0 ) break;
@@ -470,7 +403,7 @@ int CopyDirectory ( char * Source_String, char * Target_String )
 		free( fib );
 	}
 	else
-		ErrorNum = -1;
+		ErrorNum = ERR_NO_MEMORY;
 
 	return( ErrorNum );
 }
@@ -515,9 +448,9 @@ int DeleteDirectory ( char * Path_String )
 							sprintf( Status_String, GetCatStr( 53, "Deleting '%s'..." ), Source );
 							set( bt_StatusBar, MUIA_Text_Contents, Status_String );
 						}
-						ErrorNum = RemoveAFile( Source );
+						ErrorNum = RemoveFile( Source );
 						if ( ErrorNum == 0 )
-							ErrorNum = -10;
+							ErrorNum = ERR_NO_MEMORY0;
 					}
 				}
 			}
@@ -527,7 +460,7 @@ int DeleteDirectory ( char * Path_String )
 				free( fib );
 		}
 		else
-			ErrorNum = -1;
+			ErrorNum = ERR_NO_MEMORY;
 		if ( !FreeAll_BOOL )
 			UnLock( lock );
 	}
@@ -562,7 +495,7 @@ int Delete ( char * FileName_String )
 			free( fib );
 		}
 		else
-			ErrorNum = -1;
+			ErrorNum = ERR_NO_MEMORY;
 		UnLock( lock );
 	}
 	else
@@ -576,13 +509,13 @@ int Delete ( char * FileName_String )
 			{
 				ErrorNum = DeleteDirectory( FileName_String );
 			}
-			while ( ErrorNum == -10 );
+			while ( ErrorNum == ERR_NO_DISK_SPACE );
 
 			if ( ErrorNum == 0 )
-				ErrorNum = RemoveAFile( FileName_String );
+				ErrorNum = RemoveFile( FileName_String );
 		}
 		else
-			ErrorNum = RemoveAFile( FileName_String );
+			ErrorNum = RemoveFile( FileName_String );
 	}
 
 	return( ErrorNum );
@@ -614,7 +547,7 @@ int Copy ( char * FileName_String, char * Target_String )
 			free( fib );
 		}
 		else
-			ErrorNum = -1;
+			ErrorNum = ERR_NO_MEMORY;
 		UnLock( lock );
 	}
 	else
@@ -631,7 +564,7 @@ int Copy ( char * FileName_String, char * Target_String )
 			if ( ( strstr( Help_String_B, Help_String_A ) == NULL ) || ( stricmp( FileName_String, Target_String ) == 0 ) )
 				ErrorNum = CopyDirectory( FileName_String, Target_String );
 			else
-				ErrorNum = -5;
+				ErrorNum = ERR_INFINITE_LOOP;
 
 			if ( ErrorNum == 0 )
 				Clone( FileName_String, Target_String );
@@ -684,7 +617,7 @@ int BytesDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULON
 							*Total_ULONG = *Total_ULONG + fib -> fib_Size;
 						}
 						else
-							ErrorNum = -12;
+							ErrorNum = ERR_ABORTED;
 					}
 					strcpy( Path, Path_String );
 				}
@@ -698,7 +631,7 @@ int BytesDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULON
 		free( fib );
 	}
 	else
-		ErrorNum = -1;
+		ErrorNum = ERR_NO_MEMORY;
 	if( IoErr() != ERROR_NO_MORE_ENTRIES ) ErrorNum = IoErr();
 
 	return( ErrorNum );
@@ -750,7 +683,7 @@ int FitDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULONG,
 								*Total_ULONG = *Total_ULONG + ( fib -> fib_Size / BlockSize_ULONG );
 						}
 						else
-							ErrorNum = -12;
+							ErrorNum = ERR_ABORTED;
 					}
 					strcpy( Path, Path_String );
 				}
@@ -764,7 +697,7 @@ int FitDirectory ( char * Path_String, ULONG * Total_ULONG, ULONG * Files_ULONG,
 		free( fib );
 	}
 	else
-		ErrorNum = -1;
+		ErrorNum = ERR_NO_MEMORY;
 	if ( IoErr() != ERROR_NO_MORE_ENTRIES ) ErrorNum = IoErr();
 
 	return( ErrorNum );
@@ -1020,10 +953,10 @@ int FileAction ( char * File_String )
 							success=DeleteFile(newname);
 							if(!success) ErrorNum = IoErr();
 						}
-						else ErrorNum = -9;
+						else ErrorNum = ERR_UNPACK_FAILED;
 						CloseLibrary(XpkBase);
 					}
-					else ErrorNum = -8;
+					else ErrorNum = ERR_NO_XPK_LIB;
 				}
 
 				if ( Num == -3 )
@@ -1045,7 +978,7 @@ int FileAction ( char * File_String )
 					if( rc != 0 )
 						rc = ExecuteCommand( cfg_FileType[0], File_String );
 						if( rc != 0 )
-							ErrorNum = -4;
+							ErrorNum = ERR_CMD_FAILED;
 				}
 
 				if ( Num >= 0 )
@@ -1059,7 +992,7 @@ int FileAction ( char * File_String )
 				SleepWindow( FALSE );
 			}
 			else
-				ErrorNum = -4;
+				ErrorNum = ERR_CMD_FAILED;
 
 			UnLock( lock );
 		}
@@ -1067,11 +1000,11 @@ int FileAction ( char * File_String )
 			ErrorNum = IoErr();
 	}
 	else
-		ErrorNum = -1;
+		ErrorNum = ERR_NO_MEMORY;
 
 	if ( ErrorNum == 0 )
 		if ( rc != 0 )
-			ErrorNum = -4;
+			ErrorNum = ERR_CMD_FAILED;
 
 	return( ErrorNum );
 }

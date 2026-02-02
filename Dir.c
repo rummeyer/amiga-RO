@@ -131,7 +131,7 @@ int LoadDirectory ( char * Path_String, int side )
 		free( fib );
 	}
 	else
-		ErrorNum = -1;
+		ErrorNum = ERR_NO_MEMORY;
 
 	return( ErrorNum );
 }

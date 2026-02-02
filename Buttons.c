@@ -61,7 +61,7 @@ void Button ( int Num )
 {
 	ULONG Iconified;
 	char * Str = NULL;
-	int ErrorNum = -14;
+	int ErrorNum = ERR_UNSUPPORTED;
 
 	Sleep( TRUE );
 
@@ -130,7 +130,7 @@ void Button ( int Num )
 		}
 	}
 	else
-		ErrorNum = -1;
+		ErrorNum = ERR_NO_MEMORY;
 
 	if ( ErrorNum != 0 )
 		Str = Error( ErrorNum );

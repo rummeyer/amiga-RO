@@ -238,46 +238,46 @@ char * Error( int error_number )
 
 		switch ( error_number )
 		{
-			case -1:
+			case ERR_NO_MEMORY:
 				strcat(Error_String, GetCatStr( 28, "not enough memory available" ) );
 				break;
-			case -2:
+			case ERR_DATE_TO_STR:
 				strcat(Error_String, GetCatStr( 29, "unable to convert datestamp to string" ) );
 				break;
-			case -3:
+			case ERR_STR_TO_DATE:
 				strcat(Error_String, GetCatStr( 30, "unable to convert string to date" ) );
 				break;
-			case -4:
+			case ERR_CMD_FAILED:
 				strcat(Error_String, GetCatStr( 31, "unexpected command termination" ) );
 				break;
-			case -5:
+			case ERR_INFINITE_LOOP:
 				strcat(Error_String, GetCatStr( 32, "infinite loop" ) );
 				break;
-			case -6:
+			case ERR_CANT_DELETE_SRC:
 				strcat(Error_String, GetCatStr( 33, "source may not be deleted" ) );
 				break;
-			case -7:
+			case ERR_FILE_EXISTS:
 				strcat(Error_String, GetCatStr( 34, "file already exists" ) );
 				break;
-			case -8:
+			case ERR_NO_XPK_LIB:
 				strcat(Error_String, GetCatStr( 35, "unable to open 'xpkmaster.library'" ) );
 				break;
-			case -9:
+			case ERR_UNPACK_FAILED:
 				strcat(Error_String, GetCatStr( 36, "unable to unpack file" ) );
 				break;
-			case -10:
+			case ERR_NO_DISK_SPACE:
 				strcat(Error_String, GetCatStr( 37, "not enough disk space" ) );
 				break;
-			case -11:
+			case ERR_EXPAND_PATH:
 				strcat(Error_String, GetCatStr( 38, "unable to expand path" ) );
 				break;
-			case -12:
+			case ERR_ABORTED:
 				strcat(Error_String, GetCatStr( 122, "function aborted" ) );
 				break;
-			case -13:
+			case ERR_VERIFY:
 				strcat(Error_String, GetCatStr( 123, "verify error" ) );
 				break;
-			case -14:
+			case ERR_UNSUPPORTED:
 				strcat(Error_String, GetCatStr( 127, "unsupported built-in function called" ) );
 				break;
 		}
@@ -600,157 +600,134 @@ char * GetVersion ( char * FileName_String )
 
 /*
 **
-** Recog()
+** MatchFileType() - Helper for Recog/RecogArchive
+** Returns index of matching filetype, or -1 if not found
+**
+*/
+
+static int MatchFileType ( char * FileName_String, char * Buffer, int BufferLen, BOOL ArchiveMode )
+{
+	char * Pattern_Token;
+	int i, j, f = 0;
+	BOOL Found_Hex = FALSE, Found_Name = FALSE;
+
+	for ( i = 0; i < 80; i++ )
+	{
+		/* ArchiveMode: check entries WITH CommandB, else entries WITHOUT */
+		if ( ArchiveMode ? ( strlen( cfg_RecogCommandB[i] ) > 0 ) : ( strlen( cfg_RecogCommandB[i] ) == 0 ) )
+		{
+			if ( strlen( cfg_RecogHex[i] ) > 0 )
+			{
+				if ( strlen( cfg_RecogHex[i] ) <= BufferLen )
+				{
+					for ( j = 0; ( j < strlen( cfg_RecogHex[i] ) ) && ( j < BufferLen ); j++ )
+						if ( cfg_RecogHex[i][j] == Buffer[j] || cfg_RecogHex[i][j] == '?' || ( cfg_RecogHex[i][j] == 255 && Buffer[j] == 0 ) )
+							f++;
+					if ( f == strlen( cfg_RecogHex[i] ) )
+						Found_Hex = TRUE;
+				}
+			}
+			else
+				Found_Hex = TRUE;
+
+			if ( Found_Hex )
+			{
+				Pattern_Token = malloc( 256 );
+				if ( Pattern_Token )
+				{
+					ParsePatternNoCase( cfg_RecogString[i], Pattern_Token, 256 );
+					if ( MatchPatternNoCase( Pattern_Token, FilePart( FileName_String ) ) )
+						Found_Name = TRUE;
+					free( Pattern_Token );
+				}
+			}
+
+			if ( Found_Hex && Found_Name )
+				return i;
+
+			Found_Hex = FALSE;
+			Found_Name = FALSE;
+			f = 0;
+		}
+	}
+
+	return -1;
+}
+
+/*
+**
+** Recog() - Recognize regular filetypes
 **
 */
 
 int Recog ( char * FileName_String )
 {
-	char Buffer[80], * Pattern_Token;
-	int i, j, count = 0, k, f = 0, Num = -1;
-	BOOL Found_Hex = FALSE, Found_Name = FALSE, Found = FALSE;
+	char Buffer[80];
+	int j, count = 0, k, Num = -1, Result;
 	FILE * file;
 
-	if ( Exists ( FileName_String ) )
-	{
-		file = fopen( FileName_String, "rb" );
-		if ( file )
-		{
-			if ( k = fread( Buffer, 1, 80, file ) )
-			{
-				for(j=0; j<k; j++)
-					if ( ( Buffer[j]>31 ) && ( Buffer[j]<128) ||( Buffer[j]>159 ) || ( Buffer[j]>8 ) && ( Buffer[j]<14 ) )
-						count++;
-				if ( count == k )
-					Num = -2;
+	if ( !Exists( FileName_String ) )
+		return -1;
 
-				if( Buffer[0]==0 && Buffer[1]==0 && Buffer[2]==3 && Buffer[3]==243 && Buffer[4]==0 && Buffer[5]==0 && Buffer[6]==0 && Buffer[7]==0 )
-					Num = -3;
+	file = fopen( FileName_String, "rb" );
+	if ( !file )
+		return -1;
 
-				if( ( Buffer[0]==88 && Buffer[1]==80 && Buffer[2]==75 && Buffer[3]==70 && Buffer[4]==0 ) || ( Buffer[0]==80 && Buffer[1]==80 && Buffer[2]==50 && Buffer[3]==48 && Buffer[4]==9 && Buffer[5]==10 ) )
-					Num = -4;
+	k = fread( Buffer, 1, 80, file );
+	fclose( file );
 
-				if ( Num != -4 )
-				{
-					for ( i=0; i<80; i++ )
-					{
-						if ( strlen ( cfg_RecogCommandB[i] ) == 0 )
-						{
-							if ( strlen( cfg_RecogHex[i] ) > 0 )
-							{
-								if ( strlen( cfg_RecogHex[i] ) <= k )
-								{
-									for ( j=0; ( j < strlen( cfg_RecogHex[i] ) ) && ( j < k ); j++ )
-										if ( cfg_RecogHex[i][j] == Buffer[j] || cfg_RecogHex[i][j] == '?' || ( cfg_RecogHex[i][j] == 255 && Buffer[j] == 0 ) )
-											f++;
-									if ( f == strlen( cfg_RecogHex[i] ) )
-										Found_Hex = TRUE;
-								}
-							}
-							else
-								Found_Hex = TRUE;
+	if ( k == 0 )
+		return -1;
 
-							if ( Found_Hex )
-							{
-								Pattern_Token = malloc(256);
-								if ( Pattern_Token )
-								{
-									ParsePatternNoCase( cfg_RecogString[i], Pattern_Token, 256 );
-									if ( MatchPatternNoCase( Pattern_Token, FilePart( FileName_String ) ) )
-										Found_Name = TRUE;
-									free ( Pattern_Token );
-								}
-							}
+	/* Check for ASCII text */
+	for ( j = 0; j < k; j++ )
+		if ( ( Buffer[j] > 31 && Buffer[j] < 128 ) || Buffer[j] > 159 || ( Buffer[j] > 8 && Buffer[j] < 14 ) )
+			count++;
+	if ( count == k )
+		Num = -2;
 
-							if ( Found_Hex && Found_Name )
-							{
-								Found = TRUE;
-								break;
-							}
-							else
-							{
-								Found_Hex = FALSE;
-								Found_Name = FALSE;
-								f = 0;
-							}
-						}
-					}
-				}
-			}
-			fclose( file );
-		}
-	}
+	/* Check for Amiga executable */
+	if ( Buffer[0] == 0 && Buffer[1] == 0 && Buffer[2] == 3 && Buffer[3] == 243 &&
+	     Buffer[4] == 0 && Buffer[5] == 0 && Buffer[6] == 0 && Buffer[7] == 0 )
+		Num = -3;
 
-	if ( Found )
-		return ( i );
-	else
-		return ( Num );
+	/* Check for XPK/PowerPacker */
+	if ( ( Buffer[0] == 88 && Buffer[1] == 80 && Buffer[2] == 75 && Buffer[3] == 70 && Buffer[4] == 0 ) ||
+	     ( Buffer[0] == 80 && Buffer[1] == 80 && Buffer[2] == 50 && Buffer[3] == 48 && Buffer[4] == 9 && Buffer[5] == 10 ) )
+		Num = -4;
+
+	/* Skip filetype matching for XPK/PP files */
+	if ( Num == -4 )
+		return Num;
+
+	Result = MatchFileType( FileName_String, Buffer, k, FALSE );
+	return ( Result >= 0 ) ? Result : Num;
 }
+
+/*
+**
+** RecogArchive() - Recognize archive filetypes
+**
+*/
 
 int RecogArchive ( char * FileName_String )
 {
-	char Buffer[80], * Pattern_Token;
-	int i, j, k, f = 0;
-	BOOL Found_Hex = FALSE, Found_Name = FALSE, Found = FALSE;
+	char Buffer[80];
+	int k;
 	FILE * file;
 
-	if ( Exists ( FileName_String ) )
-	{
-		file = fopen( FileName_String, "rb" );
-		if ( file )
-		{
-			if ( k = fread( Buffer, 1, 80, file ) )
-			{
-				for ( i=0; i<80; i++ )
-				{
-					if ( strlen ( cfg_RecogCommandB[i] ) > 0 )
-					{
-						if ( strlen( cfg_RecogHex[i] ) > 0 )
-						{
-							if ( strlen( cfg_RecogHex[i] ) <= k )
-							{
-								for ( j=0; ( j < strlen( cfg_RecogHex[i] ) ) && ( j < k ); j++ )
-									if ( cfg_RecogHex[i][j] == Buffer[j] || cfg_RecogHex[i][j] == '?' || ( cfg_RecogHex[i][j] == 255 && Buffer[j] == 0 ) )
-										f++;
-								if ( f == strlen( cfg_RecogHex[i] ) )
-									Found_Hex = TRUE;
-							}
-						}
-						else
-							Found_Hex = TRUE;
+	if ( !Exists( FileName_String ) )
+		return -1;
 
-						if ( Found_Hex )
-						{
-							Pattern_Token = malloc(256);
-							if ( Pattern_Token )
-							{
-								ParsePatternNoCase( cfg_RecogString[i], Pattern_Token, 256 );
-								if ( MatchPatternNoCase( Pattern_Token, FilePart( FileName_String ) ) )
-								Found_Name = TRUE;
-								free ( Pattern_Token );
-							}
-						}
+	file = fopen( FileName_String, "rb" );
+	if ( !file )
+		return -1;
 
-						if ( Found_Hex && Found_Name )
-						{
-							Found = TRUE;
-							break;
-						}
-						else
-						{
-							Found_Hex = FALSE;
-							Found_Name = FALSE;
-							f = 0;
-						}
-					}
-				}
-			}
-			fclose( file );
-		}
-	}
+	k = fread( Buffer, 1, 80, file );
+	fclose( file );
 
-	if ( Found )
-		return ( i );
-	else
-		return ( -1 );
+	if ( k == 0 )
+		return -1;
+
+	return MatchFileType( FileName_String, Buffer, k, TRUE );
 }

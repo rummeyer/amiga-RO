@@ -112,7 +112,7 @@ int RelabelDevice ( int side )
 				ErrorNum = IoErr();
 			else
 				if ( stricmp( String, ":" ) == 0 )
-					ErrorNum = -11;
+					ErrorNum = ERR_EXPAND_PATH;
 
 			if ( ErrorNum == 0 )
 			{

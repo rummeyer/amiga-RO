@@ -57,6 +57,23 @@ extern struct Library * MUIMasterBase;
 #define Left_Side           0
 #define Right_Side          1
 
+/* Internal error codes (negative to distinguish from DOS errors) */
+#define ERR_NO_MEMORY       -1
+#define ERR_DATE_TO_STR     -2
+#define ERR_STR_TO_DATE     -3
+#define ERR_CMD_FAILED      -4
+#define ERR_INFINITE_LOOP   -5
+#define ERR_CANT_DELETE_SRC -6
+#define ERR_FILE_EXISTS     -7
+#define ERR_NO_XPK_LIB      -8
+#define ERR_UNPACK_FAILED   -9
+#define ERR_NO_DISK_SPACE   -10
+#define ERR_EXPAND_PATH     -11
+#define ERR_ABORTED         -12
+#define ERR_VERIFY          -13
+#define ERR_UNSUPPORTED     -14
+#define ERR_SKIPPED         -20
+
 enum Ids
 {
 	ID_Start,

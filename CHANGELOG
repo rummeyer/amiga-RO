@@ -1,0 +1,53 @@
+# Changelog
+
+All notable changes to RumorOpus (RO) will be documented in this file.
+
+## [1.29.0] - 2026-02-02
+
+### Changed
+
+- **DoFunction.c**: Major refactoring for maintainability
+  - Extracted 14 separate handler functions from monolithic DoFunction()
+  - Added FuncContext struct to pass shared state between handlers
+  - Handler functions: HandleCommand, HandleAction, HandleCopyDev, HandleDelete,
+    HandleUnarc, HandleCopyMove, HandleRename, HandleDuplicate, HandleTouch,
+    HandleComment, HandleSetDate, HandleInfo, HandleListArc, HandleProtect
+  - Main DoFunction() now uses clean dispatch switch statement
+
+- **Includes.h**: Added named error code constants
+  - ERR_NO_MEMORY, ERR_DATE_TO_STR, ERR_STR_TO_DATE, ERR_CMD_FAILED,
+    ERR_INFINITE_LOOP, ERR_CANT_DELETE_SRC, ERR_FILE_EXISTS, ERR_NO_XPK_LIB,
+    ERR_UNPACK_FAILED, ERR_NO_DISK_SPACE, ERR_EXPAND_PATH, ERR_ABORTED,
+    ERR_VERIFY, ERR_UNSUPPORTED, ERR_SKIPPED
+
+- **Misc.c**: Code modernization
+  - Simplified CheckMemory() to use ternary operator
+  - Simplified OtherSide() to use ternary operator
+  - Simplified GetCatStr() to use ternary operator
+  - Extracted MatchFileType() helper function
+  - Refactored Recog() and RecogArchive() to use MatchFileType()
+  - Updated Error() switch to use named error constants
+
+- **File.c**: Code cleanup
+  - Simplified Exists() to use ternary return
+  - Simplified Clone() to use fib->fib_Date directly instead of malloc/free
+  - Updated error codes to use named constants
+
+- **Dir.c**: Bug fixes and modernization
+  - Fixed memory leak in LoadRoot() - was using strdup without free
+  - Added null check for strrchr result in LoadRoot()
+  - Flattened LoadParent() using early return pattern
+
+- **Buttons.c, Functions.c, Hooks.c**: Updated to use named error constants
+
+### Removed
+
+- **File.c**: Removed dead code
+  - RemoveFile() function was defined but never called
+  - Renamed RemoveAFile() to RemoveFile()
+
+## [1.28.0] - Previous Release
+
+- Changed internal unit switchover to 1GB
+- Fixed path length issues
+- Updated copyright note
