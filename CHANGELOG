@@ -2,7 +2,7 @@
 
 All notable changes to RumorOpus (RO) will be documented in this file.
 
-## [1.29.0] - 2026-02-02
+## [1.30.0] - 2026-02-02
 
 ### Changed
 
@@ -45,6 +45,15 @@ All notable changes to RumorOpus (RO) will be documented in this file.
 - **File.c**: Removed dead code
   - RemoveFile() function was defined but never called
   - Renamed RemoveAFile() to RemoveFile()
+
+## [1.29.0] - 2026-02-02
+
+### Changed
+
+- Simplified boolean return patterns (Exists(), CheckMemory(), OtherSide(), GetCatStr())
+- Fixed memory leak in Clone() - removed unnecessary heap allocation
+- Fixed memory leak in LoadRoot() - strdup without free
+- Flattened nested logic in LoadParent() using early return
 
 ## [1.28.0] - Previous Release
 
