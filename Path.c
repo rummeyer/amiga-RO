@@ -10,8 +10,8 @@
 char * GetPath ( int side )
 {
 	char * Path_String;
-	get( st_PathGadget[side], MUIA_String_Contents, &Path_String);
-	return( Path_String );
+	get( st_PathGadget[side], MUIA_String_Contents, &Path_String );
+	return Path_String;
 }
 
 /*
@@ -66,8 +66,8 @@ char * FindMatch ( char * Path_String )
 	if ( found )
 	{
 		AddPart( PathPart_String, FilePart_String, sizeof( PathPart_String ) );
-		return( PathPart_String );
+		return PathPart_String;
 	}
-	else
-		return( NULL );
+
+	return NULL;
 }

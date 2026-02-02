@@ -9,16 +9,12 @@
 
 BOOL Exists( char * File_String )
 {
-	BPTR lock;
-	
-	lock = Lock( File_String, ACCESS_READ );
+	BPTR lock = Lock( File_String, ACCESS_READ );
+
 	if ( lock )
-	{
 		UnLock( lock );
-		return( TRUE );
-	}
-	else
-		return( FALSE );
+
+	return lock ? TRUE : FALSE;
 }
 
 /*
@@ -234,7 +230,6 @@ BOOL Clone ( char * Source_String, char * Target_String )
 	BOOL success = FALSE;
 	BPTR lock;
 	__aligned struct FileInfoBlock * fib;
-	struct DateStamp * date;
 
 	lock = Lock( Source_String, ACCESS_READ );
 	if ( lock )
@@ -245,15 +240,7 @@ BOOL Clone ( char * Source_String, char * Target_String )
 			Examine( lock, fib );
 
 			if ( cfg_CopyDate )
-			{
-				date = malloc( sizeof( struct DateStamp ) );
-				if ( date )
-				{
-					*date = fib -> fib_Date;
-					SetFileDate( Target_String, date );
-					free( date );
-				}
-			}
+				SetFileDate( Target_String, &fib->fib_Date );
 
 			if ( cfg_CopyNote )
 				SetComment( Target_String, fib -> fib_Comment );
@@ -268,9 +255,8 @@ BOOL Clone ( char * Source_String, char * Target_String )
 		}
 		UnLock( lock );
 	}
-	else
-		success = FALSE;
-	return( success );
+
+	return success;
 }
 
 /*

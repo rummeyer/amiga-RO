@@ -9,16 +9,12 @@
 
 BOOL CheckMemory ( int Needed_Memory )
 {
-	char * Memory;
+	char * Memory = malloc( Needed_Memory );
 
-	Memory = malloc( Needed_Memory );
 	if ( Memory )
-	{
 		free( Memory );
-		return( TRUE );
-	}
-	else
-		return( FALSE );
+
+	return Memory ? TRUE : FALSE;
 }
 
 /*
@@ -29,11 +25,7 @@ BOOL CheckMemory ( int Needed_Memory )
 
 int OtherSide ( int side )
 {
-	if ( side == Left_Side )
-		return( Right_Side );
-
-	if ( side == Right_Side )
-		return( Left_Side );
+	return ( side == Left_Side ) ? Right_Side : Left_Side;
 }
 
 /*
@@ -190,10 +182,7 @@ void SetActiveColor ( int side )
 
 char * GetCatStr( int num, char * defstring )
 {
-	if ( global_Catalog )
-		return( GetCatalogStr( global_Catalog, num, defstring ) );
-	else
-		return( defstring );
+	return global_Catalog ? GetCatalogStr( global_Catalog, num, defstring ) : defstring;
 }
 
 /*

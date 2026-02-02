@@ -146,23 +146,24 @@ void LoadParent ( int side )
 {
 	char String[4096], NewPath_String[4096], *cptr;
 
-	if ( global_DirLoaded[side] )
+	if ( !global_DirLoaded[side] )
 	{
-		strcpy( String, GetPath( side ) );
-		cptr = strrchr( String, '/' );
-		if ( cptr )
+		set( pg_Page[side], MUIA_Group_ActivePage, 2 );
+		return;
+	}
+
+	strcpy( String, GetPath( side ) );
+	cptr = strrchr( String, '/' );
+	if ( cptr )
+	{
+		cptr++;
+		if ( *cptr == '\0' )
 		{
-			cptr++;
-			if ( *cptr == '\0' )
-			{
-				cptr--;
-				*cptr = '\0';
-			}
-			strmid( String, NewPath_String, 1, strlen( String ) - strlen( FilePart( String ) ) );
-			LoadDirectory( NewPath_String, side );
+			cptr--;
+			*cptr = '\0';
 		}
-		else
-			set( pg_Page[side], MUIA_Group_ActivePage, 2 );
+		strmid( String, NewPath_String, 1, strlen( String ) - strlen( FilePart( String ) ) );
+		LoadDirectory( NewPath_String, side );
 	}
 	else
 		set( pg_Page[side], MUIA_Group_ActivePage, 2 );
@@ -176,15 +177,18 @@ void LoadParent ( int side )
 
 void LoadRoot ( int side )
 {
-	char * Path_String;
+	char Path_String[4096];
 	char * cptr;
 
 	if ( global_DirLoaded[side] )
 	{
-		Path_String = strdup( GetPath( side ) );
+		strcpy( Path_String, GetPath( side ) );
 		cptr = strrchr( Path_String, ':' );
-		cptr++;
-		*cptr = '\0';
+		if ( cptr )
+		{
+			cptr++;
+			*cptr = '\0';
+		}
 		LoadDirectory( Path_String, side );
 	}
 }
