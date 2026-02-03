@@ -57,7 +57,11 @@ extern struct Library * MUIMasterBase;
 #define Left_Side           0
 #define Right_Side          1
 
-/* Internal error codes (negative to distinguish from DOS errors) */
+/*
+** Internal error codes
+** Negative values distinguish these from AmigaDOS IoErr() codes (positive)
+** Used by Error() in Misc.c to generate user-friendly error messages
+*/
 #define ERR_NO_MEMORY       -1
 #define ERR_DATE_TO_STR     -2
 #define ERR_STR_TO_DATE     -3

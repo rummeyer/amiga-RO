@@ -2,27 +2,31 @@
 #include "DoFunction.h"
 
 /*
-** Context structure for passing state between handler functions
+** FuncContext - Shared state for file operation handlers
+**
+** Passed to each Handle*() function to maintain state across the
+** iteration over selected files. Avoids long parameter lists and
+** makes adding new state straightforward.
 */
 typedef struct {
-	int side;
-	char * Argument;
-	char FileName_String[512];
-	char Target_String[512];
-	char String[1024];
-	__aligned struct FileInfoBlock * fib;
-	int ErrorNum;
-	BOOL Skip;
-	BOOL Cancel;
-	BOOL Action_BOOL;
-	BOOL ReloadSrc_BOOL;
-	BOOL ReloadDst_BOOL;
-	BOOL NoBreak_BOOL;
-	BOOL NoDeselect_BOOL;
+	int side;                       /* Active panel (Left_Side/Right_Side) */
+	char * Argument;                /* Command argument string */
+	char FileName_String[512];      /* Current file being processed */
+	char Target_String[512];        /* Destination path for copy/move */
+	char String[1024];              /* General purpose buffer */
+	__aligned struct FileInfoBlock * fib;  /* File info for current entry */
+	int ErrorNum;                   /* Error code (0 = success) */
+	BOOL Skip;                      /* Skip current file */
+	BOOL Cancel;                    /* Cancel entire operation */
+	BOOL Action_BOOL;               /* Action has been performed */
+	BOOL ReloadSrc_BOOL;            /* Source panel needs refresh */
+	BOOL ReloadDst_BOOL;            /* Dest panel needs refresh */
+	BOOL NoBreak_BOOL;              /* Don't abort on errors */
+	BOOL NoDeselect_BOOL;           /* Keep files selected after op */
 } FuncContext;
 
 /*
-** Handler: command_entries
+** HandleCommand - Execute external command for each selected file
 */
 static void HandleCommand( FuncContext * ctx, BOOL Request_Dst )
 {
@@ -42,7 +46,7 @@ static void HandleCommand( FuncContext * ctx, BOOL Request_Dst )
 }
 
 /*
-** Handler: action_entries
+** HandleAction - Perform configured FileAction on each selected file
 */
 static void HandleAction( FuncContext * ctx )
 {
@@ -57,7 +61,7 @@ static void HandleAction( FuncContext * ctx )
 }
 
 /*
-** Handler: copydev_entries
+** HandleCopyDev - Copy selected files to a device (e.g., PRT: for printer)
 */
 static void HandleCopyDev( FuncContext * ctx )
 {
@@ -83,7 +87,7 @@ static void HandleCopyDev( FuncContext * ctx )
 }
 
 /*
-** Handler: delete_entries
+** HandleDelete - Delete selected files/directories (with optional confirm)
 */
 static void HandleDelete( FuncContext * ctx )
 {
@@ -107,7 +111,7 @@ static void HandleDelete( FuncContext * ctx )
 }
 
 /*
-** Handler: unarc_entries
+** HandleUnarc - Extract archives to the opposite panel
 */
 static void HandleUnarc( FuncContext * ctx )
 {
@@ -142,7 +146,8 @@ static void HandleUnarc( FuncContext * ctx )
 }
 
 /*
-** Handler: copy/move operations
+** HandleCopyMove - Copy or move files between panels
+** Operation: copy_entries, copyas_entries, move_entries, or moveas_entries
 */
 static void HandleCopyMove( FuncContext * ctx, int Operation )
 {
@@ -300,7 +305,7 @@ static void HandleCopyMove( FuncContext * ctx, int Operation )
 }
 
 /*
-** Handler: rename_entries
+** HandleRename - Rename selected files in the same directory
 */
 static void HandleRename( FuncContext * ctx )
 {
@@ -339,7 +344,7 @@ static void HandleRename( FuncContext * ctx )
 }
 
 /*
-** Handler: dup_entries
+** HandleDuplicate - Create a copy of selected files in the same directory
 */
 static void HandleDuplicate( FuncContext * ctx )
 {
@@ -378,7 +383,7 @@ static void HandleDuplicate( FuncContext * ctx )
 }
 
 /*
-** Handler: touch_entries
+** HandleTouch - Update file timestamps to current date/time
 */
 static void HandleTouch( FuncContext * ctx )
 {
@@ -401,7 +406,7 @@ static void HandleTouch( FuncContext * ctx )
 }
 
 /*
-** Handler: comment_entries
+** HandleComment - Set file comments (AmigaDOS metadata)
 */
 static void HandleComment( FuncContext * ctx, char * Version_String, BOOL * CommentAll_BOOL )
 {
@@ -432,7 +437,7 @@ static void HandleComment( FuncContext * ctx, char * Version_String, BOOL * Comm
 }
 
 /*
-** Handler: setdate_entries
+** HandleSetDate - Set custom date/time on selected files
 */
 static void HandleSetDate( FuncContext * ctx )
 {
@@ -510,7 +515,7 @@ static void HandleSetDate( FuncContext * ctx )
 }
 
 /*
-** Handler: info_entries
+** HandleInfo - Display detailed file information dialog
 */
 static void HandleInfo( FuncContext * ctx )
 {
@@ -684,7 +689,7 @@ static void HandleInfo( FuncContext * ctx )
 }
 
 /*
-** Handler: listarc_entries
+** HandleListArc - Display archive contents without extracting
 */
 static void HandleListArc( FuncContext * ctx )
 {
@@ -723,7 +728,7 @@ static void HandleListArc( FuncContext * ctx )
 }
 
 /*
-** Handler: protect_entries
+** HandleProtect - Change file protection bits (HSPARWED flags)
 */
 static void HandleProtect( FuncContext * ctx, BOOL * All_BOOL, LONG * prot_h, LONG * prot_s, LONG * prot_p, LONG * prot_a, LONG * prot_r, LONG * prot_w, LONG * prot_e, LONG * prot_d )
 {

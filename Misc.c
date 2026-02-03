@@ -599,10 +599,12 @@ char * GetVersion ( char * FileName_String )
 }
 
 /*
-**
 ** MatchFileType() - Helper for Recog/RecogArchive
-** Returns index of matching filetype, or -1 if not found
 **
+** Matches files against configured patterns (hex signatures + filename patterns)
+** ArchiveMode: TRUE = only check entries with extraction commands (archives)
+**              FALSE = only check entries without extraction commands (regular files)
+** Returns index into cfg_Recog* arrays, or -1 if no match
 */
 
 static int MatchFileType ( char * FileName_String, char * Buffer, int BufferLen, BOOL ArchiveMode )
@@ -655,9 +657,14 @@ static int MatchFileType ( char * FileName_String, char * Buffer, int BufferLen,
 }
 
 /*
+** Recog() - Recognize regular (non-archive) filetypes
 **
-** Recog() - Recognize regular filetypes
-**
+** Returns:
+**   -1 = unknown binary
+**   -2 = ASCII text
+**   -3 = Amiga executable
+**   -4 = XPK/PowerPacker compressed (skip further matching)
+**   >=0 = index into cfg_Recog* configuration arrays
 */
 
 int Recog ( char * FileName_String )
@@ -705,9 +712,9 @@ int Recog ( char * FileName_String )
 }
 
 /*
+** RecogArchive() - Recognize archive filetypes (files with extraction commands)
 **
-** RecogArchive() - Recognize archive filetypes
-**
+** Returns index into cfg_Recog* arrays for archives, or -1 if no match
 */
 
 int RecogArchive ( char * FileName_String )

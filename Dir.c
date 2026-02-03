@@ -137,9 +137,8 @@ int LoadDirectory ( char * Path_String, int side )
 }
 
 /*
-**
-** LoadParent()
-**
+** LoadParent() - Navigate up one directory level
+** Strips the last path component and loads the parent directory
 */
 
 void LoadParent ( int side )
@@ -170,9 +169,8 @@ void LoadParent ( int side )
 }
 
 /*
-**
-** LoadRoot()
-**
+** LoadRoot() - Navigate to the root directory of current volume
+** Extracts device name (up to ':') and loads its root
 */
 
 void LoadRoot ( int side )

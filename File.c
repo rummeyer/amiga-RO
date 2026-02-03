@@ -2,9 +2,8 @@
 #include "File.h"
 
 /*
-**
-** Exists()
-**
+** Exists() - Check if file or directory exists
+** Returns TRUE if path exists, FALSE otherwise
 */
 
 BOOL Exists( char * File_String )
@@ -18,9 +17,9 @@ BOOL Exists( char * File_String )
 }
 
 /*
-**
-** RemoveFile()
-**
+** RemoveFile() - Delete a file, handling protection bits
+** Prompts user if file is delete-protected
+** Returns 0 on success, IoErr() code or ERR_ABORTED on failure
 */
 
 int RemoveFile ( char * File_String )
